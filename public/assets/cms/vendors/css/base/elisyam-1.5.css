@@ -130,7 +130,7 @@ h1, h2, h3, h4, h5, h6,
   margin-bottom: 0.5rem;
   font-family: "Noto Sans", sans-serif;
   line-height: 1.1;
-  color: #2c304d;
+  color: #fff;
 }
 
 h1, .h1 {
@@ -647,7 +647,7 @@ button, input {
 }
 
 .elisyam-overlay.overlay-08 {
-  background: linear-gradient(135deg, rgba(239,239,239,0.85) 0,rgba(136,136,136,0.85) 100%);
+  background: linear-gradient(135deg, rgba(102, 24, 160, 0.7), rgba(110, 50, 162, 0.4));
 }
 
 .elisyam-bg.background-01 {

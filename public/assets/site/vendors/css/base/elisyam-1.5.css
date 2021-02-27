@@ -7145,7 +7145,7 @@ nav.navbar .user-size.dropdown-menu a.logout:hover {
  * DEFAULT
  */
 .default-sidebar {
-  background: #e2e2e2;
+  background: #dabbf9;
   position: fixed;
   height: 100%;
   top: 0;
@@ -7178,7 +7178,7 @@ nav.navbar .user-size.dropdown-menu a.logout:hover {
 }
 
 .default-sidebar > .side-navbar a[data-toggle="collapse"]::before {
-  color: #aea9c3;
+  color: #fff;
   font-size: 0.85rem;
   content: '\f124';
   display: inline-block;
@@ -7191,7 +7191,7 @@ nav.navbar .user-size.dropdown-menu a.logout:hover {
 }
 
 .default-sidebar > .side-navbar a[aria-expanded="true"] {
-  background: #fff;
+  background: #be98e4;
   margin: 0 10px 0 10px;
   border-radius: 4px 4px 0 0;
 }
@@ -7209,7 +7209,7 @@ nav.navbar .user-size.dropdown-menu a.logout:hover {
   margin-right: 10px;
   transition: none;
   vertical-align: -4px;
-  color: #757575;
+  color: #fff;
 }
 
 .default-sidebar > .side-navbar .sidebar-header {
@@ -7219,7 +7219,7 @@ nav.navbar .user-size.dropdown-menu a.logout:hover {
 .default-sidebar > .side-navbar span.heading {
   font-weight: 600;
   margin-left: 10px;
-  color: #757575;
+  color: #fff;
   font-size: 0.85rem;
   text-transform: uppercase;
 }
@@ -7229,7 +7229,7 @@ nav.navbar .user-size.dropdown-menu a.logout:hover {
 }
 
 .default-sidebar > .side-navbar ul a {
-  color: #757575;
+  color: #fff;
   padding: 10px 10px;
   text-decoration: none;
   display: block;
@@ -7250,14 +7250,14 @@ nav.navbar .user-size.dropdown-menu a.logout:hover {
 }
 
 .default-sidebar > .side-navbar ul ul {
-  background: #fff;
+  background: #be98e4;
   border-radius: 0 0 4px 4px;
 }
 
 .default-sidebar > .side-navbar ul ul a {
   font-size: 0.85rem;
   padding-left: 40px;
-  color: #aea9c3;
+  color: #fff;
 }
 
 .default-sidebar > .side-navbar ul ul a:hover {
@@ -7265,7 +7265,7 @@ nav.navbar .user-size.dropdown-menu a.logout:hover {
 }
 
 .default-sidebar > .side-navbar ul ul a:focus {
-  color: #aea9c3;
+  color: #fff;
 }
 
 .default-sidebar > .side-navbar.shrinked ul.end-sidebar {

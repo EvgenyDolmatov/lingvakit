@@ -9,8 +9,8 @@
                     <div class="elisyam-overlay overlay-08"></div>
                     <div class="authentication-col-content-2 mx-auto text-center">
                         <div class="logo-centered">
-                            <a href="{{ route('dashboard') }}">
-                                <img src="{{asset('assets/site/img/logo.svg')}}" alt="logo">
+                            <a href="{{ route('site.index') }}">
+                                <img src="{{asset('assets/cms/img/logo-light.svg')}}" alt="logo">
                             </a>
                         </div>
                         <h2>Онлайн-школа<br>иностранных языков</h2>
