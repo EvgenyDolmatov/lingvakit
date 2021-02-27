@@ -251,7 +251,7 @@
                      style="font-family: Helvetica, Arial, sans-serif;margin-top: 0px;margin-bottom: 0px;font-size: 16px;line-height: 24px;text-align: center;padding-left: 8px;padding-right: 8px;">
                     <p style="margin-top: 0px;margin-bottom: 0px;">
                         <a class="o_text-primary" href="https://example.com/"style="text-decoration: none;outline: none;color: #126de5;">
-                            <img src="{{'http://a0304379.xsph.ru'.$course->getImageFullPath()}}" width="184" height="184" alt style="max-width: 184px;-ms-interpolation-mode: bicubic;vertical-align: middle;border: 0;line-height: 100%;height: auto;outline: none;text-decoration: none;">
+                            <img src="{{$course->getImageFullPath()}}" width="184" height="184" alt style="max-width: 184px;-ms-interpolation-mode: bicubic;vertical-align: middle;border: 0;line-height: 100%;height: auto;outline: none;text-decoration: none;">
                         </a>
                     </p>
                 </div>
