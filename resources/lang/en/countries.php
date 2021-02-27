@@ -1,0 +1,25 @@
+<?php
+
+return [
+    'AL' => 'Albania',
+    'DZ' => 'Algeria',
+    'AD' => 'Andorra',
+    'AO' => 'Angola',
+    'AI' => 'Anguilla',
+    'AQ' => 'Antarctica',
+    'AR' => 'Argentina',
+    'AM' => 'Armenia',
+    'AU' => 'Australia',
+    'AT' => 'Austria',
+    'AZ' => 'Azerbaijan',
+    'BY' => 'Belarus',
+    'FR' => 'France',
+    'DE' => 'Germany',
+    'KZ' => 'Kazakhstan',
+    'LV' => 'Latvia',
+    'PL' => 'Poland',
+    'RU' => 'Russian Federation',
+    'UA' => 'Ukraine',
+    'GB' => 'United Kingdom',
+    'UZ' => 'Uzbekistan',
+];

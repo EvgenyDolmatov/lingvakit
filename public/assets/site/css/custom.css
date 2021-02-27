@@ -1,0 +1,144 @@
+.content-inner.remove-offset,
+.content-inner.active.remove-offset {
+    margin-left: 0;
+    width: 100%;
+}
+.font-large {
+    font-family: 'Noto Serif TC', serif;
+    font-size: 28px;
+    font-weight: 500;
+}
+.font-huge {
+    font-family: 'Noto Serif TC', serif;
+    font-size: 42px;
+    font-weight: 500;
+}
+
+.invalid-feedback {
+    display: unset;
+}
+
+.ck-editor__editable {
+    min-height: 150px;
+}
+
+.image-gallery {
+    margin: 10px -5px;
+    display: flex;
+    justify-content: flex-start;
+    align-items: center;
+    flex-wrap: wrap;
+}
+.image-container {
+    position: relative;
+    margin: 5px;
+    width: 30%;
+    max-height: 100px;
+    overflow-y: hidden;
+}
+.tile-image-container {
+    position: relative;
+    height: 300px;
+    overflow-y: hidden;
+}
+.tile-image-container img {
+    display: block;
+    width: 100%;
+}
+
+.image-remove {
+    position: absolute;
+    top: 3px;
+    right: 3px;
+    background: url("../img/close.svg") center no-repeat;
+    background-size: cover;
+    width: 14px;
+    height: 14px;
+    cursor: pointer;
+}
+
+.about-image img {
+    width: 100%;
+}
+
+.source-list {
+    margin-bottom: 20px;
+    display: flex;
+    flex-wrap: wrap;
+    min-height: 50px;
+    justify-content: flex-start;
+    border: 1px solid #dac9a6;
+    background-color: #fffaf4;
+    border-radius: 3px;
+}
+
+.list-item {
+    padding: 10px 20px;
+    width: fit-content;
+    border-radius: 3px;
+    background-color: #ffbc19;
+    color: #6d5416;
+}
+
+.item-word {
+    padding: 0 10px;
+    width: fit-content;
+    border-radius: 3px;
+    background-color: inherit;
+    color: #6d5416;
+}
+
+.item-success {
+    background-color: #68c151;
+    color: #f7f3c8;
+}
+
+.item-danger {
+    background-color: #ea5765;
+    color: #f7f3c8;
+}
+
+.question-container {
+    margin: 10px;
+}
+.make-sentence {
+    margin: 10px 0;
+}
+.question-body {
+    text-align: center;
+    color: #6d5416;
+}
+.draggable-field {
+    padding: 10px;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    min-width: 140px;
+    min-height: 90px;
+    border-radius: 5px;
+    border: 2px dashed #d4b978;
+}
+
+.field-word {
+    padding: 0;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    min-width: 100px;
+    min-height: 40px;
+    border: none;
+    border-bottom: 1px dashed #d4b978;
+}
+
+input.short_word {
+    width: 120px;
+    border: none;
+    border-bottom: 1px solid #d4b978;
+    color: #6d5416;
+}
+
+/*.nav-menu-container {
+    display: flex;
+    justify-content: flex-start;
+    width: max-content;
+}*/
