@@ -5,8 +5,9 @@
     <meta http-equiv="X-UA-Compatible" content="IE=edge">
     <meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no">
     <meta name="csrf-token" content="{{ csrf_token() }}">
-    <title>@yield('seo-title')</title> {{-- {{ config('app.name', 'Seontex CMS') }} --}}
+    <title>@yield('seo-title')</title>
     <meta name="description" content="@yield('seo-description')">
+    <meta name="yandex-verification" content="ba265d9f720d94df" />
 
     <!-- Google Fonts -->
     <script src="https://ajax.googleapis.com/ajax/libs/webfont/1.6.26/webfont.js"></script>
@@ -19,9 +20,9 @@
         });
     </script>
     <!-- Favicon -->
-    <link rel="apple-touch-icon" sizes="180x180" href="{{asset('assets/cms/img/apple-touch-icon.png')}}">
-    <link rel="icon" type="image/png" sizes="32x32" href="{{asset('assets/cms/img/favicon-32x32.png')}}">
-    <link rel="icon" type="image/png" sizes="16x16" href="{{asset('assets/cms/img/favicon-16x16.png')}}">
+    <link rel="apple-touch-icon" sizes="180x180" href="{{asset('assets/site/img/favicon.png')}}">
+    <link rel="icon" type="image/png" sizes="32x32" href="{{asset('assets/site/img/favicon.png')}}">
+    <link rel="icon" type="image/png" sizes="16x16" href="{{asset('assets/site/img/favicon.png')}}">
     <!-- Stylesheet -->
     <link rel="stylesheet" href="{{asset('assets/cms/vendors/css/base/bootstrap.min.css')}}">
 

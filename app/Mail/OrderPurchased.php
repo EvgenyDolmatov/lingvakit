@@ -37,7 +37,7 @@ class OrderPurchased extends Mailable
     {
         $subject = 'Спасибо за заказ №'.$this->order->id;
 
-        return $this->subject($subject)->from('info@seontex.com', 'Онлайн-школа Лингва-Кит')
+        return $this->subject($subject)
             ->view('mails.orders.order-purchased', [
                 'course' => $this->course,
                 'order' => $this->order,

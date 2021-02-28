@@ -33,7 +33,7 @@ class Feedback extends Mailable
     {
         $subject = 'Новый вопрос с сайта';
 
-        return $this->subject($subject)->from('info@seontex.com', 'Онлайн-школа Лингва-Кит')
+        return $this->subject($subject)
             ->view('mails.feedback', [
                 'feedback' => $this->feedback
             ]);

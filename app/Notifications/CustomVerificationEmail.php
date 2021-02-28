@@ -78,7 +78,6 @@ class CustomVerificationEmail extends Notification
     {
         return (new MailMessage)
             ->subject('Спасибо за регистрацию!')
-            ->from('info@seontex.com', 'Онлайн-школа Лингва-Кит')
             ->view('mails.email-verification', [
                 'url' => $url,
                 'user' => $this->user

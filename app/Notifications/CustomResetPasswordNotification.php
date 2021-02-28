@@ -85,7 +85,6 @@ class CustomResetPasswordNotification extends Notification
     {
         return (new MailMessage)
             ->view('mails.auth.password-reset', ['url' => $url])
-            ->from('info@seontex.com', 'Онлайн-школа Лингва-Кит')
             ->subject('Запрос на сброс пароля');
     }
 
