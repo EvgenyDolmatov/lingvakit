@@ -24,7 +24,7 @@
                     <h3 class="text-center mt-3 mb-1">{{ Auth::user()->name }}</h3>
                     <p class="text-center">{{ Auth::user()->email }}</p>
                     <div class="em-separator separator-dashed"></div>
-                    <ul class="nav flex-column">
+                    {{--<ul class="nav flex-column">
                         <li class="nav-item">
                             <a class="nav-link" href="javascript:void(0)"><i class="la la-bell la-2x align-middle pr-2"></i>{{ __("Notifications") }}</a>
                         </li>
@@ -46,7 +46,7 @@
                         <li class="nav-item">
                             <a class="nav-link" href="javascript:void(0)"><i class="la la-question-circle la-2x align-middle pr-2"></i>{{ __("FAQ") }}</a>
                         </li>
-                    </ul>
+                    </ul>--}}
                 </div>
             </div>
             <!-- End Widget -->
