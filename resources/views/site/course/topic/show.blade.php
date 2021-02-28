@@ -36,14 +36,13 @@
 
         <div class="btn-group" role="group" aria-label="Buttons Group">
             @if($previousTopic)
-                <a class="btn btn-primary"
+                <a class="btn btn-previous"
                    href="{{ route('site.show-topic', [$course->id, $previousTopic->id]) }}">
                     <i class="la la-arrow-left mr-2"></i>{{__("site-pages.previous-topic")}}
                 </a>
             @endif
             @if($nextTopic)
-                <a class="btn btn-primary" style="background-color:#3c3267;border-color:#3c3267;"
-                   href="{{ route('site.show-topic', [$course->id, $nextTopic->id]) }}">
+                <a class="btn btn-next" href="{{ route('site.show-topic', [$course->id, $nextTopic->id]) }}">
                     {{__("site-pages.next-topic")}}<i class="la la-arrow-right ml-2"></i>
                 </a>
             @endif

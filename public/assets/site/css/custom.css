@@ -136,3 +136,28 @@ input.short_word {
     border-bottom: 1px solid #d4b978;
     color: #6d5416;
 }
+
+.btn-previous {
+    background-color: #dabbf9;
+    border-color: #dabbf9;
+    color: #271835;
+    transition: all .4s;
+}
+.btn-previous:hover {
+    background-color: #c2a5e0;
+    border-color: #c2a5e0;
+    color: #271835;
+    transition: all .4s;
+}
+.btn-next {
+    background-color: #af85d2;
+    border-color: #af85d2;
+    color: #271835;
+    transition: all .4s;
+}
+.btn-next:hover {
+    background-color: #9c72bc;
+    border-color: #9c72bc;
+    color: #271835;
+    transition: all .4s;
+}

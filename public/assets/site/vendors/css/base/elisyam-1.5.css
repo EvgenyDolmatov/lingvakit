@@ -7197,7 +7197,7 @@ nav.navbar .user-size.dropdown-menu a.logout:hover {
 }
 
 .default-sidebar > .side-navbar a[aria-expanded="true"] i {
-  color: #f1bf0a;
+  color: #693296;
 }
 
 .default-sidebar > .side-navbar a[aria-expanded="true"]::before {
@@ -7237,12 +7237,12 @@ nav.navbar .user-size.dropdown-menu a.logout:hover {
 }
 
 .default-sidebar > .side-navbar ul a:hover i {
-  color: #f1bf0a;
+  color: #693296;
 }
 
 .default-sidebar > .side-navbar ul li.active i,
 .default-sidebar > .side-navbar li ul li a.active {
-  color: #f1bf0a;
+  color: #693296;
 }
 
 .default-sidebar > .side-navbar ul ul {
@@ -7261,7 +7261,7 @@ nav.navbar .user-size.dropdown-menu a.logout:hover {
 }
 
 .default-sidebar > .side-navbar ul ul a:hover {
-  color: #e76c90;
+  color: #271835;
 }
 
 .default-sidebar > .side-navbar ul ul a:focus {
