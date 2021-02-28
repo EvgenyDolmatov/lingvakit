@@ -246,9 +246,8 @@
                         <div class="form-group row d-flex align-items-center mb-5">
                             <label class="col-lg-3 form-control-label">{{ __("cms-pages.meta-description") }}</label>
                             <div class="col-lg-9">
-                                <textarea name="meta_description" rows="3" class="form-control">
-                                    {{$course->meta->description}}
-                                </textarea>
+                                <textarea name="meta_description" rows="3"
+                                          class="form-control">{{$course->meta->description}}</textarea>
                             </div>
                         </div>
                         {{-- SEO: Meta-keywords --}}
