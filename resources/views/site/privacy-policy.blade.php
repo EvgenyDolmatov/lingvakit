@@ -18,7 +18,7 @@
                 <h3>Кто мы</h3>
             </div>
             <div class="about-body">
-                <p>Наш адрес сайта: http://lingva-kit.ru.</p>
+                <p>Наш адрес сайта: https://lingva-kit.ru.</p>
             </div>
 
             <div class="section-title mt-5">
