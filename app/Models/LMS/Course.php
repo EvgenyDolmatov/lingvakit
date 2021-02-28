@@ -3,6 +3,7 @@
 namespace App\Models\LMS;
 
 use App\Models\MediaFile;
+use App\Models\MetaCourse;
 use App\Models\User;
 use Illuminate\Database\Eloquent\Factories\HasFactory;
 use Illuminate\Database\Eloquent\Model;
@@ -28,6 +29,11 @@ class Course extends Model
     public function stages()
     {
         return $this->hasMany(Stage::class);
+    }
+
+    public function meta()
+    {
+        return $this->hasOne(MetaCourse::class);
     }
 
     public function getTopics() : array

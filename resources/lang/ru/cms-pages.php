@@ -354,6 +354,9 @@ return [
     'file-size' => 'Размер файла',
     'file-duration' => 'Продолжительность',
 
+    // SEO
+    'seo-optimization' => 'SEO-оптимизация',
+
     // Stages
     'add-stage' => 'Добавить этап',
     'new-stage' => 'Новый этап',

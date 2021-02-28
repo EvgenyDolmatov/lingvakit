@@ -190,6 +190,37 @@
                                 </div>
                             </div>
                         </div>
+                        {{-- SEO Data --}}
+                        <div class="section-title mt-5 mb-5">
+                            <h4>{{__("cms-pages.seo-optimization")}}</h4>
+                        </div>
+                        {{-- SEO: Meta-title --}}
+                        <div class="form-group row d-flex align-items-center mb-5">
+                            <label class="col-lg-3 form-control-label">{{ __("cms-pages.meta-title") }}</label>
+                            <div class="col-lg-9">
+                                <input type="text" name="meta_title" class="form-control" value="{{old('meta_title')}}">
+                                @error('meta_title')
+                                <div class="invalid-feedback">{{ $message }}</div>
+                                @enderror
+                            </div>
+                        </div>
+                        {{-- SEO: Meta-description --}}
+                        <div class="form-group row d-flex align-items-center mb-5">
+                            <label class="col-lg-3 form-control-label">{{ __("cms-pages.meta-description") }}</label>
+                            <div class="col-lg-9">
+                                <textarea name="meta_description" rows="3" class="form-control">{{old('meta_description')}}</textarea>
+                            </div>
+                        </div>
+                        {{-- SEO: Meta-keywords --}}
+                        <div class="form-group row d-flex align-items-center mb-5">
+                            <label class="col-lg-3 form-control-label">{{ __("cms-pages.meta-keywords") }}</label>
+                            <div class="col-lg-9">
+                                <input type="text" name="meta_keywords" class="form-control" value="{{old('meta_keywords')}}">
+                                @error('meta_keywords')
+                                <div class="invalid-feedback">{{ $message }}</div>
+                                @enderror
+                            </div>
+                        </div>
                         <div class="em-separator separator-dashed"></div>
                         {{-- Is Published --}}
                         <div class="form-group row d-flex align-items-center mb-5">

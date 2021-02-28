@@ -6,6 +6,7 @@ use App\Http\Controllers\Controller;
 use App\Models\LMS\Category;
 use App\Models\LMS\Course;
 use App\Models\MediaFile;
+use App\Models\MetaCourse;
 use Illuminate\Support\Facades\Auth;
 use Illuminate\Http\Request;
 
@@ -31,6 +32,8 @@ class CourseController extends Controller
     {
         $request->validate([
             'title' => 'required|string|max:255',
+            'meta_title' => 'nullable|string|max:255',
+            'meta_keywords' => 'nullable|string|max:255',
         ]);
 
         if ($request->has('category_id')) {
@@ -47,6 +50,7 @@ class CourseController extends Controller
         $course->switchIsNew($request->input('is_new'));
         $course->switchIsPublished($request->input('is_published'));
 
+        MetaCourse::add($request, $course);
         $course->students()->attach(Auth::user()->id);
 
         return redirect()->route('courses.show', $course->id);
@@ -98,6 +102,12 @@ class CourseController extends Controller
         $course->addCategory($category);
         $course->switchIsNew($request->input('is_new'));
         $course->switchIsPublished($request->input('is_published'));
+
+        $course->meta()->update([
+            'title' => $request->meta_title,
+            'description' => $request->meta_description,
+            'keywords' => $request->meta_keywords,
+        ]);
 
         return redirect()->route('courses.show', $course->id);
     }

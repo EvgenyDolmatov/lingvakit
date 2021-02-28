@@ -360,6 +360,9 @@ return [
     'file-size' => 'File Size',
     'file-duration' => 'File Duration',
 
+    // SEO
+    'seo-optimization' => 'SEO optimization',
+
     // Stages
     'add-stage' => 'Add Stage',
     'new-stage' => 'New Stage',
