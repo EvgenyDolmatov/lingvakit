@@ -199,4 +199,10 @@ class User extends Authenticatable implements MustVerifyEmail
     {
         $this->notify(new CustomVerificationEmail($this));
     }
+
+    public function formatPhoneNumber()
+    {
+        $sym = ['(',')','+','-',' '];
+        return str_replace($sym, '', $this->phone);
+    }
 }

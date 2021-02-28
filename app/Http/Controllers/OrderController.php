@@ -33,7 +33,7 @@ class OrderController extends Controller
 
         foreach ($userOrders as $userOrder) {
             foreach ($userOrder->details as $detail) {
-                if ($detail->course_id === $course->id){
+                if ($detail->course_id === $course->id) {
                     $order = $userOrder;
                 }
             }
@@ -48,6 +48,7 @@ class OrderController extends Controller
         foreach ($order->details as $detail) {
             $price += $detail->total;
         }
+        $user->update($request->all());
 
         $response = $client->createPayment(
             array(
@@ -59,8 +60,27 @@ class OrderController extends Controller
                     'type' => 'redirect',
                     'return_url' => route('orders.payment-info'),
                 ),
+                "receipt" => array(
+                    "customer" => array(
+                        "full_name" => $user->getFullName(),
+                        "phone" => $user->formatPhoneNumber(),
+                    ),
+                    "items" => array(
+                        array(
+                            "description" => $course->title,
+                            "quantity" => "1.00",
+                            "amount" => array(
+                                "value" => $course->price,
+                                "currency" => "RUB"
+                            ),
+                            "vat_code" => "2",
+                            "payment_mode" => "full_prepayment",
+                            "payment_subject" => "service"
+                        )
+                    )
+                ),
                 'capture' => true,
-                'description' => 'Заказ №'.$order->id,
+                'description' => 'Заказ №' . $order->id,
             ),
             uniqid('', true)
         );
@@ -75,8 +95,6 @@ class OrderController extends Controller
             'amount' => $paymentData['amount']['value'],
             'date' => date('Y-m-d'),
         ]);
-
-        $user->update($request->all());
 
         return redirect($paymentUrl);
     }
@@ -121,8 +139,7 @@ class OrderController extends Controller
         if ($payment->paid && !$user->courses->contains($course->id)) {
             $user->courses()->attach($course->id);
 
-//            Mail::to($user->email)->send(new OrderPurchased($course, $order));
-            Mail::to('pristya@bk.ru')->send(new OrderPurchased($course, $order));
+            Mail::to($user->email)->send(new OrderPurchased($course, $order));
         }
 
         return view('site.orders.payment-result', [
