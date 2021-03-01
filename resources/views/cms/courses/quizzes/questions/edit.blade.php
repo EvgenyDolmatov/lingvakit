@@ -104,13 +104,13 @@
                                                      data-delete="{{route('questions.audio.remove', [$course->id, $stage->id, $quiz->id, $question->id, $audio->id])}}">
                                                     {{ __("cms-pages.remove") }}
                                                 </div>
-                                                <input type="hidden" name="question_audios[]" value="{{ $question->audio }}">
+                                                <input type="hidden" name="question_audios[]" value="{{ $audio->id }}">
                                             </div>
                                         @endforeach
                                     @endif
                                 </div>
                                 <button type="button" class="btn btn-primary square mr-1 mb-2 btn-attach"
-                                        data-type="audio" data-var="audio" data-toggle="modal"
+                                        data-type="audio" data-var="question_audio" data-toggle="modal"
                                         data-target="#modal-files">
                                     {{__("cms-pages.choose")}}
                                 </button>
