@@ -25,7 +25,7 @@ class OrderController extends Controller
     public function storeOrder(Request $request, Course $course)
     {
         $client = new Client();
-        $client->setAuth('785971', 'test_e31vp0OKw6pXDmAvCk7jvloxc6lWiHS8ZwBeVyAK9tc');
+        $client->setAuth('787166', 'live_QHlxE3kLaswB-L2klCHSY6IfJshqOtJHXIM6KxniS7Q');
 
         $user = Auth::user();
         $order = false;
@@ -73,7 +73,7 @@ class OrderController extends Controller
                                 "value" => $course->price,
                                 "currency" => "RUB"
                             ),
-                            "vat_code" => "2",
+                            "vat_code" => "1",
                             "payment_mode" => "full_prepayment",
                             "payment_subject" => "service"
                         )
@@ -102,7 +102,7 @@ class OrderController extends Controller
     public function paymentResult()
     {
         $client = new Client();
-        $client->setAuth('785971', 'test_e31vp0OKw6pXDmAvCk7jvloxc6lWiHS8ZwBeVyAK9tc');
+        $client->setAuth('787166', 'live_QHlxE3kLaswB-L2klCHSY6IfJshqOtJHXIM6KxniS7Q');
 
         $user = Auth::user();
         $order = $user->getLastOrder();
