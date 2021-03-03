@@ -85,18 +85,21 @@ class Order extends Model
 
     public function remove()
     {
-        $details = OrderDetail::where('order_id', $this->id)->get();
-
-        foreach ($details as $detail) {
-            $warehouse = Warehouse::where('product_id', $detail->product_id)->first();
-            $warehouse->receiveProducts($detail->quantity);
-        }
         $this->delete();
     }
 
     public function getFullName() : string
     {
         return $this->surname . ' ' . $this->name . ' ' . $this->patronymic;
+    }
+
+    public function getPaymentCost() : int
+    {
+        $payment = 0;
+        foreach ($this->details as $detail) {
+            $payment += $detail->total;
+        }
+        return $payment;
     }
 
     public function getCustomer() : string

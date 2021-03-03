@@ -143,17 +143,6 @@ class Course extends Model
         return false;
     }
 
-/*    public function getTopics()
-    {
-        $topicIds = array();
-        foreach ($this->stages as $stage) {
-            foreach ($stage->topics as $topic) {
-                $topicIds[] = Topic::find($topic->id)->id;
-            }
-        }
-        return Topic::find($topicIds);
-    }*/
-
     public static function add($fields, $user)
     {
         $course = new static();
@@ -262,6 +251,19 @@ class Course extends Model
     public function priceFormat($price) : string
     {
         return number_format($price, 0, '.', ' ') . ' ₽';
+    }
+
+    public function getDiscount() : int
+    {
+        if ($this->sale_price) {
+            return $this->price - $this->sale_price;
+        }
+        return 0;
+    }
+
+    public function getTotalPrice() : int
+    {
+        return $this->price - $this->getDiscount();
     }
 
     public function getPrice() : string

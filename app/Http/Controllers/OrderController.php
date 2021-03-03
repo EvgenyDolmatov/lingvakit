@@ -3,6 +3,7 @@
 namespace App\Http\Controllers;
 
 use App\Mail\OrderPurchased;
+use App\Mail\OrderPurchasedToAdmin;
 use App\Models\LMS\Course;
 use App\Models\Order;
 use App\Models\OrderDetail;
@@ -35,6 +36,12 @@ class OrderController extends Controller
             foreach ($userOrder->details as $detail) {
                 if ($detail->course_id === $course->id) {
                     $order = $userOrder;
+                    $detail->update([
+                        'price' => $course->price,
+                        'quantity' => 1,
+                        'discount' => $course->getDiscount(),
+                        'total' => $course->getTotalPrice()
+                    ]);
                 }
             }
         }
@@ -70,7 +77,7 @@ class OrderController extends Controller
                             "description" => $course->title,
                             "quantity" => "1.00",
                             "amount" => array(
-                                "value" => $course->price,
+                                "value" => $price,
                                 "currency" => "RUB"
                             ),
                             "vat_code" => "1",
@@ -110,6 +117,7 @@ class OrderController extends Controller
         $paymentData = $client->getPaymentInfo($payment->payment_id)->jsonSerialize();
 
         /* Payment Info */
+        $paymentId = $paymentData['id'];
         $paymentStatus = $paymentData['status'];
         $paymentPaid = $paymentData['paid'];
         $paymentAmount = $paymentData['amount']['value'];
@@ -137,9 +145,50 @@ class OrderController extends Controller
         $course = Course::find($order->details()->first()->course_id);
 
         if ($payment->paid && !$user->courses->contains($course->id)) {
+            /* прикрепляем курс к студенту */
             $user->courses()->attach($course->id);
 
+            /* Создаем запрос на отправку чека в облачную кассу */
+            $client->createReceipt(
+                array(
+                    'customer' => array(
+                        'full_name' => $user->getFullName(),
+                        'email' => $user->email,
+                    ),
+                    'payment_id' => $paymentId,
+                    'type' => 'payment',
+                    'send' => true,
+                    'items' => array(
+                        array(
+                            'description' => 'Курс по иностранному языку',
+                            'quantity' => '1.000',
+                            'amount' => array(
+                                'value' => $paymentAmount,
+                                'currency' => 'RUB',
+                            ),
+                            'vat_code' => 1,
+                            'payment_mode' => 'full_payment',
+                            'payment_subject' => 'commodity',
+                            'country_of_origin_code' => 'RU',
+                        ),
+                    ),
+                    'settlements' => array(
+                        array(
+                            'type' => 'prepayment',
+                            'amount' => array(
+                                'value' => $paymentAmount,
+                                'currency' => 'RUB',
+                            )
+                        ),
+                    ),
+                ),
+                uniqid('', true)
+            );
+            /* Отправляем e-mail студенту */
             Mail::to($user->email)->send(new OrderPurchased($course, $order));
+
+            /* Отправляем e-mail админу */
+            Mail::to('info@lingva-kit.ru')->send(new OrderPurchasedToAdmin($course, $order));
         }
 
         return view('site.orders.payment-result', [
