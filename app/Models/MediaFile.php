@@ -75,7 +75,7 @@ class MediaFile extends Model
 
     public function getPath() : string
     {
-        if ($this->filename == null) {
+        if ($this->filename == null && $this->type === 'image') {
             return '/assets/cms/img/no-image.jpg';
         }
         return '/uploads/'.$this->path.'/'.$this->filename;

@@ -26,10 +26,12 @@ class QuestionAudio extends Model
 
     public function getAudio() : string
     {
-        if ($this->audio == null) {
-            return false;
+        $audio = $this->audio()->first();
+
+        if ($audio) {
+            return $audio->getPath();
         }
-        return $this->audio()->first()->getPath();
+        return false;
     }
 
     public function remove()
