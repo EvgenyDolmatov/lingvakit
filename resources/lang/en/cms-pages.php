@@ -343,6 +343,16 @@ return [
     'publish' => 'Publish',
     'points' => 'Points',
     'max-points' => 'Max Points',
+    'promo-code' => 'Promo Code',
+    'promo-codes' => 'Promo Codes',
+    'discount' => 'Discount',
+    'expiration-date' => 'Expiration Date',
+    'new-promo-code' => 'New Promo Code',
+    'edit-promo-code' => 'Edit Promo Code',
+    'promo-code-form' => 'Promo Code Data',
+    'discount-type' => 'Discount Type',
+    'percent' => 'Percentage of the amount',
+    'amount' => 'Fixed amount',
 
     // Media Files
     'media-files' => 'Media Files',

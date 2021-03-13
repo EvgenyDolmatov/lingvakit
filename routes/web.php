@@ -3,6 +3,7 @@
 use App\Http\Controllers\Admin\CategoryController;
 use App\Http\Controllers\Admin\ConformityController;
 use App\Http\Controllers\Admin\MediaFileController;
+use App\Http\Controllers\Admin\PromocodeController;
 use App\Http\Controllers\Admin\QuestionOptionController;
 use App\Http\Controllers\Admin\CourseController;
 use App\Http\Controllers\Admin\DashboardController;
@@ -175,8 +176,11 @@ Route::prefix('dashboard')->middleware(['auth', 'staff', 'locale'])->group(funct
 
         /* Students on the Course */
         Route::get('students', [StudentCourseController::class, 'studentsList'])->name('course.students.list');
-
     });
+
+    /* PROMO CODES */
+    Route::resource('promocodes', PromocodeController::class);
+
     /* STUDENTS */
     Route::prefix('students')->group(function (){
         Route::get('/', [StudentController::class, 'index'])->name('students.index');

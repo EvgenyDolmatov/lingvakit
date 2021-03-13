@@ -6,56 +6,55 @@
 @endsection
 @section('title', __("site-pages.checkout"))
 @section('content')
-    <div class="row flex-row">
-        <div class="col-12">
-            <!-- Cart -->
-            <div class="widget has-shadow">
-                <div class="widget-header bordered no-actions d-flex align-items-center justify-content-between">
-                    <h4>{{ __("cms-pages.order") }}</h4>
-                </div>
-                <div class="widget-body">
-                    <div class="table-responsive">
-                        <table id="sorting-table" class="table mb-0">
-                            <thead>
-                            <tr>
-                                <th></th>
-                                <th>{{ __("cms-pages.course") }}</th>
-                                <th>{{ __("cms-pages.duration") }}</th>
-                                <th>{{ __("cms-pages.price") }}</th>
-                            </tr>
-                            </thead>
-                            <tbody>
-                            <tr>
-                                <td style="width: 150px;">
-                                    <img src="{{ $course->getImage() }}" width="100" alt>
-                                </td>
-                                <td><a href="{{ route('courses.show', $course->id) }}"
-                                       class="text-primary">{{ $course->title }}</a></td>
-                                <td>{{ $course->getDuration() }}</td>
-                                <td>{!! $course->getPrice() !!}</td>
-                            </tr>
-                            </tbody>
-                        </table>
+    <form class="form-horizontal" method="POST" action="{{ route('orders.store', $course->id) }}">
+        @csrf
+        <div class="row flex-row">
+            <div class="col-xl-12">
+                <!-- Cart -->
+                <div class="widget has-shadow">
+                    <div class="widget-header bordered no-actions d-flex align-items-center justify-content-between">
+                        <h4>{{ __("cms-pages.order") }}</h4>
+                    </div>
+                    <div class="widget-body">
+                        <div class="table-responsive">
+                            <table id="sorting-table" class="table mb-0">
+                                <thead>
+                                <tr>
+                                    <th></th>
+                                    <th>{{ __("cms-pages.course") }}</th>
+                                    <th>{{ __("cms-pages.duration") }}</th>
+                                    <th>{{ __("cms-pages.price") }}</th>
+                                </tr>
+                                </thead>
+                                <tbody>
+                                <tr>
+                                    <td style="width: 150px;">
+                                        <img src="{{ $course->getImage() }}" width="100" alt>
+                                    </td>
+                                    <td><a href="{{ route('courses.show', $course->id) }}"
+                                           class="text-primary">{{ $course->title }}</a></td>
+                                    <td>{{ $course->getDuration() }}</td>
+                                    <td>{!! $course->getPrice() !!}</td>
+                                </tr>
+                                </tbody>
+                            </table>
+                        </div>
                     </div>
                 </div>
             </div>
-        </div>
-        {{-- Checkout Form --}}
-        <div class="col-12">
-            <form class="form-horizontal" method="POST" action="{{ route('orders.store', $course->id) }}">
-                @csrf
-
+            {{-- Checkout Form --}}
+            <div class="col-xl-9 col-md-6 col-sm-12">
                 <div class="widget has-shadow">
                     <div class="widget-header bordered no-actions d-flex align-items-center">
                         <h4>{{ __("site-pages.checkout-form") }}</h4>
                     </div>
                     <div class="widget-body">
-
-
                         <div class="section-title mt-5 mb-5">
                             <h4>{{__("site-pages.client-info")}}</h4>
                         </div>
+                        {{-- Customer Full Name --}}
                         <div class="form-group row mb-3">
+                            {{-- Customer Surname --}}
                             <div class="col-xl-4 mb-3">
                                 <label class="form-control-label">
                                     {{__("site-pages.surname")}}<span class="text-danger ml-2">*</span>
@@ -65,6 +64,7 @@
                                 <div class="invalid-feedback">{{ $message }}</div>
                                 @enderror
                             </div>
+                            {{-- Customer Name --}}
                             <div class="col-xl-4 mb-3">
                                 <label class="form-control-label">
                                     {{__("site-pages.name")}}<span class="text-danger ml-2">*</span>
@@ -74,6 +74,7 @@
                                 <div class="invalid-feedback">{{ $message }}</div>
                                 @enderror
                             </div>
+                            {{-- Customer Patronymic --}}
                             <div class="col-xl-4 mb-3">
                                 <label class="form-control-label">
                                     {{__("site-pages.patronymic")}}
@@ -82,6 +83,7 @@
                             </div>
                         </div>
                         <div class="form-group row mb-5">
+                            {{-- Customer Phone --}}
                             <div class="col-xl-6 mb-3">
                                 <label class="form-control-label">
                                     {{__("site-pages.phone")}}<span class="text-danger ml-2">*</span>
@@ -94,6 +96,7 @@
                                            value="{{$user->phone}}">
                                 </div>
                             </div>
+                            {{-- Customer Email --}}
                             <div class="col-xl-6 mb-3">
                                 <label class="form-control-label">{{__("site-pages.email")}}</label>
                                 <div class="input-group">
@@ -104,6 +107,7 @@
                                 </div>
                             </div>
                         </div>
+                        {{-- Customer Note --}}
                         <div class="form-group row mb-5">
                             <div class="col-xl-12 mb-3">
                                 <label for="order-note" class="form-control-label">
@@ -113,15 +117,70 @@
                                           class="form-control"></textarea>
                             </div>
                         </div>
-
                     </div>
                 </div>
-                <div class="text-right">
-                    <button type="submit" class="btn btn-primary">{{ __("site-pages.checkout") }}</button>
+            </div>
+            <div class="col-xl-3 col-md-6 col-sm-12">
+                <div class="widget has-shadow">
+                    <div class="widget-header bordered no-actions d-flex align-items-center justify-content-between">
+                        <h4>{{ __("cms-pages.order") }}</h4>
+                    </div>
+                    <div class="widget-body">
+
+                        {{-- Promo Code --}}
+                        <div class="form-group row mb-3">
+                            <div class="col-xl-12 mb-3">
+                                <div class="input-group">
+                                    <input type="text" name="promocode" class="form-control"
+                                           placeholder="{{__("site-pages.promo-code-placeholder")}}">
+                                </div>
+                                <div class="text-right mt-3">
+                                    <button id="promo-btn" type="button" class="btn square btn-sm btn-dark">
+                                        {{ __("site-pages.apply") }}
+                                    </button>
+                                </div>
+                            </div>
+                        </div>
+
+                        <div class="form-group row d-flex align-items-center mb-2">
+                            <div class="col-12">
+                                <div class="text-right">
+                                    <span>{{ __("site-pages.order-cost") }}:</span>
+                                    <span class="text-primary" style="width:100px">{!! $course->getPrice() !!}</span>
+                                </div>
+                            </div>
+                        </div>
+                        <div class="form-group row d-flex align-items-center mb-2">
+                            <div class="col-12">
+                                <div class="text-right">
+                                    <span>{{ __("site-pages.promo-code") }}:</span>
+                                    <span class="text-primary" style="width:100px">500 P</span>
+                                </div>
+                            </div>
+                        </div>
+
+                        <div id="price-promocode" class="form-group row d-flex align-items-center mt-4 mb-2">
+                            <div class="col-12">
+                                <div class="text-right d-flex align-items-center justify-content-end">
+                                    <h2>{{ __("site-pages.total") }}:</h2>
+                                    <h2 class="text-primary" style="width:100px">5 500 P</h2>
+                                </div>
+                            </div>
+                        </div>
+
+                        <div class="form-group row d-flex align-items-center mt-5">
+                            <div class="col-12">
+                                <div class="text-right">
+                                    <button type="submit"
+                                            class="btn square btn-success">{{ __("site-pages.checkout") }}</button>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
                 </div>
-            </form>
+            </div>
         </div>
-    </div>
+    </form>
 @endsection
 @section('page-scripts')
     <script src="{{asset('assets/cms/vendors/js/chart/chart.min.js')}}"></script>

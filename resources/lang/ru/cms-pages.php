@@ -337,6 +337,16 @@ return [
     'publish' => 'Опубликовать',
     'points' => 'Баллы',
     'max-points' => 'Максимальный балл',
+    'promo-code' => 'Промокод',
+    'promo-codes' => 'Промокоды',
+    'discount' => 'Скидка',
+    'expiration-date' => 'Дата окончания',
+    'new-promo-code' => 'Новый промокод',
+    'edit-promo-code' => 'Редактирование промокода',
+    'promo-code-form' => 'Данные промокода',
+    'discount-type' => 'Тип скидки',
+    'percent' => 'Процент от суммы',
+    'amount' => 'Фиксированная сумма',
 
     // Media Files
     'media-files' => 'Медиафайлы',

@@ -21,6 +21,7 @@
                         class="la la-mortar-board"></i><span>{{ __("cms-pages.courses") }}</span></a>
                 <ul id="dropdown-courses" class="collapse list-unstyled pt-0">
                     <li><a href="{{ route('courses.index') }}">{{ __("cms-pages.courses") }}</a></li>
+                    <li><a href="{{ route('promocodes.index') }}">{{ __("cms-pages.promo-codes") }}</a></li>
                 </ul>
             </li>
 

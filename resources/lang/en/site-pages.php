@@ -54,4 +54,10 @@ return [
     'hours' => 'hours',
     'minutes' => 'minutes',
     'seconds' => 'seconds',
+
+    'promo-code' => 'Promo Code',
+    'promo-code-placeholder' => 'If you have a promo code, enter it here',
+    'order-cost' => 'Order Cost',
+    'apply' => 'Apply',
+    'total' => 'Total',
 ];
