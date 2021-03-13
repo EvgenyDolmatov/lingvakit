@@ -156,13 +156,12 @@
                                             <div class="about-text">
                                                 @if($course->isBelongsToStudent($user))
                                                     <a href="{{route('site.show-topic', [$course->id, $topic->id])}}">
-                                                        {{ __("cms-pages.lesson") }} {{$key+1}}
-                                                        . {{ $topic->lesson->title }}
+                                                        {{ __("cms-pages.lesson") }}. {{ $topic->lesson->title }}
                                                         ({{ __("cms-pages.".$topic->name) }})
                                                     </a>
                                                 @else
                                                     <span>
-                                                        {{ __("cms-pages.lesson") }} {{$key+1}}. {{ $topic->lesson->title }} ({{ __("cms-pages.".$topic->name) }})
+                                                        {{ __("cms-pages.lesson") }}. {{ $topic->lesson->title }} ({{ __("cms-pages.".$topic->name) }})
                                                     </span>
                                                 @endif
                                             </div>
@@ -171,12 +170,12 @@
                                                 @if($course->isBelongsToStudent($user))
                                                     <a href="{{route('site.show-topic', [$course->id, $topic->id])}}"
                                                        class="{{$topic->getCssClass($user)}}">
-                                                        {{ __("cms-pages.quiz") }} {{$key+1}}. {{ $topic->quiz->title }}
+                                                        {{ __("cms-pages.quiz") }}. {{ $topic->quiz->title }}
                                                         ({{ __("cms-pages.".$topic->name) }})
                                                     </a>
                                                 @else
                                                     <span>
-                                                        {{ __("cms-pages.quiz") }} {{$key+1}}. {{ $topic->quiz->title }} ({{ __("cms-pages.".$topic->name) }})
+                                                        {{ __("cms-pages.quiz") }}. {{ $topic->quiz->title }} ({{ __("cms-pages.".$topic->name) }})
                                                     </span>
                                                 @endif
                                             </div>
