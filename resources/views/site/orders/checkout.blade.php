@@ -134,6 +134,8 @@
                                     <input type="text" name="promocode" class="form-control"
                                            placeholder="{{__("site-pages.promo-code-placeholder")}}">
                                 </div>
+                                <small id="promo-error" class="text-danger hide">{{__("site-pages.promo-code-error")}}</small>
+
                                 <div class="text-right mt-3">
                                     <button id="promo-btn" type="button" class="btn square btn-sm btn-dark">
                                         {{ __("site-pages.apply") }}
@@ -142,28 +144,20 @@
                             </div>
                         </div>
 
-                        <div class="form-group row d-flex align-items-center mb-2">
-                            <div class="col-12">
-                                <div class="text-right">
-                                    <span>{{ __("site-pages.order-cost") }}:</span>
-                                    <span class="text-primary" style="width:100px">{!! $course->getPrice() !!}</span>
-                                </div>
-                            </div>
-                        </div>
-                        <div class="form-group row d-flex align-items-center mb-2">
+                        <div id="price-promocode" class="form-group row mb-2 hide">
                             <div class="col-12">
                                 <div class="text-right">
                                     <span>{{ __("site-pages.promo-code") }}:</span>
-                                    <span class="text-primary" style="width:100px">500 P</span>
+                                    <span id="promo-discount" class="text-primary" style="width:100px"></span>
                                 </div>
                             </div>
                         </div>
 
-                        <div id="price-promocode" class="form-group row d-flex align-items-center mt-4 mb-2">
+                        <div class="form-group row d-flex align-items-center mt-4 mb-2">
                             <div class="col-12">
                                 <div class="text-right d-flex align-items-center justify-content-end">
                                     <h2>{{ __("site-pages.total") }}:</h2>
-                                    <h2 class="text-primary" style="width:100px">5 500 P</h2>
+                                    <h2 id="total-cost" class="text-primary" data-price="{{$course->price}}" style="width:100px">{!! $course->getPrice() !!}</h2>
                                 </div>
                             </div>
                         </div>
@@ -183,11 +177,6 @@
     </form>
 @endsection
 @section('page-scripts')
-    <script src="{{asset('assets/cms/vendors/js/chart/chart.min.js')}}"></script>
     <script src="{{asset('assets/cms/vendors/js/progress/circle-progress.min.js')}}"></script>
-    <script src="{{asset('assets/cms/vendors/js/calendar/moment.min.js')}}"></script>
-    <script src="{{asset('assets/cms/vendors/js/calendar/fullcalendar.min.js')}}"></script>
-    <script src="{{asset('assets/cms/vendors/js/owl-carousel/owl.carousel.min.js')}}"></script>
-    <script src="{{asset('assets/cms/js/dashboard/db-default.js')}}"></script>
-    <script src="{{asset('assets/cms/js/youtube.min.js')}}"></script>
+    <script src="{{asset('assets/site/js/ajax.js')}}"></script>
 @endsection

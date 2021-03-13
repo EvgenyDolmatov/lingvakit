@@ -60,4 +60,5 @@ return [
     'order-cost' => 'Order Cost',
     'apply' => 'Apply',
     'total' => 'Total',
+    'promo-code-error' => 'Promo code not found or expired',
 ];

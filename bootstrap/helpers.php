@@ -43,6 +43,11 @@ function formatDuration($item) : string
     return $hours.' '.changeWordEnding($hours, $arrHours).' '.$minutes.' '.changeWordEnding($minutes, $arrMinutes);
 }
 
+function priceFormat($price) : string
+{
+    return number_format($price, 0, '.', ' ') . ' ₽';
+}
+
 // Check For Chinese Characters
 function isChineseCharacters($string) : bool
 {

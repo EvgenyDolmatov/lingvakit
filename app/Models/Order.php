@@ -12,7 +12,8 @@ class Order extends Model
     use HasFactory, SoftDeletes;
 
     protected $fillable = [
-        'user_id', 'status_id', 'surname', 'name', 'patronymic', 'phone', 'email', 'date', 'note'
+        'user_id', 'status_id', 'surname', 'name', 'patronymic', 'phone',
+        'email', 'date', 'note', 'promocode', 'discount', 'total'
     ];
 
     public function user()
@@ -43,12 +44,19 @@ class Order extends Model
     public static function add($fields, $user)
     {
         $defaultStatus = OrderStatus::where('title', 'in_processing')->first()->id;
+        $promocode = Promocode::where('code', $fields['promocode'])->first();
 
         $order = new static;
         $order->fill($fields);
         $order->user_id = $user->id;
         $order->status_id = $defaultStatus;
         $order->date = date('Y-m-d');
+
+        if ($promocode) {
+            $order->promocode = $promocode->code;
+            $order->discount = $promocode->discount;
+        }
+
         $order->save();
 
         return $order;

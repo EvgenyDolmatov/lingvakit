@@ -93,6 +93,7 @@ Route::middleware(['auth', 'locale', 'verified'])->group(function (){
 
 /* AJAX */
 Route::get('ajax/files/{fileType}', [MediaFileController::class, 'getFilesByAjax'])->name('ajax.get-files');
+Route::get('ajax/promo/{code}', [PromocodeController::class, 'getPromoCodeData'])->name('ajax.get-promo-code');
 
 
 /* Admin */

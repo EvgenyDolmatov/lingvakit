@@ -51,16 +51,24 @@ class OrderController extends Controller
             OrderDetail::add($order, $course);
         }
 
-        $price = 0;
-        foreach ($order->details as $detail) {
-            $price += $detail->total;
+        $total = 0;
+        if ($order->discount) {
+            foreach ($order->details as $detail) {
+                $total += $detail->price;
+            }
+            $total = $total - $order->discount;
+        } else {
+            foreach ($order->details as $detail) {
+                $total += $detail->total;
+            }
         }
+        $order->update(['total' => $total]);
         $user->update($request->all());
 
         $response = $client->createPayment(
             array(
                 'amount' => array(
-                    'value' => $price,
+                    'value' => $total,
                     'currency' => 'RUB',
                 ),
                 'confirmation' => array(
@@ -77,7 +85,7 @@ class OrderController extends Controller
                             "description" => $course->title,
                             "quantity" => "1.00",
                             "amount" => array(
-                                "value" => $price,
+                                "value" => $total,
                                 "currency" => "RUB"
                             ),
                             "vat_code" => "1",

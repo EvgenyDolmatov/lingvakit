@@ -66,4 +66,16 @@ class PromocodeController extends Controller
         $promocode->delete();
         return back();
     }
+
+    public function getPromoCodeData($code)
+    {
+        $promo = Promocode::where('code', $code)->first();
+
+        return Response()->json([
+            'id' => $promo->id,
+            'code' => $promo->code,
+            'type' => $promo->type,
+            'discount' => $promo->discount,
+        ]);
+    }
 }
