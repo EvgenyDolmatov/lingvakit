@@ -120,7 +120,6 @@ return [
     'image-gallery' => 'Image Gallery',
     'meta-info' => 'Meta Information',
     'available' => 'Available',
-    'not_available' => 'Not Available',
     'preorder' => 'Pre-Order',
     'physical' => 'Physical',
     'virtual' => 'Virtual',
@@ -391,6 +390,8 @@ return [
     'rating' => 'Rating',
     'passed' => 'Passed',
     'not-taken' => 'The student did not pass the test.',
+    'give-access' => 'Give Access',
+    'give-access-to-course' => 'Give Access To Course',
 
     'other' => 'Other',
 ];

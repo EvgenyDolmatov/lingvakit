@@ -117,8 +117,7 @@ return [
     'main-info' => 'Основная информация',
     'image-gallery' => 'Галерея изображений',
     'meta-info' => 'Мета-данные',
-    'available' => 'Есть на складе',
-    'not_available' => 'Нет на складе',
+    'available' => 'Есть доступ',
     'preorder' => 'Предзаказ',
     'physical' => 'Физический',
     'virtual' => 'Виртуальный',
@@ -385,6 +384,8 @@ return [
     'rating' => 'Рейтинг',
     'passed' => 'Пройдено',
     'not-taken' => 'Студент не проходил тест.',
+    'give-access' => 'Дать доступ',
+    'give-access-to-course' => 'Дать доступ к курсу',
 
     'other' => 'Другая',
 ];

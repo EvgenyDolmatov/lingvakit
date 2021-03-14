@@ -189,6 +189,8 @@ Route::prefix('dashboard')->middleware(['auth', 'staff', 'locale'])->group(funct
         Route::get('/{student}/edit', [StudentController::class, 'edit'])->name('students.edit');
 
         Route::prefix('{student}')->group(function (){
+            Route::get('add-course', [StudentCourseController::class, 'addCourse'])->name('students.course.add');
+            Route::post('give-course-{course}', [StudentCourseController::class, 'giveAccessToCourse'])->name('students.course.give-access');
             Route::get('course/{course}', [StudentCourseController::class, 'show'])->name('students.course.show');
             Route::get('course/{course}/quiz/{quiz}/answers', [StudentCourseController::class, 'showAnswers'])->name('students.course.answers.show');
         });

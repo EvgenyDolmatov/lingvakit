@@ -97,14 +97,6 @@ class User extends Authenticatable implements MustVerifyEmail
         $this->save();
     }
 
-    public function getCompany()
-    {
-        if ($this->company) {
-            return $this->company->name;
-        }
-        return 'Private Person';
-    }
-
     public function getFullName()
     {
         return trim($this->surname .' '. $this->name .' '. $this->patronymic);
@@ -204,5 +196,13 @@ class User extends Authenticatable implements MustVerifyEmail
     {
         $sym = ['(',')','+','-',' '];
         return str_replace($sym, '', $this->phone);
+    }
+
+    public function hasCourse($course) : bool
+    {
+        if ($this->courses->contains($course->id)) {
+            return true;
+        }
+        return false;
     }
 }

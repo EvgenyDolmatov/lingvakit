@@ -36,14 +36,6 @@
                                     <td>{{ $student->email }}</td>
                                     <td class="td-actions">
                                         <a href="{{ route('students.show', $student->id) }}"><i class="la la-eye edit"></i></a>
-{{--                                        <a href="{{ route('courses.edit', $student->id) }}"><i class="la la-edit edit"></i></a>--}}
-                                        {{--<form style="display: inline-block" method="POST" action="{{ route('courses.destroy', $student->id) }}">
-                                            @csrf @method('DELETE')
-
-                                            <a href="{{ route('courses.destroy', $student->id) }}" onclick="event.preventDefault();if(confirm('{{ __("cms-messages.delete") }}')){this.closest('form').submit();}">
-                                                <i class="la la-close delete"></i>
-                                            </a>
-                                        </form>--}}
                                     </td>
                                 </tr>
                             @endforeach

@@ -1,15 +1,17 @@
 @extends('layouts.cms')
 
+@section('page-styles')
+    @include('layouts.cms.template-parts.styles-index')
+@endsection
 @section('title', $student->getFullName())
 @section('header-tools')
     <ul class="breadcrumb">
         <li class="breadcrumb-item"><a href="{{ route('dashboard') }}"><i class="ti ti-home"></i></a></li>
-        <li class="breadcrumb-item"><a href="{{ route('students.index') }}">{{ __("cms-pages.students") }}</i></a></li>
-        <li class="breadcrumb-item active">{{ $student->getFullName() }}</li>
+        <li class="breadcrumb-item"><a href="{{ route('students.index') }}">{{ __("cms-pages.students") }}</a></li>
     </ul>
 @endsection
 @section('content')
-    <div class="row flex-row">
+    <div class="row">
         <div class="col-xl-12">
             <div class="widget has-shadow">
                 <div class="widget-header bordered no-actions d-flex align-items-center justify-content-between">
@@ -32,13 +34,12 @@
         </div>
 
         <div class="col-xl-12">
+            <!-- Sorting -->
             <div class="widget has-shadow">
                 <div class="widget-header bordered no-actions d-flex align-items-center justify-content-between">
-                    <h4>{{ __("cms-pages.courses") }}</h4>
-                    <a href="{{ route('students.course.add', $student->id) }}" type="button"
-                       class="btn btn-primary mr-1 mb-2">{{ __("cms-pages.give-access-to-course") }}</a>
-                </div>
+                    <h4>{{ __("cms-pages.filter") }}</h4>
 
+                </div>
                 <div class="widget-body">
                     <div class="table-responsive">
                         <table id="sorting-table" class="table mb-0">
@@ -46,25 +47,44 @@
                             <tr>
                                 <th>{{ __("cms-pages.image") }}</th>
                                 <th>{{ __("cms-pages.course") }}</th>
-                                <th>{{ __("cms-pages.progress") }}</th>
+                                <th>{{ __("cms-pages.available") }}</th>
                                 <th>{{ __("cms-pages.actions") }}</th>
                             </tr>
                             </thead>
                             <tbody>
-                            @foreach($student->courses as $course)
+                            @foreach($courses as $course)
                                 <tr>
                                     <td style="width: 150px;">
                                         <img src="{{ $course->getImage() }}" width="100" alt>
                                     </td>
-                                    <td class="text-primary">
-                                        <a href="{{route('courses.show', $course->id)}}" class="text-primary">
+                                    <td>
+                                        <a href="{{ route('courses.show', $course->id) }}" class="text-primary">
                                             {{ $course->title }}
                                         </a>
                                     </td>
-                                    <td class="text-primary">{{ $course->getProgress($student) }}</td>
-
+                                    <td>
+                                        <span style="width:100px">
+                                            <span class="badge-text badge-text-small @if($student->hasCourse($course)) success @else danger @endif">
+                                                @if($student->hasCourse($course))
+                                                    {{__("cms-pages.yes")}}
+                                                @else
+                                                    {{__("cms-pages.no")}}
+                                                @endif
+                                            </span>
+                                        </span>
+                                    </td>
                                     <td class="td-actions">
-                                        <a href="{{ route('students.course.show', [$student->id, $course->id]) }}"><i class="la la-eye edit"></i></a>
+                                        @if(!$student->hasCourse($course))
+                                            <form style="display: inline-block" method="POST"
+                                                  action="{{ route('students.course.give-access', [$student->id, $course->id]) }}">
+                                                @csrf
+
+                                                <a href="{{ route('students.course.give-access', [$student->id, $course->id]) }}"
+                                                   onclick="event.preventDefault();if(confirm('{{ __("cms-messages.give-access") }}')){this.closest('form').submit();}">
+                                                    {{__("cms-pages.give-access")}}
+                                                </a>
+                                            </form>
+                                        @endif
                                     </td>
                                 </tr>
                             @endforeach
@@ -78,7 +98,5 @@
 @endsection
 
 @section('page-scripts')
-    @include('layouts.cms.template-parts.scripts-forms')
-    <script src="{{asset('assets/cms/vendors/js/bootstrap-select/bootstrap-select.min.js')}}"></script>
+    @include('layouts.cms.template-parts.scripts-index')
 @endsection
-

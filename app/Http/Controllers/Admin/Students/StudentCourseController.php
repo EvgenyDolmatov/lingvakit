@@ -51,4 +51,18 @@ class StudentCourseController extends Controller
             'result' => getResult($student, $quiz->topic)
         ]);
     }
+
+    public function addCourse(User $student)
+    {
+        return view('cms.students.add-course', [
+            'student' => $student,
+            'courses' => Course::all(),
+        ]);
+    }
+
+    public function giveAccessToCourse(User $student, Course $course)
+    {
+        $student->courses()->attach($course->id);
+        return back();
+    }
 }
