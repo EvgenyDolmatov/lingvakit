@@ -10,8 +10,8 @@
                 <div id="sentences" class="col-lg-9">
                     <div class="form-group">
                         <input type="text" name="matching_title[]" class="form-control"
-                               placeholder="{{ __("cms-pages.sentence") }}" value="{{old('matching_title')}}">
-                        @error('matching_title')
+                               placeholder="{{ __("cms-pages.sentence") }}" value="{{old('matching_title[]')}}">
+                        @error('matching_title[]')
                         <div class="invalid-feedback">{{ $message }}</div>
                         @enderror
                     </div>

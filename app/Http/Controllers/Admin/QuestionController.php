@@ -32,10 +32,10 @@ class QuestionController extends Controller
 
     public function store(Request $request, Course $course, Stage $stage, Quiz $quiz, $questionType)
     {
-        $request->validate([
-            'question_title' => 'required|string',
-            'points' => 'required',
-        ]);
+        /* Validate by question type */
+        $request->validate(
+            validateInputs($request, $questionType)
+        );
 
         /* Create new question */
         $question = Question::add($request->all(), $quiz, $questionType);
@@ -78,9 +78,6 @@ class QuestionController extends Controller
             }
 
         } else {
-            $request->validate([
-                'matching_title' => 'required|string',
-            ]);
 
             $conformity = Conformity::add($request->all(), $question);
             $conformity->attachAudio($request->input('matching_audio'));

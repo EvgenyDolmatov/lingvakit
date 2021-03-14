@@ -84,6 +84,18 @@
     }
     sidebarMenu();
 
+    /* PROMO CODES: Change sign by type of discount */
+    $('#percent').change(function (){
+        if ($(this).is(':checked')) {
+            $('#discount-sign').html('%');
+        }
+    });
+    $('#amount').change(function (){
+        if ($(this).is(':checked')) {
+            $('#discount-sign').html('₽');
+        }
+    });
+
     /* Input Mask */
     $('#phone').inputmask("+7 (999) 999-99-99");
     $('#itn, #company_itn').inputmask("999999999999");

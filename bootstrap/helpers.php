@@ -97,3 +97,56 @@ function getUserAnswers($result, $conformity)
         ['conformity_id', $conformity->id],
     ])->get();
 }
+
+
+
+/* Validate Question Inputs */
+function validateInputs($request, $type) : array
+{
+    $arr = array(
+        'question_title' => 'required|string',
+        'matching_title' => 'required|string',
+        'points' => 'required',
+    );
+
+    if (in_array($type, ['single_choice', 'multiple_choice', 'fill_the_gaps'])) {
+
+        $count = 0;
+        $inputs = $request->input('question_option');
+
+        foreach ($inputs as $input) {
+            if (!empty($input)) { $count += 1; }
+        }
+
+        if ($count < 1) {
+            $arr['question_option[]'] = 'required';
+        }
+    }
+
+    elseif (in_array($type, ['matching', 'short_answer'])) {
+        $arr['question_option'] = 'required';
+    }
+
+    elseif (in_array($type, ['make_text'])) {
+        $arr = array(
+            'question_title' => 'required|string',
+        );
+
+        $count = 0;
+        $inputs = $request->input('matching_title');
+
+        foreach ($inputs as $input) {
+            if (!empty($input)) { $count += 1; }
+        }
+
+        if ($count < 1) {
+            $arr['matching_title[]'] = 'required|string';
+        }
+    }
+
+    if ($request->has('word_number')) {
+        $arr['word_number'] = 'required|numeric';
+    }
+
+    return $arr;
+}

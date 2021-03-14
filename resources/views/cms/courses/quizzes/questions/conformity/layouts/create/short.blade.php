@@ -8,6 +8,9 @@
             <div class="col-xl-12">
                 <label class="form-control-label">{{ __("cms-pages.answer") }}</label>
                 <input type="text" name="question_option" class="form-control" placeholder="{{ __("cms-pages.answer") }}">
+                @error('question_option')
+                <div class="invalid-feedback">{{ $message }}</div>
+                @enderror
             </div>
         </div>
     </div>

@@ -75,11 +75,14 @@
                                 {{ __("cms-pages.discount") }}<span class="text-danger ml-2">*</span>
                             </label>
                             <div class="col-lg-9">
-                                <input type="number" name="discount" class="form-control"
-                                       placeholder="{{ __("cms-pages.discount") }}" value="{{old('discount')}}">
-                                @error('discount')
-                                <div class="invalid-feedback">{{ $message }}</div>
-                                @enderror
+                                <div class="input-group">
+                                    <span id="discount-sign" class="input-group-addon addon-primary">%</span>
+                                    <input type="number" name="discount" class="form-control"
+                                           placeholder="{{ __("cms-pages.discount") }}" value="{{old('discount')}}">
+                                    @error('discount')
+                                    <div class="invalid-feedback">{{ $message }}</div>
+                                    @enderror
+                                </div>
                             </div>
                         </div>
                         {{-- Promo Code Expiration Date --}}
