@@ -228,7 +228,7 @@
             <p class="o_heading o_text-dark"
                style="font-family: Helvetica, Arial, sans-serif;margin-top: 0px;margin-bottom: 0px;color: #242b3d;font-size: 14px;line-height: 31px;">Курс: {{$course->title}}</p>
             <p class="o_heading o_text-dark"
-               style="font-family: Helvetica, Arial, sans-serif;margin-top: 0px;margin-bottom: 0px;color: #242b3d;font-size: 14px;line-height: 31px;">Сумма оплаты: {{$order->getPaymentCost()}}</p>
+               style="font-family: Helvetica, Arial, sans-serif;margin-top: 0px;margin-bottom: 0px;color: #242b3d;font-size: 14px;line-height: 31px;">Сумма оплаты: {{priceFormat($order->total)}}</p>
         </td>
     </tr>
     </tbody>

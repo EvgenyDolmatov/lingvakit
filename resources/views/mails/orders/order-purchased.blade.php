@@ -272,7 +272,7 @@
                     </p>
                     <p class="o_text-md o_text-primary"
                        style="font-size: 19px;line-height: 28px;color: #126de5;margin-top: 0px;margin-bottom: 0px;">
-                        <strong>{!! $course->getPrice() !!}</strong></p>
+                        <strong>{!! priceFormat($order->total) !!}</strong></p>
                 </div>
             </div>
             <!--[if mso]></td></tr>

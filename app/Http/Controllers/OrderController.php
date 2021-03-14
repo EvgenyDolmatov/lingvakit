@@ -8,6 +8,7 @@ use App\Models\LMS\Course;
 use App\Models\Order;
 use App\Models\OrderDetail;
 use App\Models\Payment;
+use App\Models\Promocode;
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Auth;
 use Illuminate\Support\Facades\Mail;
@@ -40,7 +41,7 @@ class OrderController extends Controller
                         'price' => $course->price,
                         'quantity' => 1,
                         'discount' => $course->getDiscount(),
-                        'total' => $course->getTotalPrice()
+                        'total' => $course->getTotalPrice(),
                     ]);
                 }
             }
@@ -49,6 +50,10 @@ class OrderController extends Controller
         if (!$order) {
             $order = Order::add($request->all(), $user);
             OrderDetail::add($order, $course);
+        } else {
+            $currentPromo = $request->input('promocode_applied');
+            $promo = Promocode::where('code', $currentPromo)->first();
+            $order->updateDiscount($promo);
         }
 
         $total = 0;

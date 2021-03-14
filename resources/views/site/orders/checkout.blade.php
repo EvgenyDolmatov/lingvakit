@@ -133,11 +133,12 @@
                                 <div class="input-group">
                                     <input type="text" name="promocode" class="form-control"
                                            placeholder="{{__("site-pages.promo-code-placeholder")}}">
+                                    <input type="hidden" name="promocode_applied">
                                 </div>
                                 <small id="promo-error" class="text-danger hide">{{__("site-pages.promo-code-error")}}</small>
 
-                                <div class="text-right mt-3">
-                                    <button id="promo-btn" type="button" class="btn square btn-sm btn-dark">
+                                <div id="promo-btn-container" class="text-right mt-3">
+                                    <button id="apply-btn" type="button" class="btn square btn-sm btn-dark">
                                         {{ __("site-pages.apply") }}
                                     </button>
                                 </div>
@@ -178,5 +179,5 @@
 @endsection
 @section('page-scripts')
     <script src="{{asset('assets/cms/vendors/js/progress/circle-progress.min.js')}}"></script>
-    <script src="{{asset('assets/site/js/ajax.js')}}"></script>
+    <script src="{{asset('assets/site/js/ajax.min.js')}}"></script>
 @endsection

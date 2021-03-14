@@ -44,7 +44,7 @@ class Order extends Model
     public static function add($fields, $user)
     {
         $defaultStatus = OrderStatus::where('title', 'in_processing')->first()->id;
-        $promocode = Promocode::where('code', $fields['promocode'])->first();
+        $promocode = Promocode::where('code', $fields['promocode_applied'])->first();
 
         $order = new static;
         $order->fill($fields);
@@ -52,7 +52,7 @@ class Order extends Model
         $order->status_id = $defaultStatus;
         $order->date = date('Y-m-d');
 
-        if ($promocode) {
+        if ($promocode && $promocode->isValid()) {
             $order->promocode = $promocode->code;
             $order->discount = $promocode->discount;
         }
@@ -60,6 +60,21 @@ class Order extends Model
         $order->save();
 
         return $order;
+    }
+
+    public function updateDiscount($promo)
+    {
+        if ($promo && $promo->isValid()) {
+            $this->update([
+                'promocode' => $promo->code,
+                'discount' => $promo->discount,
+            ]);
+        } else {
+            $this->update([
+                'promocode' => null,
+                'discount' => null
+            ]);
+        }
     }
 
     public static function addForExistsCustomer($fields, $user)

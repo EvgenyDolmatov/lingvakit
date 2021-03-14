@@ -71,6 +71,10 @@ class PromocodeController extends Controller
     {
         $promo = Promocode::where('code', $code)->first();
 
+        if (!$promo->isValid()) {
+            return false;
+        }
+
         return Response()->json([
             'id' => $promo->id,
             'code' => $promo->code,

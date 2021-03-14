@@ -42,4 +42,15 @@ class Promocode extends Model
         }
         return $this->discount . ' ₽';
     }
+
+    public function isValid() : bool
+    {
+        $today = now();
+        $expirationDate = new Carbon(Carbon::createFromFormat('d/m/Y', $this->expiration_date)->format('Y-m-d'));
+
+        if ($expirationDate > $today) {
+            return true;
+        }
+        return false;
+    }
 }
