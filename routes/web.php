@@ -101,6 +101,7 @@ Route::prefix('dashboard')->middleware(['auth', 'staff', 'locale'])->group(funct
     Route::get('/', [DashboardController::class, 'index'])->name('dashboard');
 
     Route::resource('media', MediaFileController::class);
+    Route::get('media/download/file-{file}', [MediaFileController::class, 'downloadFile'])->name('media.download');
     Route::post('media/upload', [MediaFileController::class, 'ajaxStore'])->name('media.store-ajax');
     Route::get('media/{id}/get-data', [MediaFileController::class, 'getAjaxData'])->name('media.ajax.get-data');
 

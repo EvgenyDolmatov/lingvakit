@@ -17,6 +17,7 @@ return [
     'add-matching' => 'Добавить соответствие',
     'update' => 'Обновить',
     'add-audio' => 'Добавить аудио',
+    'download' => 'Скачать',
 
     /* Inputs */
     'company' => 'Компания',
