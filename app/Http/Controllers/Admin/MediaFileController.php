@@ -5,6 +5,7 @@ namespace App\Http\Controllers\Admin;
 use App\Http\Controllers\Controller;
 use App\Models\MediaFile;
 use Illuminate\Http\Request;
+use Illuminate\Support\Facades\Response;
 
 class MediaFileController extends Controller
 {
@@ -102,5 +103,11 @@ class MediaFileController extends Controller
         return response()->json([
             'files' => $files
         ]);
+    }
+
+    public function downloadFile(MediaFile $file)
+    {
+        $path = public_path('/uploads/'.$file->path.'/') . $file->filename;
+        return Response::download($path);
     }
 }

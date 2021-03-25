@@ -82,6 +82,17 @@
                                        placeholder="{{ __("cms-pages.video-link") }}" value="{{old('video')}}">
                             </div>
                         </div>
+                        {{-- Files --}}
+                        <div class="form-group row d-flex align-items-center mb-5">
+                            <label class="col-lg-3 form-control-label">{{ __("cms-pages.file") }}</label>
+                            <div class="col-lg-9">
+                                <div class="form-group preview"></div>
+                                <button type="button" class="btn btn-primary square mr-1 mb-2 btn-attach" data-type="file"
+                                        data-var="file" data-toggle="modal" data-target="#modal-files">
+                                    {{__("cms-pages.choose")}}
+                                </button>
+                            </div>
+                        </div>
                         {{-- Lesson Duration --}}
                         <div class="form-group row d-flex align-items-center mb-5">
                             <label class="col-lg-3 form-control-label">

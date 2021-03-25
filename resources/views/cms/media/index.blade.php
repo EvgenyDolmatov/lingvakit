@@ -72,6 +72,9 @@
                                                 <h5 class="text-center" data-id="{{$image->id}}">{{$image->title}}</h5>
                                             </div>
                                         </div>
+                                        <div class="about-infos d-flex flex-column mt-2 mb-2">
+                                            <a href="{{ route('media.download', $image) }}">Download</a>
+                                        </div>
                                     </div>
                                 @endforeach
                             </div>
@@ -252,6 +255,10 @@
                         <div class="alert alert-success hide"></div>
 
                         <div class="text-right">
+
+                        </div>
+                        <div class="text-right">
+                            <a href="#" id="download-link" class="btn btn-shadow">{{ __("cms-pages.download") }}</a>
                             <button id="ajax-submit" class="btn btn-gradient-01" type="submit">{{ __("cms-pages.save") }}</button>
                         </div>
                     </form>

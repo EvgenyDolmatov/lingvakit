@@ -17,6 +17,7 @@ return [
     'add-matching' => 'Add Matching',
     'update' => 'Update',
     'add-audio' => 'Add Audio',
+    'download' => 'Download',
 
     /* Inputs */
     'company' => 'Company',
