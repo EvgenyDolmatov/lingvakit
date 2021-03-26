@@ -43,6 +43,7 @@ return [
     'send' => 'Send',
     'privacy-policy' => 'Privacy Policy',
     'offer-agreement' => 'Offer Agreement',
+    'additional-materials' => 'Additional Materials',
 
     'home' => 'Home',
     'about-us' => 'About Us',

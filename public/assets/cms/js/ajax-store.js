@@ -116,8 +116,6 @@ window.Lingva = {};
 
             if (type === 'audio') {
 
-                console.log(button.attr('data-var'));
-
                 let input = '<input type="hidden" name="audio" value="'+ id +'">';
 
                 if (button.attr('data-var') === 'question_audio') {
@@ -132,12 +130,6 @@ window.Lingva = {};
                mediaFile =
                     '<div id="item-' + id + '" class="current-item"><audio src="'+ src +'" controls></audio>' +
                     '<div class="small file-remove" data-method="'+ method +'">Удалить</div>' + input + '</div>';
-
-                if (button.attr('data-var') === 'question_audio') {
-                    button.parent().find('.preview').append(mediaFile);
-                } else {
-                    button.parent().find('.preview').html(mediaFile);
-                }
             }
 
             if (type === 'image') {
@@ -183,6 +175,7 @@ window.Lingva = {};
             let $wrap = button.parent().find('.preview');
             if (button.attr('data-var') === 'question_audio' || type === 'file') {
                 if ($wrap.children('#item-' + id).length === 0) {
+                    console.log('Not found!');
                     $wrap.append(content);
                 }
             } else {
@@ -222,7 +215,7 @@ window.Lingva = {};
                 let $file_var = $this.attr('data-var');
                 let url = window.location.origin + '/ajax/files/' + $file_type;
 
-                button = $('button[data-var="' + $(this).attr('data-var') +'"]');
+                button = $('button[data-var="' + $file_var +'"]');
                 $mediaLibrary.empty();
 
                 // Получаем галерею по типу файла

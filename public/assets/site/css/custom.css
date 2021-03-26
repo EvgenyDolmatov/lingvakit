@@ -161,3 +161,21 @@ input.short_word {
     color: #271835;
     transition: all .4s;
 }
+
+.about-icon {
+    margin: 0 auto;
+    width: 50px;
+    height: 50px;
+}
+.about-icon.word {
+    background: url("../img/icons/word.svg") center;
+}
+.about-icon.excel {
+    background: url("../img/icons/excel.svg") center;
+}
+.about-icon.power-point {
+    background: url("../img/icons/power-point.svg") center;
+}
+.about-icon.adobe {
+    background: url("../img/icons/adobe.svg") center;
+}

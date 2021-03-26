@@ -127,7 +127,7 @@
                                 <div class="form-group preview">
                                     @if($files)
                                         @foreach($files as $file)
-                                            <div id="item-{{ $file->id }}" class="current-item">
+                                            <div id="item-{{ $file->file_id }}" class="current-item">
                                                 <span>{{ $file->document->title }}</span>
                                                 <div class="small file-remove" data-method="PUT"
                                                      data-delete="{{route('lessons.file.remove', [$course->id, $stage->id, $lesson->id, $file->id])}}">

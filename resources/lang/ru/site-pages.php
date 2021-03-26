@@ -43,6 +43,7 @@ return [
     'send' => 'Отправить',
     'privacy-policy' => 'Политика конфиденциальности',
     'offer-agreement' => 'Договор-оферта',
+    'additional-materials' => 'Дополнительные материалы',
 
     'home' => 'Главная',
     'about-us' => 'О нас',

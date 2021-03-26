@@ -22,13 +22,17 @@
             </div>
         @endif
         @if($files)
-            @foreach($files as $file)
-                <div class="about-infos d-flex flex-column mb-3">
-                    <div class="about-text">
-                        <a href="{{route('media.download', $file->id)}}">{{$file->document->title}}</a>
+            <div class="about-title mt-3 mb-3">
+                <h3>{{__("site-pages.additional-materials")}}</h3>
+            </div>
+            <div class="about-infos d-flex justify-content-start">
+                @foreach($files as $file)
+                    <div class="about-text m-3">
+                        <div class="about-icon {{$file->getFileType($file->document->filename)}} mb-2"></div>
+                        <a href="{{route('media.download', $file->file_id)}}">{{$file->document->title}}</a>
                     </div>
-                </div>
-            @endforeach
+                @endforeach
+            </div>
         @endif
     </div>
 </div>
