@@ -180,10 +180,10 @@ tr.header-danger {
 .file-wrap-new.active {
     border-color: #6f92e7;
 }
-.file-wrap.audio,
-.file-wrap-new.audio,
-.file-wrap.file,
-.file-wrap-new.file {
+.file-wrap[data-type="audio"],
+.file-wrap-new[data-type="audio"],
+.file-wrap[data-type="file"],
+.file-wrap-new[data-type="file"] {
     max-width: 400px;
     height: 200px;
 }
