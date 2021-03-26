@@ -90,6 +90,10 @@ class Lesson extends Model
 
     public function remove()
     {
+        $files = LessonFile::where('lesson_id', $this->id)->get();
+        foreach ($files as $file) {
+            $file->remove();
+        }
         $this->topic()->delete();
         $this->delete();
     }

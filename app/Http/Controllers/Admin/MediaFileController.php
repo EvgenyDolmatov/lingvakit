@@ -108,6 +108,7 @@ class MediaFileController extends Controller
     public function downloadFile(MediaFile $file)
     {
         $path = public_path('/uploads/'.$file->path.'/') . $file->filename;
-        return Response::download($path);
+        return response()->download($path, ['name' => 'filename']);
+//        return Response::download($path);
     }
 }

@@ -120,6 +120,30 @@
                                        value="@if($course->isExternalVideo()){{$course->video}}@endif">
                             </div>
                         </div>
+                        {{-- Files --}}
+                        <div class="form-group row d-flex align-items-center mb-5">
+                            <label class="col-lg-3 form-control-label">{{ __("cms-pages.file") }}</label>
+                            <div class="col-lg-9">
+                                <div class="form-group preview">
+                                    @if($files)
+                                        @foreach($files as $file)
+                                            <div id="item-{{ $file->id }}" class="current-item">
+                                                <span>{{ $file->document->title }}</span>
+                                                <div class="small file-remove" data-method="PUT"
+                                                     data-delete="{{route('lessons.file.remove', [$course->id, $stage->id, $lesson->id, $file->id])}}">
+                                                    {{ __("cms-pages.remove") }}
+                                                </div>
+                                                <input type="hidden" name="files[]" value="{{ $file->id }}">
+                                            </div>
+                                        @endforeach
+                                    @endif
+                                </div>
+                                <button type="button" class="btn btn-primary square mr-1 mb-2 btn-attach" data-type="file"
+                                        data-var="file" data-toggle="modal" data-target="#modal-files">
+                                    {{__("cms-pages.choose")}}
+                                </button>
+                            </div>
+                        </div>
                         {{-- Lesson Duration --}}
                         <div class="form-group row d-flex align-items-center mb-5">
                             <label class="col-lg-3 form-control-label">{{ __("cms-pages.lesson-duration") }}

@@ -21,5 +21,14 @@
                 </div>
             </div>
         @endif
+        @if($files)
+            @foreach($files as $file)
+                <div class="about-infos d-flex flex-column mb-3">
+                    <div class="about-text">
+                        <a href="{{route('media.download', $file->id)}}">{{$file->document->title}}</a>
+                    </div>
+                </div>
+            @endforeach
+        @endif
     </div>
 </div>

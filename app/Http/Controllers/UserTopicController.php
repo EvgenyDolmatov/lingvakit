@@ -4,6 +4,7 @@ namespace App\Http\Controllers;
 
 use App\Models\LMS\Course;
 use App\Models\LMS\Lesson;
+use App\Models\LMS\LessonFile;
 use App\Models\LMS\Question;
 use App\Models\LMS\Quiz;
 use App\Models\LMS\Result;
@@ -32,6 +33,7 @@ class UserTopicController extends Controller
         if ($topic->lesson) {
             $data['lesson'] = $topic->lesson;
             $data['result'] = $topic->getResult($user);
+            $data['files'] = LessonFile::where('lesson_id', $topic->lesson->id)->get();
         }
         /* If Quiz */
         if ($topic->quiz) {

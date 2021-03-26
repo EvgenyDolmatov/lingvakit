@@ -32,81 +32,6 @@ window.Lingva = {};
         setTimeout(fn, delay);
     }
 
-    Lingva.Media = {
-        init: function () {
-            this.initMediaFilesLoad();
-        },
-
-        initMediaFilesLoad: function () {
-
-            let $library = $('#media-library');
-
-            function setContentByFile(file) {
-                let id = file.id,
-                    title = file.title,
-                    alt = file.alt,
-                    path = '/uploads/' + file.path + '/' + file.filename,
-                    type = file.type,
-                    before_content = '<div class="col-4"><div class="file-wrap exists-file mt-2 mb-2" data-type="'+ type +'">',
-                    after_content = '</div></div>',
-                    content;
-
-                switch (type) {
-                    case 'image':
-                        content =
-                            '<img class="file" src="'+ path +'" style="width: 100%" alt="'+ alt +'" data-id="'+ id +'" data-title="'+ title +'">' +
-                            '<h6 class="text-center">'+ title +'</h6>';
-                        break;
-                    case 'audio':
-                        content =
-                            '<div class="play-pause"></div>' +
-                            '<audio class="file" src="'+ path +'" data-id="'+ id +'" data-title="'+ title +'"></audio>' +
-                            '<h6 class="text-center">'+ title +'</h6>';
-                        break;
-                    case 'video':
-                        content =
-                            '<video class="file" src="'+ path +'" width="100%" data-id="'+ id +'" data-title="'+ title +'"></video>' +
-                            '<h6 class="text-center">'+ title +'</h6>';
-                        break;
-                    case 'file':
-                        content =
-                            '<span class="file" data-id="'+ id +'" data-title="'+ title +'"></span>' +
-                            '<h6 class="text-center">'+ title +'</h6>';
-                        break;
-                }
-                return before_content + content + after_content;
-            }
-
-            // Get gallery by file type
-            function getGalleryByType(files) {
-                $.each(files, function (key, file){
-                    let content = setContentByFile(file);
-                    $library.append(content);
-                });
-            }
-
-            $('.btn-attach').on('click', function () {
-                let $this = $(this),
-                    $type = $this.attr('data-type'),
-                    url = window.location.origin + '/ajax/files/' + $type;
-
-                // Получаем галерею по типу файла
-                $.ajax({
-                    url: url,
-                    type: 'GET',
-                    dataType: 'json',
-                    success: function (res){
-                        getGalleryByType(res.files);
-                    }
-                });
-            });
-        }
-    }
-
-
-
-
-
     /**
      * @function initMediaFile
      */
@@ -154,11 +79,18 @@ window.Lingva = {};
             return before_content + content + after_content;
         }
 
+        // Get gallery by file type
         function getGalleryByType(files) {
             $.each(files, function (key, file){
                 let content = setContentByFile(file);
                 $mediaLibrary.append(content);
             });
+        }
+
+        // Upload new files
+        function uploadFile(file) {
+            let content = setContentByFile(file);
+            $mediaLibrary.prepend(content);
         }
 
         function initFillForm(el) {
@@ -168,20 +100,23 @@ window.Lingva = {};
                 id = file.attr('data-id'),
                 title = file.attr('data-title'),
                 src = file.attr('src'),
-                method = 'PUT';
-
-            console.log(button);
+                method = 'PUT',
+                mediaFile;
 
             if (button.attr('data-var') === 'question_audio') {
-                el.hasClass('active') ?
-                    el.removeClass('active') :
-                    el.addClass('active')
+                if (el.hasClass('active')) {
+                    el.removeClass('active');
+                } else {
+                    el.addClass('active');
+                }
             } else {
                 $('.exists-file, .new-file').removeClass('active');
                 el.addClass('active');
             }
 
             if (type === 'audio') {
+
+                console.log(button.attr('data-var'));
 
                 let input = '<input type="hidden" name="audio" value="'+ id +'">';
 
@@ -194,11 +129,15 @@ window.Lingva = {};
                     input = '<input type="hidden" name="matching_audio" value="'+ id +'">';
                 }
 
-                let mediaFile =
-                    '<div class="current-item"><audio src="'+ src +'" controls></audio>' +
+               mediaFile =
+                    '<div id="item-' + id + '" class="current-item"><audio src="'+ src +'" controls></audio>' +
                     '<div class="small file-remove" data-method="'+ method +'">Удалить</div>' + input + '</div>';
 
-                button.parent().find('.preview').append(mediaFile);
+                if (button.attr('data-var') === 'question_audio') {
+                    button.parent().find('.preview').append(mediaFile);
+                } else {
+                    button.parent().find('.preview').html(mediaFile);
+                }
             }
 
             if (type === 'image') {
@@ -215,33 +154,65 @@ window.Lingva = {};
                     input = '<input type="hidden" name="matching_image" value="'+ id +'">';
                 }
 
-                let mediaFile =
-                    '<div class="current-item"><img src="'+ url +'" width="240" alt>' +
+                mediaFile =
+                    '<div id="item-' + id + '" class="current-item"><img src="'+ url +'" width="240" alt>' +
                     '<div class="small file-remove" data-method="'+ method +'">Удалить</div>' + input + '</div>';
-
-                button.parent().find('.preview').html(mediaFile);
             }
 
             if (type === 'video') {
                 let input = '<input type="hidden" name="video" value="'+ id +'">';
-                let mediaFile =
-                    '<div class="current-item"><video src="'+ src +'" width="240" controls></video>' +
+                mediaFile =
+                    '<div id="item-' + id + '" class="current-item"><video src="'+ src +'" width="240" controls></video>' +
                     '<div class="small file-remove" data-method="'+ method +'">Удалить</div>' + input + '</div>';
 
                 inputYoutube.val('');
-                button.parent().find('.preview').html(mediaFile);
             }
 
             if (type === 'file') {
-                let input = '<input type="hidden" name="file" value="'+ id +'">';
-                let mediaFile =
-                    '<div class="current-item"><span>' + title + '</span>' +
+                let input = '<input type="hidden" name="files[]" value="'+ id +'">';
+                mediaFile =
+                    '<div id="item-' + id + '" class="current-item"><span>' + title + '</span>' +
                     '<div class="small file-remove" data-method="'+ method +'">Удалить</div>' + input + '</div>';
+            }
 
-                button.parent().find('.preview').html(mediaFile);
+            addMedia(id, type, mediaFile)
+        }
+
+        // Add multiple media if file not exists
+        function addMedia(id, type, content) {
+            let $wrap = button.parent().find('.preview');
+            if (button.attr('data-var') === 'question_audio' || type === 'file') {
+                if ($wrap.children('#item-' + id).length === 0) {
+                    $wrap.append(content);
+                }
+            } else {
+                $wrap.html(content);
             }
         }
 
+        // Remove File
+        function removeFile(div) {
+            let noImage = '<div class="current-item"><img src="/assets/cms/img/no-image.jpg" width="100" alt></div>';
+            let container = div.parent().parent();
+
+            let audio = div.parent().find('audio');
+            let image = div.parent().find('img');
+            let video = div.parent().find('video');
+            let file = div.parent().find('span');
+
+            if (audio.length > 0) {
+                div.parent().remove();
+            }
+            if (image.length > 0) {
+                container.html(noImage);
+            }
+            if (video.length > 0) {
+                div.parent().remove();
+            }
+            if (file.length > 0) {
+                div.parent().remove();
+            }
+        }
 
         return function () {
             $button = $('.btn-attach');
@@ -251,7 +222,7 @@ window.Lingva = {};
                 let $file_var = $this.attr('data-var');
                 let url = window.location.origin + '/ajax/files/' + $file_type;
 
-                button = $this;
+                button = $('button[data-var="' + $(this).attr('data-var') +'"]');
                 $mediaLibrary.empty();
 
                 // Получаем галерею по типу файла
@@ -260,7 +231,6 @@ window.Lingva = {};
                     type: 'GET',
                     dataType: 'json',
                     success: function (res){
-                        // console.log(res.files);
                         getGalleryByType(res.files);
                     }
                 });
@@ -270,11 +240,78 @@ window.Lingva = {};
             $(document).on('click', '.file-wrap', function (){
                 initFillForm($(this));
             });
+
+            inputYoutube.blur(function (){
+                let input = '<input type="hidden" name="video" value="'+ $(this).val() +'">';
+                let mediaFile = '<div class="current-item">' + input + '</div>';
+
+                $(this).parent().find('.preview').html(mediaFile);
+            });
+
+            // Upload Files
+            uploadForm.submit(function (e){
+                e.preventDefault();
+
+                let formData = new FormData(document.getElementById("form-upload"));
+
+                $.ajax({
+                    url: uploadForm.attr('action'),
+                    headers: {'X-CSRF-TOKEN': $('meta[name="csrf-token"]').attr('content')},
+                    method: 'POST',
+                    cache:false,
+                    contentType: false,
+                    processData: false,
+                    data: formData,
+                    success: function (result){
+                        // Add New Images to Gallery
+                        $.each(result.files, function (key, file) {
+                            uploadFile(file);
+                        });
+
+                        // Show Success Message
+                        $('.alert').removeClass('hide').html(result.success);
+                        setTimeout(function (){
+                            $('.alert').addClass('hide');
+                        }, 1000);
+
+                        // Click to Choosing file tab
+                        setTimeout(function (){
+                            $('#choosing-tab').trigger('click');
+                        }, 1000);
+                    }
+                });
+            });
+
+            // Remove File From Database
+            $(document).on('click', '.file-remove', function (e){
+                e.preventDefault();
+
+                let div = $(this);
+                let url = div.attr('data-delete');
+                let method = div.attr('data-method');
+
+                if (!url) {
+                    removeFile(div);
+                } else {
+                    let formData = new FormData(document.getElementById("form-update"));
+                    $.ajax({
+                        url: div.attr('data-delete'),
+                        headers: {'X-CSRF-TOKEN': $('meta[name="csrf-token"]').attr('content')},
+                        method: method,
+                        data: formData,
+                        cache : false,
+                        processData: false,
+                        success: function (){
+                            removeFile(div);
+                        }
+                    });
+                }
+            });
         }
     })();
 
     Lingva.init = function () {
-        Lingva.Media.init();
+        Lingva.initMediaFile();
     }
 
     window.onload = function () {

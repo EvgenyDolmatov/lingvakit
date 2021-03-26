@@ -128,6 +128,7 @@ Route::prefix('dashboard')->middleware(['auth', 'staff', 'locale'])->group(funct
                 Route::put('audio-remove', [LessonController::class, 'removeAudio'])->name('lessons.audio.remove');
                 Route::put('image-remove', [LessonController::class, 'removeImage'])->name('lessons.image.remove');
                 Route::put('video-remove', [LessonController::class, 'removeVideo'])->name('lessons.video.remove');
+                Route::put('file-remove/{file}', [LessonController::class, 'removeFile'])->name('lessons.file.remove');
             });
 
             Route::resource('quizzes', QuizController::class); // Quizzes

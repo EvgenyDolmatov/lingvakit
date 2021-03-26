@@ -6,7 +6,7 @@ use App\Models\MediaFile;
 use Illuminate\Database\Eloquent\Factories\HasFactory;
 use Illuminate\Database\Eloquent\Model;
 
-class LessonFiles extends Model
+class LessonFile extends Model
 {
     use HasFactory;
 
@@ -16,6 +16,11 @@ class LessonFiles extends Model
     public function question()
     {
         return $this->belongsTo(Lesson::class, 'lesson_id');
+    }
+
+    public function document()
+    {
+        return $this->hasOne(MediaFile::class, 'id', 'file_id');
     }
 
     public function fileId()

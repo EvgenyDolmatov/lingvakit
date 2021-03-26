@@ -5,6 +5,7 @@ namespace App\Http\Controllers\Admin;
 use App\Http\Controllers\Controller;
 use App\Models\LMS\Course;
 use App\Models\LMS\Lesson;
+use App\Models\LMS\LessonFile;
 use App\Models\LMS\Stage;
 use App\Models\LMS\Topic;
 use App\Models\MediaFile;
@@ -32,7 +33,15 @@ class LessonController extends Controller
             'stage_id' => $stage->id
         ]);
 
-        Lesson::add($request->all(), $topic);
+        $lesson = Lesson::add($request->all(), $topic);
+
+        $files = $request->input('files');
+        foreach ($files as $file) {
+            LessonFile::create([
+                'file_id' => $file,
+                'lesson_id' => $lesson->id
+            ]);
+        }
 
         $course->updateDuration();
 
@@ -45,6 +54,7 @@ class LessonController extends Controller
             'course' => $course,
             'stage' => $stage,
             'lesson' => $lesson,
+            'files' => LessonFile::where('lesson_id', $lesson->id)->get(),
         ]);
     }
 
@@ -56,6 +66,19 @@ class LessonController extends Controller
         ]);
 
         $lesson->update($request->all());
+
+        $oldFiles = LessonFile::where('lesson_id', $lesson->id)->get();
+        $files = $request->input('files');
+
+        foreach ($oldFiles as $oldFile) {
+            $oldFile->remove();
+        }
+        foreach ($files as $file) {
+            LessonFile::create([
+                'file_id' => $file,
+                'lesson_id' => $lesson->id
+            ]);
+        }
         $course->updateDuration();
 
         return redirect()->route('courses.show', $course->id);
@@ -82,5 +105,10 @@ class LessonController extends Controller
     public function removeVideo(Course $course, Stage $stage, Lesson $lesson)
     {
         $lesson->update(['video' => null]);
+    }
+
+    public function removeFile(Course $course, Stage $stage, Lesson $lesson, LessonFile $file)
+    {
+        $file->delete();
     }
 }
