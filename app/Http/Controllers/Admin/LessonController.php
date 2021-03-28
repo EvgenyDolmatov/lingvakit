@@ -36,11 +36,13 @@ class LessonController extends Controller
         $lesson = Lesson::add($request->all(), $topic);
 
         $files = $request->input('files');
-        foreach ($files as $file) {
-            LessonFile::create([
-                'file_id' => $file,
-                'lesson_id' => $lesson->id
-            ]);
+        if ($files) {
+            foreach ($files as $file) {
+                LessonFile::create([
+                    'file_id' => $file,
+                    'lesson_id' => $lesson->id
+                ]);
+            }
         }
 
         $course->updateDuration();
@@ -70,15 +72,18 @@ class LessonController extends Controller
         $oldFiles = LessonFile::where('lesson_id', $lesson->id)->get();
         $files = $request->input('files');
 
-        foreach ($oldFiles as $oldFile) {
-            $oldFile->remove();
+        if ($files) {
+            foreach ($oldFiles as $oldFile) {
+                $oldFile->remove();
+            }
+            foreach ($files as $file) {
+                LessonFile::create([
+                    'file_id' => $file,
+                    'lesson_id' => $lesson->id
+                ]);
+            }
         }
-        foreach ($files as $file) {
-            LessonFile::create([
-                'file_id' => $file,
-                'lesson_id' => $lesson->id
-            ]);
-        }
+
         $course->updateDuration();
 
         return redirect()->route('courses.show', $course->id);
