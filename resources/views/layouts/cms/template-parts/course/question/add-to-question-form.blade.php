@@ -28,7 +28,7 @@
                     <label class="col-lg-3 form-control-label">{{ __("cms-pages.audio") }}</label>
                     <div class="col-lg-9">
                         <div class="form-group">
-                            <audio src="{{$audio->audio}}" preload="auto" controls></audio>
+                            <audio src="{{$audio->getAudio()}}" preload="auto" controls></audio>
                         </div>
                     </div>
                 </div>
