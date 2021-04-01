@@ -127,14 +127,16 @@
                                 <div class="form-group preview">
                                     @if($files)
                                         @foreach($files as $file)
-                                            <div id="item-{{ $file->file_id }}" class="current-item">
-                                                <span>{{ $file->document->title }}</span>
-                                                <div class="small file-remove" data-method="PUT"
-                                                     data-delete="{{route('lessons.file.remove', [$course->id, $stage->id, $lesson->id, $file->id])}}">
-                                                    {{ __("cms-pages.remove") }}
+                                            @if($file->document && $file->document->type === 'file')
+                                                <div id="item-{{ $file->file_id }}" class="current-item">
+                                                    <span>{{ $file->document->title }}</span>
+                                                    <div class="small file-remove" data-method="PUT"
+                                                         data-delete="{{route('lessons.file.remove', [$course->id, $stage->id, $lesson->id, $file->id])}}">
+                                                        {{ __("cms-pages.remove") }}
+                                                    </div>
+                                                    <input type="hidden" name="files[]" value="{{ $file->id }}">
                                                 </div>
-                                                <input type="hidden" name="files[]" value="{{ $file->id }}">
-                                            </div>
+                                            @endif
                                         @endforeach
                                     @endif
                                 </div>

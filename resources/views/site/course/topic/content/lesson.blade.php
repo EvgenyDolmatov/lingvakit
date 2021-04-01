@@ -27,10 +27,12 @@
             </div>
             <div class="about-infos d-flex justify-content-start">
                 @foreach($files as $file)
-                    <div class="about-text m-3">
-                        <div class="about-icon {{$file->getFileType($file->document->filename)}} mb-2"></div>
-                        <a href="{{route('media.download', $file->file_id)}}">{{$file->document->title}}</a>
-                    </div>
+                    @if($file->document && $file->document->type === 'file')
+                        <div class="about-text m-3">
+                            <div class="about-icon {{$file->getFileType($file->document->filename)}} mb-2"></div>
+                            <a href="{{route('media.download', $file->file_id)}}">{{$file->document->title}}</a>
+                        </div>
+                    @endif
                 @endforeach
             </div>
         @endif
