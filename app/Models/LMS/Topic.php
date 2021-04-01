@@ -97,9 +97,35 @@ class Topic extends Model
 
     public function getNextTopic()
     {
-        return Topic::where([
-            ['stage_id', $this->stage->id],
+        $nextStage = false;
+        $currentStage = $this->stage;
+        $stages = $currentStage->course->stages;
+
+        $nextTopicInThisStage = Topic::where([
+            ['stage_id', $currentStage->id],
             ['id', '>', $this->id],
         ])->orderBy('id','asc')->first();
+
+        if ( ! $nextTopicInThisStage ) {
+            foreach ($stages as $key => $stage) {
+                if ($stage->id === $currentStage->id) {
+                    $nextStage = $stages[$key+1];
+                }
+            }
+
+            $nextTopic = Topic::where([
+                ['stage_id', $nextStage->id],
+                ['id', '>', $this->id],
+            ])->orderBy('id','asc')->first();
+
+        } else {
+
+            $nextTopic = Topic::where([
+                ['stage_id', $this->stage->id],
+                ['id', '>', $this->id],
+            ])->orderBy('id','asc')->first();
+        }
+
+        return $nextTopic;
     }
 }
