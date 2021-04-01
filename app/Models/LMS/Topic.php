@@ -31,12 +31,17 @@ class Topic extends Model
         return $this->hasOne(Quiz::class);
     }
 
-    public function getTitle()
+    public function getTitle() : string
     {
+        $title = false;
+
         if ($this->quiz) {
-            return $this->quiz->title;
+            $title = $this->quiz->title;
         }
-        return $this->lesson->title;
+        if ($this->lesson) {
+            $title = $this->lesson->title;
+        }
+        return $title;
     }
 
     public function getResult($user)
@@ -47,7 +52,7 @@ class Topic extends Model
         ])->first();
     }
 
-    public function getResultByUser($user) : string
+    public function getResultByUser($user): string
     {
         $result = false;
 
@@ -87,43 +92,87 @@ class Topic extends Model
         return $result->attempt_quantity;
     }
 
+    public function prevStage()
+    {
+        $currentStage = $this->stage;
+        $currentCourse = $currentStage->course;
+        $courseStages = $currentCourse->stages;
+
+        foreach ($courseStages as $key => $courseStage) {
+            if ($courseStage->id === $currentStage->id && $key-1 >= 0 ) {
+                return Stage::find($courseStages[$key - 1]->id);
+            }
+        }
+        return false;
+    }
+
+    public function nextStage()
+    {
+        $currentStage = $this->stage;
+        $currentCourse = $currentStage->course;
+        $courseStages = $currentCourse->stages;
+
+        foreach ($courseStages as $key => $courseStage) {
+            if ($courseStage->id === $currentStage->id && count($courseStages) > $key+1) {
+                return Stage::find($courseStages[$key + 1]->id);
+            }
+        }
+        return false;
+    }
+
     public function getPreviousTopic()
     {
-        return Topic::where([
-            ['stage_id', $this->stage->id],
+        $currentStage = $this->stage;
+        $prevStage = $this->prevStage();
+
+        $prevTopic = Topic::where([
+            ['stage_id', $currentStage->id],
             ['id', '<', $this->id],
-        ])->orderBy('id','desc')->first();
+        ])->orderBy('id', 'desc')->first();
+
+        if (!$prevTopic && $prevStage) {
+            $prevTopic = Topic::where('stage_id', $prevStage->id)->first();
+        }
+
+        return $prevTopic;
     }
 
     public function getNextTopic()
     {
-        $nextStage = false;
         $currentStage = $this->stage;
-        $stages = $currentStage->course->stages;
+        $nextStage = $this->nextStage();
 
-        $nextTopicInThisStage = Topic::where([
+        $nextTopic = Topic::where([
             ['stage_id', $currentStage->id],
             ['id', '>', $this->id],
         ])->orderBy('id','asc')->first();
 
-        if ( ! $nextTopicInThisStage ) {
-            foreach ($stages as $key => $stage) {
-                if ($stage->id === $currentStage->id) {
-                    $nextStage = $stages[$key+1];
+        if (!$nextTopic && $nextStage) {
+            $nextTopic = Topic::where('stage_id', $nextStage->id)->first();
+        }
+
+        if ($nextTopic  && $nextTopic->name === 'quiz' && is_null($nextTopic->quiz) ) {
+
+            $currentCourse = $currentStage->course;
+            $courseStages = $currentCourse->stages;
+
+            foreach ($courseStages as $stage) {
+                foreach ($stage->topics as $key => $topic) {
+
+                    if ($topic->id === $this->id) {
+
+                        if (count($stage->topics) > $key+2) {
+                            $nextTopic = $stage->topics[$key+2];
+
+                        } else {
+                            if ($nextStage) {
+                                $nextTopic = Topic::where('stage_id', $nextStage->id)->first();
+                            }
+                        }
+
+                    }
                 }
             }
-
-            $nextTopic = Topic::where([
-                ['stage_id', $nextStage->id],
-                ['id', '>', $this->id],
-            ])->orderBy('id','asc')->first();
-
-        } else {
-
-            $nextTopic = Topic::where([
-                ['stage_id', $this->stage->id],
-                ['id', '>', $this->id],
-            ])->orderBy('id','asc')->first();
         }
 
         return $nextTopic;

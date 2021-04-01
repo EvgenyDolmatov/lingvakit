@@ -66,7 +66,7 @@
             <div class="about-infos d-flex flex-column mb-3">
                 <div class="about-text">
                     <div id="player" data-id="{{$quiz->getVideoId()}}"
-                         data-width="100%" data-height="390"></div>
+                         data-width="640" data-height="390"></div>
                 </div>
             </div>
         @endif
