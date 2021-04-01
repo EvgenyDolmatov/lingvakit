@@ -73,14 +73,18 @@ class LessonController extends Controller
         $files = $request->input('files');
 
         if ($files) {
-            foreach ($oldFiles as $oldFile) {
-                $oldFile->remove();
-            }
             foreach ($files as $file) {
                 LessonFile::create([
                     'file_id' => $file,
                     'lesson_id' => $lesson->id
                 ]);
+            }
+            foreach ($oldFiles as $oldFile) {
+                if (!in_array($oldFile->file_id, $files)) {
+                    false;
+                } else {
+                    $oldFile->remove();
+                }
             }
         }
 

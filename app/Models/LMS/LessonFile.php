@@ -43,29 +43,27 @@ class LessonFile extends Model
         $this->delete();
     }
 
-    public function getFileType($filename)
+    public function getFileType($filename) : string
     {
         $ext = explode(".", $filename)[1];
 
-        $word = ['doc', 'docx'];
-        $excel = ['xls', 'xlsx'];
-        $powerPoint = ['ppt', 'pptx'];
-        $adobe = ['pdf'];
-        $class = false;
-
-        if (in_array($ext, $word)) {
-            $class = 'word';
+        switch ($ext) {
+            case in_array($ext, ['doc', 'docx']):
+                $class = 'word';
+                break;
+            case in_array($ext, ['xls', 'xlsx']):
+                $class = 'excel';
+                break;
+            case in_array($ext, ['ppt', 'pptx']):
+                $class = 'power-point';
+                break;
+            case in_array($ext, ['pdf']):
+                $class = 'adobe';
+                break;
+            default:
+                $class = 'other-file';
+                break;
         }
-        if (in_array($ext, $excel)) {
-            $class = 'excel';
-        }
-        if (in_array($ext, $powerPoint)) {
-            $class = 'power-point';
-        }
-        if (in_array($ext, $adobe)) {
-            $class = 'adobe';
-        }
-
         return $class;
     }
 }

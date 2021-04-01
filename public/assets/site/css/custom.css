@@ -179,3 +179,6 @@ input.short_word {
 .about-icon.adobe {
     background: url("../img/icons/adobe.svg") center;
 }
+.about-icon.other-file {
+    background: url("../img/icons/file.svg") center;
+}
