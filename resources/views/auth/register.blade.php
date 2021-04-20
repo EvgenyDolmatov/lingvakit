@@ -74,17 +74,50 @@
                                 <span class="bar"></span>
                                 <label>{{__("Confirm Password")}}</label>
                             </div>
-                            <div class="row">
-                                <div class="col text-left">
+
+                            {{-- Choosing User Role --}}
+                            <div class="group">
+                                <div class="container">
+                                    <div class="row">
+                                        <div class="text-left mb-3 mr-5">
+                                            <div class="styled-radio">
+                                                <input type="radio" name="user_type" id="user_student" value="student" checked>
+                                                <label for="user_student">{{ __("Register as Student") }}</label>
+                                            </div>
+                                        </div>
+                                        <div class="text-left mb-3">
+                                            <div class="styled-radio">
+                                                <input type="radio" name="user_type" id="user_teacher" value="teacher">
+                                                <label for="user_teacher">{{ __("Register as Teacher") }}</label>
+                                            </div>
+                                        </div>
+                                    </div>
+                                </div>
+                            </div>
+
+                            <div class="group">
+                                <div class="agreement-container student-agreement teacher-agreement">
                                     <div class="styled-checkbox">
-                                        <input type="checkbox" name="agreement" id="agree" checked>
+                                        <input type="checkbox" name="agreement" id="agree">
                                         <label for="agree">{{__("I Accept")}} <a href="#">{{__("Terms and Conditions")}}</a></label>
                                     </div>
                                     @error('agreement')
                                     <small>{{ $message }}</small>
                                     @enderror
                                 </div>
+                                <div class="agreement-container teacher-agreement hide">
+                                    <div class="styled-checkbox">
+                                        <input type="checkbox" name="lease-contract" id="lease_contract">
+                                        <label for="lease_contract">
+                                            {{__("I Accept")}} <a href="#">{{__("Lease Contract")}}</a>
+                                        </label>
+                                    </div>
+                                    @error('lease-contract')
+                                    <small>{{ $message }}</small>
+                                    @enderror
+                                </div>
                             </div>
+
                             <div class="sign-btn text-center">
                                 <button type="submit" class="btn btn-lg btn-gradient-01">
                                     {{ __("Sign Up") }}
@@ -96,5 +129,9 @@
             </div>
         </div>
     </div>
+@endsection
+
+@section('custom-scripts')
+    <script src="{{asset('assets/cms/js/custom.js')}}"></script>
 @endsection
 

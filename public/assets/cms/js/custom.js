@@ -1,6 +1,19 @@
 (function ($) {
     "use strict";
 
+
+    /* Change agreement types for different users */
+    $('input[name="user_type"]').change(function () {
+        $('.agreement-container').addClass('hide');
+
+        if ($(this).val() === 'student') {
+            $('.student-agreement').removeClass('hide');
+        } else {
+            $('.teacher-agreement').removeClass('hide');
+        }
+    });
+
+
     /* Add Option for Question */
     function addOption(button) {
 
