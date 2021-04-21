@@ -10,6 +10,7 @@ use App\Models\LMS\QuestionAudio;
 use App\Models\LMS\Quiz;
 use Illuminate\Database\Eloquent\Factories\HasFactory;
 use Illuminate\Database\Eloquent\Model;
+use Illuminate\Support\Facades\Auth;
 use Illuminate\Support\Facades\Storage;
 use Illuminate\Support\Str;
 
@@ -21,6 +22,7 @@ class MediaFile extends Model
 
     public function uploadFile($file)
     {
+        $currentUser = Auth::user();
         $extImages = ['jpg', 'png', 'gif'];
         $extAudio = ['wav', 'mp3'];
         $extVideo = ['mp4'];
@@ -37,24 +39,24 @@ class MediaFile extends Model
         if (in_array($extension, $extImages)) {
             $type = 'image';
             $filename = 'image-'.Str::random(3).time().'.'. $extension;
-            $path = 'img/'.date("Y").'/'.date("m");
+            $path = 'teachers/id_'.$currentUser->id.'/'.'img/'.date("Y").'/'.date("m");
             $file->storeAs($path.'/', $filename, 'uploads');
         }
         elseif (in_array($extension, $extAudio)) {
             $type = 'audio';
             $filename = 'audio-'.Str::random(3).time().'.'. $extension;
-            $path = 'audio/'.date("Y").'/'.date("m");
+            $path = 'teachers/id_'.$currentUser->id.'/'.'audio/'.date("Y").'/'.date("m");
             $file->storeAs($path.'/', $filename, 'uploads');
         }
         elseif (in_array($extension, $extVideo)) {
             $type = 'video';
             $filename = 'video-'.Str::random(3).time().'.'. $extension;
-            $path = 'video/'.date("Y").'/'.date("m");
+            $path = 'teachers/id_'.$currentUser->id.'/'.'video/'.date("Y").'/'.date("m");
             $file->storeAs($path.'/', $filename, 'uploads');
         }
         else {
             $filename = 'file-'.Str::random(3).time().'.'. $extension;
-            $path = 'files/'.date("Y").'/'.date("m");
+            $path = 'teachers/id_'.$currentUser->id.'/'.'files/'.date("Y").'/'.date("m");
             $file->storeAs($path.'/', $filename, 'uploads');
         }
 
@@ -63,6 +65,7 @@ class MediaFile extends Model
         $this->path = $path;
         $this->type = $type;
         $this->size = $file->getSize();
+        $this->author_id = $currentUser->id;
         $this->save();
     }
 

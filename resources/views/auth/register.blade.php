@@ -99,7 +99,9 @@
                                 <div class="agreement-container student-agreement teacher-agreement">
                                     <div class="styled-checkbox">
                                         <input type="checkbox" name="agreement" id="agree">
-                                        <label for="agree">{{__("I Accept")}} <a href="#">{{__("Terms and Conditions")}}</a></label>
+                                        <label for="agree">
+                                            {{__("I Accept")}} <a href="#" target="_blank">{{__("Terms and Conditions")}}</a>
+                                        </label>
                                     </div>
                                     @error('agreement')
                                     <small>{{ $message }}</small>
@@ -109,7 +111,7 @@
                                     <div class="styled-checkbox">
                                         <input type="checkbox" name="lease-contract" id="lease_contract">
                                         <label for="lease_contract">
-                                            {{__("I Accept")}} <a href="#">{{__("Lease Contract")}}</a>
+                                            {{__("I Accept")}} <a href="#" target="_blank">{{__("Lease Contract")}}</a>
                                         </label>
                                     </div>
                                     @error('lease-contract')

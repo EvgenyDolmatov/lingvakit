@@ -14,8 +14,11 @@ class CourseController extends Controller
 {
     public function index()
     {
+        $currentUser = Auth::user();
+        $courses = Course::where('author_id', $currentUser->id)->get();
+
         return view('cms.courses.index', [
-            'courses' => Course::all()
+            'courses' => $courses,
         ]);
     }
 
