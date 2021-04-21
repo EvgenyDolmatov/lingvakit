@@ -110,7 +110,12 @@ class MediaFileController extends Controller
 
     public function getFilesByAjax($fileType)
     {
-        $mediaFiles = MediaFile::where('type', $fileType)->orderBy('id', 'desc')->get();
+        $currentUser = Auth::user();
+
+        $mediaFiles = MediaFile::where([
+            ['author_id', $currentUser->id],
+            ['type', $fileType],
+        ])->orderBy('id', 'desc')->get();
         $files = array();
 
         foreach ($mediaFiles as $mediaFile) {
@@ -126,6 +131,5 @@ class MediaFileController extends Controller
     {
         $path = public_path('/uploads/'.$file->path.'/') . $file->filename;
         return response()->download($path);
-//        return Response::download($path);
     }
 }

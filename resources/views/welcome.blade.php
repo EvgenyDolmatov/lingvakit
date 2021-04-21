@@ -17,6 +17,9 @@
                         </div>
                         <div class="infos">
                             <div class="about-infos d-flex flex-column mt-3">
+                                <div class="about-infos">{{ __("Teacher: ") . $course->author->getFullName() }}</div>
+                            </div>
+                            <div class="about-infos d-flex flex-column mt-3">
                                 <div class="about-title"><a
                                         href="{{ route('site.course-show', $course->id) }}">{{ $course->title }}</a></div>
                             </div>
