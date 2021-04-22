@@ -13,6 +13,7 @@ use App\Http\Controllers\Admin\QuizController;
 use App\Http\Controllers\Admin\StageController;
 use App\Http\Controllers\Admin\StudentController;
 use App\Http\Controllers\Admin\Students\StudentCourseController;
+use App\Http\Controllers\Admin\Teachers\TeacherController;
 use App\Http\Controllers\AuthController;
 use App\Http\Controllers\CKEditorController;
 use App\Http\Controllers\OrderController;
@@ -197,6 +198,15 @@ Route::prefix('dashboard')->middleware(['auth', 'staff', 'locale'])->group(funct
             Route::get('course/{course}/quiz/{quiz}/answers', [StudentCourseController::class, 'showAnswers'])->name('students.course.answers.show');
         });
     });
+
+    /* TEACHERS */
+    Route::prefix('teachers')->group(function (){
+        Route::get('/', [TeacherController::class, 'index'])->name('teachers.index');
+        Route::get('/teacher-{teacher}', [TeacherController::class, 'show'])->name('teachers.show');
+    });
+
+    /* Actions with Users */
+    Route::put('users/user-{user}/block', [UserController::class, 'banSwitcher'])->name('users.ban-switcher');
 });
 
 Route::middleware(['guest'])->group(function (){

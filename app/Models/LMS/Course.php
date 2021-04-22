@@ -8,6 +8,7 @@ use App\Models\User;
 use Illuminate\Database\Eloquent\Factories\HasFactory;
 use Illuminate\Database\Eloquent\Model;
 use Illuminate\Database\Eloquent\SoftDeletes;
+use Illuminate\Support\Facades\Auth;
 use URL;
 
 class Course extends Model
@@ -18,7 +19,7 @@ class Course extends Model
 
     protected $fillable = [
         'title', 'description', 'image', 'video', 'difficulty_level', 'author_id', 'category_id',
-        'type', 'duration', 'price', 'sale_price', 'is_new', 'is_published'
+        'type', 'duration', 'price', 'sale_price', 'is_new', 'is_published', 'is_allowed'
     ];
 
     public function category()
@@ -338,5 +339,15 @@ class Course extends Model
             $points += $conformity->points;
         }
         return $points;
+    }
+
+    public function belongsToCurrentTeacher() : bool
+    {
+        $currentUser = Auth::user();
+        if ($this->author_id === $currentUser->id) {
+            return true;
+        }
+
+        return false;
     }
 }

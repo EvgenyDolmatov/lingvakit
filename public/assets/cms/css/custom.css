@@ -241,5 +241,8 @@ tr.header-danger {
     width: 100%;
 }
 
+.table .td-actions a i.banned {
+    color: red;
+}
 
 

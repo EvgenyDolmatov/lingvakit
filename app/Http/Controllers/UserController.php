@@ -2,6 +2,7 @@
 
 namespace App\Http\Controllers;
 
+use App\Models\User;
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Auth;
 use Illuminate\Support\Facades\Hash;
@@ -54,5 +55,17 @@ class UserController extends Controller
             $user->save();
         }
         return back()->withErrors($validator);
+    }
+
+    /* Block User */
+    public function banSwitcher(User $user)
+    {
+        if ($user->is_active) {
+            $user->update(['is_active' => 0]);
+        } else {
+            $user->update(['is_active' => 1]);
+        }
+
+        return back();
     }
 }

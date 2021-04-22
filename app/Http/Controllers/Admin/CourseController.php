@@ -61,7 +61,9 @@ class CourseController extends Controller
 
     public function show(Course $course)
     {
-        return view('cms.courses.show', ['course' => $course]);
+        return view('cms.courses.show', [
+            'course' => $course
+        ]);
     }
 
     public function edit(Course $course)

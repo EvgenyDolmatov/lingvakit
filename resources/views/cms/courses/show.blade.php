@@ -86,7 +86,8 @@
                             {{-- Number of Students --}}
                             <div class="about-infos d-flex flex-column mb-3">
                                 <div class="text-left">
-                                    <a href="{{route('course.students.list', $course->id)}}" class="btn btn-warning btn-sm mr-1 mb-2">
+                                    <a href="{{route('course.students.list', $course->id)}}"
+                                       class="btn btn-warning btn-sm mr-1 mb-2">
                                         {{ __("cms-pages.students") }}
                                     </a>
                                 </div>
@@ -97,141 +98,145 @@
             </div>
         </div>
 
-        <div class="col-xl-12">
-            <div class="widget has-shadow">
-                <div class="widget-header bordered no-actions d-flex align-items-center justify-content-between">
-                    <h4>{{ __("cms-pages.course-plan") }}</h4>
-                    <button type="button" class="btn btn-primary mr-1 mb-2" data-toggle="modal"
-                            data-target="#modal-stage">
-                        {{ __("cms-pages.add-stage") }}
-                    </button>
-                </div>
+        {{-- Show only to the owner of this course --}}
+        @if( $course->belongsToCurrentTeacher() )
+            <div class="col-xl-12">
+                <div class="widget has-shadow">
+                    <div class="widget-header bordered no-actions d-flex align-items-center justify-content-between">
+                        <h4>{{ __("cms-pages.course-plan") }}</h4>
+                        <button type="button" class="btn btn-primary mr-1 mb-2" data-toggle="modal"
+                                data-target="#modal-stage">
+                            {{ __("cms-pages.add-stage") }}
+                        </button>
+                    </div>
 
-                <div class="widget-body">
-                    <div class="table-responsive">
-                        <table id="sorting-table" class="table mb-0">
-                            <thead>
-                            <tr>
-                                <th style="width:100px">{{ __("cms-pages.image") }}</th>
-                                <th>{{ __("cms-pages.occupation-type") }}</th>
-                                <th>{{ __("cms-pages.topic") }}</th>
-                                <th>{{ __("cms-pages.duration") }}</th>
-                                <th>{{ __("cms-pages.max-points") }}</th>
-                                <th class="text-right">{{ __("cms-pages.actions") }}</th>
-                            </tr>
-                            </thead>
-                            <tbody>
+                    <div class="widget-body">
+                        <div class="table-responsive">
+                            <table id="sorting-table" class="table mb-0">
+                                <thead>
+                                <tr>
+                                    <th style="width:100px">{{ __("cms-pages.image") }}</th>
+                                    <th>{{ __("cms-pages.occupation-type") }}</th>
+                                    <th>{{ __("cms-pages.topic") }}</th>
+                                    <th>{{ __("cms-pages.duration") }}</th>
+                                    <th>{{ __("cms-pages.max-points") }}</th>
+                                    <th class="text-right">{{ __("cms-pages.actions") }}</th>
+                                </tr>
+                                </thead>
+                                <tbody>
 
-                            @foreach($course->stages as $keyStage => $stage)
-                                <tr class="text-primary header">
-                                    <td style="width: 70%" colspan="5"><h4>{{ ($keyStage+1).'. '.$stage->name }}</h4>
-                                    </td>
-                                    <td class="td-actions text-right">
-                                        <div class="actions dark d-inline-block">
-                                            <div class="dropdown">
-                                                <button type="button" data-toggle="dropdown"
-                                                        aria-haspopup="true" aria-expanded="false"
-                                                        class="dropdown-toggle">
-                                                    <i class="la la-plus edit"></i></button>
+                                @foreach($course->stages as $keyStage => $stage)
+                                    <tr class="text-primary header">
+                                        <td style="width: 70%" colspan="5">
+                                            <h4>{{ ($keyStage+1).'. '.$stage->name }}</h4>
+                                        </td>
+                                        <td class="td-actions text-right">
+                                            <div class="actions dark d-inline-block">
+                                                <div class="dropdown">
+                                                    <button type="button" data-toggle="dropdown"
+                                                            aria-haspopup="true" aria-expanded="false"
+                                                            class="dropdown-toggle">
+                                                        <i class="la la-plus edit"></i></button>
 
-                                                <div class="dropdown-menu">
-                                                    <a href="{{ route('lessons.create', [$course->id, $stage->id]) }}"
-                                                       class="dropdown-item">
-                                                        <i class="la la-plus"></i>{{ __("cms-pages.new-lesson") }}
-                                                    </a>
-                                                    <a href="{{ route('quizzes.create', [$course->id, $stage->id]) }}"
-                                                       class="dropdown-item">
-                                                        <i class="la la-plus"></i>{{ __("cms-pages.new-quiz") }}
-                                                    </a>
+                                                    <div class="dropdown-menu">
+                                                        <a href="{{ route('lessons.create', [$course->id, $stage->id]) }}"
+                                                           class="dropdown-item">
+                                                            <i class="la la-plus"></i>{{ __("cms-pages.new-lesson") }}
+                                                        </a>
+                                                        <a href="{{ route('quizzes.create', [$course->id, $stage->id]) }}"
+                                                           class="dropdown-item">
+                                                            <i class="la la-plus"></i>{{ __("cms-pages.new-quiz") }}
+                                                        </a>
+                                                    </div>
                                                 </div>
                                             </div>
-                                        </div>
 
-                                        <button type="button" data-toggle="modal"
-                                                data-target="#modal-stage-{{$stage->id}}">
-                                            <i class="la la-edit edit"></i>
-                                        </button>
-                                        <form style="display: inline-block" method="POST"
-                                              action="{{ route('stages.destroy', [$course->id, $stage->id]) }}">
-                                            @csrf @method('DELETE')
+                                            <button type="button" data-toggle="modal"
+                                                    data-target="#modal-stage-{{$stage->id}}">
+                                                <i class="la la-edit edit"></i>
+                                            </button>
+                                            <form style="display: inline-block" method="POST"
+                                                  action="{{ route('stages.destroy', [$course->id, $stage->id]) }}">
+                                                @csrf @method('DELETE')
 
-                                            <a href="{{ route('stages.destroy', [$course->id, $stage->id]) }}"
-                                               onclick="event.preventDefault();if(confirm('{{ __("cms-messages.delete") }}')){this.closest('form').submit();}">
-                                                <i class="la la-close delete"></i>
-                                            </a>
-                                        </form>
-                                    </td>
-                                </tr>
-
-                                @if(count($stage->topics) < 1)
-                                    <tr class="empty">
-                                        <td class="text-center" colspan="5">
-                                            <div class="d-flex justify-content-center align-items-center"
-                                                 style="min-height: 130px">
-                                                {{__("cms-pages.empty")}}
-                                            </div>
+                                                <a href="{{ route('stages.destroy', [$course->id, $stage->id]) }}"
+                                                   onclick="event.preventDefault();if(confirm('{{ __("cms-messages.delete") }}')){this.closest('form').submit();}">
+                                                    <i class="la la-close delete"></i>
+                                                </a>
+                                            </form>
                                         </td>
                                     </tr>
-                                @endif
 
-                                @foreach($stage->topics as $key => $topic)
-                                    @if($topic->lesson)
-                                        <tr>
-                                            <td style="width:100px">
-                                                <img src="{{ $topic->lesson->getImage() }}" width="100" alt>
-                                            </td>
-                                            <td class="text-primary">{{ __("cms-pages.".$topic->name) }}</td>
-                                            <td>{{ $topic->lesson->title }}</td>
-                                            <td>{{ $topic->lesson->getDuration() }}</td>
-                                            <td></td>
-                                            <td class="td-actions text-right">
-                                                <a href="{{ route('lessons.edit', [$course->id, $stage->id, $topic->lesson->id]) }}"><i
-                                                        class="la la-edit edit"></i></a>
-                                                <form style="display: inline-block" method="POST"
-                                                      action="{{ route('lessons.destroy', [$course->id, $stage->id, $topic->lesson->id]) }}">
-                                                    @csrf @method('DELETE')
-
-                                                    <a href="{{ route('lessons.destroy', [$course->id, $stage->id, $topic->lesson->id]) }}"
-                                                       onclick="event.preventDefault();if(confirm('{{ __("cms-messages.delete") }}')){this.closest('form').submit();}">
-                                                        <i class="la la-close delete"></i>
-                                                    </a>
-                                                </form>
-                                            </td>
-                                        </tr>
-                                    @elseif($topic->quiz)
-                                        <tr>
-                                            <td style="width:100px">
-                                                <img src="{{ $topic->quiz->getImage() }}" width="100" alt>
-                                            </td>
-                                            <td class="text-primary">{{ __("cms-pages.".$topic->name) }}</td>
-                                            <td>{{ $topic->quiz->title }}</td>
-                                            <td>{{ $topic->quiz->getDuration() }}</td>
-                                            <td>{{ $topic->quiz->getTotalPoints() }}</td>
-                                            <td class="td-actions text-right">
-                                                <a href="{{ route('quizzes.show', [$course->id, $stage->id, $topic->quiz->id]) }}"><i
-                                                        class="la la-eye edit"></i></a>
-                                                <a href="{{ route('quizzes.edit', [$course->id, $stage->id, $topic->quiz->id]) }}"><i
-                                                        class="la la-edit edit"></i></a>
-                                                <form style="display: inline-block" method="POST"
-                                                      action="{{ route('quizzes.destroy', [$course->id, $stage->id, $topic->quiz->id]) }}">
-                                                    @csrf @method('DELETE')
-
-                                                    <a href="{{ route('quizzes.destroy', [$course->id, $stage->id, $topic->quiz->id]) }}"
-                                                       onclick="event.preventDefault();if(confirm('{{ __("cms-messages.delete") }}')){this.closest('form').submit();}">
-                                                        <i class="la la-close delete"></i>
-                                                    </a>
-                                                </form>
+                                    @if(count($stage->topics) < 1)
+                                        <tr class="empty">
+                                            <td class="text-center" colspan="5">
+                                                <div class="d-flex justify-content-center align-items-center"
+                                                     style="min-height: 130px">
+                                                    {{__("cms-pages.empty")}}
+                                                </div>
                                             </td>
                                         </tr>
                                     @endif
+
+                                    @foreach($stage->topics as $key => $topic)
+                                        @if($topic->lesson)
+                                            <tr>
+                                                <td style="width:100px">
+                                                    <img src="{{ $topic->lesson->getImage() }}" width="100" alt>
+                                                </td>
+                                                <td class="text-primary">{{ __("cms-pages.".$topic->name) }}</td>
+                                                <td>{{ $topic->lesson->title }}</td>
+                                                <td>{{ $topic->lesson->getDuration() }}</td>
+                                                <td></td>
+                                                <td class="td-actions text-right">
+                                                    <a href="{{ route('lessons.edit', [$course->id, $stage->id, $topic->lesson->id]) }}"><i
+                                                                class="la la-edit edit"></i></a>
+                                                    <form style="display: inline-block" method="POST"
+                                                          action="{{ route('lessons.destroy', [$course->id, $stage->id, $topic->lesson->id]) }}">
+                                                        @csrf @method('DELETE')
+
+                                                        <a href="{{ route('lessons.destroy', [$course->id, $stage->id, $topic->lesson->id]) }}"
+                                                           onclick="event.preventDefault();if(confirm('{{ __("cms-messages.delete") }}')){this.closest('form').submit();}">
+                                                            <i class="la la-close delete"></i>
+                                                        </a>
+                                                    </form>
+                                                </td>
+                                            </tr>
+                                        @elseif($topic->quiz)
+                                            <tr>
+                                                <td style="width:100px">
+                                                    <img src="{{ $topic->quiz->getImage() }}" width="100" alt>
+                                                </td>
+                                                <td class="text-primary">{{ __("cms-pages.".$topic->name) }}</td>
+                                                <td>{{ $topic->quiz->title }}</td>
+                                                <td>{{ $topic->quiz->getDuration() }}</td>
+                                                <td>{{ $topic->quiz->getTotalPoints() }}</td>
+                                                <td class="td-actions text-right">
+                                                    <a href="{{ route('quizzes.show', [$course->id, $stage->id, $topic->quiz->id]) }}"><i
+                                                                class="la la-eye edit"></i></a>
+                                                    <a href="{{ route('quizzes.edit', [$course->id, $stage->id, $topic->quiz->id]) }}"><i
+                                                                class="la la-edit edit"></i></a>
+                                                    <form style="display: inline-block" method="POST"
+                                                          action="{{ route('quizzes.destroy', [$course->id, $stage->id, $topic->quiz->id]) }}">
+                                                        @csrf @method('DELETE')
+
+                                                        <a href="{{ route('quizzes.destroy', [$course->id, $stage->id, $topic->quiz->id]) }}"
+                                                           onclick="event.preventDefault();if(confirm('{{ __("cms-messages.delete") }}')){this.closest('form').submit();}">
+                                                            <i class="la la-close delete"></i>
+                                                        </a>
+                                                    </form>
+                                                </td>
+                                            </tr>
+                                        @endif
+                                    @endforeach
                                 @endforeach
-                            @endforeach
-                            </tbody>
-                        </table>
+                                </tbody>
+                            </table>
+                        </div>
                     </div>
                 </div>
             </div>
-        </div>
+        @endif
     </div>
 @endsection
 @section('modal')

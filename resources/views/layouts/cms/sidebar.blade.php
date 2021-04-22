@@ -35,9 +35,17 @@
 
             {{-- Students --}}
             <li><a href="#dropdown-students" aria-expanded="false" data-toggle="collapse"><i
-                        class="la la-envelope"></i><span>{{ __("cms-pages.students") }}</span></a>
+                        class="la la-group"></i><span>{{ __("cms-pages.students") }}</span></a>
                 <ul id="dropdown-students" class="collapse list-unstyled pt-0">
                     <li><a href="{{ route('students.index') }}">{{ __("cms-pages.students") }}</a></li>
+                </ul>
+            </li>
+
+            {{-- Teachers --}}
+            <li><a href="#dropdown-teachers" aria-expanded="false" data-toggle="collapse"><i
+                            class="la la-male"></i><span>{{ __("cms-pages.teachers") }}</span></a>
+                <ul id="dropdown-teachers" class="collapse list-unstyled pt-0">
+                    <li><a href="{{ route('teachers.index') }}">{{ __("cms-pages.teachers") }}</a></li>
                 </ul>
             </li>
 

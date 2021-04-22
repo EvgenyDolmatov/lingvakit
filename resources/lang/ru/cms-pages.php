@@ -388,5 +388,12 @@ return [
     'give-access' => 'Дать доступ',
     'give-access-to-course' => 'Дать доступ к курсу',
 
+    // Teachers
+    'teacher' => 'Преподавтель',
+    'teachers' => 'Преподавтели',
+    'about-teacher' => 'Информация о преподавателе',
+    'block-user' => 'Заблокировать',
+    'unblock-user' => 'Разблокировать',
+
     'other' => 'Другая',
 ];

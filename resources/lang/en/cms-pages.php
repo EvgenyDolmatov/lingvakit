@@ -394,5 +394,12 @@ return [
     'give-access' => 'Give Access',
     'give-access-to-course' => 'Give Access To Course',
 
+    // Teachers
+    'teacher' => 'Teacher',
+    'teachers' => 'Teachers',
+    'about-teacher' => 'About Teacher',
+    'block-user' => 'Block User',
+    'unblock-user' => 'Unblock User',
+
     'other' => 'Other',
 ];
