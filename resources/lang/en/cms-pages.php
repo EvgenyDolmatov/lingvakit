@@ -400,6 +400,8 @@ return [
     'about-teacher' => 'About Teacher',
     'block-user' => 'Block User',
     'unblock-user' => 'Unblock User',
+    'courses-on-moderation' => 'Courses on Moderation',
+    'new-courses' => 'New Courses',
 
     'other' => 'Other',
 ];

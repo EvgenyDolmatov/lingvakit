@@ -37,6 +37,26 @@ class Course extends Model
         return $this->hasOne(MetaCourse::class);
     }
 
+    public function author()
+    {
+        return $this->belongsTo(User::class, 'author_id', 'id', 'users');
+    }
+
+    public function students()
+    {
+        return $this->belongsToMany(User::class, 'course_user')->withPivot('progress');
+    }
+
+    public function image()
+    {
+        return $this->hasOne(MediaFile::class, 'id', 'image');
+    }
+
+    public function video()
+    {
+        return $this->hasOne(MediaFile::class, 'id', 'video');
+    }
+
     public function getTopics() : array
     {
         $collection = array();
@@ -80,26 +100,6 @@ class Course extends Model
             }
         }
         return $conformityList;
-    }
-
-    public function author()
-    {
-        return $this->belongsTo(User::class, 'author_id', 'id', 'users');
-    }
-
-    public function students()
-    {
-        return $this->belongsToMany(User::class, 'course_user')->withPivot('progress');
-    }
-
-    public function image()
-    {
-        return $this->hasOne(MediaFile::class, 'id', 'image');
-    }
-
-    public function video()
-    {
-        return $this->hasOne(MediaFile::class, 'id', 'video');
     }
 
     public function getImage() : string

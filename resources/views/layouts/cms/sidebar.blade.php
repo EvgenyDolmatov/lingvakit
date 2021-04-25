@@ -46,6 +46,7 @@
                             class="la la-male"></i><span>{{ __("cms-pages.teachers") }}</span></a>
                 <ul id="dropdown-teachers" class="collapse list-unstyled pt-0">
                     <li><a href="{{ route('teachers.index') }}">{{ __("cms-pages.teachers") }}</a></li>
+                    <li><a href="{{route('courses.moderation')}}">{{ __("cms-pages.new-courses") }}</a></li>
                 </ul>
             </li>
 

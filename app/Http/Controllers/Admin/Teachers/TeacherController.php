@@ -83,4 +83,30 @@ class TeacherController extends Controller
     {
         //
     }
+
+    public function coursesForModeration()
+    {
+        $courses = Course::all()->reject(function ($course) {
+            return $course->is_allowed === 1;
+        })->reject(function ($course) {
+            return $course->author->is_active === 0;
+        })->map(function ($course) {
+            return $course;
+        });
+
+        return view('cms.teachers.courses.moderation', [
+            'courses' => $courses
+        ]);
+    }
+
+    public function courseModerateSwitcher(Course $course)
+    {
+        if ($course->is_allowed) {
+            $course->update(['is_allowed' => 0]);
+        } else {
+            $course->update(['is_allowed' => 1]);
+        }
+
+        return back();
+    }
 }

@@ -90,8 +90,27 @@
                                     <td class="text-primary">{{ $course->getProgress($teacher) }}</td>
 
                                     <td class="td-actions">
-                                        <a href="{{ route('students.course.show', [$teacher->id, $course->id]) }}"><i
-                                                    class="la la-eye edit"></i></a>
+                                        <a href="{{ route('students.course.show', [$teacher->id, $course->id]) }}">
+                                            <i class="la la-eye edit"></i>
+                                        </a>
+
+                                        <form style="display: inline-block" method="POST" action="{{ route('courses.moderate-switcher', $course->id) }}">
+                                            @csrf @method('PUT')
+
+                                            @if($course->is_allowed)
+                                                <a href="{{ route('courses.moderate-switcher', $course->id) }}"
+                                                   onclick="event.preventDefault();this.closest('form').submit();">
+                                                    <i class="la la-ban edit"></i>
+                                                </a>
+                                            @else
+                                                <a href="{{ route('courses.moderate-switcher', $course->id) }}"
+                                                   onclick="event.preventDefault();this.closest('form').submit();">
+                                                    <i class="la la-ban edit banned"></i>
+                                                </a>
+                                            @endif
+
+
+                                        </form>
                                     </td>
                                 </tr>
                             @endforeach

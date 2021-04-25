@@ -203,6 +203,8 @@ Route::prefix('dashboard')->middleware(['auth', 'staff', 'locale'])->group(funct
     Route::prefix('teachers')->group(function (){
         Route::get('/', [TeacherController::class, 'index'])->name('teachers.index');
         Route::get('/teacher-{teacher}', [TeacherController::class, 'show'])->name('teachers.show');
+        Route::get('/new-courses', [TeacherController::class, 'coursesForModeration'])->name('courses.moderation');
+        Route::put('/new-courses/course-{course}/moderate', [TeacherController::class, 'courseModerateSwitcher'])->name('courses.moderate-switcher');
     });
 
     /* Actions with Users */

@@ -394,6 +394,8 @@ return [
     'about-teacher' => 'Информация о преподавателе',
     'block-user' => 'Заблокировать',
     'unblock-user' => 'Разблокировать',
+    'courses-on-moderation' => 'Курсы на модерации',
+    'new-courses' => 'Новые курсы',
 
     'other' => 'Другая',
 ];

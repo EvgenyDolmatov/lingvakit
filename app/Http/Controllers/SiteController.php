@@ -14,12 +14,10 @@ class SiteController extends Controller
 {
     public function index()
     {
-        $user = Auth::user();
-        $courses = Course::where('is_published', 1)->get();
-
-        if ($user && $user->hasRole('admin')) {
-            $courses = Course::all();
-        }
+        $courses = Course::where([
+            ['is_published', 1],
+            ['is_allowed', 1],
+        ])->get();
 
         return view('welcome', [
             'courses' => $courses
