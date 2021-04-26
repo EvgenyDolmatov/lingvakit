@@ -277,6 +277,7 @@ class Quiz extends Model
 
     public function getTotalScore($user) : int
     {
+        $totalScore = false;
         $totalPoints = $this->getTotalPoints();
         $userPoints = 0;
 
@@ -289,7 +290,11 @@ class Quiz extends Model
             }
         }
 
-        return round(($userPoints*100)/$totalPoints);
+        if ($userPoints) {
+            $totalScore = round(($userPoints*100)/$totalPoints);
+        }
+
+        return $totalScore;
     }
 
     public function getUserScore($user) : int
