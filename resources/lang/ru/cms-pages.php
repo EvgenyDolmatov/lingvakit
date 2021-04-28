@@ -211,6 +211,10 @@ return [
     'private-client' => 'Физическое лицо',
 
     /* Roles */
+    'roles-permissions' => 'Роли и права',
+    'roles' => 'Роли',
+    'new-role' => 'Новая роль',
+    'role-form' => 'Данные роли',
     'admin' => 'Администратор',
     'leader' => 'Руководитель',
     'manager' => 'Менеджер',

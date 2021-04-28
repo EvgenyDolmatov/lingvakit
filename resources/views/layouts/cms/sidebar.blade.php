@@ -25,6 +25,14 @@
                 </ul>
             </li>
 
+            {{-- Roles and Permissions --}}
+            <li><a href="#dropdown-roles" aria-expanded="false" data-toggle="collapse"><i
+                            class="la la-list"></i><span>{{ __("cms-pages.roles-permissions") }}</span></a>
+                <ul id="dropdown-roles" class="collapse list-unstyled pt-0">
+                    <li><a href="{{ route('roles.index') }}">{{ __("cms-pages.roles") }}</a></li>
+                </ul>
+            </li>
+
             {{-- Categories --}}
             <li><a href="#dropdown-categories" aria-expanded="false" data-toggle="collapse"><i
                         class="la la-list"></i><span>{{ __("cms-pages.categories") }}</span></a>

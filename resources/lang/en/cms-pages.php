@@ -214,6 +214,10 @@ return [
     'private-client' => 'Private Person',
 
     /* Roles */
+    'roles-permissions' => 'Roles & Permissions',
+    'roles' => 'Roles',
+    'new-role' => 'New Role',
+    'role-form' => 'Role Form',
     'admin' => 'Administrator',
     'leader' => 'Leader',
     'manager' => 'Manager',
