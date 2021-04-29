@@ -3,7 +3,7 @@
 @section('page-styles')
     @include('layouts.cms.template-parts.styles-index')
 @endsection
-@section('title', __("cms-pages.courses"))
+@section('title', __("cms-pages.roles"))
 @section('header-tools')
     <ul class="breadcrumb">
         <li class="breadcrumb-item"><a href="{{ route('dashboard') }}"><i class="ti ti-home"></i></a></li>

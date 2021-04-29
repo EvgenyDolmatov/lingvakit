@@ -30,6 +30,7 @@
                             class="la la-list"></i><span>{{ __("cms-pages.roles-permissions") }}</span></a>
                 <ul id="dropdown-roles" class="collapse list-unstyled pt-0">
                     <li><a href="{{ route('roles.index') }}">{{ __("cms-pages.roles") }}</a></li>
+                    <li><a href="{{ route('permissions.index') }}">{{ __("cms-pages.permissions") }}</a></li>
                 </ul>
             </li>
 

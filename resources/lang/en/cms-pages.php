@@ -217,7 +217,9 @@ return [
     'roles-permissions' => 'Roles & Permissions',
     'roles' => 'Roles',
     'new-role' => 'New Role',
+    'edit-role' => 'Edit Role',
     'role-form' => 'Role Form',
+    'superuser' => 'Super User',
     'admin' => 'Administrator',
     'leader' => 'Leader',
     'manager' => 'Manager',
@@ -227,13 +229,19 @@ return [
 
     /* Permissions */
     'permissions' => 'Permissions',
+    'permission' => 'Permission',
+    'new-permission' => 'New Permission',
+    'edit-permission' => 'Edit Permission',
+    'permission-form' => 'Permission Form',
     'permission-settings' => 'Permission Settings',
-    'staff_management' => 'Staff Management',
-    'customer_management' => 'Customer Management',
-    'product_management' => 'Product Management',
+    'teachers_management' => 'Teachers Management',
+    'students_management' => 'Students Management',
+    'categories_management' => 'Categories Management',
+    'roles_management' => 'Roles Management',
+    'courses_management' => 'Courses Management',
+    'files_management' => 'Files Management',
     'order_management' => 'Order Management',
     'subscriber_management' => 'Subscriber Management',
-    'warehouse_management' => 'Warehouse Management',
 
     /* Staff */
     'staff' => 'Staff',

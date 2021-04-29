@@ -1,6 +1,6 @@
 @extends('layouts.cms')
 
-@section('title', __("cms-pages.new-role"))
+@section('title', __("cms-pages.edit-role"))
 @section('header-tools')
     <ul class="breadcrumb">
         <li class="breadcrumb-item"><a href="{{ route('dashboard') }}"><i class="ti ti-home"></i></a></li>
