@@ -39,14 +39,15 @@
                                         @endforeach
                                     </td>
                                     <td class="td-actions">
-                                        {{--<a href="{{ route('courses.edit', $course->id) }}"><i class="la la-edit edit"></i></a>
-                                        <form style="display: inline-block" method="POST" action="{{ route('courses.destroy', $course->id) }}">
+                                        <a href="{{ route('roles.edit', $role->id) }}"><i class="la la-edit edit"></i></a>
+                                        <form style="display: inline-block" method="POST" action="{{ route('roles.destroy', $role->id) }}">
                                             @csrf @method('DELETE')
 
-                                            <a href="{{ route('courses.destroy', $course->id) }}" onclick="event.preventDefault();if(confirm('{{ __("cms-messages.delete") }}')){this.closest('form').submit();}">
+                                            <a href="{{ route('courses.destroy', $role->id) }}"
+                                               onclick="event.preventDefault();if(confirm('{{ __("cms-messages.delete") }}')){this.closest('form').submit();}">
                                                 <i class="la la-close delete"></i>
                                             </a>
-                                        </form>--}}
+                                        </form>
                                     </td>
                                 </tr>
                             @endforeach
