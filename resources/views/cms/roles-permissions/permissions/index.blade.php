@@ -33,7 +33,7 @@
                             <tbody>
                             @foreach($permissions as $permission)
                                 <tr>
-                                    <td>{{ __("cms-pages.".$permission->name) }}</td>
+                                    <td>{{ __($permission->name) }}</td>
                                     <td class="td-actions">
                                         <a href="{{ route('permissions.edit', $permission->id) }}"><i class="la la-edit edit"></i></a>
                                         <form style="display: inline-block" method="POST" action="{{ route('permissions.destroy', $permission->id) }}">

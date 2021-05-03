@@ -37,7 +37,7 @@
                                     <div class="mb-3">
                                         <div class="styled-checkbox">
                                             <input type="checkbox" name="permissions[]" id="{{ $permission->name }}" value="{{ $permission->id }}">
-                                            <label for="{{ $permission->name }}">{{ __("cms-pages.".$permission->name) }}</label>
+                                            <label for="{{ $permission->name }}">{{ __($permission->name) }}</label>
                                         </div>
                                     </div>
                                 @endforeach

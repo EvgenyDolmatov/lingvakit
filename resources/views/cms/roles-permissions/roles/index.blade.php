@@ -35,7 +35,7 @@
                                     <td>{{ __("cms-pages.".$role->name) }}</td>
                                     <td>
                                         @foreach($role->permissions as $permission)
-                                            <p>{{ __("cms-pages.".$permission->name) }}</p>
+                                            <p>{{ __($permission->name) }}</p>
                                         @endforeach
                                     </td>
                                     <td class="td-actions">

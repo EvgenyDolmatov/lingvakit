@@ -18,7 +18,7 @@ class MediaFile extends Model
 {
     use HasFactory;
 
-    protected $fillable = ['title', 'filename', 'path', 'alt', 'type', 'size', 'duration'];
+    protected $fillable = ['title', 'filename', 'path', 'alt', 'type', 'size', 'duration', 'author_id'];
 
     public function uploadFile($file)
     {

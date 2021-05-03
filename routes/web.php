@@ -15,6 +15,7 @@ use App\Http\Controllers\Admin\RoleController;
 use App\Http\Controllers\Admin\StageController;
 use App\Http\Controllers\Admin\StudentController;
 use App\Http\Controllers\Admin\Students\StudentCourseController;
+use App\Http\Controllers\Admin\SuperuserController;
 use App\Http\Controllers\Admin\Teachers\TeacherController;
 use App\Http\Controllers\AuthController;
 use App\Http\Controllers\CKEditorController;
@@ -107,7 +108,7 @@ Route::get('ajax/promo/{code}', [PromocodeController::class, 'getPromoCodeData']
 
 
 /* Admin */
-Route::prefix('dashboard')->middleware(['auth', 'staff', 'locale'])->group(function (){
+Route::prefix('dashboard')->middleware(['auth', 'locale', 'role:superuser|admin|teacher'])->group(function (){
     Route::get('/', [DashboardController::class, 'index'])->name('dashboard');
 
     Route::resource('media', MediaFileController::class);
@@ -116,8 +117,9 @@ Route::prefix('dashboard')->middleware(['auth', 'staff', 'locale'])->group(funct
     Route::get('media/{id}/get-data', [MediaFileController::class, 'getAjaxData'])->name('media.ajax.get-data');
 
     /* ROLES & PERMISSIONS */
-    Route::resource('roles', RoleController::class);
-    Route::resource('permissions', PermissionController::class);
+    Route::resource('roles', RoleController::class)->middleware('role:superuser');
+    Route::resource('permissions', PermissionController::class)->middleware('role:superuser');
+
 
     /* CATEGORIES */
     Route::resource('categories', CategoryController::class);
@@ -227,6 +229,12 @@ Route::prefix('dashboard')->middleware(['auth', 'staff', 'locale'])->group(funct
 Route::middleware(['guest'])->group(function (){
     Route::post('reset-user-password', [AuthController::class, 'resetPassword'])->name('password.update');
 });
+
+
+/* Scripts for Changing Database */
+//Route::get('media/change-paths', [SuperuserController::class, 'changePaths'])
+//    ->middleware(['auth', 'role:admin'])->name('media.change-paths');
+
 
 
 

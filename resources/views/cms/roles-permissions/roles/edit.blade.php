@@ -40,7 +40,7 @@
                                                    id="{{ $permission->name }}" value="{{ $permission->id }}"
                                                    @if($role->permissions->contains($permission->id)) checked @endif>
                                             <label for="{{ $permission->name }}">
-                                                {{ __("cms-pages.".$permission->name) }}
+                                                {{ __($permission->name) }}
                                             </label>
                                         </div>
                                     </div>

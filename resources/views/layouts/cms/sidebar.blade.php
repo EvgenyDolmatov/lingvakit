@@ -6,11 +6,11 @@
 
             {{-- Dashboard --}}
             <li class="dashboard"><a href="{{route('dashboard')}}"><i
-                        class="la la-dashboard"></i><span>{{ __("cms-pages.dashboard") }}</span></a></li>
+                            class="la la-dashboard"></i><span>{{ __("cms-pages.dashboard") }}</span></a></li>
 
             {{-- Media Files --}}
             <li><a href="#dropdown-media" aria-expanded="false" data-toggle="collapse"><i
-                        class="la la-camera"></i><span>{{ __("cms-pages.media-files") }}</span></a>
+                            class="la la-camera"></i><span>{{ __("cms-pages.media-files") }}</span></a>
                 <ul id="dropdown-media" class="collapse list-unstyled pt-0">
                     <li><a href="{{ route('media.index') }}">{{ __("cms-pages.media-files") }}</a></li>
                 </ul>
@@ -18,7 +18,7 @@
 
             {{-- Courses --}}
             <li><a href="#dropdown-courses" aria-expanded="false" data-toggle="collapse"><i
-                        class="la la-mortar-board"></i><span>{{ __("cms-pages.courses") }}</span></a>
+                            class="la la-mortar-board"></i><span>{{ __("cms-pages.courses") }}</span></a>
                 <ul id="dropdown-courses" class="collapse list-unstyled pt-0">
                     <li><a href="{{ route('courses.index') }}">{{ __("cms-pages.courses") }}</a></li>
                     <li><a href="{{ route('promocodes.index') }}">{{ __("cms-pages.promo-codes") }}</a></li>
@@ -26,17 +26,19 @@
             </li>
 
             {{-- Roles and Permissions --}}
-            <li><a href="#dropdown-roles" aria-expanded="false" data-toggle="collapse"><i
-                            class="la la-list"></i><span>{{ __("cms-pages.roles-permissions") }}</span></a>
-                <ul id="dropdown-roles" class="collapse list-unstyled pt-0">
-                    <li><a href="{{ route('roles.index') }}">{{ __("cms-pages.roles") }}</a></li>
-                    <li><a href="{{ route('permissions.index') }}">{{ __("cms-pages.permissions") }}</a></li>
-                </ul>
-            </li>
+            @if($currentUser->hasPermissionTo('role manage'))
+                <li><a href="#dropdown-roles" aria-expanded="false" data-toggle="collapse"><i
+                                class="la la-list"></i><span>{{ __("cms-pages.roles-permissions") }}</span></a>
+                    <ul id="dropdown-roles" class="collapse list-unstyled pt-0">
+                        <li><a href="{{ route('roles.index') }}">{{ __("cms-pages.roles") }}</a></li>
+                        <li><a href="{{ route('permissions.index') }}">{{ __("cms-pages.permissions") }}</a></li>
+                    </ul>
+                </li>
+            @endif
 
             {{-- Categories --}}
             <li><a href="#dropdown-categories" aria-expanded="false" data-toggle="collapse"><i
-                        class="la la-list"></i><span>{{ __("cms-pages.categories") }}</span></a>
+                            class="la la-list"></i><span>{{ __("cms-pages.categories") }}</span></a>
                 <ul id="dropdown-categories" class="collapse list-unstyled pt-0">
                     <li><a href="{{ route('categories.index') }}">{{ __("cms-pages.categories") }}</a></li>
                 </ul>
@@ -44,7 +46,7 @@
 
             {{-- Students --}}
             <li><a href="#dropdown-students" aria-expanded="false" data-toggle="collapse"><i
-                        class="la la-group"></i><span>{{ __("cms-pages.students") }}</span></a>
+                            class="la la-group"></i><span>{{ __("cms-pages.students") }}</span></a>
                 <ul id="dropdown-students" class="collapse list-unstyled pt-0">
                     <li><a href="{{ route('students.index') }}">{{ __("cms-pages.students") }}</a></li>
                 </ul>
@@ -60,26 +62,26 @@
             </li>
 
             {{-- Orders --}}
-{{--            @can('order_management')
-                <li><a href="#dropdown-orders" aria-expanded="false" data-toggle="collapse"><i
-                            class="la la-check-square"></i><span>{{ __("cms-pages.orders") }}</span></a>
-                    <ul id="dropdown-orders" class="collapse list-unstyled pt-0">
-                        <li><a href="{{ route('orders.index') }}">{{ __("cms-pages.all") }}</a></li>
-                        <li><a href="{{ route('orders.create') }}">{{ __("cms-pages.add") }}</a></li>
-                    </ul>
-                </li>
-            @endcan--}}
+            {{--            @can('order_management')
+                            <li><a href="#dropdown-orders" aria-expanded="false" data-toggle="collapse"><i
+                                        class="la la-check-square"></i><span>{{ __("cms-pages.orders") }}</span></a>
+                                <ul id="dropdown-orders" class="collapse list-unstyled pt-0">
+                                    <li><a href="{{ route('orders.index') }}">{{ __("cms-pages.all") }}</a></li>
+                                    <li><a href="{{ route('orders.create') }}">{{ __("cms-pages.add") }}</a></li>
+                                </ul>
+                            </li>
+                        @endcan--}}
 
             {{-- Subscribers --}}
-{{--            @can('subscriber_management')
-                <li><a href="#dropdown-subscribers" aria-expanded="false" data-toggle="collapse"><i
-                            class="la la-envelope"></i><span>{{ __("cms-pages.subscribers") }}</span></a>
-                    <ul id="dropdown-subscribers" class="collapse list-unstyled pt-0">
-                        <li><a href="{{ route('subscribers.index') }}">{{ __("cms-pages.all") }}</a></li>
-                        <li><a href="{{ route('subscribers.create') }}">{{ __("cms-pages.add") }}</a></li>
-                    </ul>
-                </li>
-            @endcan--}}
+            {{--            @can('subscriber_management')
+                            <li><a href="#dropdown-subscribers" aria-expanded="false" data-toggle="collapse"><i
+                                        class="la la-envelope"></i><span>{{ __("cms-pages.subscribers") }}</span></a>
+                                <ul id="dropdown-subscribers" class="collapse list-unstyled pt-0">
+                                    <li><a href="{{ route('subscribers.index') }}">{{ __("cms-pages.all") }}</a></li>
+                                    <li><a href="{{ route('subscribers.create') }}">{{ __("cms-pages.add") }}</a></li>
+                                </ul>
+                            </li>
+                        @endcan--}}
 
 
         </ul>
