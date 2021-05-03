@@ -5,16 +5,33 @@ namespace App\Http\Controllers\Admin;
 use App\Http\Controllers\Controller;
 use App\Models\MediaFile;
 use Illuminate\Http\Request;
-use Illuminate\Support\Facades\Response;
+use Illuminate\Support\Facades\Auth;
 
 class MediaFileController extends Controller
 {
     public function index()
     {
-        $audioFiles = MediaFile::where('type', 'audio')->orderBy('id', 'desc')->get();
-        $images = MediaFile::where('type', 'image')->orderBy('id', 'desc')->get();
-        $videoFiles = MediaFile::where('type', 'video')->orderBy('id', 'desc')->get();
-        $files = MediaFile::where('type', 'file')->orderBy('id', 'desc')->get();
+        $currentUser = Auth::user();
+
+        $audioFiles = MediaFile::where([
+            ['author_id', $currentUser->id],
+            ['type', 'audio'],
+        ])->orderBy('id', 'desc')->get();
+
+        $images = MediaFile::where([
+            ['author_id', $currentUser->id],
+            ['type', 'image'],
+        ])->orderBy('id', 'desc')->get();
+
+        $videoFiles = MediaFile::where([
+            ['author_id', $currentUser->id],
+            ['type', 'video'],
+        ])->orderBy('id', 'desc')->get();
+
+        $files = MediaFile::where([
+            ['author_id', $currentUser->id],
+            ['type', 'file'],
+        ])->orderBy('id', 'desc')->get();
 
         return view('cms.media.index',[
             'audioFiles' => $audioFiles,
@@ -93,7 +110,12 @@ class MediaFileController extends Controller
 
     public function getFilesByAjax($fileType)
     {
-        $mediaFiles = MediaFile::where('type', $fileType)->orderBy('id', 'desc')->get();
+        $currentUser = Auth::user();
+
+        $mediaFiles = MediaFile::where([
+            ['author_id', $currentUser->id],
+            ['type', $fileType],
+        ])->orderBy('id', 'desc')->get();
         $files = array();
 
         foreach ($mediaFiles as $mediaFile) {
@@ -109,6 +131,5 @@ class MediaFileController extends Controller
     {
         $path = public_path('/uploads/'.$file->path.'/') . $file->filename;
         return response()->download($path);
-//        return Response::download($path);
     }
 }

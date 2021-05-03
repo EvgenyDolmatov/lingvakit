@@ -37,5 +37,8 @@
     "click here to request another" : "нажмите здесь для запроса нового",
     "Email confirmed" : "E-mail подтвержден",
     "Your Email has been successfully verified." : "Ваш E-mail адрес успешно подтвержден.",
-    "Now all the functions of the site are available to you." : "Теперь Вам доступны все функции сайта."
+    "Now all the functions of the site are available to you." : "Теперь Вам доступны все функции сайта.",
+    "Register as Student" : "Регистрация студента",
+    "Register as Teacher" : "Регистрация преподавателя",
+    "Teacher: " : "Преподаватель: "
 }

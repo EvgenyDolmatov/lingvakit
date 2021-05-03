@@ -2,10 +2,7 @@
 /node_modules
 /public/hot
 /public/storage
-/public/uploads/video
-/public/uploads/audio
-/public/uploads/files
-/public/uploads/img/
+/public/uploads/teachers
 /storage/*.key
 /vendor
 .env

@@ -10,7 +10,10 @@ class DashboardController extends Controller
 {
     public function index()
     {
-        return view('cms.dashboard');
+        $currentUser = Auth::user();
+        return view('cms.dashboard', [
+            'currentUser' => $currentUser
+        ]);
     }
 
     public function profile()

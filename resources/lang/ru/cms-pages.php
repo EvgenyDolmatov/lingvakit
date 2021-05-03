@@ -211,6 +211,12 @@ return [
     'private-client' => 'Физическое лицо',
 
     /* Roles */
+    'roles-permissions' => 'Роли и права',
+    'roles' => 'Роли',
+    'new-role' => 'Новая роль',
+    'edit-role' => 'Редактирование роли',
+    'role-form' => 'Данные роли',
+    'superuser' => 'Супер-пользователь',
     'admin' => 'Администратор',
     'leader' => 'Руководитель',
     'manager' => 'Менеджер',
@@ -220,13 +226,18 @@ return [
 
     /* Permissions */
     'permissions' => 'Права доступа',
+    'permission' => 'Право',
+    'new-permission' => 'Новое право',
+    'edit-permission' => 'Редактирование права',
+    'permission-form' => 'Данные права',
     'permission-settings' => 'Настройка прав',
-    'staff_management' => 'Управление сотрудниками',
-    'customer_management' => 'Управление заказчиками',
-    'product_management' => 'Управление товарами',
+    'teachers_management' => 'Управление преподавателями',
+    'students_management' => 'Управление студентами',
+    'categories_management' => 'Управление категориями',
+    'roles_management' => 'Управление ролями',
+    'courses_management' => 'Управление курсами',
+    'files_management' => 'Управление файлами',
     'order_management' => 'Управление заказами',
-    'subscriber_management' => 'Управление подписчиками',
-    'warehouse_management' => 'Управление складом',
 
     /* Staff */
     'staff' => 'Сотрудники',
@@ -387,6 +398,15 @@ return [
     'not-taken' => 'Студент не проходил тест.',
     'give-access' => 'Дать доступ',
     'give-access-to-course' => 'Дать доступ к курсу',
+
+    // Teachers
+    'teacher' => 'Преподавтель',
+    'teachers' => 'Преподавтели',
+    'about-teacher' => 'Информация о преподавателе',
+    'block-user' => 'Заблокировать',
+    'unblock-user' => 'Разблокировать',
+    'courses-on-moderation' => 'Курсы на модерации',
+    'new-courses' => 'Новые курсы',
 
     'other' => 'Другая',
 ];

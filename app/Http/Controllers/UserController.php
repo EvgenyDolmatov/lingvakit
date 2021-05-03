@@ -2,6 +2,8 @@
 
 namespace App\Http\Controllers;
 
+use App\Models\LMS\Course;
+use App\Models\User;
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Auth;
 use Illuminate\Support\Facades\Hash;
@@ -54,5 +56,24 @@ class UserController extends Controller
             $user->save();
         }
         return back()->withErrors($validator);
+    }
+
+    /* Block User */
+    public function banSwitcher(User $user)
+    {
+        $courses = Course::where('author_id', $user->id)->get();
+
+        if ($user->is_active) {
+            $user->update(['is_active' => 0]);
+
+            foreach ($courses as $course) {
+                $course->update(['is_allowed' => 0]);
+            }
+
+        } else {
+            $user->update(['is_active' => 1]);
+        }
+
+        return back();
     }
 }

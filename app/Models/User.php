@@ -25,7 +25,7 @@ class User extends Authenticatable implements MustVerifyEmail
      */
     protected $fillable = [
         'name', 'surname', 'patronymic', 'email', 'phone', 'passport', 'is_staff', 'is_dealer', 'company_id',
-        'country_id', 'state', 'city', 'address', 'zip', 'password',
+        'country_id', 'state', 'city', 'address', 'zip', 'password', 'is_active',
     ];
 
     /**
@@ -75,6 +75,11 @@ class User extends Authenticatable implements MustVerifyEmail
     public function courses()
     {
         return $this->belongsToMany(Course::class, 'course_user')->withPivot('progress');
+    }
+
+    public function ownCourses()
+    {
+        return $this->hasMany(Course::class, 'author_id');
     }
 
     public function results()

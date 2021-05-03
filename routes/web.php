@@ -3,6 +3,7 @@
 use App\Http\Controllers\Admin\CategoryController;
 use App\Http\Controllers\Admin\ConformityController;
 use App\Http\Controllers\Admin\MediaFileController;
+use App\Http\Controllers\Admin\PermissionController;
 use App\Http\Controllers\Admin\PromocodeController;
 use App\Http\Controllers\Admin\QuestionOptionController;
 use App\Http\Controllers\Admin\CourseController;
@@ -10,9 +11,11 @@ use App\Http\Controllers\Admin\DashboardController;
 use App\Http\Controllers\Admin\LessonController;
 use App\Http\Controllers\Admin\QuestionController;
 use App\Http\Controllers\Admin\QuizController;
+use App\Http\Controllers\Admin\RoleController;
 use App\Http\Controllers\Admin\StageController;
 use App\Http\Controllers\Admin\StudentController;
 use App\Http\Controllers\Admin\Students\StudentCourseController;
+use App\Http\Controllers\Admin\Teachers\TeacherController;
 use App\Http\Controllers\AuthController;
 use App\Http\Controllers\CKEditorController;
 use App\Http\Controllers\OrderController;
@@ -91,6 +94,13 @@ Route::middleware(['auth', 'locale', 'verified'])->group(function (){
 });
 
 
+/* TEACHER'S DASHBOARD */
+/*Route::middleware(['auth', 'verified', 'locale', 'role:teacher'])->group(function (){
+    Route::get('teacher-panel', [CourseController::class, 'index'])->name('teacher.panel');
+});*/
+
+
+
 /* AJAX */
 Route::get('ajax/files/{fileType}', [MediaFileController::class, 'getFilesByAjax'])->name('ajax.get-files');
 Route::get('ajax/promo/{code}', [PromocodeController::class, 'getPromoCodeData'])->name('ajax.get-promo-code');
@@ -104,6 +114,10 @@ Route::prefix('dashboard')->middleware(['auth', 'staff', 'locale'])->group(funct
     Route::get('media/download/file-{file}', [MediaFileController::class, 'downloadFile'])->name('media.download');
     Route::post('media/upload', [MediaFileController::class, 'ajaxStore'])->name('media.store-ajax');
     Route::get('media/{id}/get-data', [MediaFileController::class, 'getAjaxData'])->name('media.ajax.get-data');
+
+    /* ROLES & PERMISSIONS */
+    Route::resource('roles', RoleController::class);
+    Route::resource('permissions', PermissionController::class);
 
     /* CATEGORIES */
     Route::resource('categories', CategoryController::class);
@@ -197,6 +211,17 @@ Route::prefix('dashboard')->middleware(['auth', 'staff', 'locale'])->group(funct
             Route::get('course/{course}/quiz/{quiz}/answers', [StudentCourseController::class, 'showAnswers'])->name('students.course.answers.show');
         });
     });
+
+    /* TEACHERS */
+    Route::prefix('teachers')->group(function (){
+        Route::get('/', [TeacherController::class, 'index'])->name('teachers.index');
+        Route::get('/teacher-{teacher}', [TeacherController::class, 'show'])->name('teachers.show');
+        Route::get('/new-courses', [TeacherController::class, 'coursesForModeration'])->name('courses.moderation');
+        Route::put('/new-courses/course-{course}/moderate', [TeacherController::class, 'courseModerateSwitcher'])->name('courses.moderate-switcher');
+    });
+
+    /* Actions with Users */
+    Route::put('users/user-{user}/block', [UserController::class, 'banSwitcher'])->name('users.ban-switcher');
 });
 
 Route::middleware(['guest'])->group(function (){
