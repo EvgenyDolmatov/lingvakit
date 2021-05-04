@@ -26,8 +26,14 @@ class AppServiceProvider extends ServiceProvider
      */
     public function boot()
     {
-        view()->composer('layouts.cms.sidebar', function ($view){
-           $view->with(['currentUser' => Auth::user()]);
+        view()->composer([
+            'layouts.cms.sidebar',
+            'layouts.site.header',
+        ], function ($view){
+            $currentUser = Auth::user();
+            if ($currentUser) {
+                $view->with(['currentUser' => $currentUser]);
+            }
         });
     }
 }

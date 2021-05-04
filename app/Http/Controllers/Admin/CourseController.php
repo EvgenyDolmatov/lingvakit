@@ -18,7 +18,16 @@ class CourseController extends Controller
         $courses = Course::where('author_id', $currentUser->id)->get();
 
         return view('cms.courses.index', [
+            'currentUser' => $currentUser,
             'courses' => $courses,
+        ]);
+    }
+
+    public function allCourses()
+    {
+        return view('cms.courses.index', [
+            'currentUser' => Auth::user(),
+            'courses' => Course::all()
         ]);
     }
 
@@ -62,6 +71,7 @@ class CourseController extends Controller
     public function show(Course $course)
     {
         return view('cms.courses.show', [
+            'currentUser' => Auth::user(),
             'course' => $course
         ]);
     }

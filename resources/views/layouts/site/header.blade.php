@@ -40,55 +40,64 @@
                 <!-- User -->
                 @if (Route::has('login'))
                     @auth
-                    <li class="nav-item dropdown"><a id="user" rel="nofollow" data-target="#" href="#"
-                                                     data-toggle="dropdown" aria-haspopup="true" aria-expanded="false"
-                                                     class="nav-link"><img
-                                src="{{asset('assets/cms/img/avatar/avatar-01.jpg')}}" alt="..."
-                                class="avatar rounded-circle"></a>
-                        <ul aria-labelledby="user" class="user-size dropdown-menu">
-                            <li class="welcome">
-                                <a href="#" class="edit-profil"><i class="la la-gear"></i></a>
-                                <img src="{{ asset('assets/cms/img/avatar/avatar-01.jpg') }}" alt="..."
-                                     class="rounded-circle">
-                            </li>
-                            <li>
-                                <a href="{{ route('profile.show') }}" class="dropdown-item">
-                                    {{ __("cms-pages.profile") }}
-                                </a>
-                            </li>
-                            <li>
-                                <a href="{{ route('user-settings') }}" class="dropdown-item no-padding-bottom">
-                                    {{ __("cms-pages.settings") }}
-                                </a>
-                            </li>
-                            <li class="separator"></li>
-                            <li>
-                                <form method="POST" action="{{ route('logout') }}">
-                                    @csrf
-
-                                    <a href="{{ route('logout') }}"
-                                       class="dropdown-item logout text-center"
-                                       onclick="event.preventDefault();this.closest('form').submit();">
-                                        <i class="ti-power-off"></i>
+                        <li class="nav-item dropdown">
+                            <a id="user" rel="nofollow" data-target="#" href="#"
+                                                         data-toggle="dropdown" aria-haspopup="true"
+                                                         aria-expanded="false"
+                                                         class="nav-link"><img
+                                        src="{{asset('assets/cms/img/avatar/avatar-01.jpg')}}" alt="..."
+                                        class="avatar rounded-circle"></a>
+                            <ul aria-labelledby="user" class="user-size dropdown-menu">
+                                <li class="welcome">
+                                    <a href="#" class="edit-profil"><i class="la la-gear"></i></a>
+                                    <img src="{{ asset('assets/cms/img/avatar/avatar-01.jpg') }}" alt="..."
+                                         class="rounded-circle">
+                                </li>
+                                @if($currentUser->hasAnyRole('superuser', 'admin', 'teacher'))
+                                    <li>
+                                        <a href="{{ route('dashboard') }}" class="dropdown-item">
+                                            {{ __("cms-pages.personal-area") }}
+                                        </a>
+                                    </li>
+                                @endif
+                                <li>
+                                    <a href="{{ route('profile.show') }}" class="dropdown-item">
+                                        {{ __("cms-pages.profile") }}
                                     </a>
-                                </form>
-                            </li>
-                        </ul>
-                    </li>
-                    @else
-                    <div class="page-header-tools">
-                        <div class="btn-group" role="group" aria-label="Button Group">
-                            @if (Route::has('register'))
-                                <a class="btn btn-primary"
-                                   href="{{ route('register') }}">{{ __("site-pages.register") }}
-                                </a>
-                            @endif
+                                </li>
+                                <li>
+                                    <a href="{{ route('user-settings') }}" class="dropdown-item no-padding-bottom">
+                                        {{ __("cms-pages.settings") }}
+                                    </a>
+                                </li>
+                                <li class="separator"></li>
+                                <li>
+                                    <form method="POST" action="{{ route('logout') }}">
+                                        @csrf
 
-                            <a class="btn btn-shadow"
-                               href="{{ route('login') }}">{{ __("site-pages.login") }}
-                            </a>
+                                        <a href="{{ route('logout') }}"
+                                           class="dropdown-item logout text-center"
+                                           onclick="event.preventDefault();this.closest('form').submit();">
+                                            <i class="ti-power-off"></i>
+                                        </a>
+                                    </form>
+                                </li>
+                            </ul>
+                        </li>
+                    @else
+                        <div class="page-header-tools">
+                            <div class="btn-group" role="group" aria-label="Button Group">
+                                @if (Route::has('register'))
+                                    <a class="btn btn-primary"
+                                       href="{{ route('register') }}">{{ __("site-pages.register") }}
+                                    </a>
+                                @endif
+
+                                <a class="btn btn-shadow"
+                                   href="{{ route('login') }}">{{ __("site-pages.login") }}
+                                </a>
+                            </div>
                         </div>
-                    </div>
                     @endif
                 @endif
             </ul>

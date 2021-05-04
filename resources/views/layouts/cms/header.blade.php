@@ -46,8 +46,8 @@
                         </li>
                         <li class="separator"></li>
                         <li>
-                            <a href="pages-faq.html" class="dropdown-item no-padding-top">
-                                {{ __("cms-pages.faq") }}
+                            <a href="{{route('site.index')}}" class="dropdown-item no-padding-top">
+                                {{ __("cms-pages.return-to-site") }}
                             </a>
                         </li>
                         <li>

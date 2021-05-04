@@ -1,6 +1,14 @@
 @extends('layouts.cms')
 
-@section('title', $course->title)
+@section('title')
+    @if($course->is_allowed == 0)
+        <span class="text-danger">
+            {{$course->title .' ('. __("cms-pages.course-blocked") . ')'}}
+        </span>
+    @else
+        {{$course->title}}
+    @endif
+@endsection
 @section('header-tools')
     <ul class="breadcrumb">
         <li class="breadcrumb-item"><a href="{{ route('dashboard') }}"><i class="ti ti-home"></i></a></li>
@@ -14,8 +22,40 @@
             <div class="widget has-shadow">
                 <div class="widget-header bordered no-actions d-flex align-items-center justify-content-between">
                     <h4>{{ __("cms-pages.about-course") }}</h4>
-                    <a href="{{ route('courses.edit', $course->id) }}" type="button"
-                       class="btn btn-primary mr-1 mb-2">{{ __("cms-pages.edit") }}</a>
+
+                    <div class="form-group">
+                        <a href="{{ route('courses.edit', $course->id) }}" type="button"
+                           class="btn btn-primary mr-1 mb-2">{{ __("cms-pages.edit") }}</a>
+
+                        @if($currentUser->hasRole(['superuser','admin']))
+                            <form style="display: inline-block" method="POST"
+                                  action="{{ route('courses.moderate-switcher', $course->id) }}">
+                                @csrf @method('PUT')
+
+                                <button type="submit" class="btn btn-warning mr-1 mb-2">
+                                    @if($course->is_allowed == 0)
+                                        {{ __("cms-pages.unblock") }}
+                                    @else
+                                        {{ __("cms-pages.block") }}
+                                    @endif
+                                </button>
+                            </form>
+                        @endif
+
+                        @if($course->author->id === $currentUser->id)
+                        <form style="display: inline-block" method="POST"
+                              action="{{ route('courses.destroy', $course->id) }}">
+                            @csrf @method('DELETE')
+
+                            <button type="submit" class="btn btn-danger mr-1 mb-2"
+                                    onclick="event.preventDefault();if(confirm('{{ __("cms-messages.delete") }}')){this.closest('form').submit();}">
+                                {{ __("cms-pages.delete") }}
+                            </button>
+                        </form>
+                        @endif
+                    </div>
+
+
                 </div>
                 <div class="widget-body">
                     <div class="row flex-row">

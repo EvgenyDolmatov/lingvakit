@@ -407,6 +407,14 @@ return [
     'unblock-user' => 'Разблокировать',
     'courses-on-moderation' => 'Курсы на модерации',
     'new-courses' => 'Новые курсы',
+    'personal-area' => 'Личный кабинет',
+    'return-to-site' => 'Вернуться на сайт',
+    'my-courses' => 'Мои курсы',
+    'all-courses' => 'Все курсы',
+    'block' => 'Заблокировать',
+    'unblock' => 'Разблокировать',
+    'course-blocked' => 'Курс заблокирован',
+    'delete' => 'Удалить',
 
     'other' => 'Другая',
 ];

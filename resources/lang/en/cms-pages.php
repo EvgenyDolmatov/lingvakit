@@ -414,6 +414,14 @@ return [
     'unblock-user' => 'Unblock User',
     'courses-on-moderation' => 'Courses on Moderation',
     'new-courses' => 'New Courses',
+    'personal-area' => 'Personal Area',
+    'return-to-site' => 'Return to Site',
+    'my-courses' => 'My Courses',
+    'all-courses' => 'All Courses',
+    'block' => 'Block',
+    'unblock' => 'Unblock',
+    'course-blocked' => 'Course Blocked',
+    'delete' => 'Delete',
 
     'other' => 'Other',
 ];

@@ -122,10 +122,13 @@ Route::prefix('dashboard')->middleware(['auth', 'locale', 'role:superuser|admin|
 
 
     /* CATEGORIES */
-    Route::resource('categories', CategoryController::class);
+    Route::resource('categories', CategoryController::class)->middleware(['role:superuser|admin']);
 
     /* COURSES */
     Route::resource('courses', CourseController::class);
+    /* Show All of Courses */
+    Route::get('all-courses', [CourseController::class, 'allCourses'])->middleware(['role:superuser|admin'])->name('courses.all');
+
     Route::prefix('courses/{course}')->group(function (){
         /* Remove Course  Media Files */
         Route::put('image-remove', [CourseController::class, 'removeImage'])->name('courses.image.remove');
@@ -215,7 +218,7 @@ Route::prefix('dashboard')->middleware(['auth', 'locale', 'role:superuser|admin|
     });
 
     /* TEACHERS */
-    Route::prefix('teachers')->group(function (){
+    Route::prefix('teachers')->middleware(['role:superuser|admin'])->group(function (){
         Route::get('/', [TeacherController::class, 'index'])->name('teachers.index');
         Route::get('/teacher-{teacher}', [TeacherController::class, 'show'])->name('teachers.show');
         Route::get('/new-courses', [TeacherController::class, 'coursesForModeration'])->name('courses.moderation');

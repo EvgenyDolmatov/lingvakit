@@ -17,7 +17,22 @@
             <div class="widget has-shadow">
                 <div class="widget-header bordered no-actions d-flex align-items-center justify-content-between">
                     <h4>{{ __("cms-pages.filter") }}</h4>
-                    <a href="{{ route('courses.create') }}" type="button" class="btn btn-primary mr-1 mb-2">{{ __("cms-pages.add") }}</a>
+                    <div class="form-group">
+                        @if($currentUser->hasRole(['superuser', 'admin']))
+                            <div class="btn-group" role="group" aria-label="Button Group">
+                                <a href="{{ route('courses.index') }}" type="button"
+                                   class="btn @if(Request::route()->getName() == 'courses.index') btn-primary @else btn-secondary @endif mr-1 mb-2">
+                                    {{ __("cms-pages.my-courses") }}
+                                </a>
+                                <a href="{{ route('courses.all') }}" type="button"
+                                   class="btn @if(Request::route()->getName() == 'courses.all') btn-primary @else btn-secondary @endif mr-1 mb-2">
+                                    {{ __("cms-pages.all-courses") }}
+                                </a>
+                            </div>
+                        @endif
+                        <a href="{{ route('courses.create') }}" type="button"
+                           class="btn btn-success mr-1 mb-2">{{ __("cms-pages.add") }}</a>
+                    </div>
                 </div>
                 <div class="widget-body">
                     <div class="table-responsive">
@@ -36,18 +51,46 @@
                                     <td style="width: 150px;">
                                         <img src="{{ $course->getImage() }}" width="100" alt>
                                     </td>
-                                    <td><a href="{{ route('courses.show', $course->id) }}" class="text-primary">{{ $course->title }}</a></td>
+                                    <td>
+                                        <a href="{{ route('courses.show', $course->id) }}"
+                                           class="@if($course->is_allowed) text-primary @else text-danger @endif">
+                                            {{ $course->title }}
+                                        </a>
+                                    </td>
                                     <td>{{ $course->getDuration() }}</td>
                                     <td class="td-actions">
-                                        <a href="{{ route('courses.show', $course->id) }}"><i class="la la-eye edit"></i></a>
-                                        <a href="{{ route('courses.edit', $course->id) }}"><i class="la la-edit edit"></i></a>
-                                        <form style="display: inline-block" method="POST" action="{{ route('courses.destroy', $course->id) }}">
+                                        <a href="{{ route('courses.show', $course->id) }}"><i
+                                                    class="la la-eye edit"></i></a>
+                                        {{--<a href="{{ route('courses.edit', $course->id) }}"><i
+                                                    class="la la-edit edit"></i></a>--}}
+                                        {{--<form style="display: inline-block" method="POST"
+                                              action="{{ route('courses.destroy', $course->id) }}">
                                             @csrf @method('DELETE')
 
-                                            <a href="{{ route('courses.destroy', $course->id) }}" onclick="event.preventDefault();if(confirm('{{ __("cms-messages.delete") }}')){this.closest('form').submit();}">
+                                            <a href="{{ route('courses.destroy', $course->id) }}"
+                                               onclick="event.preventDefault();if(confirm('{{ __("cms-messages.delete") }}')){this.closest('form').submit();}">
                                                 <i class="la la-close delete"></i>
                                             </a>
-                                        </form>
+                                        </form>--}}
+
+                                        @if($currentUser->hasRole(['superuser','admin']))
+                                            <form style="display: inline-block" method="POST"
+                                                  action="{{ route('courses.moderate-switcher', $course->id) }}">
+                                                @csrf @method('PUT')
+
+                                                @if($course->is_allowed)
+                                                    <a href="{{ route('courses.moderate-switcher', $course->id) }}"
+                                                       onclick="event.preventDefault();this.closest('form').submit();">
+                                                        <i class="la la-ban edit"></i>
+                                                    </a>
+                                                @else
+                                                    <a href="{{ route('courses.moderate-switcher', $course->id) }}"
+                                                       onclick="event.preventDefault();this.closest('form').submit();">
+                                                        <i class="la la-ban edit banned"></i>
+                                                    </a>
+                                                @endif
+                                            </form>
+                                        @endif
                                     </td>
                                 </tr>
                             @endforeach
