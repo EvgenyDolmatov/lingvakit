@@ -17,13 +17,15 @@
             </li>
 
             {{-- Courses --}}
-            <li><a href="#dropdown-courses" aria-expanded="false" data-toggle="collapse"><i
-                            class="la la-mortar-board"></i><span>{{ __("cms-pages.courses") }}</span></a>
-                <ul id="dropdown-courses" class="collapse list-unstyled pt-0">
-                    <li><a href="{{ route('courses.index') }}">{{ __("cms-pages.courses") }}</a></li>
-                    <li><a href="{{ route('promocodes.index') }}">{{ __("cms-pages.promo-codes") }}</a></li>
-                </ul>
-            </li>
+            @if($currentUser->hasPermissionTo('course manage'))
+                <li><a href="#dropdown-courses" aria-expanded="false" data-toggle="collapse"><i
+                                class="la la-mortar-board"></i><span>{{ __("cms-pages.courses") }}</span></a>
+                    <ul id="dropdown-courses" class="collapse list-unstyled pt-0">
+                        <li><a href="{{ route('courses.index') }}">{{ __("cms-pages.courses") }}</a></li>
+                        <li><a href="{{ route('promocodes.index') }}">{{ __("cms-pages.promo-codes") }}</a></li>
+                    </ul>
+                </li>
+            @endif
 
             {{-- Roles and Permissions --}}
             @if($currentUser->hasPermissionTo('role manage'))
@@ -37,29 +39,35 @@
             @endif
 
             {{-- Categories --}}
-            <li><a href="#dropdown-categories" aria-expanded="false" data-toggle="collapse"><i
-                            class="la la-list"></i><span>{{ __("cms-pages.categories") }}</span></a>
-                <ul id="dropdown-categories" class="collapse list-unstyled pt-0">
-                    <li><a href="{{ route('categories.index') }}">{{ __("cms-pages.categories") }}</a></li>
-                </ul>
-            </li>
+            @if($currentUser->hasPermissionTo('category manage'))
+                <li><a href="#dropdown-categories" aria-expanded="false" data-toggle="collapse"><i
+                                class="la la-list"></i><span>{{ __("cms-pages.categories") }}</span></a>
+                    <ul id="dropdown-categories" class="collapse list-unstyled pt-0">
+                        <li><a href="{{ route('categories.index') }}">{{ __("cms-pages.categories") }}</a></li>
+                    </ul>
+                </li>
+            @endif
 
             {{-- Students --}}
-            <li><a href="#dropdown-students" aria-expanded="false" data-toggle="collapse"><i
-                            class="la la-group"></i><span>{{ __("cms-pages.students") }}</span></a>
-                <ul id="dropdown-students" class="collapse list-unstyled pt-0">
-                    <li><a href="{{ route('students.index') }}">{{ __("cms-pages.students") }}</a></li>
-                </ul>
-            </li>
+            @if($currentUser->hasPermissionTo('category manage'))
+                <li><a href="#dropdown-students" aria-expanded="false" data-toggle="collapse"><i
+                                class="la la-group"></i><span>{{ __("cms-pages.students") }}</span></a>
+                    <ul id="dropdown-students" class="collapse list-unstyled pt-0">
+                        <li><a href="{{ route('students.index') }}">{{ __("cms-pages.students") }}</a></li>
+                    </ul>
+                </li>
+            @endif
 
             {{-- Teachers --}}
-            <li><a href="#dropdown-teachers" aria-expanded="false" data-toggle="collapse"><i
-                            class="la la-male"></i><span>{{ __("cms-pages.teachers") }}</span></a>
-                <ul id="dropdown-teachers" class="collapse list-unstyled pt-0">
-                    <li><a href="{{ route('teachers.index') }}">{{ __("cms-pages.teachers") }}</a></li>
-                    <li><a href="{{route('courses.moderation')}}">{{ __("cms-pages.new-courses") }}</a></li>
-                </ul>
-            </li>
+            @if($currentUser->hasPermissionTo('teacher manage'))
+                <li><a href="#dropdown-teachers" aria-expanded="false" data-toggle="collapse"><i
+                                class="la la-male"></i><span>{{ __("cms-pages.teachers") }}</span></a>
+                    <ul id="dropdown-teachers" class="collapse list-unstyled pt-0">
+                        <li><a href="{{ route('teachers.index') }}">{{ __("cms-pages.teachers") }}</a></li>
+                        <li><a href="{{route('courses.moderation')}}">{{ __("cms-pages.new-courses") }}</a></li>
+                    </ul>
+                </li>
+            @endif
 
             {{-- Orders --}}
             {{--            @can('order_management')
