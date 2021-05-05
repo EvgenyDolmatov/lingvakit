@@ -49,7 +49,7 @@
             @endif
 
             {{-- Students --}}
-            @if($currentUser->hasPermissionTo('category manage'))
+            @if($currentUser->hasPermissionTo('student manage'))
                 <li><a href="#dropdown-students" aria-expanded="false" data-toggle="collapse"><i
                                 class="la la-group"></i><span>{{ __("cms-pages.students") }}</span></a>
                     <ul id="dropdown-students" class="collapse list-unstyled pt-0">
