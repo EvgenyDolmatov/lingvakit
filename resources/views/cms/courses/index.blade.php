@@ -42,6 +42,7 @@
                                 <th>{{ __("cms-pages.image") }}</th>
                                 <th>{{ __("cms-pages.course") }}</th>
                                 <th>{{ __("cms-pages.duration") }}</th>
+                                <th>{{ __("cms-pages.publish-date") }}</th>
                                 <th>{{ __("cms-pages.actions") }}</th>
                             </tr>
                             </thead>
@@ -58,6 +59,7 @@
                                         </a>
                                     </td>
                                     <td>{{ $course->getDuration() }}</td>
+                                    <td>{{ $course->publish_date }}</td>
                                     <td class="td-actions">
                                         <a href="{{ route('courses.show', $course->id) }}"><i
                                                     class="la la-eye edit"></i></a>

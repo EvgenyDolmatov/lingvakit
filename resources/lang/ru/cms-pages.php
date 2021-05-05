@@ -358,6 +358,8 @@ return [
     'discount-type' => 'Тип скидки',
     'percent' => 'Процент от суммы',
     'amount' => 'Фиксированная сумма',
+    'publish-date' => 'Дата публикации',
+    'not-publish-date' => 'Дата публикации не указана',
 
     // Media Files
     'media-files' => 'Медиафайлы',

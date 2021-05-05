@@ -18,13 +18,28 @@
                         <h4>{{ __("cms-pages.course-form") }}</h4>
                     </div>
                     <div class="widget-body">
+
+                        {{-- Course Publish Date --}}
+                        <div class="form-group row d-flex align-items-center mb-5">
+                            <label class="col-lg-3 form-control-label">{{ __("cms-pages.publish-date") }}</label>
+                            <div class="col-lg-9">
+                                <div class="form-group">
+                                    <div class="input-group">
+                                        <span class="input-group-addon"><i class="la la-calendar"></i></span>
+                                        <input type="text" name="publish_date" class="form-control" id="date"
+                                               value="{{old('publish_date')}}">
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
                         {{-- Course Category --}}
                         <div class="form-group row d-flex align-items-center mb-5">
                             <label class="col-lg-3 form-control-label">{{ __("cms-pages.category") }}</label>
                             <div class="col-lg-9">
                                 <div class="row">
                                     <div class="col-lg-6">
-                                        <select id="category_select" name="category_id" class="custom-select form-control">
+                                        <select id="category_select" name="category_id"
+                                                class="custom-select form-control">
                                             <option value="" selected disabled>{{ __("cms-pages.category") }}</option>
                                             @foreach($categories as $category)
                                                 <option value="{{ $category->id }}">{{ $category->name }}</option>
@@ -37,7 +52,8 @@
                                     </div>
                                     <div id="new_category" class="col-lg-6">
                                         <input type="text" name="category" class="form-control"
-                                               placeholder="{{ __("cms-pages.new-category") }}" value="{{old('category')}}" disabled>
+                                               placeholder="{{ __("cms-pages.new-category") }}"
+                                               value="{{old('category')}}" disabled>
                                         @error('category')
                                         <div class="invalid-feedback">{{ $message }}</div>
                                         @enderror
@@ -48,7 +64,7 @@
                         {{-- Course Title --}}
                         <div class="form-group row d-flex align-items-center mb-5">
                             <label class="col-lg-3 form-control-label">{{ __("cms-pages.title") }}<span
-                                    class="text-danger ml-2">*</span></label>
+                                        class="text-danger ml-2">*</span></label>
                             <div class="col-lg-9">
                                 <input type="text" name="title" class="form-control"
                                        placeholder="{{ __("cms-pages.title") }}" value="{{old('title')}}">
@@ -77,7 +93,8 @@
                                         <img src="{{asset('assets/cms/img/no-image.jpg')}}" width="240" alt>
                                     </div>
                                 </div>
-                                <button type="button" class="btn btn-primary square mr-1 mb-2 btn-attach" data-type="image"
+                                <button type="button" class="btn btn-primary square mr-1 mb-2 btn-attach"
+                                        data-type="image"
                                         data-var="image" data-toggle="modal" data-target="#modal-files">
                                     {{__("cms-pages.choose")}}
                                 </button>
@@ -88,7 +105,8 @@
                             <label class="col-lg-3 form-control-label">{{ __("cms-pages.video") }}</label>
                             <div class="col-lg-9">
                                 <div class="form-group preview"></div>
-                                <button type="button" class="btn btn-primary square mr-1 mb-2 btn-attach" data-type="video"
+                                <button type="button" class="btn btn-primary square mr-1 mb-2 btn-attach"
+                                        data-type="video"
                                         data-var="video" data-toggle="modal" data-target="#modal-files">
                                     {{__("cms-pages.choose")}}
                                 </button>
@@ -208,14 +226,16 @@
                         <div class="form-group row d-flex align-items-center mb-5">
                             <label class="col-lg-3 form-control-label">{{ __("cms-pages.meta-description") }}</label>
                             <div class="col-lg-9">
-                                <textarea name="meta_description" rows="3" class="form-control">{{old('meta_description')}}</textarea>
+                                <textarea name="meta_description" rows="3"
+                                          class="form-control">{{old('meta_description')}}</textarea>
                             </div>
                         </div>
                         {{-- SEO: Meta-keywords --}}
                         <div class="form-group row d-flex align-items-center mb-5">
                             <label class="col-lg-3 form-control-label">{{ __("cms-pages.meta-keywords") }}</label>
                             <div class="col-lg-9">
-                                <input type="text" name="meta_keywords" class="form-control" value="{{old('meta_keywords')}}">
+                                <input type="text" name="meta_keywords" class="form-control"
+                                       value="{{old('meta_keywords')}}">
                                 @error('meta_keywords')
                                 <div class="invalid-feedback">{{ $message }}</div>
                                 @enderror

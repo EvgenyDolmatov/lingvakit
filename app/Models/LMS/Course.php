@@ -5,6 +5,7 @@ namespace App\Models\LMS;
 use App\Models\MediaFile;
 use App\Models\MetaCourse;
 use App\Models\User;
+use Carbon\Carbon;
 use Illuminate\Database\Eloquent\Factories\HasFactory;
 use Illuminate\Database\Eloquent\Model;
 use Illuminate\Database\Eloquent\SoftDeletes;
@@ -18,8 +19,8 @@ class Course extends Model
     protected $table = 'lms_courses';
 
     protected $fillable = [
-        'title', 'description', 'image', 'video', 'difficulty_level', 'author_id', 'category_id',
-        'type', 'duration', 'price', 'sale_price', 'is_new', 'is_published', 'is_allowed'
+        'title', 'description', 'image', 'video', 'difficulty_level', 'author_id', 'category_id', 'type',
+        'duration', 'price', 'sale_price', 'is_new', 'is_published', 'is_allowed', 'publish_date'
     ];
 
     public function category()
@@ -152,6 +153,9 @@ class Course extends Model
         $course->duration = 0;
         if ($fields['type'] === 'free') {
             $course->price = 0;
+        }
+        if ($user->hasRole(['superuser', 'admin'])) {
+            $course->is_allowed = 1;
         }
         $course->save();
 
@@ -349,5 +353,17 @@ class Course extends Model
         }
 
         return false;
+    }
+
+    public function getPublishDateAttribute($date) : string
+    {
+        if (!$date) { return false; }
+        return Carbon::createFromFormat('Y-m-d', $date)->format('d/m/Y');
+    }
+
+    public function setPublishDateAttribute($date)
+    {
+        $publishDate = Carbon::createFromFormat('d/m/Y', $date)->format('Y-m-d');
+        $this->attributes['publish_date'] = $publishDate;
     }
 }

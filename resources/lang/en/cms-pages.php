@@ -365,6 +365,8 @@ return [
     'discount-type' => 'Discount Type',
     'percent' => 'Percentage of the amount',
     'amount' => 'Fixed amount',
+    'publish-date' => 'Publish Date',
+    'not-publish-date' => 'Publish Date not Indicated',
 
     // Media Files
     'media-files' => 'Media Files',
@@ -421,6 +423,7 @@ return [
     'block' => 'Block',
     'unblock' => 'Unblock',
     'course-blocked' => 'Course Blocked',
+    'delete' => 'Delete',
     'delete' => 'Delete',
 
     'other' => 'Other',

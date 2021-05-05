@@ -43,19 +43,17 @@
                         @endif
 
                         @if($course->author->id === $currentUser->id)
-                        <form style="display: inline-block" method="POST"
-                              action="{{ route('courses.destroy', $course->id) }}">
-                            @csrf @method('DELETE')
+                            <form style="display: inline-block" method="POST"
+                                  action="{{ route('courses.destroy', $course->id) }}">
+                                @csrf @method('DELETE')
 
-                            <button type="submit" class="btn btn-danger mr-1 mb-2"
-                                    onclick="event.preventDefault();if(confirm('{{ __("cms-messages.delete") }}')){this.closest('form').submit();}">
-                                {{ __("cms-pages.delete") }}
-                            </button>
-                        </form>
+                                <button type="submit" class="btn btn-danger mr-1 mb-2"
+                                        onclick="event.preventDefault();if(confirm('{{ __("cms-messages.delete") }}')){this.closest('form').submit();}">
+                                    {{ __("cms-pages.delete") }}
+                                </button>
+                            </form>
                         @endif
                     </div>
-
-
                 </div>
                 <div class="widget-body">
                     <div class="row flex-row">
@@ -67,6 +65,13 @@
                             </div>
                         </div>
                         <div class="col-xl-9">
+                            {{-- Course Publish Date --}}
+                            @if($course->publish_date)
+                                <div class="about-infos d-flex flex-column mb-3">
+                                    <div class="about-title"><h5>{{ __("cms-pages.publish-date") }}:</h5></div>
+                                    <div class="about-text">{{ $course->publish_date }}</div>
+                                </div>
+                            @endif
                             {{-- Course Title --}}
                             <div class="about-infos d-flex flex-column mb-3">
                                 <div class="about-title"><h5>{{ __("cms-pages.title") }}:</h5></div>
