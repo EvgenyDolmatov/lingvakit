@@ -367,6 +367,7 @@ return [
     'amount' => 'Fixed amount',
     'publish-date' => 'Publish Date',
     'not-publish-date' => 'Publish Date not Indicated',
+    'author' => 'Author',
 
     // Media Files
     'media-files' => 'Media Files',

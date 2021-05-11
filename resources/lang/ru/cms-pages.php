@@ -360,6 +360,7 @@ return [
     'amount' => 'Фиксированная сумма',
     'publish-date' => 'Дата публикации',
     'not-publish-date' => 'Дата публикации не указана',
+    'author' => 'Автор',
 
     // Media Files
     'media-files' => 'Медиафайлы',

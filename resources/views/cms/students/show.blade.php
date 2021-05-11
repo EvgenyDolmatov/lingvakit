@@ -51,7 +51,7 @@
                             </tr>
                             </thead>
                             <tbody>
-                            @foreach($student->courses as $course)
+                            @foreach($courses as $course)
                                 <tr>
                                     <td style="width: 150px;">
                                         <img src="{{ $course->getImage() }}" width="100" alt>

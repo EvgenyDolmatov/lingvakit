@@ -26,7 +26,7 @@ class StudentController extends Controller
         $myStudentsIds = array_unique($myStudentsIds);
 
         $students = User::all()->reject(function ($user) {
-            return $user->is_staff;
+            return $user->hasRole(['teacher', 'admin', 'superuser']);
         })->map(function ($user) {
             return $user;
         });
@@ -40,8 +40,17 @@ class StudentController extends Controller
 
     public function show(User $student)
     {
+        $studentCourses = $student->courses;
+
+        $courses = $studentCourses->reject(function ($course) {
+            return $course->author->id !== Auth::user()->id;
+        })->map(function ($course) {
+            return $course;
+        });
+
         return view('cms.students.show', [
-            'student' => $student
+            'student' => $student,
+            'courses' => $courses,
         ]);
     }
 

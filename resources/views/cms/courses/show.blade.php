@@ -65,6 +65,11 @@
                             </div>
                         </div>
                         <div class="col-xl-9">
+                            {{-- Course Author --}}
+                            <div class="about-infos d-flex flex-column mb-3">
+                                <div class="about-title"><h5>{{ __("cms-pages.author") }}:</h5></div>
+                                <div class="about-text">{{ $course->author->getFullName() }}</div>
+                            </div>
                             {{-- Course Publish Date --}}
                             @if($course->publish_date)
                                 <div class="about-infos d-flex flex-column mb-3">
