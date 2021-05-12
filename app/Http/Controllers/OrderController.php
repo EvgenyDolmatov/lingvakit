@@ -27,7 +27,8 @@ class OrderController extends Controller
     public function storeOrder(Request $request, Course $course)
     {
         $client = new Client();
-        $client->setAuth('787166', 'live_QHlxE3kLaswB-L2klCHSY6IfJshqOtJHXIM6KxniS7Q');
+//        $client->setAuth('787166', 'live_QHlxE3kLaswB-L2klCHSY6IfJshqOtJHXIM6KxniS7Q');
+        $client->setAuth('751820', 'live_HKrA7o2lyLTqCkYQ4QNeF7qnrMAlubiijnZafBbCNKw');
 
         $user = Auth::user();
         $order = false;
@@ -122,7 +123,8 @@ class OrderController extends Controller
     public function paymentResult()
     {
         $client = new Client();
-        $client->setAuth('787166', 'live_QHlxE3kLaswB-L2klCHSY6IfJshqOtJHXIM6KxniS7Q');
+//        $client->setAuth('787166', 'live_QHlxE3kLaswB-L2klCHSY6IfJshqOtJHXIM6KxniS7Q');
+        $client->setAuth('751820', 'live_HKrA7o2lyLTqCkYQ4QNeF7qnrMAlubiijnZafBbCNKw');
 
         $user = Auth::user();
         $order = $user->getLastOrder();
