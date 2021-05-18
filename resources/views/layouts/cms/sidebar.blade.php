@@ -71,6 +71,14 @@
                 </li>
             @endif
 
+            {{-- All Users --}}
+            <li><a href="#dropdown-users" aria-expanded="false" data-toggle="collapse"><i
+                            class="la la-male"></i><span>{{ __("cms-pages.users") }}</span></a>
+                <ul id="dropdown-users" class="collapse list-unstyled pt-0">
+                    <li><a href="{{ route('admin.users.index') }}">{{ __("cms-pages.users") }}</a></li>
+                </ul>
+            </li>
+
             {{-- Orders --}}
             {{--            @can('order_management')
                             <li><a href="#dropdown-orders" aria-expanded="false" data-toggle="collapse"><i

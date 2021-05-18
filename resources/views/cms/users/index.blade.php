@@ -3,11 +3,11 @@
 @section('page-styles')
     @include('layouts.cms.template-parts.styles-index')
 @endsection
-@section('title', __("cms-pages.students"))
+@section('title', __("cms-pages.users"))
 @section('header-tools')
     <ul class="breadcrumb">
         <li class="breadcrumb-item"><a href="{{ route('dashboard') }}"><i class="ti ti-home"></i></a></li>
-        <li class="breadcrumb-item active">{{ __("cms-pages.courses") }}</li>
+        <li class="breadcrumb-item active">{{ __("cms-pages.users") }}</li>
     </ul>
 @endsection
 @section('content')
@@ -25,6 +25,7 @@
                             <thead>
                             <tr>
                                 <th>{{ __("cms-pages.name") }}</th>
+                                <th>{{ __("cms-pages.type") }}</th>
                                 <th>{{ __("cms-pages.email") }}</th>
                                 <th>{{ __("cms-pages.actions") }}</th>
                             </tr>
@@ -34,6 +35,7 @@
                                 <tr>
                                     <td><a href="{{route('students.show', $student->id)}}"
                                            class="text-primary">{{ $student->getFullName() }}</a></td>
+                                    <td>{{--{{ $student->roles()->first()->name }}--}}</td>
                                     <td>{{ $student->email }}</td>
                                     <td class="td-actions">
                                         <a href="{{ route('students.show', $student->id) }}">

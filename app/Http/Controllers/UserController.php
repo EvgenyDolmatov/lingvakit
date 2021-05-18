@@ -76,4 +76,9 @@ class UserController extends Controller
 
         return back();
     }
+
+    public function adminUsersList()
+    {
+        return view('cms.users.index');
+    }
 }

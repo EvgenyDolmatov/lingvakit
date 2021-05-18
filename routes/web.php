@@ -225,6 +225,11 @@ Route::prefix('dashboard')->middleware(['auth', 'locale', 'role:superuser|admin|
         Route::put('/new-courses/course-{course}/moderate', [TeacherController::class, 'courseModerateSwitcher'])->name('courses.moderate-switcher');
     });
 
+    /* ALL USERS */
+    Route::prefix('users')->middleware(['role:superuser|admin'])->group(function (){
+        Route::get('/', [UserController::class, 'adminUsersList'])->name('admin.users.index');
+    });
+
     /* Actions with Users */
     Route::put('users/user-{user}/block', [UserController::class, 'banSwitcher'])->name('users.ban-switcher');
 });
@@ -237,7 +242,3 @@ Route::middleware(['guest'])->group(function (){
 /* Scripts for Changing Database */
 //Route::get('media/change-paths', [SuperuserController::class, 'changePaths'])
 //    ->middleware(['auth', 'role:admin'])->name('media.change-paths');
-
-
-
-
