@@ -25,22 +25,46 @@
                             <thead>
                             <tr>
                                 <th>{{ __("cms-pages.name") }}</th>
-                                <th>{{ __("cms-pages.type") }}</th>
+                                <th>{{ __("cms-pages.status") }}</th>
                                 <th>{{ __("cms-pages.email") }}</th>
                                 <th>{{ __("cms-pages.actions") }}</th>
                             </tr>
                             </thead>
                             <tbody>
-                            @foreach($students as $student)
+                            @foreach($users as $user)
                                 <tr>
-                                    <td><a href="{{route('students.show', $student->id)}}"
-                                           class="text-primary">{{ $student->getFullName() }}</a></td>
-                                    <td>{{--{{ $student->roles()->first()->name }}--}}</td>
-                                    <td>{{ $student->email }}</td>
+                                    <td><a href="{{route('students.show', $user->id)}}"
+                                           class="text-primary">{{ $user->getFullName() }}</a></td>
+                                    <td>
+                                        @if(!$user->hasRole('teacher'))
+                                            {{ __("cms-pages.student") }}
+                                        @else
+                                            {{ __("cms-pages.teacher") }}
+                                        @endif
+                                    </td>
+                                    <td>{{ $user->email }}</td>
                                     <td class="td-actions">
-                                        <a href="{{ route('students.show', $student->id) }}">
-                                            <i class="la la-eye edit"></i>
-                                        </a>
+                                        @if(!$user->hasRole('teacher'))
+                                            <a href="{{ route('students.show', $user->id) }}">
+                                                <i class="la la-eye edit"></i>
+                                            </a>
+                                        @else
+                                            <a href="{{ route('teachers.show', $user->id) }}">
+                                                <i class="la la-eye edit"></i>
+                                            </a>
+                                        @endif
+
+                                        @if(!$user->hasVerifiedEmail() && !$user->courses()->exists())
+                                            <form style="display: inline-block" method="POST"
+                                                  action="{{ route('admin.users.destroy', $user->id) }}">
+                                                @csrf @method('DELETE')
+
+                                                <a href="{{ route('admin.users.destroy', $user->id) }}"
+                                                   onclick="event.preventDefault();if(confirm('{{ __("cms-messages.delete") }}')){this.closest('form').submit();}">
+                                                    <i class="la la-close delete"></i>
+                                                </a>
+                                            </form>
+                                        @endif
                                     </td>
                                 </tr>
                             @endforeach

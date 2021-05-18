@@ -403,8 +403,8 @@ return [
     'give-access-to-course' => 'Дать доступ к курсу',
 
     // Teachers
-    'teacher' => 'Преподавтель',
-    'teachers' => 'Преподавтели',
+    'teacher' => 'Преподаватель',
+    'teachers' => 'Преподаватели',
     'about-teacher' => 'Информация о преподавателе',
     'block-user' => 'Заблокировать',
     'unblock-user' => 'Разблокировать',
@@ -418,6 +418,10 @@ return [
     'unblock' => 'Разблокировать',
     'course-blocked' => 'Курс заблокирован',
     'delete' => 'Удалить',
+
+    // Users
+    'all-users' => 'Все пользователи',
+    'status' => 'Статус',
 
     'other' => 'Другая',
 ];

@@ -228,6 +228,8 @@ Route::prefix('dashboard')->middleware(['auth', 'locale', 'role:superuser|admin|
     /* ALL USERS */
     Route::prefix('users')->middleware(['role:superuser|admin'])->group(function (){
         Route::get('/', [UserController::class, 'adminUsersList'])->name('admin.users.index');
+        Route::get('/{user}', [UserController::class, 'adminUserShow'])->name('admin.users.show');
+        Route::delete('/{user}', [UserController::class, 'destroy'])->name('admin.users.destroy');
     });
 
     /* Actions with Users */

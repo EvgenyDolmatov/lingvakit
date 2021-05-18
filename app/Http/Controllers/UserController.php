@@ -79,6 +79,28 @@ class UserController extends Controller
 
     public function adminUsersList()
     {
-        return view('cms.users.index');
+        $admins = User::role(['admin', 'superuser'])->get();
+        $adminKeys = array();
+
+        foreach ($admins as $admin) {
+            $adminKeys[] = $admin->id;
+        }
+
+        return view('cms.users.index', [
+            'users' => User::all()->except($adminKeys),
+        ]);
+    }
+
+    public function adminUserShow(User $user)
+    {
+        return view('cms.users.index', [
+            'user' => $user
+        ]);
+    }
+
+    public function destroy(User $user)
+    {
+        $user->delete();
+        return redirect()->route('admin.users.index');
     }
 }

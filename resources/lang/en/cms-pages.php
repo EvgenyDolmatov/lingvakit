@@ -427,5 +427,9 @@ return [
     'delete' => 'Delete',
     'delete' => 'Delete',
 
+    // Users
+    'all-users' => 'All Users',
+    'status' => 'Status',
+
     'other' => 'Other',
 ];

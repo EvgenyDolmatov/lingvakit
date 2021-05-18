@@ -21,7 +21,12 @@
                 <li><a href="#dropdown-courses" aria-expanded="false" data-toggle="collapse"><i
                                 class="la la-mortar-board"></i><span>{{ __("cms-pages.courses") }}</span></a>
                     <ul id="dropdown-courses" class="collapse list-unstyled pt-0">
-                        <li><a href="{{ route('courses.index') }}">{{ __("cms-pages.courses") }}</a></li>
+                        <li><a href="{{ route('courses.index') }}">{{ __("cms-pages.all-courses") }}</a></li>
+
+                        @if($currentUser->hasRole(['superuser', 'admin']))
+                            <li><a href="{{route('courses.moderation')}}">{{ __("cms-pages.new-courses") }}</a></li>
+                        @endif
+
                         @if($currentUser->hasPermissionTo('promocode manage'))
                             <li><a href="{{ route('promocodes.index') }}">{{ __("cms-pages.promo-codes") }}</a></li>
                         @endif
@@ -50,32 +55,21 @@
                 </li>
             @endif
 
-            {{-- Students --}}
-            @if($currentUser->hasPermissionTo('student manage'))
-                <li><a href="#dropdown-students" aria-expanded="false" data-toggle="collapse"><i
-                                class="la la-group"></i><span>{{ __("cms-pages.students") }}</span></a>
-                    <ul id="dropdown-students" class="collapse list-unstyled pt-0">
-                        <li><a href="{{ route('students.index') }}">{{ __("cms-pages.students") }}</a></li>
-                    </ul>
-                </li>
-            @endif
-
-            {{-- Teachers --}}
-            @if($currentUser->hasPermissionTo('teacher manage'))
-                <li><a href="#dropdown-teachers" aria-expanded="false" data-toggle="collapse"><i
-                                class="la la-male"></i><span>{{ __("cms-pages.teachers") }}</span></a>
-                    <ul id="dropdown-teachers" class="collapse list-unstyled pt-0">
-                        <li><a href="{{ route('teachers.index') }}">{{ __("cms-pages.teachers") }}</a></li>
-                        <li><a href="{{route('courses.moderation')}}">{{ __("cms-pages.new-courses") }}</a></li>
-                    </ul>
-                </li>
-            @endif
-
             {{-- All Users --}}
             <li><a href="#dropdown-users" aria-expanded="false" data-toggle="collapse"><i
-                            class="la la-male"></i><span>{{ __("cms-pages.users") }}</span></a>
+                            class="la la-group"></i><span>{{ __("cms-pages.users") }}</span></a>
                 <ul id="dropdown-users" class="collapse list-unstyled pt-0">
-                    <li><a href="{{ route('admin.users.index') }}">{{ __("cms-pages.users") }}</a></li>
+                    @if($currentUser->hasPermissionTo('user manage'))
+                        <li><a href="{{ route('admin.users.index') }}">{{ __("cms-pages.all-users") }}</a></li>
+                    @endif
+
+                    @if($currentUser->hasPermissionTo('teacher manage'))
+                        <li><a href="{{ route('teachers.index') }}">{{ __("cms-pages.teachers") }}</a></li>
+                    @endif
+
+                    @if($currentUser->hasPermissionTo('student manage'))
+                        <li><a href="{{ route('students.index') }}">{{ __("cms-pages.students") }}</a></li>
+                    @endif
                 </ul>
             </li>
 
