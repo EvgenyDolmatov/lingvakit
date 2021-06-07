@@ -1,5 +1,7 @@
 @extends('layouts.site-container')
 
+@section('seo-title', 'Лингва-Кит - О компании')
+@section('seo-description', 'Лингва-Кит - О компании')
 @section('page-styles')
     <link rel="stylesheet" href="{{asset('assets/cms/css/owl-carousel/owl.carousel.min.css')}}">
     <link rel="stylesheet" href="{{asset('assets/cms/css/owl-carousel/owl.theme.min.css')}}">
