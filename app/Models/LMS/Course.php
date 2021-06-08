@@ -20,7 +20,7 @@ class Course extends Model
 
     protected $fillable = [
         'title', 'description', 'image', 'video', 'difficulty_level', 'author_id', 'category_id', 'type',
-        'duration', 'price', 'sale_price', 'is_new', 'is_published', 'is_allowed', 'publish_date'
+        'duration', 'price', 'sale_price', 'is_new', 'is_published', 'is_allowed', 'publish_date', 'language_id'
     ];
 
     public function category()

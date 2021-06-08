@@ -368,6 +368,7 @@ return [
     'publish-date' => 'Дата публикации',
     'not-publish-date' => 'Дата публикации не указана',
     'author' => 'Автор',
+    'course-language' => 'Язык курса',
 
     // Media Files
     'media-files' => 'Медиафайлы',

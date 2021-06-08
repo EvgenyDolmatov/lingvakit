@@ -34,6 +34,25 @@
                                 </div>
                             </div>
                         </div>
+                        {{-- Course Language --}}
+                        <div class="form-group row d-flex align-items-center mb-5">
+                            <label class="col-lg-3 form-control-label">{{ __("cms-pages.language") }}</label>
+                            <div class="col-lg-9">
+                                <select name="language_id"
+                                        class="custom-select form-control">
+                                    <option value="" selected disabled>{{ __("cms-pages.course-language") }}</option>
+                                    @foreach($languages as $language)
+                                        <option value="{{ $language->id }}"
+                                                @if($language->id===$course->language_id) selected @endif>
+                                            {{ __("languages.".$language->label) }}
+                                        </option>
+                                    @endforeach
+                                </select>
+                                @error('language_id')
+                                <div class="invalid-feedback">{{ $message }}</div>
+                                @enderror
+                            </div>
+                        </div>
                         {{-- Course Category --}}
                         <div class="form-group row d-flex align-items-center mb-5">
                             <label class="col-lg-3 form-control-label">{{ __("cms-pages.category") }}</label>

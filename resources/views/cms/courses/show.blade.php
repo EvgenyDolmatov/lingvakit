@@ -65,6 +65,7 @@
                             </div>
                         </div>
                         <div class="col-xl-9">
+
                             {{-- Course Author --}}
                             <div class="about-infos d-flex flex-column mb-3">
                                 <div class="about-title"><h5>{{ __("cms-pages.author") }}:</h5></div>
@@ -89,6 +90,22 @@
                                     <div class="about-text">{!! $course->description !!}</div>
                                 </div>
                             @endif
+
+                            <div class="about-infos d-flex mb-4">
+                                {{-- Course Language --}}
+                                <button type="button" class="btn btn-outline-primary btn-sm mr-3">
+                                    {{ __("languages.".$course->language->label) }}
+                                </button>
+                                {{-- Course Category --}}
+                                <button type="button" class="btn btn-outline-info btn-sm mr-3">
+                                    {{ __($course->category->name) }}
+                                </button>
+                                {{-- Course Level --}}
+                                <button type="button" class="btn btn-outline-danger btn-sm mr-3">
+                                    {{ __("cms-pages.".$course->difficulty_level) }}
+                                </button>
+                            </div>
+
                             {{-- Course Quizzes --}}
                             @if($course->quizzes)
                                 <div class="about-infos d-flex flex-column mb-3">
@@ -111,16 +128,18 @@
                                     </div>
                                 </div>
                             @endif
+
+
                             {{-- Course Category --}}
-                            <div class="about-infos d-flex flex-column mb-3">
+                            {{--<div class="about-infos d-flex flex-column mb-3">
                                 <div class="about-title"><h5>{{ __("cms-pages.category") }}:</h5></div>
                                 <div class="about-text">{{ __($course->category->name) }}</div>
-                            </div>
+                            </div>--}}
                             {{-- Course Level --}}
-                            <div class="about-infos d-flex flex-column mb-3">
+                            {{--<div class="about-infos d-flex flex-column mb-3">
                                 <div class="about-title"><h5>{{ __("cms-pages.difficulty-level") }}:</h5></div>
                                 <div class="about-text">{{ __("cms-pages.".$course->difficulty_level) }}</div>
-                            </div>
+                            </div>--}}
                             @if($course->duration > 0)
                                 {{-- Course Duration --}}
                                 <div class="about-infos d-flex flex-column mb-3">

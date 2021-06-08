@@ -11,9 +11,12 @@
 
         @if(Route::current()->getName() == 'site.index' && $languages)
             <div class="d-flex mt-4 mb-4">
+                <button type="button" class="btn btn-outline-primary btn-sm mr-3">
+                    {{ __("cms-pages.all")}}
+                </button>
                 @foreach($languages as $language)
-                    <button type="button" class="btn btn-warning btn-sm mr-3">
-                        {{$language->name}}
+                    <button type="button" class="btn btn-outline-primary btn-sm mr-3">
+                        {{ __("languages.".$language->label)}}
                     </button>
                 @endforeach
             </div>

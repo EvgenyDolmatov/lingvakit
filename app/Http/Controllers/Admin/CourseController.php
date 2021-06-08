@@ -5,6 +5,7 @@ namespace App\Http\Controllers\Admin;
 use App\Http\Controllers\Controller;
 use App\Models\LMS\Category;
 use App\Models\LMS\Course;
+use App\Models\LMS\Language;
 use App\Models\MediaFile;
 use App\Models\MetaCourse;
 use Illuminate\Support\Facades\Auth;
@@ -37,6 +38,7 @@ class CourseController extends Controller
 
         return view('cms.courses.create', [
             'categories' => Category::all()->except($uncategorized->id),
+            'languages' => Language::all(),
         ]);
     }
 
@@ -44,6 +46,7 @@ class CourseController extends Controller
     {
         $request->validate([
             'title' => 'required|string|max:255',
+            'language_id' => 'required',
             'meta_title' => 'nullable|string|max:255',
             'meta_keywords' => 'nullable|string|max:255',
         ]);
@@ -86,6 +89,7 @@ class CourseController extends Controller
         return view('cms.courses.edit', [
             'course' => $course,
             'categories' => Category::all()->except($uncategorized->id),
+            'languages' => Language::all(),
             'audioFiles' => $audio,
             'images' => $images,
             'videoFiles' => $videoFiles
@@ -95,7 +99,8 @@ class CourseController extends Controller
     public function update(Request $request, Course $course)
     {
         $request->validate([
-            'title' => 'required|string|max:255'
+            'title' => 'required|string|max:255',
+            'language_id' => 'required',
         ]);
 
         if ($request->has('category_id')) {
