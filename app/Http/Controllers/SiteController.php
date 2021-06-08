@@ -13,15 +13,19 @@ use Illuminate\Support\Facades\Mail;
 
 class SiteController extends Controller
 {
-    public function index()
+    public function index(Request $request)
     {
         $courses = Course::where([
             ['is_published', 1],
             ['is_allowed', 1],
-        ])->get();
+        ]);
+
+        if ($request->has('language')) {
+            $courses->where('language_id', $request->language);
+        }
 
         return view('welcome', [
-            'courses' => $courses,
+            'courses' => $courses->get(),
             'languages' => Language::all(),
         ]);
     }

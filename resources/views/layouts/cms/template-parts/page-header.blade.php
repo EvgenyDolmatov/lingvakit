@@ -11,13 +11,16 @@
 
         @if(Route::current()->getName() == 'site.index' && $languages)
             <div class="d-flex mt-4 mb-4">
-                <button type="button" class="btn btn-outline-primary btn-sm mr-3">
+                <a href="{{route('site.index')}}" class="btn btn-outline-primary btn-sm mr-3">
                     {{ __("cms-pages.all")}}
-                </button>
+                </a>
                 @foreach($languages as $language)
-                    <button type="button" class="btn btn-outline-primary btn-sm mr-3">
-                        {{ __("languages.".$language->label)}}
-                    </button>
+                    <form action="{{route('site.index')}}" method="get">
+                        <input type="hidden" name="language" value="{{$language->id}}">
+                        <button type="submit" class="btn btn-outline-primary btn-sm mr-3">
+                            {{ __("languages.".$language->label)}}
+                        </button>
+                    </form>
                 @endforeach
             </div>
         @endif

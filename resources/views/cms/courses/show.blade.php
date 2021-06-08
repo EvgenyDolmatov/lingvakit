@@ -92,14 +92,18 @@
                             @endif
 
                             <div class="about-infos d-flex mb-4">
-                                {{-- Course Language --}}
-                                <button type="button" class="btn btn-outline-primary btn-sm mr-3">
-                                    {{ __("languages.".$course->language->label) }}
-                                </button>
-                                {{-- Course Category --}}
-                                <button type="button" class="btn btn-outline-info btn-sm mr-3">
-                                    {{ __($course->category->name) }}
-                                </button>
+                                @if($course->language)
+                                    {{-- Course Language --}}
+                                    <button type="button" class="btn btn-outline-primary btn-sm mr-3">
+                                        {{ __("languages.".$course->language->label) }}
+                                    </button>
+                                @endif
+                                @if($course->category)
+                                    {{-- Course Category --}}
+                                    <button type="button" class="btn btn-outline-info btn-sm mr-3">
+                                        {{ __($course->category->name) }}
+                                    </button>
+                                @endif
                                 {{-- Course Level --}}
                                 <button type="button" class="btn btn-outline-danger btn-sm mr-3">
                                     {{ __("cms-pages.".$course->difficulty_level) }}
