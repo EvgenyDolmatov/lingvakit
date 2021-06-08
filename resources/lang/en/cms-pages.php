@@ -136,6 +136,13 @@ return [
     'edit-category' => 'Edit Category',
     'label' => 'Label',
 
+    /* Languages */
+    'language' => 'Language',
+    'languages' => 'Languages',
+    'new-language' => 'New Language',
+    'edit-language' => 'Edit Language',
+    'language-form' => 'Language Form',
+
     /* Attributes */
     'attribute' => 'Attribute',
     'attributes' => 'Attributes',

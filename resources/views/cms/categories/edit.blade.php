@@ -37,7 +37,7 @@
                         <div class="form-group row d-flex align-items-center mb-5">
                             <label class="col-lg-3 form-control-label">{{ __("cms-pages.label") }}</label>
                             <div class="col-lg-9">
-                                <input type="text" name="title" class="form-control"
+                                <input type="text" name="label" class="form-control"
                                        placeholder="{{ __("cms-pages.label") }}" value="{{$category->label}}">
                             </div>
                         </div>

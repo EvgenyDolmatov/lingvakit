@@ -5,6 +5,7 @@ namespace App\Http\Controllers;
 use App\Mail\Feedback;
 use App\Models\FeedbackMessage;
 use App\Models\LMS\Course;
+use App\Models\LMS\Language;
 use App\Models\LMS\Result;
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Auth;
@@ -20,7 +21,8 @@ class SiteController extends Controller
         ])->get();
 
         return view('welcome', [
-            'courses' => $courses
+            'courses' => $courses,
+            'languages' => Language::all(),
         ]);
     }
 

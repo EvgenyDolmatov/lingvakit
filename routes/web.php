@@ -2,6 +2,7 @@
 
 use App\Http\Controllers\Admin\CategoryController;
 use App\Http\Controllers\Admin\ConformityController;
+use App\Http\Controllers\Admin\LanguageController;
 use App\Http\Controllers\Admin\MediaFileController;
 use App\Http\Controllers\Admin\PermissionController;
 use App\Http\Controllers\Admin\PromocodeController;
@@ -94,18 +95,14 @@ Route::middleware(['auth', 'locale', 'verified'])->group(function (){
     Route::get('payment-info', [OrderController::class, 'paymentResult'])->name('orders.payment-info');
 });
 
-
 /* TEACHER'S DASHBOARD */
 /*Route::middleware(['auth', 'verified', 'locale', 'role:teacher'])->group(function (){
     Route::get('teacher-panel', [CourseController::class, 'index'])->name('teacher.panel');
 });*/
 
-
-
 /* AJAX */
 Route::get('ajax/files/{fileType}', [MediaFileController::class, 'getFilesByAjax'])->name('ajax.get-files');
 Route::get('ajax/promo/{code}', [PromocodeController::class, 'getPromoCodeData'])->name('ajax.get-promo-code');
-
 
 /* Admin */
 Route::prefix('dashboard')->middleware(['auth', 'locale', 'role:superuser|admin|teacher'])->group(function (){
@@ -120,9 +117,11 @@ Route::prefix('dashboard')->middleware(['auth', 'locale', 'role:superuser|admin|
     Route::resource('roles', RoleController::class)->middleware('role:superuser');
     Route::resource('permissions', PermissionController::class)->middleware('role:superuser');
 
-
     /* CATEGORIES */
     Route::resource('categories', CategoryController::class)->middleware(['role:superuser|admin']);
+
+    /* LANGUAGES */
+    Route::resource('languages', LanguageController::class)->middleware(['role:superuser|admin']);
 
     /* COURSES */
     Route::resource('courses', CourseController::class);

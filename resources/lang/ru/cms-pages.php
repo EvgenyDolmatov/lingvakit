@@ -134,6 +134,13 @@ return [
     'edit-category' => 'Редактирование категории',
     'label' => 'Метка',
 
+    /* Languages */
+    'language' => 'Язык',
+    'languages' => 'Языки',
+    'new-language' => 'Новый язык',
+    'edit-language' => 'Редактирование языка',
+    'language-form' => 'Данные языка',
+
     /* Attributes */
     'attribute' => 'Атрибут',
     'attributes' => 'Атрибуты',

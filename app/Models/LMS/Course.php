@@ -28,6 +28,11 @@ class Course extends Model
         return $this->belongsTo(Category::class);
     }
 
+    public function language()
+    {
+        return $this->belongsTo(Language::class);
+    }
+
     public function stages()
     {
         return $this->hasMany(Stage::class);

@@ -55,6 +55,16 @@
                 </li>
             @endif
 
+            {{-- Languages --}}
+            @if($currentUser->hasPermissionTo('category manage'))
+                <li><a href="#dropdown-languages" aria-expanded="false" data-toggle="collapse"><i
+                                class="la la-language"></i><span>{{ __("cms-pages.languages") }}</span></a>
+                    <ul id="dropdown-languages" class="collapse list-unstyled pt-0">
+                        <li><a href="{{ route('languages.index') }}">{{ __("cms-pages.languages") }}</a></li>
+                    </ul>
+                </li>
+            @endif
+
             {{-- All Users --}}
             <li><a href="#dropdown-users" aria-expanded="false" data-toggle="collapse"><i
                             class="la la-group"></i><span>{{ __("cms-pages.users") }}</span></a>
