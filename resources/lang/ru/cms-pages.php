@@ -409,6 +409,17 @@ return [
     'not-taken' => 'Студент не проходил тест.',
     'give-access' => 'Дать доступ',
     'give-access-to-course' => 'Дать доступ к курсу',
+    'student-form' => 'Данные студента',
+    'edit-student' => 'Редактирование студента',
+    'group' => 'Группа',
+    'groups' => 'Группы',
+    'group-code' => 'Код группы',
+    'group-name' => 'Название группы',
+    'new-group' => 'Новая группа',
+    'group-form' => 'Данные группы',
+    'code' => 'Код',
+    'about-group' => 'О группе',
+    'choose-group' => 'Выберите группу',
 
     // Teachers
     'teacher' => 'Преподаватель',

@@ -2,6 +2,7 @@
 
 use App\Http\Controllers\Admin\CategoryController;
 use App\Http\Controllers\Admin\ConformityController;
+use App\Http\Controllers\Admin\GroupController;
 use App\Http\Controllers\Admin\LanguageController;
 use App\Http\Controllers\Admin\MediaFileController;
 use App\Http\Controllers\Admin\PermissionController;
@@ -207,6 +208,7 @@ Route::prefix('dashboard')->middleware(['auth', 'locale', 'role:superuser|admin|
         Route::get('/', [StudentController::class, 'index'])->name('students.index');
         Route::get('/{student}', [StudentController::class, 'show'])->name('students.show');
         Route::get('/{student}/edit', [StudentController::class, 'edit'])->name('students.edit');
+        Route::put('/{student}/edit', [StudentController::class, 'update'])->name('students.update');
 
         Route::prefix('{student}')->group(function (){
             Route::get('add-course', [StudentCourseController::class, 'addCourse'])->name('students.course.add');
@@ -215,6 +217,9 @@ Route::prefix('dashboard')->middleware(['auth', 'locale', 'role:superuser|admin|
             Route::get('course/{course}/quiz/{quiz}/answers', [StudentCourseController::class, 'showAnswers'])->name('students.course.answers.show');
         });
     });
+
+    /* GROUPS */
+    Route::resource('groups', GroupController::class);
 
     /* TEACHERS */
     Route::prefix('teachers')->middleware(['role:superuser|admin'])->group(function (){

@@ -3,6 +3,7 @@
 namespace App\Http\Controllers\Admin;
 
 use App\Http\Controllers\Controller;
+use App\Models\Group;
 use App\Models\LMS\Course;
 use App\Models\User;
 use Illuminate\Http\Request;
@@ -56,8 +57,14 @@ class StudentController extends Controller
 
     public function edit(User $student)
     {
-        return view('cms.students.show', [
-            'student' => $student
+        return view('cms.students.edit', [
+            'student' => $student,
+            'groups' => Group::all()
         ]);
+    }
+
+    public function update(Request $request, User $student)
+    {
+        return redirect()->route('students.index');
     }
 }

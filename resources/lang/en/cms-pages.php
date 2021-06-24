@@ -416,6 +416,17 @@ return [
     'not-taken' => 'The student did not pass the test.',
     'give-access' => 'Give Access',
     'give-access-to-course' => 'Give Access To Course',
+    'student-form' => 'Student Form',
+    'edit-student' => 'Edit Student',
+    'group' => 'Group',
+    'groups' => 'Groups',
+    'group-code' => 'Group Code',
+    'group-name' => 'Group Name',
+    'new-group' => 'New Group',
+    'group-form' => 'Group Form',
+    'code' => 'Code',
+    'about-group' => 'About Group',
+    'choose-group' => 'Choose Group',
 
     // Teachers
     'teacher' => 'Teacher',
@@ -432,7 +443,6 @@ return [
     'block' => 'Block',
     'unblock' => 'Unblock',
     'course-blocked' => 'Course Blocked',
-    'delete' => 'Delete',
     'delete' => 'Delete',
 
     // Users
