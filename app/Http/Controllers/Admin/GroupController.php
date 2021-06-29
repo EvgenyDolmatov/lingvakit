@@ -4,6 +4,7 @@ namespace App\Http\Controllers\Admin;
 
 use App\Http\Controllers\Controller;
 use App\Models\Group;
+use App\Models\User;
 use Illuminate\Http\Request;
 
 class GroupController extends Controller
@@ -58,5 +59,36 @@ class GroupController extends Controller
     public function destroy($id)
     {
         //
+    }
+
+    public function studentsList(Group $group)
+    {
+        $students = User::where([
+            ['is_staff', 0],
+            ['email_verified_at'],
+        ])->get();
+
+        $freeStudentsIds = array();
+
+        foreach ($students as $student) {
+            if (!$student->groups->contains($group->id)) {
+                $freeStudentsIds[] = $student->id;
+            }
+        }
+        $freeStudents = User::whereIn('id', $freeStudentsIds)->get();
+
+
+        return view('cms.students.groups.students-list', [
+            'group' => $group,
+            'students' => $freeStudents,
+        ]);
+    }
+
+    public function setStudentsList(Request $request, Group $group)
+    {
+        $students = $request->input('students_list');
+        $group->students()->sync($students);
+
+        return redirect()->route('group.students-list', $group->id);
     }
 }

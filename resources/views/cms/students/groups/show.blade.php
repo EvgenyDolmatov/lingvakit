@@ -35,8 +35,8 @@
             <div class="widget has-shadow">
                 <div class="widget-header bordered no-actions d-flex align-items-center justify-content-between">
                     <h4>{{ __("cms-pages.students") }}</h4>
-{{--                    <a href="{{ route('students.course.add', $group->id) }}" type="button"
-                       class="btn btn-primary mr-1 mb-2">{{ __("cms-pages.give-access-to-course") }}</a>--}}
+                    <a href="{{ route('group.students-list', $group->id) }}" type="button"
+                       class="btn btn-primary mr-1 mb-2">{{ __("cms-pages.change-students-list") }}</a>
                 </div>
 
                 <div class="widget-body">

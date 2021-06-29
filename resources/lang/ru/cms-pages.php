@@ -420,6 +420,8 @@ return [
     'code' => 'Код',
     'about-group' => 'О группе',
     'choose-group' => 'Выберите группу',
+    'students-list' => 'Список студентов',
+    'change-students-list' => 'Изменить список студентов',
 
     // Teachers
     'teacher' => 'Преподаватель',

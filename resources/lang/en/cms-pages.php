@@ -427,6 +427,8 @@ return [
     'code' => 'Code',
     'about-group' => 'About Group',
     'choose-group' => 'Choose Group',
+    'students-list' => 'Students List',
+    'change-students-list' => 'Change Students List',
 
     // Teachers
     'teacher' => 'Teacher',

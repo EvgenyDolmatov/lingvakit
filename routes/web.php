@@ -220,6 +220,8 @@ Route::prefix('dashboard')->middleware(['auth', 'locale', 'role:superuser|admin|
 
     /* GROUPS */
     Route::resource('groups', GroupController::class);
+    Route::get('groups/{group}/students', [GroupController::class, 'studentsList'])->name('group.students-list');
+    Route::post('groups/{group}/students', [GroupController::class, 'setStudentsList'])->name('group.set-students-list');
 
     /* TEACHERS */
     Route::prefix('teachers')->middleware(['role:superuser|admin'])->group(function (){
