@@ -446,6 +446,7 @@ return [
     'unblock' => 'Unblock',
     'course-blocked' => 'Course Blocked',
     'delete' => 'Delete',
+    'users-management' => 'Users Management',
 
     // Users
     'all-users' => 'All Users',

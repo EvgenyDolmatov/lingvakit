@@ -439,6 +439,7 @@ return [
     'unblock' => 'Разблокировать',
     'course-blocked' => 'Курс заблокирован',
     'delete' => 'Удалить',
+    'users-management' => 'Управление пользователями',
 
     // Users
     'all-users' => 'Все пользователи',
