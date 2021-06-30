@@ -251,3 +251,7 @@ Route::middleware(['guest'])->group(function (){
 /* Scripts for Changing Database */
 //Route::get('media/change-paths', [SuperuserController::class, 'changePaths'])
 //    ->middleware(['auth', 'role:admin'])->name('media.change-paths');
+
+/* Update all index_number for each entry */
+/*Route::get('topics/set-numbers', [SuperuserController::class, 'setNumbersForTopics'])
+    ->name('superuser.set-numbers-for-topics');*/

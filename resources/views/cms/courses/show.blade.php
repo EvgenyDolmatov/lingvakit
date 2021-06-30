@@ -185,6 +185,30 @@
 
                     <div class="widget-body">
                         <div class="table-responsive">
+
+                            <div class="table mb-0 row">
+                                <div class="col-2">{{ __("cms-pages.topic") }}</div>
+                            </div>
+
+                            <div class="table mb-0 row">
+                                @foreach($course->stages as $keyStage => $stage)
+                                    <div class="col-12">
+                                        <h4>{{ ($keyStage+1).'. '.$stage->name }}</h4>
+                                    </div>
+
+                                    @foreach($stage->topics as $key => $topic)
+                                        <div class="col-12 topic" draggable="true">
+                                            @if($topic->lesson)
+                                                <h5>{{ $topic->lesson->title }}</h5>
+                                            @elseif($topic->quiz)
+                                                <h5>{{ $topic->quiz->title }}</h5>
+                                            @endif
+                                        </div>
+                                    @endforeach
+                                @endforeach
+                            </div>
+
+
                             <table id="sorting-table" class="table mb-0">
                                 <thead>
                                 <tr>
@@ -392,5 +416,6 @@
     @include('layouts.cms.template-parts.scripts-forms')
     <script src="{{asset('assets/cms/vendors/js/bootstrap-select/bootstrap-select.min.js')}}"></script>
     <script src="{{asset('assets/cms/js/youtube.min.js')}}"></script>
+    <script src="{{asset('assets/cms/js/drugdrop-topics.js')}}"></script>
 @endsection
 

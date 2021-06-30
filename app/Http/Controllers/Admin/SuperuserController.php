@@ -3,6 +3,7 @@
 namespace App\Http\Controllers\Admin;
 
 use App\Http\Controllers\Controller;
+use App\Models\LMS\Topic;
 use App\Models\MediaFile;
 use App\Models\Role;
 use App\Models\User;
@@ -28,6 +29,18 @@ class SuperuserController extends Controller
         $superuser = User::where('email', 'evgeniy.webdesign@gmail.com')->first();
         $superuser->removeRole('user');
         $superuser->assignRole('superuser');
+
+        return redirect()->route('dashboard');
+    }
+
+    public function setNumbersForTopics()
+    {
+        $topics = Topic::all();
+
+        foreach ($topics as $topic) {
+            $topic->index_number = $topic->id;
+            $topic->save();
+        }
 
         return redirect()->route('dashboard');
     }
