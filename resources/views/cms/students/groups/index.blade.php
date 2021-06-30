@@ -40,8 +40,18 @@
                                         <a href="{{ route('groups.show', $group->id) }}">
                                             <i class="la la-eye edit"></i>
                                         </a>
-                                        <a href="{{ route('groups.edit', $group->id) }}"><i
-                                                    class="la la-edit edit"></i></a>
+                                        <a href="{{ route('groups.edit', $group->id) }}">
+                                            <i class="la la-edit edit"></i>
+                                        </a>
+
+                                        <form style="display: inline-block" method="POST" action="{{ route('groups.destroy', $group->id) }}">
+                                            @csrf @method('DELETE')
+
+                                            <a href="{{ route('groups.destroy', $group->id) }}"
+                                               onclick="event.preventDefault();if(confirm('{{ __("cms-messages.delete") }}')){this.closest('form').submit();}">
+                                                <i class="la la-close delete"></i>
+                                            </a>
+                                        </form>
                                     </td>
                                 </tr>
                             @endforeach

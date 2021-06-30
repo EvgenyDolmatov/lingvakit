@@ -221,7 +221,8 @@ Route::prefix('dashboard')->middleware(['auth', 'locale', 'role:superuser|admin|
     /* GROUPS */
     Route::resource('groups', GroupController::class);
     Route::get('groups/{group}/students', [GroupController::class, 'studentsList'])->name('group.students-list');
-    Route::post('groups/{group}/students', [GroupController::class, 'setStudentsList'])->name('group.set-students-list');
+    Route::post('groups/{group}/set-students', [GroupController::class, 'setStudentsList'])->name('group.set-students-list');
+    Route::delete('groups/{group}/{student}/exclude', [GroupController::class, 'excludeStudent'])->name('group.student.exclude');
 
     /* TEACHERS */
     Route::prefix('teachers')->middleware(['role:superuser|admin'])->group(function (){

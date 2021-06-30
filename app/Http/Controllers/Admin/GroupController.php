@@ -6,6 +6,7 @@ use App\Http\Controllers\Controller;
 use App\Models\Group;
 use App\Models\User;
 use Illuminate\Http\Request;
+use Illuminate\Support\Facades\Auth;
 
 class GroupController extends Controller
 {
@@ -56,27 +57,32 @@ class GroupController extends Controller
         return redirect()->route('groups.index');
     }
 
-    public function destroy($id)
+    public function destroy(Group $group)
     {
-        //
+        $group->delete();
+        $group->students()->detach();
+
+        return redirect()->route('groups.index');
     }
 
     public function studentsList(Group $group)
     {
-        $students = User::where([
+        $currentUser = Auth::user();
+
+        $students = $currentUser->getMyStudents();
+/*        $students = User::where([
             ['is_staff', 0],
             ['email_verified_at'],
-        ])->get();
+        ])->get();*/
 
         $freeStudentsIds = array();
 
         foreach ($students as $student) {
-            if (!$student->groups->contains($group->id)) {
+            if ( count($student->groups) == 0  || $student->groups->contains($group->id) ) {
                 $freeStudentsIds[] = $student->id;
             }
         }
         $freeStudents = User::whereIn('id', $freeStudentsIds)->get();
-
 
         return view('cms.students.groups.students-list', [
             'group' => $group,
@@ -89,6 +95,12 @@ class GroupController extends Controller
         $students = $request->input('students_list');
         $group->students()->sync($students);
 
-        return redirect()->route('group.students-list', $group->id);
+        return redirect()->route('groups.show', $group->id);
+    }
+
+    public function excludeStudent(Group $group, User $student)
+    {
+        $group->students()->detach($student->id);
+        return redirect()->route('groups.show', $group->id);
     }
 }

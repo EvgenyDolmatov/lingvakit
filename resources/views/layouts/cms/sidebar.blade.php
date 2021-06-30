@@ -65,6 +65,23 @@
                 </li>
             @endif
 
+            {{-- My Students --}}
+            <li><a href="#dropdown-students" aria-expanded="false" data-toggle="collapse"><i
+                            class="la la-group"></i><span>{{ __("cms-pages.students") }}</span></a>
+                <ul id="dropdown-students" class="collapse list-unstyled pt-0">
+                    @if($currentUser->hasPermissionTo('student manage'))
+                        <li><a href="{{ route('students.index') }}">{{ __("cms-pages.students") }}</a></li>
+                    @endif
+
+                    <li><a href="{{ route('groups.index') }}">{{ __("cms-pages.groups") }}</a></li>
+                </ul>
+            </li>
+        </ul>
+
+        <span class="heading">Управление</span>
+
+        <ul class="list-unstyled">
+
             {{-- All Users --}}
             <li><a href="#dropdown-users" aria-expanded="false" data-toggle="collapse"><i
                             class="la la-group"></i><span>{{ __("cms-pages.users") }}</span></a>
@@ -83,17 +100,6 @@
                 </ul>
             </li>
 
-            {{-- All Users --}}
-            <li><a href="#dropdown-students" aria-expanded="false" data-toggle="collapse"><i
-                            class="la la-group"></i><span>{{ __("cms-pages.students") }}</span></a>
-                <ul id="dropdown-students" class="collapse list-unstyled pt-0">
-                    @if($currentUser->hasPermissionTo('student manage'))
-                        <li><a href="{{ route('students.index') }}">{{ __("cms-pages.students") }}</a></li>
-                    @endif
-
-                    <li><a href="{{ route('groups.index') }}">{{ __("cms-pages.groups") }}</a></li>
-                </ul>
-            </li>
 
             {{-- Orders --}}
             {{--            @can('order_management')

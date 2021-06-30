@@ -215,4 +215,25 @@ class User extends Authenticatable implements MustVerifyEmail
         }
         return false;
     }
+
+    public function getMyStudents()
+    {
+        $myCourses = Course::where('author_id', $this->id)->get();
+        $myStudentsIds = array();
+
+        foreach ($myCourses as $course) {
+            foreach ($course->students as $student) {
+                $myStudentsIds[] = $student->id;
+            }
+        }
+
+        $myStudentsIds = array_unique($myStudentsIds);
+        $students = User::all()->reject(function ($user) {
+            return $user->hasRole(['teacher', 'admin', 'superuser']);
+        })->map(function ($user) {
+            return $user;
+        });
+
+        return $students->only($myStudentsIds);
+    }
 }

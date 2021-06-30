@@ -10,7 +10,7 @@
 @endsection
 @section('content')
     <form class="form-horizontal" method="POST" action="{{ route('groups.update', $group->id) }}">
-        @csrf
+        @csrf @method('PUT')
 
         <div class="row flex-row">
             <div class="col-12">
@@ -26,7 +26,7 @@
                                         class="text-danger ml-2">*</span></label>
                             <div class="col-lg-9">
                                 <input type="text" name="name" class="form-control"
-                                       placeholder="{{ __("cms-pages.title") }}" value="{{old('name')}}">
+                                       placeholder="{{ __("cms-pages.title") }}" value="{{ $group->name }}">
                                 @error('name')
                                 <div class="invalid-feedback">{{ $message }}</div>
                                 @enderror
@@ -37,7 +37,7 @@
                             <label class="col-lg-3 form-control-label">{{ __("cms-pages.group-code") }}</label>
                             <div class="col-lg-9">
                                 <input type="text" name="code" class="form-control"
-                                       placeholder="{{ __("cms-pages.code") }}" value="{{old('code')}}">
+                                       placeholder="{{ __("cms-pages.code") }}" value="{{ $group->code }}">
                             </div>
                         </div>
                     </div>

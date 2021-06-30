@@ -26,9 +26,12 @@
                         <div class="form-group row d-flex align-items-center mt-3 mb-5">
                             <label class="col-lg-3 form-control-label">{{ __("cms-pages.students") }}</label>
                             <div class="col-lg-9">
-                                <select name="students_list" class="selectpicker show-menu-arrow" multiple>
+                                <select name="students_list[]" class="selectpicker show-menu-arrow" multiple>
                                     @foreach($students as $student)
-                                        <option value="{{$student->id}}">{{$student->getFullName()}}</option>
+                                        <option value="{{$student->id}}"
+                                                @if($group->students->contains($student->id)) selected @endif>
+                                            {{$student->getFullName()}}
+                                        </option>
                                     @endforeach
                                 </select>
                             </div>
