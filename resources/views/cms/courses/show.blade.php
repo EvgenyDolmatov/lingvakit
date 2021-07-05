@@ -194,10 +194,12 @@
                                 </div>
                             </div>
 
-                            <div class="stage-topics">
+                            <div id="stage_{{$stage->id}}" class="stage-topics" data-id="{{$stage->id}}">
                                 @foreach($stage->topics as $key => $topic)
                                     @if($topic->lesson)
-                                        <div class="stage-topic d-flex justify-content-between align-items-center mt-2 mb-2" data-id="{{$topic->id}}">
+                                        <div id="topic_{{$topic->id}}" class="stage-topic d-flex justify-content-between align-items-center mt-2 mb-2"
+                                             data-id="{{$key}}" data-topic="{{$topic->id}}">
+
                                             <input type="hidden" value="{{$topic->id}}">
                                             <div class="col-2">
                                                 <img src="{{ $topic->lesson->getImage() }}" width="100" alt>
@@ -226,7 +228,9 @@
                                             </div>
                                         </div>
                                     @elseif($topic->quiz)
-                                        <div class="stage-topic d-flex justify-content-between align-items-center mt-2 mb-2">
+                                        <div id="topic_{{$topic->id}}" class="stage-topic d-flex justify-content-between align-items-center mt-2 mb-2"
+                                             data-id="{{$key}}" data-topic="{{$topic->id}}">
+
                                             <input type="hidden" value="{{$topic->id}}">
                                             <div class="col-2">
                                                 <img src="{{ $topic->quiz->getImage() }}" width="100" alt>
