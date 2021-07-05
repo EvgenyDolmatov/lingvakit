@@ -198,12 +198,12 @@
                                 @foreach($stage->topics as $key => $topic)
                                     @if($topic->lesson)
                                         <div id="topic_{{$topic->id}}" class="stage-topic d-flex justify-content-between align-items-center mt-2 mb-2"
-                                             data-id="{{$key}}" data-topic="{{$topic->id}}">
+                                             data-id="{{$topic->id}}" data-position="{{$topic->index_number}}">
 
-                                            <input type="hidden" name="topic_id" value="{{$topic->id}}">
-                                            <input type="hidden" name="topic_index" value="{{$topic->index_number}}">
-
-
+                                            <form id="topic_{{$topic->id}}" action="{{route('topic.update-index', $topic->id)}}" method="POST">
+                                                @csrf @method('PUT')
+                                                <input type="hidden" name="index_number" value="{{$topic->index_number}}">
+                                            </form>
 
                                             <div class="col-2">
                                                 <img src="{{ $topic->lesson->getImage() }}" width="100" alt>
@@ -233,9 +233,13 @@
                                         </div>
                                     @elseif($topic->quiz)
                                         <div id="topic_{{$topic->id}}" class="stage-topic d-flex justify-content-between align-items-center mt-2 mb-2"
-                                             data-id="{{$key}}" data-topic="{{$topic->id}}">
+                                             data-id="{{$topic->id}}" data-position="{{$topic->index_number}}">
 
-                                            <input type="hidden" value="{{$topic->id}}">
+                                            <form id="topic_{{$topic->id}}" action="{{route('topic.update-index', $topic->id)}}" method="POST">
+                                                @csrf @method('PUT')
+                                                <input type="hidden" name="index_number" value="{{$topic->index_number}}">
+                                            </form>
+
                                             <div class="col-2">
                                                 <img src="{{ $topic->quiz->getImage() }}" width="100" alt>
                                             </div>

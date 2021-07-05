@@ -19,6 +19,7 @@ use App\Http\Controllers\Admin\StudentController;
 use App\Http\Controllers\Admin\Students\StudentCourseController;
 use App\Http\Controllers\Admin\SuperuserController;
 use App\Http\Controllers\Admin\Teachers\TeacherController;
+use App\Http\Controllers\Admin\TopicController;
 use App\Http\Controllers\AuthController;
 use App\Http\Controllers\CKEditorController;
 use App\Http\Controllers\OrderController;
@@ -126,6 +127,9 @@ Route::prefix('dashboard')->middleware(['auth', 'locale', 'role:superuser|admin|
 
     /* COURSES */
     Route::resource('courses', CourseController::class);
+
+    /* Update index of topic */
+    Route::post('topic/{topic}/update-index', [TopicController::class, 'updateIndex'])->name('topic.update-index');
     /* Show All of Courses */
     Route::get('all-courses', [CourseController::class, 'allCourses'])->middleware(['role:superuser|admin'])->name('courses.all');
 
