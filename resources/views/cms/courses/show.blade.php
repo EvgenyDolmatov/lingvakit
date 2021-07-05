@@ -200,7 +200,11 @@
                                         <div id="topic_{{$topic->id}}" class="stage-topic d-flex justify-content-between align-items-center mt-2 mb-2"
                                              data-id="{{$key}}" data-topic="{{$topic->id}}">
 
-                                            <input type="hidden" value="{{$topic->id}}">
+                                            <input type="hidden" name="topic_id" value="{{$topic->id}}">
+                                            <input type="hidden" name="topic_index" value="{{$topic->index_number}}">
+
+
+
                                             <div class="col-2">
                                                 <img src="{{ $topic->lesson->getImage() }}" width="100" alt>
                                             </div>
