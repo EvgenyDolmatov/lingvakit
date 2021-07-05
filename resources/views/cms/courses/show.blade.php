@@ -184,31 +184,85 @@
                     </div>
 
                     <div class="widget-body">
-                        <div class="table-responsive">
 
-                            <div class="table mb-0 row">
-                                <div class="col-2">{{ __("cms-pages.topic") }}</div>
+
+                        @foreach($course->stages as $keyStage => $stage)
+
+                            <div class="d-flex justify-content-between align-items-center mt-2 mb-2">
+                                <div class="col-12">
+                                    <h4>{{ ($keyStage+1).'. '.$stage->name }}</h4>
+                                </div>
                             </div>
 
-                            <div class="table mb-0 row">
-                                @foreach($course->stages as $keyStage => $stage)
-                                    <div class="col-12">
-                                        <h4>{{ ($keyStage+1).'. '.$stage->name }}</h4>
-                                    </div>
+                            <div class="stage-topics">
+                                @foreach($stage->topics as $key => $topic)
+                                    @if($topic->lesson)
+                                        <div class="stage-topic d-flex justify-content-between align-items-center mt-2 mb-2" data-id="{{$topic->id}}">
+                                            <input type="hidden" value="{{$topic->id}}">
+                                            <div class="col-2">
+                                                <img src="{{ $topic->lesson->getImage() }}" width="100" alt>
+                                            </div>
+                                            <div class="col-2">
+                                                {{ __("cms-pages.".$topic->name) }}
+                                            </div>
+                                            <div class="col-2">
+                                                {{ $topic->lesson->title }}
+                                            </div>
+                                            <div class="col-2">
+                                                {{ $topic->lesson->getDuration() }}
+                                            </div>
+                                            <div class="col-4">
+                                                <a href="{{ route('lessons.edit', [$course->id, $stage->id, $topic->lesson->id]) }}"><i
+                                                            class="la la-edit edit"></i></a>
+                                                <form style="display: inline-block" method="POST"
+                                                      action="{{ route('lessons.destroy', [$course->id, $stage->id, $topic->lesson->id]) }}">
+                                                    @csrf @method('DELETE')
 
-                                    @foreach($stage->topics as $key => $topic)
-                                        <div class="col-12 topic" draggable="true">
-                                            @if($topic->lesson)
-                                                <h5>{{ $topic->lesson->title }}</h5>
-                                            @elseif($topic->quiz)
-                                                <h5>{{ $topic->quiz->title }}</h5>
-                                            @endif
+                                                    <a href="{{ route('lessons.destroy', [$course->id, $stage->id, $topic->lesson->id]) }}"
+                                                       onclick="event.preventDefault();if(confirm('{{ __("cms-messages.delete") }}')){this.closest('form').submit();}">
+                                                        <i class="la la-close delete"></i>
+                                                    </a>
+                                                </form>
+                                            </div>
                                         </div>
-                                    @endforeach
+                                    @elseif($topic->quiz)
+                                        <div class="stage-topic d-flex justify-content-between align-items-center mt-2 mb-2">
+                                            <input type="hidden" value="{{$topic->id}}">
+                                            <div class="col-2">
+                                                <img src="{{ $topic->quiz->getImage() }}" width="100" alt>
+                                            </div>
+                                            <div class="col-2">
+                                                {{ __("cms-pages.".$topic->name) }}
+                                            </div>
+                                            <div class="col-2">
+                                                {{ $topic->quiz->title }}
+                                            </div>
+                                            <div class="col-2">
+                                                {{ $topic->quiz->getDuration() }}
+                                            </div>
+                                            <div class="col-4">
+                                                <a href="{{ route('lessons.edit', [$course->id, $stage->id, $topic->quiz->id]) }}"><i
+                                                            class="la la-edit edit"></i></a>
+                                                <form style="display: inline-block" method="POST"
+                                                      action="{{ route('lessons.destroy', [$course->id, $stage->id, $topic->quiz->id]) }}">
+                                                    @csrf @method('DELETE')
+
+                                                    <a href="{{ route('lessons.destroy', [$course->id, $stage->id, $topic->quiz->id]) }}"
+                                                       onclick="event.preventDefault();if(confirm('{{ __("cms-messages.delete") }}')){this.closest('form').submit();}">
+                                                        <i class="la la-close delete"></i>
+                                                    </a>
+                                                </form>
+                                            </div>
+                                        </div>
+                                    @endif
                                 @endforeach
                             </div>
 
 
+                        @endforeach
+
+
+                        <div class="table-responsive">
                             <table id="sorting-table" class="table mb-0">
                                 <thead>
                                 <tr>
@@ -416,6 +470,8 @@
     @include('layouts.cms.template-parts.scripts-forms')
     <script src="{{asset('assets/cms/vendors/js/bootstrap-select/bootstrap-select.min.js')}}"></script>
     <script src="{{asset('assets/cms/js/youtube.min.js')}}"></script>
+
+    <script src="{{asset('assets/cms/js/jquery-ui.min.js')}}"></script>
     <script src="{{asset('assets/cms/js/drugdrop-topics.js')}}"></script>
 @endsection
 
