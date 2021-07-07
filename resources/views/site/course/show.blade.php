@@ -151,7 +151,7 @@
                                 <h4>{{$stage->name}}</h4>
                             </li>
 
-                            @foreach($stage->topics as $key => $topic)
+                            @foreach($stage->topics->sortby('index_number') as $key => $topic)
                                 <li>
                                     <div class="about-infos d-flex flex-column mt-3">
                                         @if($topic->lesson)

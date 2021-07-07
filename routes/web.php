@@ -17,7 +17,6 @@ use App\Http\Controllers\Admin\RoleController;
 use App\Http\Controllers\Admin\StageController;
 use App\Http\Controllers\Admin\StudentController;
 use App\Http\Controllers\Admin\Students\StudentCourseController;
-use App\Http\Controllers\Admin\SuperuserController;
 use App\Http\Controllers\Admin\Teachers\TeacherController;
 use App\Http\Controllers\Admin\TopicController;
 use App\Http\Controllers\AuthController;
@@ -28,7 +27,6 @@ use App\Http\Controllers\SiteController;
 use App\Http\Controllers\UserController;
 use App\Http\Controllers\UserResultController;
 use App\Http\Controllers\UserTopicController;
-use Illuminate\Foundation\Auth\EmailVerificationRequest;
 use Illuminate\Support\Facades\Route;
 
 
@@ -129,7 +127,8 @@ Route::prefix('dashboard')->middleware(['auth', 'locale', 'role:superuser|admin|
     Route::resource('courses', CourseController::class);
 
     /* Update index of topic */
-    Route::put('topic/{topic}/update-index', [TopicController::class, 'updateIndex'])->name('topic.update-index');
+    Route::put('topic/{topic}/index', [TopicController::class, 'updateIndex'])->name('topic.index');
+
     /* Show All of Courses */
     Route::get('all-courses', [CourseController::class, 'allCourses'])->middleware(['role:superuser|admin'])->name('courses.all');
 

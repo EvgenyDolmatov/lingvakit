@@ -71,13 +71,13 @@ tr.header-danger {
     width: 100%;
 }
 
-.table .td-actions button {
+.td-actions button {
     padding: 0;
     background-color: transparent;
     border: none;
 }
 
-.table .td-actions button i {
+.td-actions button i {
     background: transparent;
     color: rgba(52, 40, 104, 0.4);
     font-size: 1.6rem;
@@ -86,13 +86,33 @@ tr.header-danger {
     transition: all 0.4s ease;
 }
 
-.table .td-actions button i.edit:hover,
-.table .td-actions button i.more:hover {
+.td-actions button i.edit:hover,
+.td-actions button i.more:hover {
     background: rgba(52, 40, 104, 0.8);
     color: #fff;
 }
 
-.table .td-actions button i.delete:hover {
+.td-actions button i.delete:hover {
+    background: #e76c90;
+    color: #fff;
+}
+
+.td-actions a i {
+    background: transparent;
+    color: rgba(52, 40, 104, 0.4);
+    font-size: 1.6rem;
+    padding: 0.5rem;
+    border-radius: 50%;
+    transition: all 0.4s ease;
+}
+
+.td-actions a i.edit:hover,
+.td-actions a i.more:hover {
+    background: rgba(52, 40, 104, 0.8);
+    color: #fff;
+}
+
+.td-actions a i.delete:hover {
     background: #e76c90;
     color: #fff;
 }
