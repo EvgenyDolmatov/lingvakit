@@ -196,14 +196,20 @@
 
                             <div id="stage_{{$stage->id}}" class="stage-topics" data-id="{{$stage->id}}">
                                 @foreach($stage->topics as $key => $topic)
-                                    @if($topic->lesson)
-                                        <div id="topic_{{$topic->id}}" class="stage-topic d-flex justify-content-between align-items-center mt-2 mb-2"
-                                             data-id="{{$topic->id}}" data-position="{{$topic->index_number}}">
 
-                                            <form id="topic_{{$topic->id}}" action="{{route('topic.update-index', $topic->id)}}" method="POST">
-                                                @csrf @method('PUT')
-                                                <input type="hidden" name="index_number" value="{{$topic->index_number}}">
-                                            </form>
+                                    <div id="topic_{{$topic->id}}"
+                                         class="stage-topic d-flex justify-content-between align-items-center mt-2 mb-2"
+                                         data-id="{{$topic->id}}" data-position="{{$topic->index_number}}">
+
+                                        <form id="topic_{{$topic->id}}"
+                                              action="{{route('topic.update-index', $topic->id)}}" method="POST"
+                                              class="hide">
+                                            @csrf @method('PUT')
+                                            <input type="number" name="index_number" value="{{$topic->index_number}}">
+                                        </form>
+
+                                        @if($topic->lesson)
+
 
                                             <div class="col-2">
                                                 <img src="{{ $topic->lesson->getImage() }}" width="100" alt>
@@ -230,15 +236,15 @@
                                                     </a>
                                                 </form>
                                             </div>
-                                        </div>
-                                    @elseif($topic->quiz)
-                                        <div id="topic_{{$topic->id}}" class="stage-topic d-flex justify-content-between align-items-center mt-2 mb-2"
-                                             data-id="{{$topic->id}}" data-position="{{$topic->index_number}}">
+                                            {{--                                        </div>--}}
+                                        @elseif($topic->quiz)
+                                            {{--<div id="topic_{{$topic->id}}" class="stage-topic d-flex justify-content-between align-items-center mt-2 mb-2"
+                                                 data-id="{{$topic->id}}" data-position="{{$topic->index_number}}">
 
-                                            <form id="topic_{{$topic->id}}" action="{{route('topic.update-index', $topic->id)}}" method="POST">
-                                                @csrf @method('PUT')
-                                                <input type="hidden" name="index_number" value="{{$topic->index_number}}">
-                                            </form>
+                                                <form id="topic_{{$topic->id}}" action="{{route('topic.update-index', $topic->id)}}" method="POST" class="hide">
+                                                    @csrf @method('PUT')
+                                                    <input type="number" name="index_number" value="{{$topic->index_number}}">
+                                                </form>--}}
 
                                             <div class="col-2">
                                                 <img src="{{ $topic->quiz->getImage() }}" width="100" alt>
@@ -265,8 +271,9 @@
                                                     </a>
                                                 </form>
                                             </div>
-                                        </div>
-                                    @endif
+                                            {{--                                        </div>--}}
+                                        @endif
+                                    </div>
                                 @endforeach
                             </div>
 

@@ -129,7 +129,7 @@ Route::prefix('dashboard')->middleware(['auth', 'locale', 'role:superuser|admin|
     Route::resource('courses', CourseController::class);
 
     /* Update index of topic */
-    Route::post('topic/{topic}/update-index', [TopicController::class, 'updateIndex'])->name('topic.update-index');
+    Route::put('topic/{topic}/update-index', [TopicController::class, 'updateIndex'])->name('topic.update-index');
     /* Show All of Courses */
     Route::get('all-courses', [CourseController::class, 'allCourses'])->middleware(['role:superuser|admin'])->name('courses.all');
 

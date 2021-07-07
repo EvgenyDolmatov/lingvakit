@@ -6,6 +6,9 @@ $(document).ready(function (){
                 $(this).children('.stage-topic').each(function (i){
                     if ($(this).attr('data-position') != i+1) {
                         $(this).attr('data-position', i+1).addClass('updated');
+                        // $(this).find('form input[name=index_number]').val(i+1);
+
+                        // console.log($(this).find('form input[name=index_number]').val());
                     }
                 });
                 savePosition();
@@ -15,52 +18,33 @@ $(document).ready(function (){
 
     function savePosition()
     {
-        /*let positions = [];
-
         $('.updated').each(function (){
-            positions.push([$(this).attr('data-id'), $(this).attr('data-position')]);
-            $(this).removeClass('updated');
-        });*/
 
-        $('.updated').each(function (){
             let id = $(this).attr('data-id');
-            let input_number = $(this).attr('data-position');
-            let url = $(this).children('form').attr('action');
             let form = $('form#topic_'+id);
+            let url = form.attr('action');
+            let pos = $(this).attr('data-position');
+            let token = $('meta[name="csrf-token"]').attr('content');
 
-           $('form#topic_'+id + ' input').val($(this).attr('data-position'));
-           $(this).removeClass('updated');
-
-            $.ajaxSetup({
-                headers: {
-                    'X-CSRF-TOKEN': $('meta[name="csrf-token"]').attr('content'),
-                }
-            });
+            $(this).find('form input[name=index_number]').val(pos);
+            console.log(form.serialize());
+            // $('form#topic_'+id + ' input[name=index_number]').val(pos);
+            $(this).removeClass('updated');
 
             $.ajax({
                 url: url,
-                method: 'POST',
+                headers: { 'X-CSRF-TOKEN': token },
+                method: 'PUT',
                 dataType: 'json',
-                data: $(this).serialize(),
+                cache:false,
+                contentType: false,
+                processData: false,
+                data: form.serialize(),
                 success: function (res){
                     console.log(res);
                 }
             });
         });
-
-
-        /*$.ajax({
-            url: '',
-            method: 'POST',
-            dataType: 'text',
-            data: {
-                update: 1,
-                positions: positions
-            },
-            success: function (res){
-                console.log(res);
-            }
-        });*/
     }
 
 });
