@@ -15,7 +15,7 @@
                 <div class="widget-header bordered no-actions d-flex align-items-center justify-content-between">
                     <h4>{{ __("cms-pages.about-student") }}</h4>
                     <div class="form-group">
-                        @if($currentUser->hasRole(['superuser', 'admin']))
+                        @if($currentUser->hasRole(['superuser', 'admin']) && !$student->hasRole('teacher'))
                             <form style="display: inline-block" method="POST"
                                   action="{{ route('users.give-teacher-role', $student->id) }}">
                                 @csrf
