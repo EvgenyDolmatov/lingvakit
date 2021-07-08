@@ -8,6 +8,7 @@ use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Auth;
 use Illuminate\Support\Facades\Hash;
 use Illuminate\Support\Facades\Validator;
+use Spatie\Permission\Models\Role;
 
 class UserController extends Controller
 {
@@ -102,5 +103,13 @@ class UserController extends Controller
     {
         $user->delete();
         return redirect()->route('admin.users.index');
+    }
+
+    public function giveTeacherRole(User $user)
+    {
+        $teacher = Role::where('name', 'teacher')->get();
+        $user->assignRole($teacher);
+
+        return redirect()->back();
     }
 }

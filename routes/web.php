@@ -244,6 +244,7 @@ Route::prefix('dashboard')->middleware(['auth', 'locale', 'role:superuser|admin|
 
     /* Actions with Users */
     Route::put('users/user-{user}/block', [UserController::class, 'banSwitcher'])->name('users.ban-switcher');
+    Route::post('users/user-{user}/give-teacher-role', [UserController::class, 'giveTeacherRole'])->name('users.give-teacher-role');
 });
 
 Route::middleware(['guest'])->group(function (){

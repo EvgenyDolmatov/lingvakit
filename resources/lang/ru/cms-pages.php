@@ -422,6 +422,7 @@ return [
     'choose-group' => 'Выберите группу',
     'students-list' => 'Список студентов',
     'change-students-list' => 'Изменить список студентов',
+    'make-as-teacher' => 'Назначить преподавателем',
 
     // Teachers
     'teacher' => 'Преподаватель',

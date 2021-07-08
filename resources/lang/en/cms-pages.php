@@ -429,6 +429,7 @@ return [
     'choose-group' => 'Choose Group',
     'students-list' => 'Students List',
     'change-students-list' => 'Change Students List',
+    'make-as-teacher' => 'Make as Teacher',
 
     // Teachers
     'teacher' => 'Teacher',

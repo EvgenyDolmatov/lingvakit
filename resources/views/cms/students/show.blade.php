@@ -14,8 +14,23 @@
             <div class="widget has-shadow">
                 <div class="widget-header bordered no-actions d-flex align-items-center justify-content-between">
                     <h4>{{ __("cms-pages.about-student") }}</h4>
-                    <a href="{{ route('students.edit', $student->id) }}" type="button"
-                       class="btn btn-primary mr-1 mb-2">{{ __("cms-pages.edit") }}</a>
+                    <div class="form-group">
+                        @if($currentUser->hasRole(['superuser', 'admin']))
+                            <form style="display: inline-block" method="POST"
+                                  action="{{ route('users.give-teacher-role', $student->id) }}">
+                                @csrf
+
+                                <a href="{{ route('users.give-teacher-role', $student->id) }}"
+                                   class="btn btn-secondary mr-1 mb-2"
+                                   onclick="event.preventDefault();this.closest('form').submit();">
+                                    {{ __("cms-pages.make-as-teacher") }}
+                                </a>
+                            </form>
+                        @endif
+                        <a href="{{ route('students.edit', $student->id) }}" type="button"
+                           class="btn btn-primary mr-1 mb-2">{{ __("cms-pages.edit") }}</a>
+                    </div>
+
                 </div>
                 <div class="widget-body">
                     <div class="row flex-row">
@@ -64,7 +79,8 @@
                                     <td class="text-primary">{{ $course->getProgress($student) }}</td>
 
                                     <td class="td-actions">
-                                        <a href="{{ route('students.course.show', [$student->id, $course->id]) }}"><i class="la la-eye edit"></i></a>
+                                        <a href="{{ route('students.course.show', [$student->id, $course->id]) }}"><i
+                                                    class="la la-eye edit"></i></a>
                                     </td>
                                 </tr>
                             @endforeach

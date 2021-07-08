@@ -29,6 +29,7 @@ class AppServiceProvider extends ServiceProvider
         view()->composer([
             'layouts.cms.sidebar',
             'layouts.site.header',
+            'cms.students.show',
         ], function ($view){
             $currentUser = Auth::user();
             if ($currentUser) {
