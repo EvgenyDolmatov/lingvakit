@@ -22,7 +22,7 @@
                             </div>
                         @endif
                     </div>
-                    @foreach($conformity->options as $option)
+                    @foreach($conformity->options->shuffle() as $option)
                         <div class="col-xl-3">
                             <div class="mb-3">
                                 <div class="styled-radio">

@@ -115,7 +115,7 @@ class Result extends Model
         $this->save();
     }
 
-    public function getFinishedAtAttribute($date) : string
+    public function getFinishedDate($date) : string
     {
         if (!$date) { return false; }
         return Carbon::createFromFormat('Y-m-d H:i:s', $date)->format('d.m.Y | H:i');

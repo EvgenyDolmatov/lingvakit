@@ -91,7 +91,7 @@ class Topic extends Model
         $result = $this->getResult($user);
         if (!$result) {return false;}
 
-        return $result->finished_at;
+        return $result->getFinishedDate($result->finished_at);
     }
 
     public function prevStage()
