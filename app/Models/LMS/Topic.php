@@ -2,11 +2,9 @@
 
 namespace App\Models\LMS;
 
-use Cviebrock\EloquentSluggable\Sluggable;
 use Illuminate\Database\Eloquent\Factories\HasFactory;
 use Illuminate\Database\Eloquent\Model;
 use Illuminate\Database\Eloquent\SoftDeletes;
-use Illuminate\Support\Facades\Auth;
 
 class Topic extends Model
 {
@@ -82,14 +80,18 @@ class Topic extends Model
 
     public function getAttemptQuantity($user)
     {
-        $result = Result::where([
-            'user_id' => $user->id,
-            'topic_id' => $this->id
-        ])->first();
-
+        $result = $this->getResult($user);
         if (!$result) {return 0;}
 
         return $result->attempt_quantity;
+    }
+
+    public function getFinishedDate($user)
+    {
+        $result = $this->getResult($user);
+        if (!$result) {return false;}
+
+        return $result->finished_at;
     }
 
     public function prevStage()
@@ -174,7 +176,6 @@ class Topic extends Model
                 }
             }
         }
-
         return $nextTopic;
     }
 }

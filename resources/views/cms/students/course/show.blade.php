@@ -24,6 +24,7 @@
                                 <th>{{ __("cms-pages.image") }}</th>
                                 <th>{{ __("cms-pages.occupation-type") }}</th>
                                 <th>{{ __("cms-pages.topic") }}</th>
+                                <th>{{ __("cms-pages.date") }}</th>
                                 <th>{{ __("cms-pages.result") }}</th>
                                 <th>{{ __("cms-pages.attempts") }}</th>
                                 <th>{{ __("cms-pages.actions") }}</th>
@@ -34,7 +35,7 @@
                             @foreach($course->stages as $keyStage => $stage)
 
                                 <tr class="text-primary header header-danger">
-                                    <td style="width: 70%" colspan="6">
+                                    <td style="width: 70%" colspan="7">
                                         <h4>{{ ($keyStage+1).'. '.$stage->name }}</h4>
                                     </td>
                                 </tr>
@@ -47,6 +48,7 @@
                                             </td>
                                             <td class="text-primary">{{ __("cms-pages.".$topic->name) }}</td>
                                             <td>{{ $topic->lesson->title }}</td>
+                                            <td>{{ $topic->getFinishedDate($student) }}</td>
                                             <td>{{ __('cms-pages.lesson-'.$topic->getResultByUser($student)) }}</td>
                                             <td></td>
                                         </tr>
@@ -57,6 +59,7 @@
                                             </td>
                                             <td class="text-primary">{{ __("cms-pages.".$topic->name) }}</td>
                                             <td>{{ $topic->quiz->title }}</td>
+                                            <td>{{ $topic->getFinishedDate($student) }}</td>
                                             <td>{!! $topic->quiz->showUserScore($student) !!}</td>
                                             <td>{{ $topic->getAttemptQuantity($student) }}</td>
 

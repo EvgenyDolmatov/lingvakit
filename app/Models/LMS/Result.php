@@ -3,6 +3,7 @@
 namespace App\Models\LMS;
 
 use App\Models\User;
+use Carbon\Carbon;
 use Illuminate\Database\Eloquent\Factories\HasFactory;
 use Illuminate\Database\Eloquent\Model;
 
@@ -112,5 +113,11 @@ class Result extends Model
         $this->started_at = $start;
         $this->finished_at = now();
         $this->save();
+    }
+
+    public function getFinishedAtAttribute($date) : string
+    {
+        if (!$date) { return false; }
+        return Carbon::createFromFormat('Y-m-d H:i:s', $date)->format('d.m.Y | H:i');
     }
 }
