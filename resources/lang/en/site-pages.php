@@ -62,4 +62,7 @@ return [
     'apply' => 'Apply',
     'total' => 'Total',
     'promo-code-error' => 'Promo code not found or expired',
+    'payment-methods' => 'Payment Methods',
+    'card-payment' => 'Card Payment',
+    'another-payment' => 'Another Payment',
 ];

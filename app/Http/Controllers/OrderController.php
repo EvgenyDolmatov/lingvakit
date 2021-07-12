@@ -7,6 +7,7 @@ use App\Mail\OrderPurchasedToAdmin;
 use App\Models\LMS\Course;
 use App\Models\Order;
 use App\Models\OrderDetail;
+use App\Models\OrderStatus;
 use App\Models\Payment;
 use App\Models\Promocode;
 use Illuminate\Http\Request;
@@ -26,14 +27,11 @@ class OrderController extends Controller
 
     public function storeOrder(Request $request, Course $course)
     {
-        $client = new Client();
-//        $client->setAuth('787166', 'live_QHlxE3kLaswB-L2klCHSY6IfJshqOtJHXIM6KxniS7Q');
-        $client->setAuth('751820', 'live_HKrA7o2lyLTqCkYQ4QNeF7qnrMAlubiijnZafBbCNKw');
-
         $user = Auth::user();
         $order = false;
         $userOrders = Order::where('user_id', $user->id)->get();
 
+        /* Create new Order */
         foreach ($userOrders as $userOrder) {
             foreach ($userOrder->details as $detail) {
                 if ($detail->course_id === $course->id) {
@@ -48,6 +46,7 @@ class OrderController extends Controller
             }
         }
 
+        /* Create or Update Order Details */
         if (!$order) {
             $order = Order::add($request->all(), $user);
             OrderDetail::add($order, $course);
@@ -71,59 +70,77 @@ class OrderController extends Controller
         $order->update(['total' => $total]);
         $user->update($request->all());
 
-        $response = $client->createPayment(
-            array(
-                'amount' => array(
-                    'value' => $total,
-                    'currency' => 'RUB',
-                ),
-                'confirmation' => array(
-                    'type' => 'redirect',
-                    'return_url' => route('orders.payment-info'),
-                ),
-                "receipt" => array(
-                    "customer" => array(
-                        "full_name" => $user->getFullName(),
-                        "phone" => $user->formatPhoneNumber(),
+        $paymentMethod = $request->input('payment_method');
+
+        /* Check Payment Method */
+        if ($paymentMethod === 'card_payment') {
+
+            $client = new Client();
+            $client->setAuth('751820', 'live_HKrA7o2lyLTqCkYQ4QNeF7qnrMAlubiijnZafBbCNKw');
+
+            $response = $client->createPayment(
+                array(
+                    'amount' => array(
+                        'value' => $total,
+                        'currency' => 'RUB',
                     ),
-                    "items" => array(
-                        array(
-                            "description" => $course->title,
-                            "quantity" => "1.00",
-                            "amount" => array(
-                                "value" => $total,
-                                "currency" => "RUB"
-                            ),
-                            "vat_code" => "1",
-                            "payment_mode" => "full_prepayment",
-                            "payment_subject" => "service"
+                    'confirmation' => array(
+                        'type' => 'redirect',
+                        'return_url' => route('orders.payment-info'),
+                    ),
+                    "receipt" => array(
+                        "customer" => array(
+                            "full_name" => $user->getFullName(),
+                            "phone" => $user->formatPhoneNumber(),
+                        ),
+                        "items" => array(
+                            array(
+                                "description" => $course->title,
+                                "quantity" => "1.00",
+                                "amount" => array(
+                                    "value" => $total,
+                                    "currency" => "RUB"
+                                ),
+                                "vat_code" => "1",
+                                "payment_mode" => "full_prepayment",
+                                "payment_subject" => "service"
+                            )
                         )
-                    )
+                    ),
+                    'capture' => true,
+                    'description' => 'Заказ №' . $order->id,
                 ),
-                'capture' => true,
-                'description' => 'Заказ №' . $order->id,
-            ),
-            uniqid('', true)
-        );
+                uniqid('', true)
+            );
 
-        $paymentData = $response->jsonSerialize();
-        $paymentUrl = $response->getConfirmation()->getConfirmationUrl();
+            $paymentData = $response->jsonSerialize();
+            $paymentUrl = $response->getConfirmation()->getConfirmationUrl();
 
-        Payment::create([
-            'payment_id' => $paymentData['id'],
-            'order_id' => $order->id,
-            'status' => $paymentData['status'],
-            'amount' => $paymentData['amount']['value'],
-            'date' => date('Y-m-d'),
-        ]);
+            Payment::create([
+                'payment_id' => $paymentData['id'],
+                'order_id' => $order->id,
+                'status' => $paymentData['status'],
+                'amount' => $paymentData['amount']['value'],
+                'date' => date('Y-m-d'),
+            ]);
 
-        return redirect($paymentUrl);
+            return redirect($paymentUrl);
+
+        } else {
+            /* Another Payment Method */
+            /*
+             * TODO: Реализовать далнейшие действия с пользователем и учителем
+             */
+
+            $onHolding = OrderStatus::where('title', 'on_holding')->first()->id;
+            $order->update([ 'status_id' => $onHolding ]);
+            return redirect()->route('site.index');
+        }
     }
 
     public function paymentResult()
     {
         $client = new Client();
-//        $client->setAuth('787166', 'live_QHlxE3kLaswB-L2klCHSY6IfJshqOtJHXIM6KxniS7Q');
         $client->setAuth('751820', 'live_HKrA7o2lyLTqCkYQ4QNeF7qnrMAlubiijnZafBbCNKw');
 
         $user = Auth::user();

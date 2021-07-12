@@ -163,6 +163,31 @@
                             </div>
                         </div>
 
+                        {{-- Payment's Methods --}}
+                        <div class="form-group row d-flex align-items-center mt-4 mb-2">
+                            <div class="col-12">
+                                <div class="section-title mt-5 mb-5">
+                                    <h4>{{__("site-pages.payment-methods")}}</h4>
+                                </div>
+                                <div class="form-group">
+                                    <div class="col-12">
+                                        <div class="mb-3">
+                                            <div class="styled-radio">
+                                                <input type="radio" name="payment_method" id="card_payment" value="card_payment" checked>
+                                                <label for="card_payment">{{ __("site-pages.card-payment") }}</label>
+                                            </div>
+                                        </div>
+                                        <div class="mb-3">
+                                            <div class="styled-radio">
+                                                <input type="radio" name="payment_method" id="another_payment" value="another_payment">
+                                                <label for="another_payment">{{ __("site-pages.another-payment") }}</label>
+                                            </div>
+                                        </div>
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+
                         <div class="form-group row d-flex align-items-center mt-5">
                             <div class="col-12">
                                 <div class="text-right">
