@@ -65,4 +65,6 @@ return [
     'payment-methods' => 'Способы оплаты',
     'card-payment' => 'Оплата картой',
     'another-payment' => 'Другой способ оплаты',
+    'order-on-holding' => 'Заказ №:order ожидает оплаты',
+    'order-paid' => 'Заказ №:order успешно оплачен',
 ];

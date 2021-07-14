@@ -25,6 +25,11 @@ class OrderController extends Controller
         ]);
     }
 
+    public function notification(Course $course)
+    {
+        return view('site.orders.order-notification');
+    }
+
     public function storeOrder(Request $request, Course $course)
     {
         $user = Auth::user();
@@ -134,7 +139,16 @@ class OrderController extends Controller
 
             $onHolding = OrderStatus::where('title', 'on_holding')->first()->id;
             $order->update([ 'status_id' => $onHolding ]);
-            return redirect()->route('site.index');
+
+            /* Отправляем e-mail студенту */
+            Mail::to($user->email)->send(new OrderPurchased($course, $order));
+
+            /* Отправляем e-mail админу */
+            Mail::to('info@lingva-kit.ru')->send(new OrderPurchasedToAdmin($course, $order));
+
+            $message = __('Your order has been successfully completed. Our employee will contact you to clarify the details.');
+
+            return redirect()->route('orders.noty', $course->id)->with('message', $message);
         }
     }
 

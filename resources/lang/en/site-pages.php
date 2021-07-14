@@ -65,4 +65,6 @@ return [
     'payment-methods' => 'Payment Methods',
     'card-payment' => 'Card Payment',
     'another-payment' => 'Another Payment',
+    'order-on-holding' => 'Order #:order awaiting payment',
+    'order-paid' => 'Order #:order has been successfully paid',
 ];
