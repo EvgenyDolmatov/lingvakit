@@ -7,12 +7,13 @@
         <li class="breadcrumb-item"><a href="{{ route('courses.index') }}">{{ __("cms-pages.courses") }}</a></li>
         <li class="breadcrumb-item"><a href="{{ route('courses.show', $course->id) }}">{{ $course->title }}</a></li>
         <li class="breadcrumb-item"><a
-                href="{{ route('quizzes.show', [$course->id, $stage->id, $quiz->id]) }}">{{ $quiz->title }}</a></li>
+                    href="{{ route('quizzes.show', [$course->id, $stage->id, $quiz->id]) }}">{{ $quiz->title }}</a></li>
         <li class="breadcrumb-item active">{{ __("cms-pages.new-question") }}</li>
     </ul>
 @endsection
 @section('content')
-    <form class="form-horizontal" method="POST" action="{{ route('questions.store', [$course->id, $stage->id, $quiz->id, $questionType]) }}"
+    <form class="form-horizontal" method="POST"
+          action="{{ route('questions.store', [$course->id, $stage->id, $quiz->id, $questionType]) }}"
           enctype="multipart/form-data">
         @csrf
 
@@ -23,10 +24,9 @@
             </div>
 
             {{-- MATCHING FORM --}}
-            <div class="@if(!in_array($questionType, ['make_sentence','make_text', 'listen_write'])) col-8 @else col-12 @endif">
+            <div class="@if(!in_array($questionType, ['make_sentence','make_text', 'listen_write', 'attach_file'])) col-8 @else col-12 @endif">
                 @include('layouts.cms.template-parts.course.question.matching-form')
             </div>
-
             {{-- MATCHING OPTION FORM --}}
             <div class="col-4">
                 {{-- Fill in the Gaps--}}
@@ -66,7 +66,7 @@
     @include('layouts.cms.template-parts.scripts-forms')
     <script src="{{asset('assets/cms/vendors/js/ckeditor/ckeditor.js')}}"></script>
     <script>
-        $(document).ready(function (){
+        $(document).ready(function () {
             CKEDITOR.replace('explanation', {
                 filebrowserUploadUrl: "{{route('ckeditor.upload', ['_token' => csrf_token() ])}}",
                 filebrowserUploadMethod: 'form'
@@ -78,7 +78,7 @@
                 '<input class="input-is-correct" type="radio" name="is_correct_3" id="is_correct_3" value="1">' +
                 '<label for="is_correct_3">{{__("cms-pages.logic-no_answer")}}</label>';
 
-            $trueFalseSwitcher.change(function (){
+            $trueFalseSwitcher.change(function () {
                 if ($(this).attr('value') == 1) {
                     $('#place_for_input').html($trueFalseInput);
                 } else {

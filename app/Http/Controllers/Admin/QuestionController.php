@@ -57,7 +57,7 @@ class QuestionController extends Controller
             $text = '';
 
             $sentences = $request->input('matching_title');
-            foreach ($sentences as $key => $sentence) {
+            foreach ($sentences as $sentence) {
                 if ($sentence) {
                     $text = $text . $sentence . ' ';
                 }

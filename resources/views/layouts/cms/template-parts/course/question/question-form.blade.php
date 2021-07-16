@@ -6,7 +6,7 @@
         {{-- Question: Title --}}
         <div class="form-group row d-flex align-items-center mb-5">
             <label class="col-lg-3 form-control-label">{{ __("cms-pages.question") }}<span
-                    class="text-danger ml-2">*</span></label>
+                        class="text-danger ml-2">*</span></label>
             <div class="col-lg-9">
                 <textarea name="question_title" class="form-control" rows="8">{{old('question_title')}}</textarea>
                 @error('question_title')

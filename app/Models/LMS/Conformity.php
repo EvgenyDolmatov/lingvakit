@@ -128,6 +128,9 @@ class Conformity extends Model
             $input = $request->input('question_option');
             ConformityOption::add($input, $this, 1);
         } // Single Choice, Multiple Choice, Logic Choice, Fill in the gaps
+        elseif ($questionType === 'attach_file') {
+            ConformityOption::add('teacher_decision', $this, 1);
+        }
         else {
             $optionInputs = $request->input('question_option');
             foreach ($optionInputs as $key => $input) {

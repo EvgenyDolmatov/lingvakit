@@ -99,7 +99,19 @@ class UserResultController extends Controller
                         }
                     }
                 }
-
+                /* Attach File */
+                if ($question->type === 'attach_file') {
+                    if ($request->input($inputName)) {
+                        ResultAnswer::create([
+                            'result_id' => $result->id,
+                            'question_id' => $question->id,
+                            'conformity_id' => $conformity->id,
+                            'option_id' => $conformity->options()->first()->id,
+                            'value' => 1,
+                            'is_correct' => 0,
+                        ]);
+                    }
+                }
                 /* Short Answer */
                 if ($question->type === 'short_answer') {
 
