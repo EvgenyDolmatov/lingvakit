@@ -10,7 +10,8 @@
     </ul>
 @endsection
 @section('content')
-    <form id="form-update" class="form-horizontal" method="POST" action="{{ route('quizzes.update', [$course->id, $stage->id, $quiz->id]) }}"
+    <form id="form-update" class="form-horizontal" method="POST"
+          action="{{ route('quizzes.update', [$course->id, $stage->id, $quiz->id]) }}"
           enctype="multipart/form-data">
         @csrf @method('PUT')
 
@@ -57,7 +58,7 @@
                         {{-- Quiz Title --}}
                         <div class="form-group row d-flex align-items-center mb-5">
                             <label class="col-lg-3 form-control-label">{{ __("cms-pages.title") }}<span
-                                    class="text-danger ml-2">*</span></label>
+                                        class="text-danger ml-2">*</span></label>
                             <div class="col-lg-9">
                                 <input type="text" name="title" class="form-control"
                                        placeholder="{{ __("cms-pages.title") }}" value="{{$quiz->title}}">
@@ -177,20 +178,18 @@
                         </div>
                         {{-- Quiz Required Topics Must Be Passed --}}
                         <div class="form-group row mb-5">
-                            <label class="col-lg-3 form-control-label">Topics must be passed</label>
+                            <label class="col-lg-3 form-control-label">{{ __("cms-pages.required-topics") }}</label>
                             <div class="col-lg-9 select">
                                 <select name="passed_topics[]" multiple class="custom-select form-control">
-                                    @foreach($course->stages as $stage)
-                                        @foreach($stage->topics as $topic)
-                                            @if($topic->name === 'quiz')
-                                                <option value="{{$topic->id}}">
-                                                    {{$topic->quiz->title}}
-                                                </option>
-                                            @elseif($topic->name === 'lesson')
-                                                <option value="{{$topic->id}}">
-                                                    {{$topic->lesson->title}}
-                                                </option>
-                                            @endif
+                                    @foreach($course->stages as $key => $stage)
+                                        @foreach($stage->topics as $topicKey => $topic)
+                                            <option value="{{$topic->id}}" @if($quiz->topic->isRequired($topic->id)) selected @endif>
+                                                @if($topic->name === 'quiz')
+                                                    {{($key+1).'.'.($topicKey+1).'. '.$topic->quiz->title}}
+                                                @elseif($topic->name === 'lesson')
+                                                    {{($key+1).'.'.($topicKey+1).'. '.$topic->lesson->title}}
+                                                @endif
+                                            </option>
                                         @endforeach
                                     @endforeach
                                 </select>

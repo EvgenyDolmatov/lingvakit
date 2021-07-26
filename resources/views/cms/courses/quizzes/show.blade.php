@@ -68,6 +68,13 @@
                                     <div class="about-text">{{ $quiz->getDuration() }}</div>
                                 </div>
                             @endif
+                            @if($quiz->topic->passed_topics)
+                                {{-- Quiz Duration --}}
+                                <div class="about-infos d-flex flex-column mb-3">
+                                    <div class="about-title"><h5>{{ __("cms-pages.required-topics") }}:</h5></div>
+                                    <div class="about-text">{{ $quiz->topic->getRequiredTopics() }}</div>
+                                </div>
+                            @endif
                         </div>
                     </div>
                 </div>

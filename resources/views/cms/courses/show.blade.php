@@ -279,13 +279,13 @@
                                                 {{ $topic->quiz->getTotalPoints() }}
                                             </div>
                                             <div class="col-2 td-actions d-flex justify-content-end">
-                                                <a href="{{ route('lessons.edit', [$course->id, $stage->id, $topic->quiz->id]) }}"><i
+                                                <a href="{{ route('quizzes.edit', [$course->id, $stage->id, $topic->quiz->id]) }}"><i
                                                             class="la la-edit edit"></i></a>
                                                 <form style="display: inline-block" method="POST"
-                                                      action="{{ route('lessons.destroy', [$course->id, $stage->id, $topic->quiz->id]) }}">
+                                                      action="{{ route('quizzes.destroy', [$course->id, $stage->id, $topic->quiz->id]) }}">
                                                     @csrf @method('DELETE')
 
-                                                    <a href="{{ route('lessons.destroy', [$course->id, $stage->id, $topic->quiz->id]) }}"
+                                                    <a href="{{ route('quizzes.destroy', [$course->id, $stage->id, $topic->quiz->id]) }}"
                                                        onclick="event.preventDefault();if(confirm('{{ __("cms-messages.delete") }}')){this.closest('form').submit();}">
                                                         <i class="la la-close delete"></i>
                                                     </a>

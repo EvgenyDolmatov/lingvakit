@@ -107,8 +107,11 @@ class QuizController extends Controller
             $category = Category::find(1);
         }
 
+        $passed_topics = $request->input('passed_topics');
+
         $quiz->update($request->all());
         $quiz->addCategory($category);
+        $quiz->topic->addRequiredTopics($passed_topics);
 
         $course->updateDuration();
 

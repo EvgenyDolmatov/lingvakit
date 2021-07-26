@@ -376,6 +376,7 @@ return [
     'not-publish-date' => 'Publish Date not Indicated',
     'author' => 'Author',
     'course-language' => 'Course Language',
+    'required-topics' => 'Required Topics to Pass',
 
     // Media Files
     'media-files' => 'Media Files',

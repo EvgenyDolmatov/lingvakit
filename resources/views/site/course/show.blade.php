@@ -169,7 +169,7 @@
                                             </div>
                                         @elseif($topic->quiz)
                                             <div class="about-text">
-                                                @if($course->isBelongsToStudent($user))
+                                                @if($course->isBelongsToStudent($user) && $topic->isAllowedToPass($user))
                                                     <a href="{{route('site.show-topic', [$course->id, $topic->id])}}"
                                                        class="{{$topic->getCssClass($user)}}">
                                                         {{ __("cms-pages.quiz") }}. {{ $topic->quiz->title }}

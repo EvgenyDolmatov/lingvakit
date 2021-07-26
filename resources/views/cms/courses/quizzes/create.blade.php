@@ -140,20 +140,18 @@
                         </div>
                         {{-- Quiz Required Topics Must Be Passed --}}
                         <div class="form-group row mb-5">
-                            <label class="col-lg-3 form-control-label">Topics must be passed</label>
+                            <label class="col-lg-3 form-control-label">{{ __("cms-pages.required-topics") }}</label>
                             <div class="col-lg-9 select">
                                 <select name="passed_topics[]" multiple class="custom-select form-control">
-                                    @foreach($course->stages as $stage)
-                                        @foreach($stage->topics as $topic)
-                                            @if($topic->name === 'quiz')
-                                                <option value="{{$topic->id}}">
-                                                    {{$topic->quiz->title}}
-                                                </option>
-                                            @elseif($topic->name === 'lesson')
-                                                <option value="{{$topic->id}}">
-                                                    {{$topic->lesson->title}}
-                                                </option>
-                                            @endif
+                                    @foreach($course->stages as $key => $stage)
+                                        @foreach($stage->topics as $topicKey => $topic)
+                                            <option value="{{$topic->id}}">
+                                                @if($topic->name === 'quiz')
+                                                    {{($key+1).'.'.($topicKey+1).'. '.$topic->quiz->title}}
+                                                @elseif($topic->name === 'lesson')
+                                                    {{($key+1).'.'.($topicKey+1).'. '.$topic->lesson->title}}
+                                                @endif
+                                            </option>
                                         @endforeach
                                     @endforeach
                                 </select>

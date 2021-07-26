@@ -178,4 +178,50 @@ class Topic extends Model
         }
         return $nextTopic;
     }
+
+    /**
+     * Check if topic is required
+     */
+    public function isRequired($topicId) : bool
+    {
+        $requiredTopics = explode(',', $this->passed_topics);
+        if (in_array($topicId, $requiredTopics)) return true;
+        return false;
+    }
+
+    public function addRequiredTopics($topics)
+    {
+        if ($topics) {
+            $topics = implode(',', $topics);
+            $this->passed_topics = $topics;
+            $this->save();
+        }
+    }
+
+    public function getRequiredTopics()
+    {
+        $requiredTopics = explode(',', $this->passed_topics);
+        $topics = Topic::whereIn('id', $requiredTopics)->get();
+
+        foreach ($topics as $key => $topic) {
+            if ($topic->name === 'quiz')
+                echo ($key+1).'. '.$topic->quiz->title . '<br>';
+
+            if ($topic->name === 'lesson')
+                echo ($key+1).'. '.$topic->lesson->title . '<br>';
+        }
+    }
+
+    public function isAllowedToPass($student) : bool
+    {
+        $requiredTopics = explode(',', $this->passed_topics);
+        $topics = Topic::whereIn('id', $requiredTopics)->get();
+
+        foreach ($topics as $topic) {
+            $result = getResult($student, $topic);
+            if (!$result || $result->status !== 'passed')
+                return false;
+        }
+        return true;
+    }
 }
