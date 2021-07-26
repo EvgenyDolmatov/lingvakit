@@ -46,10 +46,16 @@ class QuizController extends Controller
         } else {
             $category = Category::find(1);
         }
+
+        $passed_topics = $request->input('passed_topics');
+        $passed_topics = implode(',', $passed_topics);
+
         $topic = Topic::create([
             'name' => 'quiz',
-            'stage_id' => $stage->id
+            'stage_id' => $stage->id,
+            'passed_topics' => $passed_topics,
         ]);
+        $topic->update(['index_number' => $topic->id,]);
         $quiz = Quiz::add($request->all(), $topic);
         $quiz->addCategory($category);
 

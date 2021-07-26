@@ -12,7 +12,7 @@ class Topic extends Model
 
     protected $table = 'lms_topics';
 
-    protected $fillable = ['name', 'stage_id', 'index_number'];
+    protected $fillable = ['name', 'stage_id', 'index_number', 'passed_topics'];
 
     public function stage()
     {

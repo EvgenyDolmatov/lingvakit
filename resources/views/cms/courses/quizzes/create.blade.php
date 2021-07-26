@@ -28,7 +28,8 @@
                             <div class="col-lg-9">
                                 <div class="row">
                                     <div class="col-lg-6">
-                                        <select id="category_select" name="category_id" class="custom-select form-control">
+                                        <select id="category_select" name="category_id"
+                                                class="custom-select form-control">
                                             <option value="" selected disabled>{{ __("cms-pages.category") }}</option>
                                             @foreach($categories as $category)
                                                 <option value="{{ $category->id }}">{{ $category->name }}</option>
@@ -41,7 +42,8 @@
                                     </div>
                                     <div id="new_category" class="col-lg-6">
                                         <input type="text" name="category" class="form-control"
-                                               placeholder="{{ __("cms-pages.new-category") }}" value="{{old('category')}}" disabled>
+                                               placeholder="{{ __("cms-pages.new-category") }}"
+                                               value="{{old('category')}}" disabled>
                                         @error('category')
                                         <div class="invalid-feedback">{{ $message }}</div>
                                         @enderror
@@ -52,7 +54,7 @@
                         {{-- Quiz Title --}}
                         <div class="form-group row d-flex align-items-center mb-5">
                             <label class="col-lg-3 form-control-label">{{ __("cms-pages.title") }}<span
-                                    class="text-danger ml-2">*</span></label>
+                                        class="text-danger ml-2">*</span></label>
                             <div class="col-lg-9">
                                 <input type="text" name="title" class="form-control"
                                        placeholder="{{ __("cms-pages.title") }}" value="{{old('title')}}">
@@ -81,7 +83,8 @@
                                         <img src="{{asset('assets/cms/img/no-image.jpg')}}" width="100" alt>
                                     </div>
                                 </div>
-                                <button type="button" class="btn btn-primary square mr-1 mb-2 btn-attach" data-type="image"
+                                <button type="button" class="btn btn-primary square mr-1 mb-2 btn-attach"
+                                        data-type="image"
                                         data-var="image" data-toggle="modal" data-target="#modal-files">
                                     {{__("cms-pages.choose")}}
                                 </button>
@@ -92,7 +95,8 @@
                             <label class="col-lg-3 form-control-label">{{ __("cms-pages.audio") }}</label>
                             <div class="col-lg-9">
                                 <div class="form-group preview"></div>
-                                <button type="button" class="btn btn-primary square mr-1 mb-2 btn-attach" data-type="audio"
+                                <button type="button" class="btn btn-primary square mr-1 mb-2 btn-attach"
+                                        data-type="audio"
                                         data-var="audio" data-toggle="modal" data-target="#modal-files">
                                     {{__("cms-pages.choose")}}
                                 </button>
@@ -103,7 +107,8 @@
                             <label class="col-lg-3 form-control-label">{{ __("cms-pages.video") }}</label>
                             <div class="col-lg-9">
                                 <div class="form-group preview"></div>
-                                <button type="button" class="btn btn-primary square mr-1 mb-2 btn-attach" data-type="video"
+                                <button type="button" class="btn btn-primary square mr-1 mb-2 btn-attach"
+                                        data-type="video"
                                         data-var="video" data-toggle="modal" data-target="#modal-files">
                                     {{__("cms-pages.choose")}}
                                 </button>
@@ -131,6 +136,27 @@
                                 @error('passing_score')
                                 <div class="invalid-feedback">{{ $message }}</div>
                                 @enderror
+                            </div>
+                        </div>
+                        {{-- Quiz Required Topics Must Be Passed --}}
+                        <div class="form-group row mb-5">
+                            <label class="col-lg-3 form-control-label">Topics must be passed</label>
+                            <div class="col-lg-9 select">
+                                <select name="passed_topics[]" multiple class="custom-select form-control">
+                                    @foreach($course->stages as $stage)
+                                        @foreach($stage->topics as $topic)
+                                            @if($topic->name === 'quiz')
+                                                <option value="{{$topic->id}}">
+                                                    {{$topic->quiz->title}}
+                                                </option>
+                                            @elseif($topic->name === 'lesson')
+                                                <option value="{{$topic->id}}">
+                                                    {{$topic->lesson->title}}
+                                                </option>
+                                            @endif
+                                        @endforeach
+                                    @endforeach
+                                </select>
                             </div>
                         </div>
                     </div>

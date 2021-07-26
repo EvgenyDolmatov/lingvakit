@@ -175,6 +175,27 @@
                                 @enderror
                             </div>
                         </div>
+                        {{-- Quiz Required Topics Must Be Passed --}}
+                        <div class="form-group row mb-5">
+                            <label class="col-lg-3 form-control-label">Topics must be passed</label>
+                            <div class="col-lg-9 select">
+                                <select name="passed_topics[]" multiple class="custom-select form-control">
+                                    @foreach($course->stages as $stage)
+                                        @foreach($stage->topics as $topic)
+                                            @if($topic->name === 'quiz')
+                                                <option value="{{$topic->id}}">
+                                                    {{$topic->quiz->title}}
+                                                </option>
+                                            @elseif($topic->name === 'lesson')
+                                                <option value="{{$topic->id}}">
+                                                    {{$topic->lesson->title}}
+                                                </option>
+                                            @endif
+                                        @endforeach
+                                    @endforeach
+                                </select>
+                            </div>
+                        </div>
                     </div>
                 </div>
             </div>
