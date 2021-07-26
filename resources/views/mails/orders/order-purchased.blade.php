@@ -183,7 +183,8 @@
             style="font-family: Helvetica, Arial, sans-serif;margin-top: 0px;margin-bottom: 0px;font-size: 16px;line-height: 24px;background-color: #ffffff;padding-left: 24px;padding-right: 24px;padding-top: 24px;padding-bottom: 24px;">
             <p style="margin-top: 0px;margin-bottom: 0px;"><a class="o_text-primary" href="https://example.com/"
                                                               style="text-decoration: none;outline: none;color: #126de5;">
-                    <img src="http://a0304379.xsph.ru/assets/email/logo-dark.png" width="136" height="136" alt="Лингвакит"
+                    <img src="http://a0304379.xsph.ru/assets/email/logo-dark.png" width="136" height="136"
+                         alt="Лингвакит"
                          style="max-width: 136px;-ms-interpolation-mode: bicubic;vertical-align: middle;border: 0;line-height: 100%;height: auto;outline: none;text-decoration: none;">
                 </a>
             </p>
@@ -198,9 +199,13 @@
     <tr>
         <td class="o_bg-white o_px-md o_pt" align="center"
             style="background-color: #ffffff;padding-left: 24px;padding-right: 24px;padding-top: 16px;">
-            <h3 class="o_heading o_text-dark"
-                style="font-family: Helvetica, Arial, sans-serif;font-weight: bold;margin-top: 0px;margin-bottom: 0px;color: #242b3d;font-size: 24px;line-height: 31px;">
-                Заказ №{{$order->id}} успешно оплачен</h3>
+            <h3 class="o_heading o_text-dark" style="font-family: Helvetica, Arial, sans-serif;font-weight: bold;margin-top: 0px;margin-bottom: 0px;color: #242b3d;font-size: 24px;line-height: 31px;">
+                @if($order->status->title === 'on_holding')
+                    {{ __("site-pages.order-on-holding", ['order' => $order->id]) }}
+                @else
+                    {{ __("site-pages.order-paid", ['order' => $order->id]) }}
+                @endif
+            </h3>
         </td>
     </tr>
     </tbody>
@@ -250,8 +255,10 @@
                 <div class="o_px-xs o_sans o_text o_center"
                      style="font-family: Helvetica, Arial, sans-serif;margin-top: 0px;margin-bottom: 0px;font-size: 16px;line-height: 24px;text-align: center;padding-left: 8px;padding-right: 8px;">
                     <p style="margin-top: 0px;margin-bottom: 0px;">
-                        <a class="o_text-primary" href="https://example.com/"style="text-decoration: none;outline: none;color: #126de5;">
-                            <img src="{{$course->getImageFullPath()}}" width="184" height="184" alt style="max-width: 184px;-ms-interpolation-mode: bicubic;vertical-align: middle;border: 0;line-height: 100%;height: auto;outline: none;text-decoration: none;">
+                        <a class="o_text-primary" href="https://example.com/"
+                           style="text-decoration: none;outline: none;color: #126de5;">
+                            <img src="{{$course->getImageFullPath()}}" width="184" height="184" alt
+                                 style="max-width: 184px;-ms-interpolation-mode: bicubic;vertical-align: middle;border: 0;line-height: 100%;height: auto;outline: none;text-decoration: none;">
                         </a>
                     </p>
                 </div>
@@ -337,7 +344,8 @@
                     <tr>
                         <td class="o_sans o_text o_text-white o_bg-primary o_px o_py o_br-max" align="center"
                             style="font-family: Helvetica, Arial, sans-serif;margin-top: 0px;margin-bottom: 0px;font-size: 16px;line-height: 24px;background-color: #126de5;color: #ffffff;border-radius: 96px;padding-left: 16px;padding-right: 16px;padding-top: 16px;padding-bottom: 16px;">
-                            <img src="http://a0304379.xsph.ru/assets/email/check-48-white.png" width="48" height="48" alt
+                            <img src="http://a0304379.xsph.ru/assets/email/check-48-white.png" width="48" height="48"
+                                 alt
                                  style="max-width: 48px;-ms-interpolation-mode: bicubic;vertical-align: middle;border: 0;line-height: 100%;height: auto;outline: none;text-decoration: none;">
                         </td>
                     </tr>
@@ -347,7 +355,8 @@
                     </tbody>
                 </table>
                 <h2 class="o_heading o_text-dark o_mb-xxs"
-                    style="font-family: Helvetica, Arial, sans-serif;font-weight: bold;margin-top: 0px;margin-bottom: 4px;color: #242b3d;font-size: 30px;line-height: 39px;">Спасибо за заказ</h2>
+                    style="font-family: Helvetica, Arial, sans-serif;font-weight: bold;margin-top: 0px;margin-bottom: 4px;color: #242b3d;font-size: 30px;line-height: 39px;">
+                    Спасибо за заказ</h2>
             </div>
             <!--[if mso]></td></tr></table><![endif]-->
         </td>

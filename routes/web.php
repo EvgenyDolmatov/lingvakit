@@ -89,7 +89,7 @@ Route::middleware(['auth', 'locale', 'verified'])->group(function (){
 //        Route::get('cart', [OrderController::class, 'shoppingCart'])->name('orders.cart');
         Route::get('checkout', [OrderController::class, 'checkout'])->name('orders.checkout');
         Route::post('checkout', [OrderController::class, 'storeOrder'])->name('orders.store');
-
+        Route::get('order-noty', [OrderController::class, 'notification'])->name('orders.noty');
     });
 
     Route::get('payment-info', [OrderController::class, 'paymentResult'])->name('orders.payment-info');

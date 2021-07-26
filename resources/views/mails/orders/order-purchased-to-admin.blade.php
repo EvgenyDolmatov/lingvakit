@@ -198,8 +198,13 @@
     <tr>
         <td class="o_bg-white o_px-md o_pt" align="center"
             style="background-color: #ffffff;padding-left: 24px;padding-right: 24px;padding-top: 16px;">
-            <h3 class="o_heading o_text-dark"
-                style="font-family: Helvetica, Arial, sans-serif;font-weight: bold;margin-top: 0px;margin-bottom: 0px;color: #242b3d;font-size: 24px;line-height: 31px;">Заказ №{{$order->id}} оплачен!</h3>
+            <h3 class="o_heading o_text-dark" style="font-family: Helvetica, Arial, sans-serif;font-weight: bold;margin-top: 0px;margin-bottom: 0px;color: #242b3d;font-size: 24px;line-height: 31px;">
+                @if($order->status->title === 'on_holding')
+                    {{ __("site-pages.order-on-holding", ['order' => $order->id]) }}
+                @else
+                    {{ __("site-pages.order-paid", ['order' => $order->id]) }}
+                @endif
+            </h3>
         </td>
     </tr>
     </tbody>

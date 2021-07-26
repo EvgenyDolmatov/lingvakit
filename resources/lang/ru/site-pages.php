@@ -62,4 +62,9 @@ return [
     'apply' => 'Применить',
     'total' => 'Итого',
     'promo-code-error' => 'Промокод не найден или срок его действия истек',
+    'payment-methods' => 'Способы оплаты',
+    'card-payment' => 'Оплата картой',
+    'another-payment' => 'Другой способ оплаты',
+    'order-on-holding' => 'Заказ №:order ожидает оплаты',
+    'order-paid' => 'Заказ №:order успешно оплачен',
 ];
