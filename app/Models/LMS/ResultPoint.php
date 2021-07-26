@@ -38,7 +38,8 @@ class ResultPoint extends Model
                     $total += $conformity->points;
                 }
             }
-
+        } elseif ($question->type === 'attach_file') {
+            $total += 0;
         } else {
             foreach ($question->conformities as $conformity) {
                 if ($conformity->checkAnswer($user)) {
@@ -46,6 +47,16 @@ class ResultPoint extends Model
                 }
             }
         }
+
+        $this->points = $total;
+        $this->save();
+    }
+
+    public function setPointsByTeacher($student, $question)
+    {
+        $result = getResult($student, $question->quiz->topic);
+        $total = $result->getOrCreatePoints($question)->points;
+        $total += $question->conformities()->first()->points;
 
         $this->points = $total;
         $this->save();

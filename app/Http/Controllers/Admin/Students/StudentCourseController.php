@@ -3,8 +3,10 @@
 namespace App\Http\Controllers\Admin\Students;
 
 use App\Http\Controllers\Controller;
+use App\Models\LMS\Conformity;
 use App\Models\LMS\Course;
 use App\Models\LMS\Quiz;
+use App\Models\LMS\ResultAnswer;
 use App\Models\User;
 use Illuminate\Http\Request;
 
@@ -63,6 +65,30 @@ class StudentCourseController extends Controller
     public function giveAccessToCourse(User $student, Course $course)
     {
         $student->courses()->attach($course->id);
+        return back();
+    }
+
+    public function downloadFile(ResultAnswer $file)
+    {
+        $path = public_path('/uploads/'.$file->value);
+        return response()->download($path);
+    }
+
+    public function acceptQuestion(User $student, Quiz $quiz, Conformity $conformity)
+    {
+        $result = getResult($student, $quiz->topic);
+        $resultAnswer = getUserAnswer($result, $conformity);
+        $resultAnswer->update(['is_correct' => 1]);
+
+        $resultPoints = $result->getOrCreatePoints($conformity->question); // Get Result Points
+        $resultPoints->setPointsByTeacher($student, $conformity->question); // Set Result Points Quantity
+
+        $totalScore = $quiz->topic->quiz->getTotalScore($student);
+
+        $result->setTotalPoints();
+        $result->updateStatus($totalScore);
+        $quiz->topic->stage->course->updateProgress($student);
+
         return back();
     }
 }

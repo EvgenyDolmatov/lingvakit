@@ -4,6 +4,8 @@ namespace App\Models\LMS;
 
 use Illuminate\Database\Eloquent\Factories\HasFactory;
 use Illuminate\Database\Eloquent\Model;
+use Illuminate\Support\Facades\Auth;
+use Illuminate\Support\Facades\Storage;
 
 class ResultAnswer extends Model
 {
@@ -11,7 +13,7 @@ class ResultAnswer extends Model
 
     protected $table = 'lms_result_answers';
 
-    protected $fillable = ['result_id', 'question_id', 'conformity_id', 'option_id', 'value', 'is_correct'/*, 'points'*/];
+    protected $fillable = ['result_id', 'question_id', 'conformity_id', 'option_id', 'value', 'is_correct'];
 
     public function result()
     {
@@ -30,21 +32,39 @@ class ResultAnswer extends Model
 
     public static function add($result, $question, $conformity, $option)
     {
-//        $cPoints = $conformity->points;
-//        if ($option->is_correct !== 1) {
-//            $cPoints = 0;
-//        }
-
         $answer = new static();
         $answer->result_id = $result->id;
         $answer->question_id = $question->id;
         $answer->conformity_id = $conformity->id;
         $answer->option_id = $option->id;
         $answer->is_correct = $option->is_correct;
-//        $answer->points = $cPoints;
         $answer->save();
 
         return $answer;
+    }
+
+    public function uploadFile($file, $teacher)
+    {
+        $currentUser = Auth::user();
+        if ($file == null) {return;}
+
+        $ext = $file->extension();
+        $filename = 'student_'.$currentUser->id.'_'.time().'.'.$ext;
+        $path = 'students/teacher-'.$teacher;
+
+        $file->storeAs($path.'/', $filename, 'uploads');
+
+        $this->value = $path.'/'.$filename;
+        $this->save();
+
+    }
+
+    public function removeFile()
+    {
+        if ($this->value != null) {
+            Storage::disk('uploads')->delete($this->value);
+            $this->delete();
+        }
     }
 
     public function getOptionValue($user) : string

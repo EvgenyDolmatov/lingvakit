@@ -3,6 +3,7 @@
 /public/hot
 /public/storage
 /public/uploads/teachers
+/public/uploads/students
 /storage/*.key
 /vendor
 .env

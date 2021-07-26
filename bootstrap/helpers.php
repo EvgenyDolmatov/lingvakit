@@ -150,3 +150,9 @@ function validateInputs($request, $type) : array
 
     return $arr;
 }
+
+function getFileName($filename)
+{
+    $arr = explode('/', $filename);
+    return $arr[count($arr)-1];
+}
