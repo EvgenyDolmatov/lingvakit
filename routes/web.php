@@ -113,6 +113,8 @@ Route::prefix('dashboard')->middleware(['auth', 'locale', 'role:superuser|admin|
     Route::post('media/upload', [MediaFileController::class, 'ajaxStore'])->name('media.store-ajax');
     Route::get('media/{id}/get-data', [MediaFileController::class, 'getAjaxData'])->name('media.ajax.get-data');
 
+    Route::get('files/download/file-{file}', [StudentCourseController::class, 'downloadFile'])->name('files.download');
+
     /* ROLES & PERMISSIONS */
     Route::resource('roles', RoleController::class)->middleware('role:superuser');
     Route::resource('permissions', PermissionController::class)->middleware('role:superuser');
@@ -218,6 +220,8 @@ Route::prefix('dashboard')->middleware(['auth', 'locale', 'role:superuser|admin|
             Route::post('give-course-{course}', [StudentCourseController::class, 'giveAccessToCourse'])->name('students.course.give-access');
             Route::get('course/{course}', [StudentCourseController::class, 'show'])->name('students.course.show');
             Route::get('course/{course}/quiz/{quiz}/answers', [StudentCourseController::class, 'showAnswers'])->name('students.course.answers.show');
+
+            Route::put('quiz-{quiz}/conformity-{conformity}', [StudentCourseController::class, 'acceptQuestion'])->name('students.accept-answer');
         });
     });
 

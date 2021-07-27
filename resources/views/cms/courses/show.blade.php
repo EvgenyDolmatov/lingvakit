@@ -241,9 +241,7 @@
                                             <div class="col-xl-2">
                                                 {{ __("cms-pages.".$topic->name) }}
                                             </div>
-                                            <div class="col-xl-3">
-                                                {{ $topic->lesson->title }}
-                                            </div>
+                                            <div class="col-xl-3">{{ $topic->lesson->title }}</div>
                                             <div class="col-xl-2">
                                                 {{ $topic->lesson->getDuration() }}
                                             </div>
@@ -270,7 +268,9 @@
                                                 {{ __("cms-pages.".$topic->name) }}
                                             </div>
                                             <div class="col-xl-3">
-                                                {{ $topic->quiz->title }}
+                                                <a href="{{route('quizzes.show', [$course->id, $stage->id, $topic->quiz->id])}}">
+                                                    {{ $topic->quiz->title }}
+                                                </a>
                                             </div>
                                             <div class="col-xl-2">
                                                 {{ $topic->quiz->getDuration() }}

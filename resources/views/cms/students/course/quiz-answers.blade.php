@@ -34,8 +34,9 @@
                                 <div class="form-group row d-flex align-items-center mb-5">
                                     <div class="col-lg-12">
                                         <div
-                                            class="widget-header no-actions d-flex align-items-center justify-content-between">
-                                            <h4 class="{{$question->getFontSize()}}">{{$key+1}}. {{$conformity->title}}</h4>
+                                                class="widget-header no-actions d-flex align-items-center justify-content-between">
+                                            <h4 class="{{$question->getFontSize()}}">{{$key+1}}
+                                                . {{$conformity->title}}</h4>
                                         </div>
                                         <div class="widget-body">
                                             <div class="row">
@@ -43,14 +44,16 @@
                                                     @if($conformity->audio)
                                                         <div class="about-infos d-flex mb-3">
                                                             <div class="about-text">
-                                                                <audio src="{{$conformity->getAudio()}}" preload="auto" controls></audio>
+                                                                <audio src="{{$conformity->getAudio()}}" preload="auto"
+                                                                       controls></audio>
                                                             </div>
                                                         </div>
                                                     @endif
                                                     @if($conformity->image)
                                                         <div class="about-infos d-flex mb-5">
                                                             <div class="about-text">
-                                                                <img src="{{$conformity->getImage()}}" width="300" alt="{{ $conformity->title }}">
+                                                                <img src="{{$conformity->getImage()}}" width="300"
+                                                                     alt="{{ $conformity->title }}">
                                                             </div>
                                                         </div>
                                                     @endif
@@ -65,8 +68,8 @@
                                                                        value="{{$option->id}}" disabled
                                                                        @if($option->getUserAnswer($student)) checked @endif>
                                                                 <label
-                                                                    class="{{$question->getFontSize()}} {{$option->getClassByAnswer($student)}}"
-                                                                    for="option_{{$option->id}}">{{$option->value}}</label>
+                                                                        class="{{$question->getFontSize()}} {{$option->getClassByAnswer($student)}}"
+                                                                        for="option_{{$option->id}}">{{$option->value}}</label>
                                                             </div>
                                                         </div>
                                                     </div>
@@ -83,8 +86,9 @@
                                 <div class="form-group row d-flex align-items-center mb-5">
                                     <div class="col-lg-12">
                                         <div
-                                            class="widget-header no-actions d-flex align-items-center justify-content-between">
-                                            <h4 class="{{$question->getFontSize()}}">{{$key+1}}. {{$conformity->title}}</h4>
+                                                class="widget-header no-actions d-flex align-items-center justify-content-between">
+                                            <h4 class="{{$question->getFontSize()}}">{{$key+1}}
+                                                . {{$conformity->title}}</h4>
                                         </div>
                                         <div class="widget-body">
                                             <div class="row">
@@ -144,8 +148,9 @@
                                 <div class="form-group row d-flex align-items-center mb-5">
                                     <div class="col-lg-12">
                                         <div
-                                            class="widget-header no-actions d-flex align-items-center justify-content-between">
-                                            <h4 class="{{$question->getFontSize()}}">{{$key+1}}. {!! $conformity->getSentenceForBugQuiz($student) !!}</h4>
+                                                class="widget-header no-actions d-flex align-items-center justify-content-between">
+                                            <h4 class="{{$question->getFontSize()}}">{{$key+1}}
+                                                . {!! $conformity->getSentenceForBugQuiz($student) !!}</h4>
                                         </div>
                                     </div>
                                 </div>
@@ -157,8 +162,9 @@
                                 <div class="form-group row d-flex align-items-center mb-5">
                                     <div class="col-lg-12">
                                         <div
-                                            class="widget-header no-actions d-flex align-items-center justify-content-between">
-                                            <h4 class="{{$question->getFontSize()}}">{{$key+1}}. {{$conformity->title}}</h4>
+                                                class="widget-header no-actions d-flex align-items-center justify-content-between">
+                                            <h4 class="{{$question->getFontSize()}}">{{$key+1}}
+                                                . {{$conformity->title}}</h4>
                                         </div>
                                         <div class="widget-body">
                                             <div class="row">
@@ -190,11 +196,13 @@
                                     <div class="col-lg-12">
                                         <div class="source-list">
                                             @foreach($conformity->answersByUser($result) as $answer)
-                                                <div class="question-container make-sentence" data-id="{{$answer->id }}">
+                                                <div class="question-container make-sentence"
+                                                     data-id="{{$answer->id }}">
 
                                                     <div class="draggable-field field-word m-3">
 
-                                                        <div class="list-item item-word m-3 {{$answer->getClassByValue()}} {{$question->getFontSize()}}" draggable="true">
+                                                        <div class="list-item item-word m-3 {{$answer->getClassByValue()}} {{$question->getFontSize()}}"
+                                                             draggable="true">
                                                             {{ $answer->getOptionValue($student) }}
                                                         </div>
 
@@ -213,7 +221,7 @@
                                 <div class="form-group row d-flex align-items-center mb-5">
                                     <div class="col-lg-12">
                                         <div
-                                            class="widget-header no-actions d-flex align-items-center justify-content-between">
+                                                class="widget-header no-actions d-flex align-items-center justify-content-between">
                                             <h4 class="{{$question->getFontSize()}}">{{$key+1}}.</h4>
                                         </div>
                                         <input type="text" name="conformity_{{$conformity->id}}"
@@ -229,14 +237,53 @@
                                 <div class="form-group row d-flex align-items-center mb-5">
                                     <div class="col-lg-12">
                                         <div
-                                            class="widget-header no-actions d-flex align-items-center justify-content-between">
-                                            <h4 class="{{$question->getFontSize()}}">{{$key+1}}. {!! $conformity->title !!}</h4>
+                                                class="widget-header no-actions d-flex align-items-center justify-content-between">
+                                            <h4 class="{{$question->getFontSize()}}">{{$key+1}}
+                                                . {!! $conformity->title !!}</h4>
                                         </div>
                                         <div class="row">
                                             <div class="col-xl-4 col-lg-6 col-md-12">
                                                 <input type="text" name="conformity_{{$conformity->id}}"
                                                        class="form-control {{$conformity->getClassByAnswer($student)}} {{$question->getFontSize()}}"
                                                        value="{{$conformity->getAnswerByUser($student)}}">
+                                            </div>
+                                        </div>
+                                    </div>
+                                </div>
+                            @endforeach
+                        @endif
+                        @if($question->type === 'attach_file')
+                            @foreach($question->conformities as $key => $conformity)
+                                <div class="form-group row d-flex align-items-center mb-5">
+                                    <div class="col-lg-12">
+                                        <div class="widget-header no-actions d-flex align-items-center justify-content-between">
+                                            <h4 class="{{$question->getFontSize()}}">
+                                                {{$key+1}}. {!! $conformity->title !!}
+                                            </h4>
+                                        </div>
+                                        <div class="col-12">
+                                            <a href="{{route('files.download', $conformity->answers()->first()->id)}}">
+                                                {{ getFileName($conformity->answers()->first()->value)}}
+                                            </a>
+                                        </div>
+                                        <div class="col-12 mt-3">
+                                            <div class="text-left">
+                                                @if(getUserAnswer($result, $conformity)->is_correct === 1)
+                                                    <button class="btn btn-shadow" disabled>
+                                                        {{ __("cms-pages.accepted") }}
+                                                    </button>
+                                                @else
+                                                    <form style="display: inline-block" method="POST"
+                                                          action="{{route('students.accept-answer', [$student->id, $quiz->id, $conformity->id])}}">
+                                                        @csrf @method('PUT')
+
+                                                        <a href="{{route('students.accept-answer', [$student->id, $quiz->id, $conformity->id])}}"
+                                                           class="btn btn-gradient-01"
+                                                           onclick="event.preventDefault();this.closest('form').submit();">
+                                                            {{ __("cms-pages.accept") }}
+                                                        </a>
+                                                    </form>
+                                                @endif
                                             </div>
                                         </div>
                                     </div>

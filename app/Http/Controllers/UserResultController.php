@@ -29,8 +29,11 @@ class UserResultController extends Controller
             $result->update(['attempt_quantity' => $attempt]);
 
             $currentAnswers = ResultAnswer::where('result_id', $result->id)->get();
+
             foreach ($currentAnswers as $currentAnswer) {
-                $currentAnswer->delete();
+                if ($currentAnswer->question->type !== 'attach_file') {
+                    $currentAnswer->delete();
+                }
             }
         }
         $result->setTime($request->input('started_at'));
@@ -42,7 +45,6 @@ class UserResultController extends Controller
             foreach ($conformityList as $conformity) {
 
                 $inputName = 'conformity_' . $conformity->id;
-
                 /* "Make Sentence" & "Make Text" */
                 if (in_array($question->type, ['make_sentence','make_text'])) {
                     foreach ($conformity->options as $option) {
@@ -75,7 +77,6 @@ class UserResultController extends Controller
                         }
                     }
                 }
-
                 /* Listen and Write */
                 if ($question->type === 'listen_write') {
 
@@ -99,7 +100,24 @@ class UserResultController extends Controller
                         }
                     }
                 }
+                /* Attach File */
+                if ($question->type === 'attach_file') {
+                    $file = $request->file($inputName);
 
+                    if ($file) {
+                        $curAns = getUserAnswer($result, $conformity);
+                        if (getUserAnswer($result, $conformity)) $curAns->removeFile();
+
+                        $resAnswer = ResultAnswer::create([
+                            'result_id' => $result->id,
+                            'question_id' => $question->id,
+                            'conformity_id' => $conformity->id,
+                            'option_id' => $conformity->options()->first()->id,
+                            'is_correct' => 0,
+                        ]);
+                        $resAnswer->uploadFile($file, $course->author->id);
+                    }
+                }
                 /* Short Answer */
                 if ($question->type === 'short_answer') {
 

@@ -12,7 +12,7 @@
 @endsection
 @section('content')
     <form class="form-horizontal" method="POST"
-          action="{{ route('site.store-results', [$course->id, $topic->id, $quiz->id]) }}">
+          action="{{ route('site.store-results', [$course->id, $topic->id, $quiz->id]) }}" enctype="multipart/form-data">
         @csrf
 
         <input type="hidden" name="started_at" value="{{now()}}">
@@ -103,6 +103,10 @@
                             @if($question->type === 'listen_write')
                                 @include('site.course.quiz.question-types.listen-write')
                             @endif
+                                {{-- Question: Attach File --}}
+                                @if($question->type === 'attach_file')
+                                    @include('site.course.quiz.question-types.attach-file')
+                                @endif
                         </div>
                     </div>
                 @endforeach
