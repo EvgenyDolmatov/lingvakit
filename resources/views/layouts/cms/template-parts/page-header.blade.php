@@ -1,6 +1,6 @@
 <div class="row">
     <div class="page-header">
-        <div class="d-flex align-items-center">
+        <div class="d-flex align-items-center flex-wrap">
             <h2 class="page-header-title">@yield('title')</h2>
             <div>
                 @yield('header-tools')

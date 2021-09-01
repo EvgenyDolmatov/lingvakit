@@ -99,7 +99,7 @@
                 </div>
             </div>
         </div>
-        <div class="col-8">
+        <div class="col-xl-8 col-sm-12">
             <div class="widget widget-12 has-shadow">
                 <div class="widget-body">
 
@@ -137,7 +137,7 @@
                 </div>
             </div>
         </div>
-        <div class="col-4">
+        <div class="col-xl-4 col-sm-12">
             <div class="widget widget-12 has-shadow">
                 <div class="widget-body">
                     <div class="about-title mb-3">

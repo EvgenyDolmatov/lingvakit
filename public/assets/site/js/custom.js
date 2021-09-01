@@ -1,6 +1,13 @@
 (function ($) {
     "use strict";
 
+    $(window).on('load', function (){
+        let width = $(this).width();
+        if (width < 768) {
+            $('#toggle-btn').click();
+        }
+    });
+
     /* Active menu in Sidebar */
     function sidebarMenu() {
         $('.side-navbar li a').each(function (){

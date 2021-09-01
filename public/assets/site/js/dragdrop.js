@@ -1,70 +1,71 @@
-$(document).ready(function (){
-    const list_items = $('.list-item');
-    const fields = $('.draggable-field');
 
-    /* Shuffle the Answers */
-    $(".source").each(function (){
-        let parent = $(this)
-        let divs = parent.children();
-        while (divs.length) {
-            parent.append(divs.splice(Math.floor(Math.random() * divs.length), 1)[0]);
-        }
-    });
+"use strict";
 
-    let draggedItem = null;
+let $ = jQuery.noConflict();
 
-    list_items.each(function (){
+window.LK_Draggable = {};
 
-        const item = $(this);
+(function (){
 
-        item.on('dragstart', function (){
-            draggedItem = item;
-            setTimeout(function (){
-                item.css({
-                    'display':'none'
-                });
-            }, 0);
+    LK_Draggable.$window = $(window);
+
+    /**
+     * Get jQuery object
+     * @param {string|jQuery} selector
+     */
+    LK_Draggable.$ = function (selector) {
+        return selector instanceof jQuery ? selector : $(selector);
+    }
+
+    LK_Draggable.moveElem = function (draggable) {
+
+        let activeElem = null;
+
+        draggable.on('click', '.list-item', function (){
+            let elem = $(this);
+            let elements = draggable.find('.list-item');
+
+            if(elem.parent().hasClass('draggable-field')) {
+
+            }
+            elements.css({
+                fontWeight:500
+            });
+            elem.css({
+                fontWeight:900
+            });
+            activeElem = elem;
         });
 
-        item.on('dragend', function (){
-            setTimeout(function (){
-                draggedItem.css({
-                    'display':'block'
+        draggable.on('click', '.draggable-field', function (){
+            let elements = draggable.find('.list-item');
+            let draggableEmpty = true;
+
+            if ($(this).children().length > 0) {
+                draggableEmpty = false;
+            }
+
+            if (activeElem && draggableEmpty) {
+                $(this).append(activeElem);
+                elements.css({
+                    fontWeight:500
                 });
-                draggedItem = null;
-            }, 0)
+                activeElem = null;
+            }
         });
 
-        fields.each(function (){
-            const field = $(this);
-
-            field.on('dragover', function (e){
-                e.preventDefault();
-            });
-
-            field.on('dragenter', function (e){
-                e.preventDefault();
-                $(this).css({
-                    'backgroundColor':'#ffeeda',
-                });
-            });
-
-            field.on('dragleave', function (e){
-                e.preventDefault();
-                $(this).css({
-                    'backgroundColor':'#fffaf4',
-                });
-            });
-
-            field.on('drop', function (){
-                let old = $(this).find('.list-item').detach();
-                $(this).closest('.form-group').find('.source').append(old);
-                $(this).append(draggedItem);
-                $(this).css({
-                    'backgroundColor':'#ffeeda',
-                });
-                $(this).next('input').attr('value', draggedItem.attr('data-option'));
-            });
+        draggable.on('click', '.source', function (){
+            if (activeElem && !activeElem.parent().hasClass('source') ) {
+                $(this).append(activeElem);
+            }
         });
-    });
-});
+    }
+
+    LK_Draggable.init = function () {
+        LK_Draggable.moveElem($('.draggable'));
+    };
+
+    window.onload = function (){
+        LK_Draggable.init();
+    }
+})();

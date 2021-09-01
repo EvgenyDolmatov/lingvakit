@@ -1,4 +1,4 @@
-<div class="form-group row d-flex align-items-center mb-5">
+<div class="draggable form-group row d-flex align-items-center mb-5">
     <div class="col-lg-12">
         <div class="source-list source">
             @foreach($question->conformities as $conformity)

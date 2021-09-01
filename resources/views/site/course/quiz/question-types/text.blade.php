@@ -1,5 +1,5 @@
 @foreach($question->conformities as $key => $conformity)
-    <div class="form-group row d-flex align-items-center mb-5">
+    <div class="draggable form-group row d-flex align-items-center mb-5">
         <div class="col-lg-12">
             <div
                 class="widget-header no-actions d-flex align-items-center justify-content-between">
