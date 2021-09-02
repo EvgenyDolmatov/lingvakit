@@ -19,11 +19,15 @@
                         </div>
                         <div class="infos">
                             <div class="about-infos d-flex flex-column mt-3">
+                                <div class="about-infos">{!! $course->getReleaseDate() !!}</div>
+                            </div>
+                            <div class="about-infos d-flex flex-column mt-3">
                                 <div class="about-infos">{{ __("Teacher: ") . $course->author->getFullName() }}</div>
                             </div>
                             <div class="about-infos d-flex flex-column mt-3">
                                 <div class="about-title"><a
-                                        href="{{ route('site.course-show', $course->id) }}">{{ $course->title }}</a></div>
+                                            href="{{ route('site.course-show', $course->id) }}">{{ $course->title }}</a>
+                                </div>
                             </div>
                             <div class="about-infos d-flex flex-column mt-3">
                                 <div class="about-title">
@@ -31,18 +35,7 @@
                                 </div>
                             </div>
                             <div class="about-infos d-flex flex-column mt-3">
-                                <a class="btn btn-success square"
-                                   href="{{ route('site.course-show', [$course->id]) }}">
-                                    @auth()
-                                        @if($course->students->contains(Auth::user()->id))
-                                            {{ __("site-pages.to-study") }}
-                                        @else
-                                            {{ __("site-pages.more-info") }}
-                                        @endif
-                                    @else
-                                        {{ __("site-pages.more-info") }}
-                                    @endif
-                                </a>
+                                {!! $course->getActiveButton() !!}
                             </div>
                         </div>
                     </div>

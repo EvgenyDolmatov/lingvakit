@@ -371,4 +371,73 @@ class Course extends Model
         $publishDate = Carbon::createFromFormat('d/m/Y', $date)->format('Y-m-d');
         $this->attributes['publish_date'] = $publishDate;
     }
+
+    public function released() : bool
+    {
+        $releaseDate = Carbon::parse(Carbon::createFromFormat('d/m/Y', $this->publish_date)->format('Y-m-d'));
+        if ($releaseDate > today()) {
+            return false;
+        }
+        return true;
+    }
+
+    // Release date display
+    public function getReleaseDate() : string
+    {
+        $class = 'text-danger';
+        if ($this->released()) {
+            $class = 'text-success';
+        }
+        return __('Release Date: ') . '<span class="'.$class.'">'.$this->publish_date.'</span>';
+    }
+
+    // Кнопка оформления заказа
+    public function getActiveButton() : string
+    {
+        $user = Auth::user();
+        $href = route('site.course-show', $this->id);
+
+        if ($this->released()) {
+            $class = 'btn btn-success square';
+        } else {
+            $class = 'btn btn-warning square';
+        }
+
+        if ($user && $this->students->contains($user->id)) {
+            $text = __("site-pages.to-study");
+        } else {
+            if (!$user) {
+                $text = __("site-pages.more-info");
+            } else {
+                if ($this->released()) {
+                    $text = __("site-pages.buy");
+                } else {
+                    $text = __("site-pages.pre-order");
+                }
+            }
+        }
+
+        return '<a href="'.$href.'" class="'.$class.'">'.$text.'</a>';
+    }
+
+    public function getPageActiveButton()
+    {
+        $user = Auth::user();
+        $class = 'btn btn-success';
+        $text = __("site-pages.buy-course");
+
+        if (!$this->released()) {
+            $class = 'btn btn-warning';
+            $text = __("site-pages.pre-order");
+        }
+
+        if (! $user || ! $this->students->contains($user->id)) {
+            $btn = '<div class="text-right">';
+            $btn .= '<a href="'.route('orders.checkout', $this->id).'" class="'.$class.'">';
+            $btn .= $text.'</a></div>';
+
+            return $btn;
+        }
+        return false;
+    }
 }

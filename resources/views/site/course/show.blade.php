@@ -10,7 +10,11 @@
 @section('header-tools')
     @auth
         <div class="page-header-tools">
-            {{$course->getProgress($user)}}
+            @if($course->released())
+                {{$course->getProgress($user)}}
+            @else
+                {!! 'Дата выхода курса: <span class="text-danger">'. $course->publish_date . '</span>'; !!}
+            @endif
         </div>
         @if(!$course->students->contains($user->id))
             @if($course->type === 'free')
@@ -37,7 +41,7 @@
         <div class="col-12">
             <div class="row flex-row">
                 {{-- Course Duration --}}
-                <div class="col-xl-4">
+                <div class="col-xl-4 col-md-12">
                     <div class="widget widget-12 has-shadow">
                         <div class="widget-body">
                             <div class="media">
@@ -52,7 +56,7 @@
                     </div>
                 </div>
                 {{-- Course Price --}}
-                <div class="col-xl-4">
+                <div class="col-xl-4 col-md-12">
                     @if($user && $user->courses->contains($course->id))
                         <div class="widget widget-12 has-shadow">
                             <div class="widget-body">
@@ -62,7 +66,8 @@
                                     </div>
                                     <div class="media-body align-self-center">
                                         <div class="number">Ваш рейтинг: {{$user->getRatingByCourse($course)}}</div>
-                                        <div class="number">Ваши баллы: {{$user->getPoints($course).' / '.$course->getTotalPoints()}}</div>
+                                        <div class="number">Ваши
+                                            баллы: {{$user->getPoints($course).' / '.$course->getTotalPoints()}}</div>
                                     </div>
                                 </div>
                             </div>
@@ -83,7 +88,7 @@
                     @endif
                 </div>
                 {{-- Course Category --}}
-                <div class="col-xl-4">
+                <div class="col-xl-4 col-md-12">
                     <div class="widget widget-12 has-shadow">
                         <div class="widget-body">
                             <div class="media">
@@ -127,13 +132,15 @@
                         </div>
                     @endif
 
-                    @if(!$user || !$course->students->contains($user->id))
+                    {!! $course->getPageActiveButton() !!}
+
+                    {{--@if(!$user || !$course->students->contains($user->id))
                         <div class="text-right">
                             <a href="{{route('orders.checkout', $course->id)}}" class="btn btn-success">
                                 {{ __("site-pages.buy-course") }}
                             </a>
                         </div>
-                    @endif
+                    @endif--}}
                 </div>
             </div>
         </div>

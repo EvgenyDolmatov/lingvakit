@@ -67,4 +67,6 @@ return [
     'another-payment' => 'Другой способ оплаты',
     'order-on-holding' => 'Заказ №:order ожидает оплаты',
     'order-paid' => 'Заказ №:order успешно оплачен',
+    'buy' => 'Купить',
+    'pre-order' => 'Предзаказ',
 ];

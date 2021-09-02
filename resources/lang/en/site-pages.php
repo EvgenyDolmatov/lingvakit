@@ -67,4 +67,6 @@ return [
     'another-payment' => 'Another Payment',
     'order-on-holding' => 'Order #:order awaiting payment',
     'order-paid' => 'Order #:order has been successfully paid',
+    'buy' => 'Buy',
+    'pre-order' => 'Pre-Order',
 ];
