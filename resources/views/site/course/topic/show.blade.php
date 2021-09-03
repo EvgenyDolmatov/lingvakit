@@ -7,45 +7,48 @@
 @section('title', $topic->getTitle())
 @section('header-tools')
     <div class="page-header-tools">
-        @if($topic->lesson && !$result)
-            <form style="display: inline-block" method="POST"
-                  action="{{ route('site.lesson-passed', [$course->id, $topic->id, $lesson->id]) }}">
-                @csrf
+        <div class="dropdown">
+            <button type="button" class="btn btn-primary mr-1 mb-2" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false" class="dropdown-toggle">
+                {{ __("cms-pages.actions") }} ...
+            </button>
+            <div class="dropdown-menu">
+                @if($topic->lesson && !$result)
+                    <form style="display: inline-block" method="POST"
+                          action="{{ route('site.lesson-passed', [$course->id, $topic->id, $lesson->id]) }}">
+                        @csrf
 
-                <a class="btn btn-warning"
-                   href="{{route('site.lesson-passed', [$course->id, $topic->id, $lesson->id])}}"
-                   onclick="event.preventDefault();this.closest('form').submit();">{{ __("site-pages.lesson-passed") }}</a>
-            </form>
-        @endif
+                        <a class="dropdown-item"
+                           href="{{route('site.lesson-passed', [$course->id, $topic->id, $lesson->id])}}"
+                           onclick="event.preventDefault();this.closest('form').submit();">{{ __("site-pages.lesson-passed") }}</a>
+                    </form>
+                @endif
 
-        @if($topic->quiz)
-            @if($quiz->quizPassed($user))
-                <a class="btn btn-warning"
-                   href="{{ route('site.testing', [$course->id, $topic->id, $quiz->id]) }}">{{ __("site-pages.retake-quiz") }}</a>
-                <a class="btn btn-danger"
-                   href="{{route('bug-work.show', [$course->id, $topic->id, $quiz->id])}}">Работа над ошибками</a>
-            @else
-                <a class="btn btn-warning"
-                   href="{{ route('site.testing', [$course->id, $topic->id, $quiz->id]) }}">{{ __("site-pages.start-quiz") }}</a>
-            @endif
-        @endif
+                @if($topic->quiz)
+                    @if($quiz->quizPassed($user))
+                        <a class="dropdown-item"
+                           href="{{ route('site.testing', [$course->id, $topic->id, $quiz->id]) }}">{{ __("site-pages.retake-quiz") }}</a>
+                        <a class="dropdown-item"
+                           href="{{route('bug-work.show', [$course->id, $topic->id, $quiz->id])}}">Работа над ошибками</a>
+                    @else
+                        <a class="dropdown-item"
+                           href="{{ route('site.testing', [$course->id, $topic->id, $quiz->id]) }}">{{ __("site-pages.start-quiz") }}</a>
+                    @endif
+                @endif
 
-
-        <a class="btn btn-shadow"
-           href="{{ route('site.course-show', $course->id) }}">{{ __("site-pages.course-plan") }}</a>
-
-        <div class="btn-group" role="group" aria-label="Buttons Group">
-            @if($previousTopic)
-                <a class="btn btn-previous"
-                   href="{{ route('site.show-topic', [$course->id, $previousTopic->id]) }}">
-                    <i class="la la-arrow-left mr-2"></i>{{__("site-pages.previous-topic")}}
-                </a>
-            @endif
-            @if($nextTopic)
-                <a class="btn btn-next" href="{{ route('site.show-topic', [$course->id, $nextTopic->id]) }}">
-                    {{__("site-pages.next-topic")}}<i class="la la-arrow-right ml-2"></i>
-                </a>
-            @endif
+                    <a class="dropdown-item"
+                       href="{{ route('site.course-show', $course->id) }}">{{ __("site-pages.course-plan") }}</a>
+                    @if($previousTopic)
+                        <a class="dropdown-item"
+                           href="{{ route('site.show-topic', [$course->id, $previousTopic->id]) }}">
+                            {{__("site-pages.previous-topic")}}
+                        </a>
+                    @endif
+                    @if($nextTopic)
+                        <a class="dropdown-item" href="{{ route('site.show-topic', [$course->id, $nextTopic->id]) }}">
+                            {{__("site-pages.next-topic")}}
+                        </a>
+                    @endif
+            </div>
         </div>
     </div>
 @endsection

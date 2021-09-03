@@ -23,17 +23,19 @@
                 @endif
             </div>
 
-            <ul class="nav-menu-list d-flex">
-                <li class="nav-menu-item ml-3 mr-3">
-                    <a href="{{route('site.index')}}">{{__("site-pages.home")}}</a>
-                </li>
-                <li class="nav-menu-item ml-3 mr-3">
-                    <a href="{{route('site.about-us')}}">{{__("site-pages.about-us")}}</a>
-                </li>
-                <li class="nav-menu-item ml-3 mr-3">
-                    <a href="{{route('site.contacts')}}">{{__("site-pages.contacts")}}</a>
-                </li>
-            </ul>
+            <div class="main-menu">
+                <ul class="nav-menu-list d-flex">
+                    <li class="nav-menu-item ml-3 mr-3">
+                        <a href="{{route('site.index')}}">{{__("site-pages.home")}}</a>
+                    </li>
+                    <li class="nav-menu-item ml-3 mr-3">
+                        <a href="{{route('site.about-us')}}">{{__("site-pages.about-us")}}</a>
+                    </li>
+                    <li class="nav-menu-item ml-3 mr-3">
+                        <a href="{{route('site.contacts')}}">{{__("site-pages.contacts")}}</a>
+                    </li>
+                </ul>
+            </div>
 
             <!-- Begin Navbar Menu -->
             <ul class="nav-menu list-unstyled d-flex flex-md-row align-items-md-center pull-right">

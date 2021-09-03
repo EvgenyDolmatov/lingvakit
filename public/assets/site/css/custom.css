@@ -38,12 +38,12 @@
 }
 .tile-image-container {
     position: relative;
-    height: 300px;
-    overflow-y: hidden;
+    height: 200px;
 }
 .tile-image-container img {
-    display: block;
+    object-fit: cover;
     width: 100%;
+    height: 100%;
 }
 
 .image-remove {
@@ -55,6 +55,10 @@
     width: 14px;
     height: 14px;
     cursor: pointer;
+}
+
+.about-infos .about-title {
+    min-height: 40px;
 }
 
 .about-image img {
@@ -181,4 +185,13 @@ input.short_word {
 }
 .about-icon.other-file {
     background: url("../img/icons/file.svg") center;
+}
+
+@media (max-width: 470px) {
+    .navbar-holder .main-menu {
+        display: none;
+    }
+    .page-header .page-header-title {
+        margin-bottom: 20px;
+    }
 }
