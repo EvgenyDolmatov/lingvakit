@@ -89,4 +89,9 @@ class UserTopicController extends Controller
 
         return redirect()->route('site.course-show', $course->id);
     }
+
+    public function leaveComment(Request $request, Course $course, Topic $topic, Quiz $quiz)
+    {
+        //
+    }
 }

@@ -77,6 +77,7 @@ Route::middleware(['auth', 'locale', 'verified'])->group(function (){
             /* Quizzes */
             Route::prefix('quiz-{quiz}')->group(function (){
 //                Route::get('/', [UserTopicController::class, 'showQuiz'])->name('site.quiz-show');
+                Route::post('leave-comment', [UserTopicController::class, 'leaveComment'])->name('site.quiz.leave-comment');
                 Route::get('testing', [UserTopicController::class, 'testing'])->name('site.testing');
                 Route::post('result', [UserResultController::class, 'store'])->name('site.store-results');
                 /* Work on Bugs */

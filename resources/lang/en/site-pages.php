@@ -69,4 +69,6 @@ return [
     'order-paid' => 'Order #:order has been successfully paid',
     'buy' => 'Buy',
     'pre-order' => 'Pre-Order',
+    'comment' => 'Comment',
+    'leave-comment' => 'Leave Comment',
 ];

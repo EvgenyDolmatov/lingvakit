@@ -113,13 +113,51 @@
             </div>
             <div class="col-12">
                 <div class="form-group text-right mb-5">
-                    <button class="btn btn-success" type="submit"
+                    <button type="button" class="btn btn-dark mb-2 mr-2 ml-2" data-toggle="modal" data-target="#modal-comment">
+                        {{ __("site-pages.leave-comment") }}
+                    </button>
+                    <button class="btn btn-success mb-2 mr-2 ml-2" type="submit"
                             href="{{ route('site.testing', [$course->id, $topic->id, $quiz->id]) }}">{{ __("site-pages.end-quiz") }}</button>
                 </div>
             </div>
         </div>
     </form>
 @endsection
+
+@section('modal')
+    <form id="leave-comment" class="form-horizontal" method="POST" action="###">
+        @csrf
+
+        <div id="modal-comment" class="modal fade">
+            <div class="modal-dialog modal-dialog-centered">
+                <div class="modal-content">
+                    <div class="modal-header">
+                        <h4 class="modal-title">{{__("site-pages.leave-comment")}}</h4>
+                        <button type="button" class="close" data-dismiss="modal">
+                            <span aria-hidden="true">×</span>
+                            <span class="sr-only">close</span>
+                        </button>
+                    </div>
+                    <div class="modal-body">
+                        {{-- Stage Name --}}
+                        <div class="form-group">
+                            <div class="col-12 mb-3">
+                                <label class="form-control-label">
+                                    {{ __("site-pages.comment") }}<span class="text-danger ml-2">*</span>
+                                </label>
+                                <textarea name="comment" rows="2" class="form-control"></textarea>
+                            </div>
+                        </div>
+                    </div>
+                    <div class="modal-footer">
+                        <button class="btn btn-gradient-01" type="submit">{{ __("site-pages.send") }}</button>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </form>
+@endsection
+
 @section('page-scripts')
     <script src="{{asset('assets/site/vendors/js/chart/chart.min.js')}}"></script>
     <script src="{{asset('assets/site/vendors/js/progress/circle-progress.min.js')}}"></script>
