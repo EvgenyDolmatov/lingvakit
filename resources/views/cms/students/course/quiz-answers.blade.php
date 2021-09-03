@@ -19,6 +19,20 @@
     <div class="row flex-row">
         <div class="col-xl-12 col-md-6 col-sm-6">
 
+            @if($comments)
+                <div class="widget widget-12 has-shadow">
+                    <div class="widget-header bordered no-actions d-flex align-items-center justify-content-between">
+                        <h3>{{ __('cms-pages.messages-from-student') }}</h3>
+                    </div>
+
+                    <div class="widget-body">
+                        @foreach($comments as $key => $comment)
+                            <p class="text-danger">{{ $comment->message }}</p>
+                        @endforeach
+                    </div>
+                </div>
+            @endif
+
             @foreach($quiz->questions as $key => $question)
                 {{-- Work on Bugs --}}
                 <div class="widget widget-12 has-shadow">

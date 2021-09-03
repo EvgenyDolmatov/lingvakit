@@ -125,7 +125,8 @@
 @endsection
 
 @section('modal')
-    <form id="leave-comment" class="form-horizontal" method="POST" action="###">
+    <form id="leave-comment" class="form-horizontal" method="POST"
+          action="{{route('site.quiz.leave-comment', [$course->id, $topic->id, $quiz->id])}}">
         @csrf
 
         <div id="modal-comment" class="modal fade">
@@ -140,17 +141,18 @@
                     </div>
                     <div class="modal-body">
                         {{-- Stage Name --}}
+                        <div id="comment-result"></div>
                         <div class="form-group">
                             <div class="col-12 mb-3">
                                 <label class="form-control-label">
                                     {{ __("site-pages.comment") }}<span class="text-danger ml-2">*</span>
                                 </label>
-                                <textarea name="comment" rows="2" class="form-control"></textarea>
+                                <textarea name="message" rows="2" class="form-control"></textarea>
                             </div>
                         </div>
                     </div>
                     <div class="modal-footer">
-                        <button class="btn btn-gradient-01" type="submit">{{ __("site-pages.send") }}</button>
+                        <button class="btn btn-primary" type="submit">{{ __("site-pages.send") }}</button>
                     </div>
                 </div>
             </div>
@@ -168,4 +170,5 @@
     <script src="{{asset('assets/site/js/dragdrop.js')}}"></script>
     <script src="{{asset('assets/site/js/countdown.js')}}"></script>
     <script src="{{asset('assets/cms/js/youtube.min.js')}}"></script>
+    <script src="{{asset('assets/site/js/ajax.js')}}"></script>
 @endsection

@@ -9,6 +9,7 @@ use App\Models\LMS\Question;
 use App\Models\LMS\Quiz;
 use App\Models\LMS\Result;
 use App\Models\LMS\Topic;
+use App\Models\LMS\TopicComment;
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Auth;
 
@@ -92,6 +93,14 @@ class UserTopicController extends Controller
 
     public function leaveComment(Request $request, Course $course, Topic $topic, Quiz $quiz)
     {
-        //
+        TopicComment::create([
+            'user_id' => Auth::user()->id,
+            'topic_id' => $topic->id,
+            'message' => $request->message
+        ]);
+
+        return response()->json([
+            'success' => __('Message has been sent.'),
+        ]);
     }
 }

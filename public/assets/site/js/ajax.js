@@ -60,4 +60,36 @@
         totalCost.html(totalCost.attr('data-price') + ' ₽');
     });
 
+
+    // Отправка комментария со страницы теста
+    $('#leave-comment').submit(function (e){
+        e.preventDefault();
+
+        let formData = new FormData(document.getElementById("leave-comment"));
+
+        let resultBlock = $('#comment-result');
+
+        $.ajax({
+            url: $('#leave-comment').attr('action'),
+            headers: {'X-CSRF-TOKEN': $('meta[name="csrf-token"]').attr('content')},
+            method: 'POST',
+            cache:false,
+            contentType: false,
+            processData: false,
+            data: formData,
+            success: function (res) {
+                resultBlock.html(res['success']);
+                setTimeout(function (){
+                    resultBlock.html('');
+                }, 2000);
+            },
+            error: function (res) {
+                resultBlock.html('При отправке сообщения произошла неизвестная ошибка.');
+                setTimeout(function (){
+                    resultBlock.html('');
+                }, 2000);
+            }
+        });
+    });
+
 })(jQuery)

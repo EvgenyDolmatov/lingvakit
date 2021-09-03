@@ -7,6 +7,7 @@ use App\Models\LMS\Conformity;
 use App\Models\LMS\Course;
 use App\Models\LMS\Quiz;
 use App\Models\LMS\ResultAnswer;
+use App\Models\LMS\TopicComment;
 use App\Models\User;
 use Illuminate\Http\Request;
 
@@ -46,11 +47,17 @@ class StudentCourseController extends Controller
 
     public function showAnswers(User $student, Course $course, Quiz $quiz)
     {
+        $comments = TopicComment::where(
+            ['user_id' => $student->id],
+            ['topic_id' => $quiz->topic->id],
+        )->get();
+
         return view('cms.students.course.quiz-answers', [
             'student' => $student,
             'course' => $course,
             'quiz' => $quiz,
-            'result' => getResult($student, $quiz->topic)
+            'result' => getResult($student, $quiz->topic),
+            'comments' => $comments
         ]);
     }
 

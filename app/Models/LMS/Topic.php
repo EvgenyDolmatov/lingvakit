@@ -29,6 +29,11 @@ class Topic extends Model
         return $this->hasOne(Quiz::class);
     }
 
+    public function comments()
+    {
+        return $this->hasMany(TopicComment::class);
+    }
+
     public function getTitle() : string
     {
         $title = false;

@@ -4,6 +4,7 @@ namespace App\Models;
 
 use App\Models\LMS\Course;
 use App\Models\LMS\Result;
+use App\Models\LMS\TopicComment;
 use App\Notifications\CustomResetPasswordNotification;
 use App\Notifications\CustomVerificationEmail;
 use Illuminate\Contracts\Auth\MustVerifyEmail;
@@ -90,6 +91,11 @@ class User extends Authenticatable implements MustVerifyEmail
     public function results()
     {
         return $this->belongsTo(Result::class, 'user_id');
+    }
+
+    public function comments()
+    {
+        return $this->hasMany(TopicComment::class);
     }
 
     public static function add($fields) {

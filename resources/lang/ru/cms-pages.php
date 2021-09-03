@@ -426,6 +426,7 @@ return [
     'students-list' => 'Список студентов',
     'change-students-list' => 'Изменить список студентов',
     'make-as-teacher' => 'Назначить преподавателем',
+    'messages-from-student' => 'Сообщения студента',
 
     // Teachers
     'teacher' => 'Преподаватель',

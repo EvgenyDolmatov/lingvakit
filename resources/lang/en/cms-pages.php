@@ -433,6 +433,7 @@ return [
     'students-list' => 'Students List',
     'change-students-list' => 'Change Students List',
     'make-as-teacher' => 'Make as Teacher',
+    'messages-from-student' => 'Messages from Student',
 
     // Teachers
     'teacher' => 'Teacher',
