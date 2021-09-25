@@ -9,7 +9,7 @@
                     <a class="nav-link" href="{{route('site.privacy-policy')}}">{{ __("site-pages.privacy-policy") }}</a>
                 </li>
                 <li class="nav-item">
-                    <a class="nav-link" target="_blank" href="{{asset('documents/offer_agreement_lingvakit.pdf')}}">
+                    <a class="nav-link" target="_blank" href="{{asset('documents/license_agreement_lingvakit.pdf')}}">
                         {{ __("site-pages.license-agreement") }}
                     </a>
                 </li>
