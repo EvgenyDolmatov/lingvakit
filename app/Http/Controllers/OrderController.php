@@ -201,42 +201,6 @@ class OrderController extends Controller
             /* прикрепляем курс к студенту */
             $user->courses()->attach($course->id);
 
-            /* Создаем запрос на отправку чека в облачную кассу */
-            /*$client->createReceipt(
-                array(
-                    'customer' => array(
-                        'full_name' => $user->getFullName(),
-                        'email' => $user->email,
-                    ),
-                    'payment_id' => $paymentId,
-                    'type' => 'payment',
-                    'send' => true,
-                    'items' => array(
-                        array(
-                            'description' => 'Курс по иностранному языку',
-                            'quantity' => '1.000',
-                            'amount' => array(
-                                'value' => $paymentAmount,
-                                'currency' => 'RUB',
-                            ),
-                            'vat_code' => 1,
-                            'payment_mode' => 'full_payment',
-                            'payment_subject' => 'commodity',
-                            'country_of_origin_code' => 'RU',
-                        ),
-                    ),
-                    'settlements' => array(
-                        array(
-                            'type' => 'prepayment',
-                            'amount' => array(
-                                'value' => $paymentAmount,
-                                'currency' => 'RUB',
-                            )
-                        ),
-                    ),
-                ),
-                uniqid('', true)
-            );*/
             /* Отправляем e-mail студенту */
             Mail::to($user->email)->send(new OrderPurchased($course, $order));
 
