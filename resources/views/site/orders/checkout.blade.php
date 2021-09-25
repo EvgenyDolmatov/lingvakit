@@ -94,6 +94,9 @@
                                 </span>
                                     <input id="phone" type="text" name="phone" class="form-control"
                                            value="{{$user->phone}}">
+                                    @error('phone')
+                                    <div class="invalid-feedback">{{ $message }}</div>
+                                    @enderror
                                 </div>
                             </div>
                             {{-- Customer Email --}}
@@ -104,6 +107,9 @@
                                     <i class="la la-at"></i>
                                 </span>
                                     <input type="email" name="email" class="form-control" value="{{$user->email}}">
+                                    @error('email')
+                                    <div class="invalid-feedback">{{ $message }}</div>
+                                    @enderror
                                 </div>
                             </div>
                         </div>
@@ -135,7 +141,8 @@
                                            placeholder="{{__("site-pages.promo-code-placeholder")}}">
                                     <input type="hidden" name="promocode_applied">
                                 </div>
-                                <small id="promo-error" class="text-danger hide">{{__("site-pages.promo-code-error")}}</small>
+                                <small id="promo-error"
+                                       class="text-danger hide">{{__("site-pages.promo-code-error")}}</small>
 
                                 <div id="promo-btn-container" class="text-right mt-3">
                                     <button id="apply-btn" type="button" class="btn square btn-sm btn-dark">
@@ -158,7 +165,8 @@
                             <div class="col-12">
                                 <div class="text-right d-flex align-items-center justify-content-end">
                                     <h2>{{ __("site-pages.total") }}:</h2>
-                                    <h2 id="total-cost" class="text-primary" data-price="{{$course->price}}" style="width:100px">{!! $course->getPrice() !!}</h2>
+                                    <h2 id="total-cost" class="text-primary" data-price="{{$course->price}}"
+                                        style="width:100px">{!! $course->getPrice() !!}</h2>
                                 </div>
                             </div>
                         </div>
@@ -173,13 +181,15 @@
                                     <div class="col-12">
                                         <div class="mb-3">
                                             <div class="styled-radio">
-                                                <input type="radio" name="payment_method" id="card_payment" value="card_payment" checked>
+                                                <input type="radio" name="payment_method" id="card_payment"
+                                                       value="card_payment" checked>
                                                 <label for="card_payment">{{ __("site-pages.card-payment") }}</label>
                                             </div>
                                         </div>
                                         <div class="mb-3">
                                             <div class="styled-radio">
-                                                <input type="radio" name="payment_method" id="another_payment" value="another_payment">
+                                                <input type="radio" name="payment_method" id="another_payment"
+                                                       value="another_payment">
                                                 <label for="another_payment">{{ __("site-pages.another-payment") }}</label>
                                             </div>
                                         </div>

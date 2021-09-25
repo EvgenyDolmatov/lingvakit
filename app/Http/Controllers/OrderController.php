@@ -32,6 +32,13 @@ class OrderController extends Controller
 
     public function storeOrder(Request $request, Course $course)
     {
+        $request->validate([
+            'name' => 'required|max:255',
+            'surname' => 'required|max:255',
+            'phone' => 'required',
+            'email' => 'required|email',
+        ]);
+
         $user = Auth::user();
         $order = false;
         $userOrders = Order::where('user_id', $user->id)->get();
