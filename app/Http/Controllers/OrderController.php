@@ -202,7 +202,7 @@ class OrderController extends Controller
             $user->courses()->attach($course->id);
 
             /* Создаем запрос на отправку чека в облачную кассу */
-            $client->createReceipt(
+            /*$client->createReceipt(
                 array(
                     'customer' => array(
                         'full_name' => $user->getFullName(),
@@ -236,7 +236,7 @@ class OrderController extends Controller
                     ),
                 ),
                 uniqid('', true)
-            );
+            );*/
             /* Отправляем e-mail студенту */
             Mail::to($user->email)->send(new OrderPurchased($course, $order));
 
