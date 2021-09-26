@@ -94,6 +94,7 @@ class Lesson extends Model
         foreach ($files as $file) {
             $file->remove();
         }
+        Topic::find($this->topic_id)->delete();
         $this->topic()->delete();
         $this->delete();
     }

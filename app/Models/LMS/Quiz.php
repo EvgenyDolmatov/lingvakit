@@ -108,6 +108,7 @@ class Quiz extends Model
 
     public function remove()
     {
+        Topic::find($this->topic_id)->delete();
         $this->delete();
     }
 
