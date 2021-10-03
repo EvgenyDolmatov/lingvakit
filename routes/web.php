@@ -24,6 +24,7 @@ use App\Http\Controllers\CKEditorController;
 use App\Http\Controllers\OrderController;
 use App\Http\Controllers\SettingController;
 use App\Http\Controllers\SiteController;
+use App\Http\Controllers\System\RepairController;
 use App\Http\Controllers\UserController;
 use App\Http\Controllers\UserResultController;
 use App\Http\Controllers\UserTopicController;
@@ -264,3 +265,8 @@ Route::middleware(['guest'])->group(function (){
 /* Update all index_number for each entry */
 /*Route::get('topics/set-numbers', [SuperuserController::class, 'setNumbersForTopics'])
     ->name('superuser.set-numbers-for-topics');*/
+
+// Delete non-existent topics
+Route::prefix('repair')->middleware(['role:superuser'])->group(function (){
+    Route::get('delete-topics', [RepairController::class, 'fixTopicsDatabase'])->name('repair.delete-topics');
+});
