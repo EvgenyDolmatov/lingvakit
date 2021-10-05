@@ -7,7 +7,7 @@
             </div>
 
             <div class="source-list source">
-                @foreach($conformity->options as $option)
+                @foreach($conformity->options->shuffle() as $option)
                     <div class="list-item item-word m-3 {{$question->getFontSize()}}" draggable="true"
                          data-option="{{$option->id}}">
                         {{ $option->value }}
