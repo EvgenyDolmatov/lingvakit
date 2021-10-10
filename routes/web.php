@@ -151,7 +151,8 @@ Route::prefix('dashboard')->middleware(['auth', 'locale', 'role:superuser|admin|
             Route::resource('lessons', LessonController::class);
             Route::prefix('lessons/{lesson}')->group(function (){
                 /* Remove Lesson Media Files */
-                Route::put('audio-remove', [LessonController::class, 'removeAudio'])->name('lessons.audio.remove');
+//                Route::put('audio-remove', [LessonController::class, 'removeAudio'])->name('lessons.audio.remove');
+                Route::delete('audio-remove/{audio}', [LessonController::class, 'removeAudio'])->name('lessons.audio.remove');
                 Route::put('image-remove', [LessonController::class, 'removeImage'])->name('lessons.image.remove');
                 Route::put('video-remove', [LessonController::class, 'removeVideo'])->name('lessons.video.remove');
                 Route::put('file-remove/{file}', [LessonController::class, 'removeFile'])->name('lessons.file.remove');
