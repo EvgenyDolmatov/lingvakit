@@ -215,8 +215,11 @@ class Conformity extends Model
             $plug = ConformityOption::where([
                 ['conformity_id', $this->id],
                 ['is_correct', 1],
-            ])->first()->value;
-            array_splice($words, ($this->word_number - 1), 0, $plug);
+            ])->first();
+
+            if ($plug) {
+                array_splice($words, ($this->word_number - 1), 0, $plug->value);
+            }
 
             $countOptions = count($this->options);
             $select = '';
@@ -338,7 +341,14 @@ class Conformity extends Model
         $words = $this->getSentenceWords();
         $answer = $this->answers()->first();
 
-        $option = ConformityOption::find($answer->option_id);
+        $answer ?
+            $option = ConformityOption::find($answer->option_id) :
+            $option = false;
+
+//        $option = false;
+        /*if ($answer) {
+            $option = ConformityOption::find($answer->option_id);
+        }*/
 
         if ($option) {
             $plug = ConformityOption::find($answer->option_id)->value;
