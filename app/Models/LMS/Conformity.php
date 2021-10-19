@@ -329,9 +329,14 @@ class Conformity extends Model
             ['conformity_id', $this->id],
         ])->first();
 
-        if ($answer && $option->id === $answer->option_id) {
-            return true;
+        if ($answer && $option)  {
+            if ( $option->id === $answer->option_id ) {
+                return true;
+            }
         }
+/*        if (($answer && $option) && $option->id === $answer->option_id) {
+            return true;
+        }*/
         return false;
     }
 
