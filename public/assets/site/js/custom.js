@@ -5,6 +5,13 @@
         let width = $(this).width();
         if (width < 768) {
             $('#toggle-btn').click();
+
+            /* Player's Container Width */
+            $('#player').attr('width', "100%");
+            $('.about-text img').css({
+                width: '100%',
+                height: 'auto',
+            });
         }
     });
 
