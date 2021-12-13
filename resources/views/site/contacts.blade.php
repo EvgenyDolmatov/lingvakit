@@ -28,7 +28,7 @@
                                     </div>
                                     <div class="media-body align-self-center">
                                         <div class="title">Телефон</div>
-                                        <div class="number">+7 (993) 201-64-40</div>
+                                        <div class="number"><a href="tel:+79856483542"></a>+7 (985) 648-35-42</div>
                                     </div>
                                 </div>
                             </div>
