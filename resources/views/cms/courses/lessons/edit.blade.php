@@ -67,8 +67,34 @@
                                 </button>
                             </div>
                         </div>
-                        {{-- Lesson Audio --}}
+                        {{-- Question Audios[] --}}
                         <div class="form-group row d-flex align-items-center mb-5">
+                            <label class="col-lg-3 form-control-label">{{ __("cms-pages.audio") }}</label>
+                            <div class="col-lg-9">
+                                <div class="form-group preview">
+                                    @if($lesson->audios)
+                                        @foreach($lesson->audios as $audio)
+                                            <div class="current-item mb-2">
+                                                <audio src="{{$audio->getAudio()}}" controls></audio>
+                                                <div class="small file-remove" data-method="DELETE"
+                                                     data-delete="{{route('lessons.audio.remove', [$course->id, $stage->id, $lesson->id, $audio->id])}}">
+                                                    {{ __("cms-pages.remove") }}
+                                                </div>
+                                                <input type="hidden" name="question_audios[]" value="{{ $audio->audio }}">
+                                            </div>
+                                        @endforeach
+                                    @endif
+                                </div>
+                                <button type="button" class="btn btn-primary square mr-1 mb-2 btn-attach"
+                                        data-type="audio" data-var="question_audio" data-toggle="modal"
+                                        data-target="#modal-files">
+                                    {{__("cms-pages.choose")}}
+                                </button>
+                            </div>
+                        </div>
+
+                        {{-- Lesson Audio --}}
+                        {{--<div class="form-group row d-flex align-items-center mb-5">
                             <label class="col-lg-3 form-control-label">{{ __("cms-pages.audio") }}</label>
                             <div class="col-lg-9">
                                 <div class="form-group preview">
@@ -89,7 +115,7 @@
                                     {{__("cms-pages.choose")}}
                                 </button>
                             </div>
-                        </div>
+                        </div>--}}
                         {{-- Lesson Video --}}
                         <div class="form-group row d-flex align-items-center mb-5">
                             <label class="col-lg-3 form-control-label">{{ __("cms-pages.video") }}</label>

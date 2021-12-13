@@ -50,6 +50,7 @@ window.LK_Draggable = {};
                 elements.css({
                     fontWeight:500
                 });
+                $(this).next('input').val(activeElem.attr('data-option'));
                 activeElem = null;
             }
         });

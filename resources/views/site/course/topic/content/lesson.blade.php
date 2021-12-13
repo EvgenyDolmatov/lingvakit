@@ -8,6 +8,14 @@
             </div>
         @endif
 
+        @if($lesson->audios)
+            @foreach($lesson->audios as $audio)
+                <div class="about-infos d-flex flex-column mb-3">
+                    <audio src="{{$audio->getAudio()}}" controls></audio>
+                </div>
+            @endforeach
+        @endif
+
         <div class="about-infos d-flex flex-column mt-3">
             <div class="about-text">
                 {!! $lesson->description !!}

@@ -130,8 +130,7 @@ class Conformity extends Model
         } // Single Choice, Multiple Choice, Logic Choice, Fill in the gaps
         elseif ($questionType === 'attach_file') {
             ConformityOption::add('teacher_decision', $this, 1);
-        }
-        else {
+        } else {
             $optionInputs = $request->input('question_option');
             foreach ($optionInputs as $key => $input) {
                 if ($input) {
@@ -216,8 +215,11 @@ class Conformity extends Model
             $plug = ConformityOption::where([
                 ['conformity_id', $this->id],
                 ['is_correct', 1],
-            ])->first()->value;
-            array_splice($words, ($this->word_number - 1), 0, $plug);
+            ])->first();
+
+            if ($plug) {
+                array_splice($words, ($this->word_number - 1), 0, $plug->value);
+            }
 
             $countOptions = count($this->options);
             $select = '';
@@ -327,9 +329,14 @@ class Conformity extends Model
             ['conformity_id', $this->id],
         ])->first();
 
-        if ($answer && $option->id === $answer->option_id) {
-            return true;
+        if ($answer && $option)  {
+            if ( $option->id === $answer->option_id ) {
+                return true;
+            }
         }
+/*        if (($answer && $option) && $option->id === $answer->option_id) {
+            return true;
+        }*/
         return false;
     }
 
@@ -339,7 +346,14 @@ class Conformity extends Model
         $words = $this->getSentenceWords();
         $answer = $this->answers()->first();
 
-        $option = ConformityOption::find($answer->option_id);
+        $answer ?
+            $option = ConformityOption::find($answer->option_id) :
+            $option = false;
+
+//        $option = false;
+        /*if ($answer) {
+            $option = ConformityOption::find($answer->option_id);
+        }*/
 
         if ($option) {
             $plug = ConformityOption::find($answer->option_id)->value;

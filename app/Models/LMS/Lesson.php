@@ -25,6 +25,11 @@ class Lesson extends Model
         return $this->hasOne(MediaFile::class, 'id', 'audio');
     }
 
+    public function audios()
+    {
+        return $this->hasMany(LessonAudio::class, 'lesson_id');
+    }
+
     public function image()
     {
         return $this->hasOne(MediaFile::class, 'id', 'image');
@@ -94,6 +99,10 @@ class Lesson extends Model
         foreach ($files as $file) {
             $file->remove();
         }
+        foreach ($this->audios as $audio) {
+            $audio->remove();
+        }
+        Topic::find($this->topic_id)->delete();
         $this->topic()->delete();
         $this->delete();
     }

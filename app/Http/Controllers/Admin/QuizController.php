@@ -48,7 +48,9 @@ class QuizController extends Controller
         }
 
         $passed_topics = $request->input('passed_topics');
-        $passed_topics = implode(',', $passed_topics);
+        if ($passed_topics) {
+            $passed_topics = implode(',', $passed_topics);
+        }
 
         $topic = Topic::create([
             'name' => 'quiz',

@@ -24,6 +24,7 @@ use App\Http\Controllers\CKEditorController;
 use App\Http\Controllers\OrderController;
 use App\Http\Controllers\SettingController;
 use App\Http\Controllers\SiteController;
+use App\Http\Controllers\System\RepairController;
 use App\Http\Controllers\UserController;
 use App\Http\Controllers\UserResultController;
 use App\Http\Controllers\UserTopicController;
@@ -150,7 +151,8 @@ Route::prefix('dashboard')->middleware(['auth', 'locale', 'role:superuser|admin|
             Route::resource('lessons', LessonController::class);
             Route::prefix('lessons/{lesson}')->group(function (){
                 /* Remove Lesson Media Files */
-                Route::put('audio-remove', [LessonController::class, 'removeAudio'])->name('lessons.audio.remove');
+//                Route::put('audio-remove', [LessonController::class, 'removeAudio'])->name('lessons.audio.remove');
+                Route::delete('audio-remove/{audio}', [LessonController::class, 'removeAudio'])->name('lessons.audio.remove');
                 Route::put('image-remove', [LessonController::class, 'removeImage'])->name('lessons.image.remove');
                 Route::put('video-remove', [LessonController::class, 'removeVideo'])->name('lessons.video.remove');
                 Route::put('file-remove/{file}', [LessonController::class, 'removeFile'])->name('lessons.file.remove');
@@ -264,3 +266,8 @@ Route::middleware(['guest'])->group(function (){
 /* Update all index_number for each entry */
 /*Route::get('topics/set-numbers', [SuperuserController::class, 'setNumbersForTopics'])
     ->name('superuser.set-numbers-for-topics');*/
+
+// Delete non-existent topics
+Route::prefix('repair')->middleware(['role:superuser'])->group(function (){
+    Route::get('delete-topics', [RepairController::class, 'fixTopicsDatabase'])->name('repair.delete-topics');
+});

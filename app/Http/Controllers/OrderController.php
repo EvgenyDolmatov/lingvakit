@@ -32,6 +32,13 @@ class OrderController extends Controller
 
     public function storeOrder(Request $request, Course $course)
     {
+        $request->validate([
+            'name' => 'required|max:255',
+            'surname' => 'required|max:255',
+            'phone' => 'required',
+            'email' => 'required|email',
+        ]);
+
         $user = Auth::user();
         $order = false;
         $userOrders = Order::where('user_id', $user->id)->get();
@@ -81,7 +88,7 @@ class OrderController extends Controller
         if ($paymentMethod === 'card_payment') {
 
             $client = new Client();
-            $client->setAuth('751820', 'live_HKrA7o2lyLTqCkYQ4QNeF7qnrMAlubiijnZafBbCNKw');
+            $client->setAuth('787166', 'live_Uyu4knE3SJx0J-pV3KJCx7GK6De2ifnDrJggTtow1aE');
 
             $response = $client->createPayment(
                 array(
@@ -155,7 +162,7 @@ class OrderController extends Controller
     public function paymentResult()
     {
         $client = new Client();
-        $client->setAuth('751820', 'live_HKrA7o2lyLTqCkYQ4QNeF7qnrMAlubiijnZafBbCNKw');
+        $client->setAuth('787166', 'live_Uyu4knE3SJx0J-pV3KJCx7GK6De2ifnDrJggTtow1aE');
 
         $user = Auth::user();
         $order = $user->getLastOrder();
@@ -194,42 +201,6 @@ class OrderController extends Controller
             /* прикрепляем курс к студенту */
             $user->courses()->attach($course->id);
 
-            /* Создаем запрос на отправку чека в облачную кассу */
-            $client->createReceipt(
-                array(
-                    'customer' => array(
-                        'full_name' => $user->getFullName(),
-                        'email' => $user->email,
-                    ),
-                    'payment_id' => $paymentId,
-                    'type' => 'payment',
-                    'send' => true,
-                    'items' => array(
-                        array(
-                            'description' => 'Курс по иностранному языку',
-                            'quantity' => '1.000',
-                            'amount' => array(
-                                'value' => $paymentAmount,
-                                'currency' => 'RUB',
-                            ),
-                            'vat_code' => 1,
-                            'payment_mode' => 'full_payment',
-                            'payment_subject' => 'commodity',
-                            'country_of_origin_code' => 'RU',
-                        ),
-                    ),
-                    'settlements' => array(
-                        array(
-                            'type' => 'prepayment',
-                            'amount' => array(
-                                'value' => $paymentAmount,
-                                'currency' => 'RUB',
-                            )
-                        ),
-                    ),
-                ),
-                uniqid('', true)
-            );
             /* Отправляем e-mail студенту */
             Mail::to($user->email)->send(new OrderPurchased($course, $order));
 

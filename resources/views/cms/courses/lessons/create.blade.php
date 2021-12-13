@@ -64,11 +64,22 @@
                             <div class="col-lg-9">
                                 <div class="form-group preview"></div>
                                 <button type="button" class="btn btn-primary square mr-1 mb-2 btn-attach" data-type="audio"
-                                        data-var="audio" data-toggle="modal" data-target="#modal-files">
+                                        data-var="question_audio" data-toggle="modal" data-target="#modal-files">
                                     {{__("cms-pages.choose")}}
                                 </button>
                             </div>
                         </div>
+                        {{-- Lesson Audio --}}
+                        {{--<div class="form-group row d-flex align-items-center mb-5">
+                            <label class="col-lg-3 form-control-label">{{ __("cms-pages.audio") }}</label>
+                            <div class="col-lg-9">
+                                <div class="form-group preview"></div>
+                                <button type="button" class="btn btn-primary square mr-1 mb-2 btn-attach" data-type="audio"
+                                        data-var="audio" data-toggle="modal" data-target="#modal-files">
+                                    {{__("cms-pages.choose")}}
+                                </button>
+                            </div>
+                        </div>--}}
                         {{-- Lesson Video --}}
                         <div class="form-group row d-flex align-items-center mb-5">
                             <label class="col-lg-3 form-control-label">{{ __("cms-pages.video") }}</label>

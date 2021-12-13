@@ -5,6 +5,7 @@ namespace App\Http\Controllers\Admin;
 use App\Http\Controllers\Controller;
 use App\Models\LMS\Course;
 use App\Models\LMS\Lesson;
+use App\Models\LMS\LessonAudio;
 use App\Models\LMS\LessonFile;
 use App\Models\LMS\Stage;
 use App\Models\LMS\Topic;
@@ -34,6 +35,16 @@ class LessonController extends Controller
         ]);
 
         $lesson = Lesson::add($request->all(), $topic);
+
+        /* Add multiple audio files to question */
+        if ($request->has('question_audios')) {
+            foreach ($request->input('question_audios') as $audio) {
+                LessonAudio::create([
+                    'lesson_id' => $lesson->id,
+                    'audio' => $audio
+                ]);
+            }
+        }
 
         $files = $request->input('files');
         if ($files) {
@@ -68,6 +79,16 @@ class LessonController extends Controller
         ]);
 
         $lesson->update($request->all());
+
+        /* Add multiple audio files to question */
+        if ($request->has('question_audios')) {
+            foreach ($request->input('question_audios') as $audio) {
+                LessonAudio::create([
+                    'lesson_id' => $lesson->id,
+                    'audio' => $audio
+                ]);
+            }
+        }
 
         $oldFiles = LessonFile::where('lesson_id', $lesson->id)->get();
         $files = $request->input('files');
@@ -106,9 +127,14 @@ class LessonController extends Controller
         $lesson->update(['image' => null]);
     }
 
-    public function removeAudio(Course $course, Stage $stage, Lesson $lesson)
+/*    public function removeAudio(Course $course, Stage $stage, Lesson $lesson)
     {
         $lesson->update(['audio' => null]);
+    }*/
+
+    public function removeAudio(Course $course, Stage $stage, Lesson $lesson, LessonAudio $audio)
+    {
+        $audio->remove();
     }
 
     public function removeVideo(Course $course, Stage $stage, Lesson $lesson)
