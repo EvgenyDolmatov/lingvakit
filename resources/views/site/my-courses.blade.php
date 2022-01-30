@@ -27,7 +27,7 @@
                                 </div>
                             </div>
                             <div class="about-infos d-flex flex-column mt-3">
-                                <a class="btn btn-success square"
+                                <a class="btn btn-brand square"
                                    href="{{ route('site.course-show', [$course->id]) }}">{{ __("site-pages.to-study") }}
                                 </a>
                             </div>

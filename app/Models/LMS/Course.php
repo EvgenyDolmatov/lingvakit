@@ -398,7 +398,7 @@ class Course extends Model
         $href = route('site.course-show', $this->id);
 
         if ($this->released()) {
-            $class = 'btn btn-success square';
+            $class = 'btn btn-brand square';
         } else {
             $class = 'btn btn-warning square';
         }

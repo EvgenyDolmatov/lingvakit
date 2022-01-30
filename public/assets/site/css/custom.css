@@ -203,6 +203,19 @@ input.short_word {
     background: url("../img/icons/file.svg") center;
 }
 
+.btn-brand {
+    background-color: #6f74e8;
+    border-color: #6f74e8;
+    color: #fff;
+    transition: all, .3s;
+}
+.btn-brand:hover {
+    background-color: #666ade;
+    border-color: #666ade;
+    color: #fff;
+    transition: all, .3s;
+}
+
 @media (max-width: 470px) {
     .navbar-holder .main-menu {
         display: none;
