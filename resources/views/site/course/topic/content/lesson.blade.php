@@ -15,12 +15,6 @@
                 </div>
             @endforeach
         @endif
-
-        <div class="about-infos d-flex flex-column mt-3">
-            <div class="about-text">
-                {!! $lesson->description !!}
-            </div>
-        </div>
         @if($lesson->video)
             <div class="about-infos d-flex flex-column mb-3">
                 <div class="about-text">
@@ -29,6 +23,13 @@
                 </div>
             </div>
         @endif
+
+        <div class="about-infos d-flex flex-column mt-3">
+            <div class="about-text">
+                {!! $lesson->description !!}
+            </div>
+        </div>
+
         @if($files)
             <div class="about-title mt-3 mb-3">
                 <h3>{{__("site-pages.additional-materials")}}</h3>

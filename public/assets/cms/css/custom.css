@@ -265,4 +265,16 @@ tr.header-danger {
     color: red;
 }
 
+.table-img {
+    width: 100px;
+    height: 100px;
+    overflow: hidden;
+}
+
+.table-img img {
+    width: 100%;
+    height: 100%;
+    object-fit: cover;
+}
+
 

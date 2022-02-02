@@ -133,17 +133,6 @@
                                 </div>
                             @endif
 
-
-                            {{-- Course Category --}}
-                            {{--<div class="about-infos d-flex flex-column mb-3">
-                                <div class="about-title"><h5>{{ __("cms-pages.category") }}:</h5></div>
-                                <div class="about-text">{{ __($course->category->name) }}</div>
-                            </div>--}}
-                            {{-- Course Level --}}
-                            {{--<div class="about-infos d-flex flex-column mb-3">
-                                <div class="about-title"><h5>{{ __("cms-pages.difficulty-level") }}:</h5></div>
-                                <div class="about-text">{{ __("cms-pages.".$course->difficulty_level) }}</div>
-                            </div>--}}
                             @if($course->duration > 0)
                                 {{-- Course Duration --}}
                                 <div class="about-infos d-flex flex-column mb-3">
@@ -236,7 +225,9 @@
 
                                         @if($topic->lesson)
                                             <div class="col-xl-2">
-                                                <img src="{{ $topic->lesson->getImage() }}" width="100" alt>
+                                                <div class="table-img">
+                                                    <img src="{{ $topic->lesson->getImage() }}" width="100" alt>
+                                                </div>
                                             </div>
                                             <div class="col-xl-2">
                                                 {{ __("cms-pages.".$topic->name) }}

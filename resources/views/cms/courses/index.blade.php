@@ -49,8 +49,10 @@
                             <tbody>
                             @foreach($courses as $course)
                                 <tr>
-                                    <td style="width: 150px;">
-                                        <img src="{{ $course->getImage() }}" width="100" alt>
+                                    <td style="width: 100px;">
+                                        <div class="table-img">
+                                            <img src="{{ $course->getImage() }}" width="100" alt>
+                                        </div>
                                     </td>
                                     <td>
                                         <a href="{{ route('courses.show', $course->id) }}"
@@ -63,17 +65,6 @@
                                     <td class="td-actions">
                                         <a href="{{ route('courses.show', $course->id) }}"><i
                                                     class="la la-eye edit"></i></a>
-                                        {{--<a href="{{ route('courses.edit', $course->id) }}"><i
-                                                    class="la la-edit edit"></i></a>--}}
-                                        {{--<form style="display: inline-block" method="POST"
-                                              action="{{ route('courses.destroy', $course->id) }}">
-                                            @csrf @method('DELETE')
-
-                                            <a href="{{ route('courses.destroy', $course->id) }}"
-                                               onclick="event.preventDefault();if(confirm('{{ __("cms-messages.delete") }}')){this.closest('form').submit();}">
-                                                <i class="la la-close delete"></i>
-                                            </a>
-                                        </form>--}}
 
                                         @if($currentUser->hasRole(['superuser','admin']))
                                             <form style="display: inline-block" method="POST"

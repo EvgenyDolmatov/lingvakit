@@ -33,13 +33,18 @@
                             @foreach($courses as $course)
                                 <tr>
                                     <td style="width: 150px;">
-                                        <img src="{{ $course->getImage() }}" width="100" alt>
+                                        <div class="table-img">
+                                            <img src="{{ $course->getImage() }}" width="100" alt>
+                                        </div>
                                     </td>
-                                    <td><a href="{{ route('courses.show', $course->id) }}" class="text-primary">{{ $course->title }}</a></td>
+                                    <td><a href="{{ route('courses.show', $course->id) }}"
+                                           class="text-primary">{{ $course->title }}</a></td>
                                     <td>{{ $course->getDuration() }}</td>
                                     <td class="td-actions">
-                                        <a href="{{ route('courses.show', $course->id) }}"><i class="la la-eye edit"></i></a>
-                                        <form style="display: inline-block" method="POST" action="{{ route('courses.moderate-switcher', $course->id) }}">
+                                        <a href="{{ route('courses.show', $course->id) }}"><i
+                                                    class="la la-eye edit"></i></a>
+                                        <form style="display: inline-block" method="POST"
+                                              action="{{ route('courses.moderate-switcher', $course->id) }}">
                                             @csrf @method('PUT')
 
                                             <a href="{{ route('courses.moderate-switcher', $course->id) }}"
