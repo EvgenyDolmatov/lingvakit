@@ -88,7 +88,8 @@ class OrderController extends Controller
         if ($paymentMethod === 'card_payment') {
 
             $client = new Client();
-            $client->setAuth('787166', 'live_Uyu4knE3SJx0J-pV3KJCx7GK6De2ifnDrJggTtow1aE');
+            // Рабочая касс lingvakit.ru
+            $client->setAuth('751820', 'live_HKrA7o2lyLTqCkYQ4QNeF7qnrMAlubiijnZafBbCNKw');
 
             $response = $client->createPayment(
                 array(
@@ -141,7 +142,7 @@ class OrderController extends Controller
         } else {
             /* Another Payment Method */
             /*
-             * TODO: Реализовать далнейшие действия с пользователем и учителем
+             * TODO: Реализовать дальнейшие действия с пользователем и учителем
              */
 
             $onHolding = OrderStatus::where('title', 'on_holding')->first()->id;
@@ -162,7 +163,8 @@ class OrderController extends Controller
     public function paymentResult()
     {
         $client = new Client();
-        $client->setAuth('787166', 'live_Uyu4knE3SJx0J-pV3KJCx7GK6De2ifnDrJggTtow1aE');
+        // Рабочая касс lingvakit.ru
+        $client->setAuth('751820', 'live_HKrA7o2lyLTqCkYQ4QNeF7qnrMAlubiijnZafBbCNKw');
 
         $user = Auth::user();
         $order = $user->getLastOrder();
