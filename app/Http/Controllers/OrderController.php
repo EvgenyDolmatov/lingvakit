@@ -90,6 +90,8 @@ class OrderController extends Controller
             $client = new Client();
             // Рабочая касс lingvakit.ru
             $client->setAuth('751820', 'live_HKrA7o2lyLTqCkYQ4QNeF7qnrMAlubiijnZafBbCNKw');
+            // Тест
+            // $client->setAuth('785971', 'test_e31vp0OKw6pXDmAvCk7jvloxc6lWiHS8ZwBeVyAK9tc');
 
             $response = $client->createPayment(
                 array(
@@ -165,6 +167,8 @@ class OrderController extends Controller
         $client = new Client();
         // Рабочая касс lingvakit.ru
         $client->setAuth('751820', 'live_HKrA7o2lyLTqCkYQ4QNeF7qnrMAlubiijnZafBbCNKw');
+        // Тест
+        // $client->setAuth('785971', 'test_e31vp0OKw6pXDmAvCk7jvloxc6lWiHS8ZwBeVyAK9tc');
 
         $user = Auth::user();
         $order = $user->getLastOrder();
