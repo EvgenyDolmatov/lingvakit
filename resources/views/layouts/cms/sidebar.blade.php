@@ -25,6 +25,7 @@
 
                         @if($currentUser->hasRole(['superuser', 'admin']))
                             <li><a href="{{route('courses.moderation')}}">{{ __("cms-pages.new-courses") }}</a></li>
+                            <li><a href="{{route('reviews.all')}}">{{ __("cms-pages.reviews") }}</a></li>
                         @endif
 
                         @if($currentUser->hasPermissionTo('promocode manage'))

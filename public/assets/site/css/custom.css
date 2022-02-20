@@ -216,6 +216,24 @@ input.short_word {
     transition: all, .3s;
 }
 
+.review-container {
+    margin-top: 50px;
+}
+.review-container .review-item {
+    margin-top: 30px;
+}
+.review-container .la-star {
+ cursor: pointer;
+}
+.review-container .la-star.gold,
+.review-container .la-star.active {
+    color: #fec42d;
+}
+.review-form-container {
+    margin-top: 80px;
+}
+
+
 @media (max-width: 470px) {
     .navbar-holder .main-menu {
         display: none;

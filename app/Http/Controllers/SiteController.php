@@ -5,6 +5,7 @@ namespace App\Http\Controllers;
 use App\Mail\Feedback;
 use App\Models\FeedbackMessage;
 use App\Models\LMS\Course;
+use App\Models\LMS\CourseReview;
 use App\Models\LMS\Language;
 use App\Models\LMS\Result;
 use Illuminate\Http\Request;
@@ -80,7 +81,28 @@ class SiteController extends Controller
         return view('site.course.show', [
             'course' => $course,
             'user' => $user,
+            'reviews' => CourseReview::where([
+                ['course_id', $course->id],
+                ['is_active', 1],
+            ])->get(),
         ]);
+    }
+
+    public function storeReview(Request $request, Course $course)
+    {
+        $request->validate([
+            'grade' => 'required',
+            'review' => 'nullable|min:5',
+        ]);
+
+        CourseReview::create([
+            'course_id' => $course->id,
+            'user_id' => auth()->user()->id,
+            'review' => $request->review,
+            'grade' => $request->grade,
+        ]);
+
+        return back();
     }
 
     public function feedback(Request $request)

@@ -107,7 +107,6 @@
         <div class="col-xl-8 col-sm-12">
             <div class="widget widget-12 has-shadow">
                 <div class="widget-body">
-
                     @if($course->image)
                         <div class="about-infos d-flex flex-column mb-3">
                             <div class="about-text">
@@ -134,13 +133,91 @@
 
                     {!! $course->getPageActiveButton() !!}
 
-                    {{--@if(!$user || !$course->students->contains($user->id))
-                        <div class="text-right">
-                            <a href="{{route('orders.checkout', $course->id)}}" class="btn btn-success">
-                                {{ __("site-pages.buy-course") }}
-                            </a>
+                    <hr>
+
+                    {{-- Reviews --}}
+                    <div class="review-container">
+                        <div class="about-infos d-flex flex-column">
+                            <div class="about-title">
+                                <h2>Отзывы о курсе</h2>
+                            </div>
+                            <div class="about-text">
+                                <div class="la la-star @if($course->reviews && ($course->getAverageGrade() >= 1)) gold @endif"></div>
+                                <div class="la la-star @if($course->reviews && ($course->getAverageGrade() >= 2)) gold @endif"></div>
+                                <div class="la la-star @if($course->reviews && ($course->getAverageGrade() >= 3)) gold @endif"></div>
+                                <div class="la la-star @if($course->reviews && ($course->getAverageGrade() >= 4)) gold @endif"></div>
+                                <div class="la la-star @if($course->reviews && ($course->getAverageGrade() >= 5)) gold @endif"></div>
+                            </div>
+
+                            @if($reviews->count())
+                                @foreach($reviews as $review)
+                                    <div class="review-item">
+                                        <h3 class="mb-2">{{$review->user->name}}</h3>
+                                        <div class="about-text">
+                                            <div class="la la-star grade-1 @if($review->grade >= 1) gold @endif"></div>
+                                            <div class="la la-star grade-2 @if($review->grade >= 2) gold @endif"></div>
+                                            <div class="la la-star grade-3 @if($review->grade >= 3) gold @endif"></div>
+                                            <div class="la la-star grade-4 @if($review->grade >= 4) gold @endif"></div>
+                                            <div class="la la-star grade-5 @if($review->grade == 5) gold @endif"></div>
+                                        </div>
+
+                                        <div class="about-text mt-3">
+                                            <p>{!! $review->review !!}</p>
+                                        </div>
+
+                                    </div>
+                                @endforeach
+                            @else
+                                Об этом курсе пока нет ни одного отзыва.
+                            @endif
+
+                            {{-- Leave Review --}}
+                            @auth
+                                @if(!$course->isRatedByUser($user))
+                                    <form action="{{ route('course.reviews.store', $course) }}"
+                                          method="POST" class="review-form-container">
+                                        @csrf
+
+                                        <h3>Оставить отзыв</h3>
+
+                                        <div class="form-group mt-4">
+                                            <label for="grade">Ваша оценка</label>
+                                            <input type="hidden" name="grade" id="grade" class="form-control"
+                                                   value="{{old('grade')}}">
+
+                                            <div class="about-text">
+                                                <div class="la la-star grade-1 @if(old('grade') >= 1) active @endif"
+                                                     data-grade="1"></div>
+                                                <div class="la la-star grade-2 @if(old('grade') >= 2) active @endif"
+                                                     data-grade="2"></div>
+                                                <div class="la la-star grade-3 @if(old('grade') >= 3) active @endif"
+                                                     data-grade="3"></div>
+                                                <div class="la la-star grade-4 @if(old('grade') >= 4) active @endif"
+                                                     data-grade="4"></div>
+                                                <div class="la la-star grade-5 @if(old('grade') == 5) active @endif"
+                                                     data-grade="5"></div>
+                                            </div>
+                                            @error('grade')
+                                            <div class="invalid-feedback">{{ $message }}</div>
+                                            @enderror
+                                        </div>
+
+                                        <div class="form-group mt-4">
+                                            <label for="review">Ваш отзыв</label>
+                                            <textarea name="review" id="review" rows="4"
+                                                      class="form-control">{{old('review')}}</textarea>
+                                            @error('review')
+                                            <div class="invalid-feedback">{{ $message }}</div>
+                                            @enderror
+                                        </div>
+
+                                        <button type="submit" class="btn btn-brand">Отправить</button>
+                                    </form>
+                                @endif
+                            @endauth
                         </div>
-                    @endif--}}
+                    </div>
+
                 </div>
             </div>
         </div>

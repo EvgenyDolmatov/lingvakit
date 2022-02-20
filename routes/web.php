@@ -13,6 +13,7 @@ use App\Http\Controllers\Admin\DashboardController;
 use App\Http\Controllers\Admin\LessonController;
 use App\Http\Controllers\Admin\QuestionController;
 use App\Http\Controllers\Admin\QuizController;
+use App\Http\Controllers\Admin\ReviewController;
 use App\Http\Controllers\Admin\RoleController;
 use App\Http\Controllers\Admin\StageController;
 use App\Http\Controllers\Admin\StudentController;
@@ -85,6 +86,9 @@ Route::middleware(['auth', 'locale', 'verified'])->group(function (){
                 Route::get('bug-work', [UserTopicController::class, 'bugWork'])->name('bug-work.show');
             });
         });
+
+        // Reviews
+        Route::post('review', [SiteController::class, 'storeReview'])->name('course.reviews.store');
 
         /* ORDERING */
         /* Checkout */
@@ -207,6 +211,11 @@ Route::prefix('dashboard')->middleware(['auth', 'locale', 'role:superuser|admin|
         /* Students on the Course */
         Route::get('students', [StudentCourseController::class, 'studentsList'])->name('course.students.list');
     });
+
+    /* REVIEWS */
+    Route::get('reviews', [ReviewController::class, 'index'])->name('reviews.all');
+    Route::put('reviews/{review}/ban', [ReviewController::class, 'ban'])->name('reviews.ban');
+    Route::delete('reviews/{review}', [ReviewController::class, 'destroy'])->name('reviews.destroy');
 
     /* PROMO CODES */
     Route::resource('promocodes', PromocodeController::class);

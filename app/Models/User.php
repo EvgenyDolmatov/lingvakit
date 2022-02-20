@@ -3,6 +3,7 @@
 namespace App\Models;
 
 use App\Models\LMS\Course;
+use App\Models\LMS\CourseReview;
 use App\Models\LMS\Result;
 use App\Models\LMS\TopicComment;
 use App\Notifications\CustomResetPasswordNotification;
@@ -96,6 +97,11 @@ class User extends Authenticatable implements MustVerifyEmail
     public function comments()
     {
         return $this->hasMany(TopicComment::class);
+    }
+
+    public function reviews()
+    {
+        return $this->hasMany(CourseReview::class);
     }
 
     public static function add($fields) {

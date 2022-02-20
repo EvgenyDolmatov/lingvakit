@@ -379,6 +379,9 @@ return [
     'author' => 'Author',
     'course-language' => 'Course Language',
     'required-topics' => 'Required Topics to Pass',
+    'reviews' => 'Reviews',
+    'review' => 'Review',
+    'grade' => 'Grade',
 
     // Media Files
     'media-files' => 'Media Files',

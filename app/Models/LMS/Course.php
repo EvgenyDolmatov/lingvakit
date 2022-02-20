@@ -63,6 +63,11 @@ class Course extends Model
         return $this->hasOne(MediaFile::class, 'id', 'video');
     }
 
+    public function reviews()
+    {
+        return $this->hasMany(CourseReview::class);
+    }
+
     public function getTopics() : array
     {
         $collection = array();
@@ -175,6 +180,30 @@ class Course extends Model
             $this->category_id = Category::where('name', 'Uncategorized')->first()->id;
         }
         $this->save();
+    }
+
+    public function getAverageGrade()
+    {
+        $reviews = $this->reviews;
+        $gradeSum = 0;
+
+        if ($reviews->count()) {
+            foreach ($reviews as $review) {
+                $gradeSum = $gradeSum + $review->grade;
+            }
+            return round($gradeSum / $reviews->count());
+        }
+
+        return false;
+    }
+
+    public function isRatedByUser($user)
+    {
+        $review = CourseReview::where('user_id', $user->id)->where('course_id', $this->id)->first();
+
+        if($review)
+            return true;
+        return false;
     }
 
     public function getImageSize()
@@ -374,9 +403,11 @@ class Course extends Model
 
     public function released() : bool
     {
-        $releaseDate = Carbon::parse(Carbon::createFromFormat('d/m/Y', $this->publish_date)->format('Y-m-d'));
-        if ($releaseDate > today()) {
-            return false;
+        if($this->publish_date) {
+            $releaseDate = Carbon::parse(Carbon::createFromFormat('d/m/Y', $this->publish_date)->format('Y-m-d'));
+            if ($releaseDate > today()) {
+                return false;
+            }
         }
         return true;
     }

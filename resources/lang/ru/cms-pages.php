@@ -372,6 +372,9 @@ return [
     'author' => 'Автор',
     'course-language' => 'Язык курса',
     'required-topics' => 'Необходимые темы',
+    'reviews' => 'Отзывы',
+    'review' => 'Отзыв',
+    'grade' => 'Оценка',
 
     // Media Files
     'media-files' => 'Медиафайлы',

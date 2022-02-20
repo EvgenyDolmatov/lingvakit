@@ -1,7 +1,7 @@
 (function ($) {
     "use strict";
 
-    $(window).on('load', function (){
+    $(window).on('load', function () {
         let width = $(this).width();
         if (width < 768) {
             $('#toggle-btn').click();
@@ -17,7 +17,7 @@
 
     /* Active menu in Sidebar */
     function sidebarMenu() {
-        $('.side-navbar li a').each(function (){
+        $('.side-navbar li a').each(function () {
             let path = location.pathname;
             let array = path.split('/');
 
@@ -35,6 +35,7 @@
             }
         });
     }
+
     sidebarMenu();
 
     /* Input Mask */
@@ -43,7 +44,7 @@
     $('#passport').inputmask("9999 999999");
 
     // Popup for changing quantity of Products
-    $('.product-quantity').on('click', function (){
+    $('.product-quantity').on('click', function () {
         let id = $(this).attr('data-id');
         let origin = window.location.origin;
         let href = origin + '/dashboard/orders/details'
@@ -52,7 +53,7 @@
         $('#change-product-quantity .modal-body form').attr('action', action);
     })
 
-    $('#company_id').change(function (){
+    $('#company_id').change(function () {
         if ($(this).val() === 'other') {
             $('#company').removeClass('hide');
         } else {
@@ -60,7 +61,7 @@
         }
     });
 
-    $('#add_dimensions').change(function (){
+    $('#add_dimensions').change(function () {
         if ($(this).prop('checked')) {
             $('#dimensions').removeClass('hide');
         } else {
@@ -75,9 +76,10 @@
         }
         return $input.addClass('hide');
     }
+
     /* Switch additional container*/
     function switchContainer($switcher, $input) {
-        $switcher.change(function (){
+        $switcher.change(function () {
             if ($(this).prop('checked')) {
                 return $input.removeClass('hide');
             } else {
@@ -97,9 +99,32 @@
     checkContainer(switcherDimensions, containerDimensions);
     switchContainer(switcherDimensions, containerDimensions);
 
-/*    ClassicEditor
-        .create( document.querySelector( '#description' ) )
-        .catch( error => {
-            console.error( error );
-        } );*/
+    /*    ClassicEditor
+            .create( document.querySelector( '#description' ) )
+            .catch( error => {
+                console.error( error );
+            } );*/
+
+
+    // Grade stars hover
+    $('.review-form-container .la-star').mouseover(function () {
+        $('.review-form-container .la-star').removeClass('gold')
+        $(this).addClass('gold');
+        $(this).prevAll('.la-star').addClass('gold');
+    });
+
+    $('.review-form-container .la-star').mouseout(function () {
+        $('.review-form-container .la-star').removeClass('gold')
+    });
+
+    $('.review-form-container .la-star').on('click', function () {
+        let grade = $(this).attr('data-grade');
+
+        $('.review-form-container .la-star').removeClass('active');
+        $(this).parent().parent().find('input#grade').val(grade);
+        $(this).addClass('active');
+        $(this).prevAll('.la-star').addClass('active');
+    });
+
+
 })(jQuery)
