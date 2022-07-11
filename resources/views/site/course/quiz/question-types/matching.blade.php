@@ -1,8 +1,8 @@
 <div class="draggable form-group row d-flex align-items-center mb-5">
     <div class="col-lg-12">
         <div class="source-list source">
-            @foreach($question->conformities as $conformity)
-                @foreach($conformity->options as $option)
+            @foreach($question->conformities->shuffle() as $conformity)
+                @foreach($conformity->options->shuffle() as $option)
                     <div class="list-item m-3 {{$question->getFontSize()}}" draggable="true"
                          data-option="{{$option->id}}">
                         {{ $option->value }}
@@ -13,6 +13,7 @@
     </div>
     <div class="col-lg-12">
         <div class="source-list">
+
             @foreach($question->conformities as $conformity)
                 <div class="question-container" data-id="{{$conformity->id}}">
                     @if($question->conformityHasImage())
