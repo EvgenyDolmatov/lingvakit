@@ -43,6 +43,7 @@
 
     <script src="{{asset('assets/cms/vendors/js/base/jquery.min.js')}}"></script>
     <script src="{{asset('assets/cms/vendors/js/base/core.min.js')}}"></script>
+    <script src="https://www.google.com/recaptcha/api.js?render=6Leg4vEgAAAAAMOUdoI31S_cT-xKZ35WMglmQior"></script>
     @yield('template-scripts')
     <script src="{{asset('assets/cms/vendors/js/app/app.min.js')}}"></script>
     @yield('custom-scripts')
