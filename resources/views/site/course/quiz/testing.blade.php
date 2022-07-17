@@ -47,7 +47,7 @@
                     <div class="widget widget-12 has-shadow">
                         <div
                             class="widget-header bordered no-actions d-flex align-items-center justify-content-between">
-                            <h3 class="{{$question->getFontSize()}}">{{$key+1}}. {{ $question->title }}</h3>
+                            <h3 class="{{$question->getFontSize()}}">{{$key+1}}. {!! $question->title !!}</h3>
                         </div>
                         <div class="widget-body">
                             @if($question->image)

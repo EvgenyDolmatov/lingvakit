@@ -143,6 +143,7 @@
     <script src="{{asset('assets/cms/vendors/js/ckeditor/ckeditor.js')}}"></script>
     <script>
         $(document).ready(function (){
+            CKEDITOR.replace('title');
             CKEDITOR.replace('explanation', {
                 filebrowserUploadUrl: "{{route('ckeditor.upload', ['_token' => csrf_token() ])}}",
                 filebrowserUploadMethod: 'form'

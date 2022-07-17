@@ -10,7 +10,7 @@
                 {{-- Question Title --}}
                 <div class="about-infos d-flex flex-column mb-3">
                     <div class="about-title"><h5>{{ __("cms-pages.question") }}:</h5></div>
-                    <div class="about-text">{{ $question->title }}</div>
+                    <div class="about-text">{!! $question->title !!}</div>
                 </div>
                 @if($question->image)
                     {{-- Question Image --}}
