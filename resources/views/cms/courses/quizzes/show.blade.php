@@ -115,7 +115,7 @@
                             <tbody>
                             @foreach($quiz->questions as $question)
                                 <tr>
-                                    <td class="text-primary">{{ $question->title }}</td>
+                                    <td class="text-primary">{!! $question->title !!}</td>
                                     <td>{{ __("cms-pages.".$question->type) }}</td>
 
                                     <td class="td-actions">
