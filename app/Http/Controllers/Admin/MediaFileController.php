@@ -16,22 +16,22 @@ class MediaFileController extends Controller
         $audioFiles = MediaFile::where([
             ['author_id', $currentUser->id],
             ['type', 'audio'],
-        ])->orderBy('id', 'desc')->get();
+        ])->orderBy('created_at', 'desc')->paginate(24);
 
         $images = MediaFile::where([
             ['author_id', $currentUser->id],
             ['type', 'image'],
-        ])->orderBy('id', 'desc')->get();
+        ])->orderBy('created_at', 'desc')->paginate(24);
 
         $videoFiles = MediaFile::where([
             ['author_id', $currentUser->id],
             ['type', 'video'],
-        ])->orderBy('id', 'desc')->get();
+        ])->orderBy('created_at', 'desc')->paginate(24);
 
         $files = MediaFile::where([
             ['author_id', $currentUser->id],
             ['type', 'file'],
-        ])->orderBy('id', 'desc')->get();
+        ])->orderBy('created_at', 'desc')->paginate(24);
 
         return view('cms.media.index',[
             'audioFiles' => $audioFiles,
@@ -85,7 +85,7 @@ class MediaFileController extends Controller
         return Response()->json([
             'id' => $file->id,
             'title' => $file->title,
-            'path' => '/uploads/'.$file->path.'/'.$file->filename,
+            'path' => $file->getMiddleImage(),
             'alt' => $file->alt,
             'type' => $file->type,
             'size' => $file->getFileSize(),
