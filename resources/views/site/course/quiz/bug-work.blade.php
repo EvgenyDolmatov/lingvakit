@@ -21,7 +21,7 @@
                 {{-- Work on Bugs --}}
                 <div class="widget widget-12 has-shadow">
                     <div class="widget-header bordered no-actions d-flex align-items-center justify-content-between">
-                        <h3 class="{{$question->getFontSize()}}">{{$key+1}}. {{ $question->title }}</h3>
+                        <h3 class="{{$question->getFontSize()}}">{{$key+1}}. {!! $question->title !!}</h3>
                         @if($question->explanation)
                             <button type="button" class="btn btn-secondary" data-toggle="modal"
                                     data-target="#modal_{{$question->id}}">{{__("site-pages.explanation")}}</button>
@@ -276,7 +276,7 @@
                 <div class="modal-dialog modal-dialog-centered">
                     <div class="modal-content">
                         <div class="modal-header">
-                            <h4 class="modal-title">{{$question->title}}</h4>
+                            <h4 class="modal-title">{!! $question->title !!}</h4>
                             <button type="button" class="close" data-dismiss="modal">
                                 <span aria-hidden="true">×</span>
                                 <span class="sr-only">close</span>
