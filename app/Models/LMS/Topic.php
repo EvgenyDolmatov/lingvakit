@@ -130,12 +130,20 @@ class Topic extends Model
     public function getPreviousTopic()
     {
         $currentStage = $this->stage;
+        $currentIndex = $this->index_number;
         $prevStage = $this->prevStage();
 
-        $prevTopic = Topic::where([
-            ['stage_id', $currentStage->id],
-            ['id', '<', $this->id],
-        ])->orderBy('id', 'desc')->first();
+        if($currentIndex) {
+            $prevTopic = Topic::where([
+                ['stage_id', $currentStage->id],
+                ['index_number', '<', $this->index_number],
+            ])->orderBy('index_number', 'desc')->first();;
+        } else {
+            $prevTopic = Topic::where([
+                ['stage_id', $currentStage->id],
+                ['id', '<', $this->id],
+            ])->orderBy('id', 'desc')->first();
+        }
 
         if (!$prevTopic && $prevStage) {
             $prevTopic = Topic::where('stage_id', $prevStage->id)->first();
@@ -147,12 +155,20 @@ class Topic extends Model
     public function getNextTopic()
     {
         $currentStage = $this->stage;
+        $currentIndex = $this->index_number;
         $nextStage = $this->nextStage();
 
-        $nextTopic = Topic::where([
-            ['stage_id', $currentStage->id],
-            ['id', '>', $this->id],
-        ])->orderBy('id','asc')->first();
+        if($currentIndex) {
+            $nextTopic = Topic::where([
+                ['stage_id', $currentStage->id],
+                ['index_number', '>', $this->index_number],
+            ])->orderBy('id','asc')->first();
+        } else {
+            $nextTopic = Topic::where([
+                ['stage_id', $currentStage->id],
+                ['id', '>', $this->id],
+            ])->orderBy('id','asc')->first();
+        }
 
         if (!$nextTopic && $nextStage) {
             $nextTopic = Topic::where('stage_id', $nextStage->id)->first();
