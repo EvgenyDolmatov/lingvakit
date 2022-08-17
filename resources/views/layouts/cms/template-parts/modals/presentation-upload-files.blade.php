@@ -1,4 +1,4 @@
-<div id="modal-files" class="modal fade">
+<div id="presentation-files" class="modal fade">
     <div class="modal-dialog modal-dialog-centered">
         <div class="modal-content">
             <div class="modal-header">

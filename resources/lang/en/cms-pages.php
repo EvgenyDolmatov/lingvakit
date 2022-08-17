@@ -382,6 +382,12 @@ return [
     'reviews' => 'Reviews',
     'review' => 'Review',
     'grade' => 'Grade',
+    'presentation' => 'Presentation',
+    'about-presentation' => 'About Presentation',
+    'add-presentation' => 'Add Presentation',
+    'new-presentation' => 'New Presentation',
+    'edit-presentation' => 'Edit Presentation',
+    'slides' => 'Slides',
 
     // Media Files
     'media-files' => 'Media Files',

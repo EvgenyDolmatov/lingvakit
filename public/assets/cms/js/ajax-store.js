@@ -41,7 +41,7 @@ window.Lingva = {};
         let inputYoutube = $('input[name="youtube"]');
         let $button;
         let button;
-        let $mediaLibrary = $('#media-library');
+        let $mediaLibrary = $('.media-library');
 
         function setContentByFile(file) {
             let id = file.id,
@@ -49,31 +49,31 @@ window.Lingva = {};
                 alt = file.alt,
                 path = '/uploads/' + file.path + '/' + file.filename,
                 type = file.type,
-                before_content = '<div class="col-4"><div class="file-wrap exists-file mt-2 mb-2" data-type="'+ type +'">',
+                before_content = '<div class="col-4"><div class="file-wrap exists-file mt-2 mb-2" data-type="' + type + '">',
                 after_content = '</div></div>',
                 content;
 
             switch (type) {
                 case 'image':
                     content =
-                        '<img class="file" src="'+ path +'" style="width: 100%" alt="'+ alt +'" data-id="'+ id +'" data-title="'+ title +'">' +
-                        '<h6 class="text-center">'+ title +'</h6>';
+                        '<img class="file" src="' + path + '" style="width: 100%" alt="' + alt + '" data-id="' + id + '" data-title="' + title + '">' +
+                        '<h6 class="text-center">' + title + '</h6>';
                     break;
                 case 'audio':
                     content =
                         '<div class="play-pause"></div>' +
-                        '<audio class="file" src="'+ path +'" data-id="'+ id +'" data-title="'+ title +'"></audio>' +
-                        '<h6 class="text-center">'+ title +'</h6>';
+                        '<audio class="file" src="' + path + '" data-id="' + id + '" data-title="' + title + '"></audio>' +
+                        '<h6 class="text-center">' + title + '</h6>';
                     break;
                 case 'video':
                     content =
-                        '<video class="file" src="'+ path +'" width="100%" data-id="'+ id +'" data-title="'+ title +'"></video>' +
-                        '<h6 class="text-center">'+ title +'</h6>';
+                        '<video class="file" src="' + path + '" width="100%" data-id="' + id + '" data-title="' + title + '"></video>' +
+                        '<h6 class="text-center">' + title + '</h6>';
                     break;
                 case 'file':
                     content =
-                        '<span class="file" data-id="'+ id +'" data-title="'+ title +'"></span>' +
-                        '<h6 class="text-center">'+ title +'</h6>';
+                        '<span class="file" data-id="' + id + '" data-title="' + title + '"></span>' +
+                        '<h6 class="text-center">' + title + '</h6>';
                     break;
             }
             return before_content + content + after_content;
@@ -81,7 +81,7 @@ window.Lingva = {};
 
         // Get gallery by file type
         function getGalleryByType(files) {
-            $.each(files, function (key, file){
+            $.each(files, function (key, file) {
                 let content = setContentByFile(file);
                 $mediaLibrary.append(content);
             });
@@ -116,55 +116,66 @@ window.Lingva = {};
 
             if (type === 'audio') {
 
-                let input = '<input type="hidden" name="audio" value="'+ id +'">';
+                let input = '<input type="hidden" name="audio" value="' + id + '">';
 
                 if (button.attr('data-var') === 'question_audio') {
-                    input = '<input type="hidden" name="question_audios[]" value="'+ id +'">';
+                    input = '<input type="hidden" name="question_audios[]" value="' + id + '">';
                     method = 'DELETE';
                 }
 
                 if (button.attr('data-var') === 'matching_audio') {
-                    input = '<input type="hidden" name="matching_audio" value="'+ id +'">';
+                    input = '<input type="hidden" name="matching_audio" value="' + id + '">';
                 }
 
-               mediaFile =
-                    '<div id="item-' + id + '" class="current-item"><audio src="'+ src +'" controls></audio>' +
-                    '<div class="small file-remove" data-method="'+ method +'">Удалить</div>' + input + '</div>';
+                mediaFile =
+                    '<div id="item-' + id + '" class="current-item"><audio src="' + src + '" controls></audio>' +
+                    '<div class="small file-remove" data-method="' + method + '">Удалить</div>' + input + '</div>';
             }
 
             if (type === 'image') {
-                let input = '<input type="hidden" name="image" value="'+ id +'">',
+                let input = '<input type="hidden" name="image" value="' + id + '">',
                     url = '/assets/cms/img/no-image.jpg';
 
-                if (src != null) { url = src; }
+                if (src != null) {
+                    url = src;
+                }
 
                 if (button.attr('data-var') === 'question_image') {
-                    input = '<input type="hidden" name="question_image" value="'+ id +'">';
+                    input = '<input type="hidden" name="question_image" value="' + id + '">';
                 }
 
                 if (button.attr('data-var') === 'matching_image') {
-                    input = '<input type="hidden" name="matching_image" value="'+ id +'">';
+                    input = '<input type="hidden" name="matching_image" value="' + id + '">';
                 }
 
-                mediaFile =
-                    '<div id="item-' + id + '" class="current-item"><img src="'+ url +'" width="240" alt>' +
-                    '<div class="small file-remove" data-method="'+ method +'">Удалить</div>' + input + '</div>';
+                if (button.attr('data-var') === 'slide-image') {
+                    input = '<input type="hidden" name="slide_images[]" value="' + id + '">';
+                    mediaFile =
+                        '<div id="slide-item-' + id + '" class="slide-item" draggable="true">' +
+                        '<img src="' + url + '" style="width: 100%" alt>'+input+'<i class="la la-close la-2x" data-method="'+method+'"></i>' +
+                        '</div>';
+
+                } else {
+                    mediaFile =
+                        '<div id="item-' + id + '" class="current-item"><img src="' + url + '" width="240" alt>' +
+                        '<div class="small file-remove" data-method="' + method + '">Удалить</div>' + input + '</div>';
+                }
             }
 
             if (type === 'video') {
-                let input = '<input type="hidden" name="video" value="'+ id +'">';
+                let input = '<input type="hidden" name="video" value="' + id + '">';
                 mediaFile =
-                    '<div id="item-' + id + '" class="current-item"><video src="'+ src +'" width="240" controls></video>' +
-                    '<div class="small file-remove" data-method="'+ method +'">Удалить</div>' + input + '</div>';
+                    '<div id="item-' + id + '" class="current-item"><video src="' + src + '" width="240" controls></video>' +
+                    '<div class="small file-remove" data-method="' + method + '">Удалить</div>' + input + '</div>';
 
                 inputYoutube.val('');
             }
 
             if (type === 'file') {
-                let input = '<input type="hidden" name="files[]" value="'+ id +'">';
+                let input = '<input type="hidden" name="files[]" value="' + id + '">';
                 mediaFile =
                     '<div id="item-' + id + '" class="current-item"><span>' + title + '</span>' +
-                    '<div class="small file-remove" data-method="'+ method +'">Удалить</div>' + input + '</div>';
+                    '<div class="small file-remove" data-method="' + method + '">Удалить</div>' + input + '</div>';
             }
 
             addMedia(id, type, mediaFile)
@@ -178,6 +189,8 @@ window.Lingva = {};
                     console.log('Not found!');
                     $wrap.append(content);
                 }
+            } else if (button.attr('data-var') === 'slide-image') {
+                button.before(content);
             } else {
                 $wrap.html(content);
             }
@@ -209,13 +222,13 @@ window.Lingva = {};
 
         return function () {
             $button = $('.btn-attach');
-            $button.on('click', function (){
+            $button.on('click', function () {
                 let $this = $(this);
                 let $file_type = $this.attr('data-type');
                 let $file_var = $this.attr('data-var');
                 let url = window.location.origin + '/ajax/files/' + $file_type;
 
-                button = $('button[data-var="' + $file_var +'"]');
+                button = $('[data-var="' + $file_var + '"]');
                 $mediaLibrary.empty();
 
                 // Получаем галерею по типу файла
@@ -223,26 +236,26 @@ window.Lingva = {};
                     url: url,
                     type: 'GET',
                     dataType: 'json',
-                    success: function (res){
+                    success: function (res) {
                         getGalleryByType(res.files);
                     }
                 });
             });
 
             // Choose files
-            $(document).on('click', '.file-wrap', function (){
+            $(document).on('click', '.file-wrap', function () {
                 initFillForm($(this));
             });
 
-            inputYoutube.blur(function (){
-                let input = '<input type="hidden" name="video" value="'+ $(this).val() +'">';
+            inputYoutube.blur(function () {
+                let input = '<input type="hidden" name="video" value="' + $(this).val() + '">';
                 let mediaFile = '<div class="current-item">' + input + '</div>';
 
                 $(this).parent().find('.preview').html(mediaFile);
             });
 
             // Upload Files
-            uploadForm.submit(function (e){
+            uploadForm.submit(function (e) {
                 e.preventDefault();
 
                 let formData = new FormData(document.getElementById("form-upload"));
@@ -251,11 +264,11 @@ window.Lingva = {};
                     url: uploadForm.attr('action'),
                     headers: {'X-CSRF-TOKEN': $('meta[name="csrf-token"]').attr('content')},
                     method: 'POST',
-                    cache:false,
+                    cache: false,
                     contentType: false,
                     processData: false,
                     data: formData,
-                    success: function (result){
+                    success: function (result) {
                         // Add New Images to Gallery
                         $.each(result.files, function (key, file) {
                             uploadFile(file);
@@ -263,20 +276,25 @@ window.Lingva = {};
 
                         // Show Success Message
                         $('.alert').removeClass('hide').html(result.success);
-                        setTimeout(function (){
+                        setTimeout(function () {
                             $('.alert').addClass('hide');
                         }, 1000);
 
                         // Click to Choosing file tab
-                        setTimeout(function (){
+                        setTimeout(function () {
                             $('#choosing-tab').trigger('click');
                         }, 1000);
                     }
                 });
             });
 
+
+            $(document).on('click', '.slide-item .la-close', function (e) {
+                $(this).parent('.slide-item').remove();
+            });
+
             // Remove File From Database
-            $(document).on('click', '.file-remove', function (e){
+            $(document).on('click', '.file-remove', function (e) {
                 e.preventDefault();
 
                 let div = $(this);
@@ -292,9 +310,9 @@ window.Lingva = {};
                         headers: {'X-CSRF-TOKEN': $('meta[name="csrf-token"]').attr('content')},
                         method: method,
                         data: formData,
-                        cache : false,
+                        cache: false,
                         processData: false,
-                        success: function (){
+                        success: function () {
                             removeFile(div);
                         }
                     });

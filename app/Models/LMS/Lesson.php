@@ -40,6 +40,11 @@ class Lesson extends Model
         return $this->hasOne(MediaFile::class, 'id', 'video');
     }
 
+    public function presentation()
+    {
+        return $this->hasOne(LessonPresentation::class, '');
+    }
+
     public static function add($fields, $topic)
     {
         $lesson = new static();

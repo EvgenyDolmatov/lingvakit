@@ -64,7 +64,12 @@
         </div>
     </div>
 @endsection
+
+{{--@section('page-styles')--}}
+{{--    <link rel="stylesheet" href="{{ asset('assets/site/css/owl-carousel/owl.carousel.css') }}">--}}
+{{--@endsection--}}
 @section('page-scripts')
+    <script src="https://cdn.jsdelivr.net/npm/swiper@8/swiper-bundle.min.js"></script>
     <script src="{{asset('assets/cms/vendors/js/chart/chart.min.js')}}"></script>
     <script src="{{asset('assets/cms/vendors/js/progress/circle-progress.min.js')}}"></script>
     <script src="{{asset('assets/cms/vendors/js/calendar/moment.min.js')}}"></script>

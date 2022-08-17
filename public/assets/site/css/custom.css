@@ -233,6 +233,27 @@ input.short_word {
     margin-top: 80px;
 }
 
+.presentation {
+    width: 100%;
+    overflow: hidden;
+}
+
+.presentation .swiper-slide img {
+    width: 100%;
+    max-height: 100%;
+}
+
+.presentation-thumbs {
+    max-height: calc(100vh - 100px);
+    overflow-y: scroll;
+}
+.presentation-thumbs .thumb {
+    margin-bottom: 10px;
+}
+.presentation-thumbs img {
+    width: 100%;
+}
+
 
 @media (max-width: 470px) {
     .navbar-holder .main-menu {

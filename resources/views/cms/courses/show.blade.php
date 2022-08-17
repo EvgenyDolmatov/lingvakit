@@ -232,14 +232,52 @@
                                             <div class="col-xl-2">
                                                 {{ __("cms-pages.".$topic->name) }}
                                             </div>
-                                            <div class="col-xl-3">{{ $topic->lesson->title }}</div>
+                                            <div class="col-xl-3">
+                                                {{ $topic->lesson->title }}
+                                                @if($topic->lesson->presentation)
+                                                    / <a href="{{ route('presentations.show', [$course, $stage, $topic->lesson, $topic->lesson->presentation]) }}">Презентация</a>
+                                                @endif
+                                            </div>
                                             <div class="col-xl-2">
                                                 {{ $topic->lesson->getDuration() }}
                                             </div>
                                             <div class="col-xl-1"></div>
                                             <div class="col-xl-2 td-actions d-flex justify-content-end">
-                                                <a href="{{ route('lessons.edit', [$course->id, $stage->id, $topic->lesson->id]) }}"><i
-                                                            class="la la-edit edit"></i></a>
+                                                <div class="actions dark d-inline-block">
+                                                    <div class="dropdown">
+                                                        <button type="button" data-toggle="dropdown"
+                                                                aria-haspopup="true" aria-expanded="false"
+                                                                class="dropdown-toggle">
+                                                            <i class="la la-plus edit"></i></button>
+
+                                                        <div class="dropdown-menu">
+                                                            <a href="{{ route('presentations.create', [$course, $stage, $topic->lesson]) }}"
+                                                               class="dropdown-item">
+                                                                <i class="la la-plus"></i>{{ __("cms-pages.add-presentation") }}
+                                                            </a>
+                                                        </div>
+                                                    </div>
+                                                </div>
+
+                                                <div class="actions dark d-inline-block">
+                                                    <div class="dropdown">
+                                                        <button type="button" data-toggle="dropdown"
+                                                                aria-haspopup="true" aria-expanded="false"
+                                                                class="dropdown-toggle">
+                                                            <i class="la la-edit edit"></i></button>
+
+                                                        <div class="dropdown-menu">
+                                                            <a href="{{ route('lessons.edit', [$course->id, $stage->id, $topic->lesson->id]) }}"
+                                                               class="dropdown-item">{{ __("cms-pages.edit-lesson") }}
+                                                            </a>
+                                                            @if($topic->lesson->presentation)
+                                                                <a href="{{ route('presentations.edit', [$course, $stage, $topic->lesson, $topic->lesson->presentation]) }}"
+                                                                   class="dropdown-item">{{ __("cms-pages.edit-presentation") }}
+                                                                </a>
+                                                            @endif
+                                                        </div>
+                                                    </div>
+                                                </div>
                                                 <form style="display: inline-block" method="POST"
                                                       action="{{ route('lessons.destroy', [$course->id, $stage->id, $topic->lesson->id]) }}">
                                                     @csrf @method('DELETE')

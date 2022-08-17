@@ -6,6 +6,8 @@ use App\Http\Controllers\Admin\GroupController;
 use App\Http\Controllers\Admin\LanguageController;
 use App\Http\Controllers\Admin\MediaFileController;
 use App\Http\Controllers\Admin\PermissionController;
+use App\Http\Controllers\Admin\PresentationController;
+use App\Http\Controllers\Admin\PresentationSlideController;
 use App\Http\Controllers\Admin\PromocodeController;
 use App\Http\Controllers\Admin\QuestionOptionController;
 use App\Http\Controllers\Admin\CourseController;
@@ -136,6 +138,8 @@ Route::prefix('dashboard')->middleware(['auth', 'locale', 'role:superuser|admin|
 
     /* Update index of topic */
     Route::put('topic/{topic}/index', [TopicController::class, 'updateIndex'])->name('topic.index');
+    /* Update index of presentation */
+    Route::put('slides/{slide}/index', [PresentationSlideController::class, 'updateIndex'])->name('slides.index');
 
     /* Show All of Courses */
     Route::get('all-courses', [CourseController::class, 'allCourses'])->middleware(['role:superuser|admin'])->name('courses.all');
@@ -160,6 +164,9 @@ Route::prefix('dashboard')->middleware(['auth', 'locale', 'role:superuser|admin|
                 Route::put('image-remove', [LessonController::class, 'removeImage'])->name('lessons.image.remove');
                 Route::put('video-remove', [LessonController::class, 'removeVideo'])->name('lessons.video.remove');
                 Route::put('file-remove/{file}', [LessonController::class, 'removeFile'])->name('lessons.file.remove');
+
+                /* Presentations */
+                Route::resource('presentations', PresentationController::class);
             });
 
             Route::resource('quizzes', QuizController::class); // Quizzes

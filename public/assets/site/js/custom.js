@@ -127,4 +127,13 @@
     });
 
 
+    $('.presentation').owlCarousel({
+        items: 1,
+    });
+
+    $('.presentation-thumbs .thumb').on('click', function (){
+        let index = $(this).attr('data-slide-index');
+        $('.presentation').trigger('to.owl.carousel', index);
+    });
+
 })(jQuery)

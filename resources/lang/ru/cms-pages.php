@@ -375,6 +375,12 @@ return [
     'reviews' => 'Отзывы',
     'review' => 'Отзыв',
     'grade' => 'Оценка',
+    'presentation' => 'Презентация',
+    'about-presentation' => 'О презентации',
+    'add-presentation' => 'Добавить презентацию',
+    'new-presentation' => 'Новая презентация',
+    'edit-presentation' => 'Редактирование презентации',
+    'slides' => 'Слайды',
 
     // Media Files
     'media-files' => 'Медиафайлы',
