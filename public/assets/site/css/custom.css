@@ -254,6 +254,17 @@ input.short_word {
     width: 100%;
 }
 
+.rutube-frame {
+    width: 720px;
+    height: 400px;
+}
+
+@media (max-width: 565px) {
+    .rutube-frame {
+        width: 100%;
+    }
+}
+
 
 @media (max-width: 470px) {
     .navbar-holder .main-menu {

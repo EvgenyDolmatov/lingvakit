@@ -123,12 +123,20 @@
                     </div>
 
                     @if($course->video)
-                        <div class="about-infos d-flex flex-column mb-3">
-                            <div class="about-text">
-                                <div id="player" data-id="{{$course->getVideoId()}}"
-                                     data-width="640" data-height="390"></div>
+                        @if(strpos($course->video, 'rutube') !== false)
+                            <iframe class="rutube-frame"
+                                    src="{{ 'https://rutube.ru/play/embed/' . str_replace('https://rutube.ru/video/', '',$course->video) }}"
+                                    frameBorder="0" allow="clipboard-write; autoplay" webkitAllowFullScreen
+                                    mozallowfullscreen
+                                    allowFullScreen></iframe>
+                        @else
+                            <div class="about-infos d-flex flex-column mb-3">
+                                <div class="about-text">
+                                    <div id="player" data-id="{{$course->getVideoId()}}"
+                                         data-width="640" data-height="390"></div>
+                                </div>
                             </div>
-                        </div>
+                        @endif
                     @endif
 
                     {!! $course->getPageActiveButton() !!}
