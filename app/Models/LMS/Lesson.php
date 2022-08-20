@@ -42,7 +42,7 @@ class Lesson extends Model
 
     public function presentation()
     {
-        return $this->hasOne(LessonPresentation::class, '');
+        return $this->hasOne(LessonPresentation::class);
     }
 
     public static function add($fields, $topic)

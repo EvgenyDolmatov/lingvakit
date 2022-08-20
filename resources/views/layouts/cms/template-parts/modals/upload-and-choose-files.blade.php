@@ -14,7 +14,7 @@
 
                 <ul class="nav nav-tabs" role="tablist">
                     <li class="nav-item">
-                        <a class="nav-link active" id="choosing-tab" data-toggle="tab" href="#choosing-area" role="tab" aria-controls="choosing-area" aria-selected="true">
+                        <a class="nav-link choose-aria active" id="choosing-tab" data-toggle="tab" href="#choosing-area" role="tab" aria-controls="choosing-area" aria-selected="true">
                             <i class="ion-image mr-2"></i>{{__("cms-pages.media-files")}}
                         </a>
                     </li>
@@ -28,7 +28,7 @@
                 <div class="tab-content pt-3">
                     <div class="tab-pane fade show active" id="choosing-area" role="tabpanel" aria-labelledby="choosing-tab">
                         {{-- File Gallery --}}
-                        <div {{--id="media-library"--}} class="media-library row"></div>
+                        <div id="media-library" class="media-library row"></div>
                     </div>
                     <div class="tab-pane fade" id="uploading-area" role="tabpanel" aria-labelledby="uploading-tab">
                         <form id="form-upload" action="{{route('media.store-ajax')}}" method="POST" enctype="multipart/form-data">

@@ -129,6 +129,7 @@
 
     $('.presentation').owlCarousel({
         items: 1,
+        margin: 13,
     });
 
     $('.presentation-thumbs .thumb').on('click', function (){

@@ -238,6 +238,9 @@ input.short_word {
     overflow: hidden;
 }
 
+.presentation .swiper-slide {
+    width: 100%;
+}
 .presentation .swiper-slide img {
     width: 100%;
     max-height: 100%;

@@ -6,7 +6,7 @@
     <ul class="breadcrumb">
         <li class="breadcrumb-item"><a href="{{ route('dashboard') }}"><i class="ti ti-home"></i></a></li>
         <li class="breadcrumb-item"><a href="{{ route('courses.index') }}">{{ __("cms-pages.courses") }}</i></a></li>
-        <li class="breadcrumb-item">{{ $course->title }}</li>
+        <li class="breadcrumb-item"><a href="{{ route('courses.show', $course) }}">{{ $course->title }}</a></li>
         <li class="breadcrumb-item">{{ $lesson->title }}</li>
         <li class="breadcrumb-item active">{{ __("cms-pages.presentation") }}</li>
     </ul>

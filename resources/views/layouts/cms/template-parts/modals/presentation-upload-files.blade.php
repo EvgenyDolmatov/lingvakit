@@ -14,24 +14,24 @@
 
                 <ul class="nav nav-tabs" role="tablist">
                     <li class="nav-item">
-                        <a class="nav-link active" id="choosing-tab" data-toggle="tab" href="#choosing-area" role="tab" aria-controls="choosing-area" aria-selected="true">
+                        <a class="nav-link choose-aria active" id="pres-choosing-tab" data-toggle="tab" href="#pres-choosing-area" role="tab" aria-controls="pres-choosing-area" aria-selected="true">
                             <i class="ion-image mr-2"></i>{{__("cms-pages.media-files")}}
                         </a>
                     </li>
                     <li class="nav-item">
-                        <a class="nav-link" id="uploading-tab" data-toggle="tab" href="#uploading-area" role="tab" aria-controls="uploading-area" aria-selected="false">
+                        <a class="nav-link" id="pres-uploading-tab" data-toggle="tab" href="#pres-uploading-area" role="tab" aria-controls="pres-uploading-area" aria-selected="false">
                             <i class="ion-archive mr-2"></i>{{__("cms-pages.uploading")}}
                         </a>
                     </li>
                 </ul>
 
                 <div class="tab-content pt-3">
-                    <div class="tab-pane fade show active" id="choosing-area" role="tabpanel" aria-labelledby="choosing-tab">
+                    <div class="tab-pane fade show active" id="pres-choosing-area" role="tabpanel" aria-labelledby="pres-choosing-tab">
                         {{-- File Gallery --}}
                         <div {{--id="media-library"--}} class="media-library row"></div>
                     </div>
-                    <div class="tab-pane fade" id="uploading-area" role="tabpanel" aria-labelledby="uploading-tab">
-                        <form id="form-upload" action="{{route('media.store-ajax')}}" method="POST" enctype="multipart/form-data">
+                    <div class="tab-pane fade" id="pres-uploading-area" role="tabpanel" aria-labelledby="pres-uploading-tab">
+                        <form id="pres-form-upload" action="{{route('media.store-ajax')}}" method="POST" enctype="multipart/form-data">
                             @csrf
                             <div class="form-group row">
                                 <div class="col-12 mb-3">

@@ -37,7 +37,7 @@ window.Lingva = {};
      */
     Lingva.initMediaFile = (function () {
 
-        let uploadForm = $('#form-upload');
+        let uploadForm = $('#form-upload, #pres-form-upload');
         let inputYoutube = $('input[name="youtube"]');
         let $button;
         let button;
@@ -258,7 +258,8 @@ window.Lingva = {};
             uploadForm.submit(function (e) {
                 e.preventDefault();
 
-                let formData = new FormData(document.getElementById("form-upload"));
+                let $this = $(this);
+                let formData = new FormData(document.getElementById($this.attr('id')));
 
                 $.ajax({
                     url: uploadForm.attr('action'),
@@ -282,7 +283,8 @@ window.Lingva = {};
 
                         // Click to Choosing file tab
                         setTimeout(function () {
-                            $('#choosing-tab').trigger('click');
+                            $this.closest('.modal-body').find('.choose-aria').trigger('click');
+                            // $('#choosing-tab').trigger('click');
                         }, 1000);
                     }
                 });
