@@ -26,7 +26,7 @@ class SiteController extends Controller
         }
 
         return view('welcome', [
-            'courses' => $courses->get(),
+            'courses' => $courses->orderBy('publish_date')->get(),
             'languages' => Language::all(),
         ]);
     }
