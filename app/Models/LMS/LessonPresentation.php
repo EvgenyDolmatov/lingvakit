@@ -40,6 +40,9 @@ class LessonPresentation extends Model
 
     public function getImage(): string
     {
-        return asset($this->mainImage->getSmallImage());
+        if ($this->mainImage) {
+            return asset($this->mainImage->getSmallImage());
+        }
+        return false;
     }
 }
