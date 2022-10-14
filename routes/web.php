@@ -233,6 +233,7 @@ Route::prefix('dashboard')->middleware(['auth', 'locale', 'role:superuser|admin|
         Route::get('/{student}', [StudentController::class, 'show'])->name('students.show');
         Route::get('/{student}/edit', [StudentController::class, 'edit'])->name('students.edit');
         Route::put('/{student}/edit', [StudentController::class, 'update'])->name('students.update');
+        Route::delete('/{student}', [StudentController::class, 'destroy'])->name('admin.students.destroy');
 
         Route::prefix('{student}')->group(function (){
             Route::get('add-course', [StudentCourseController::class, 'addCourse'])->name('students.course.add');

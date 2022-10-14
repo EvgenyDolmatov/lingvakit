@@ -39,6 +39,16 @@
                                         <a href="{{ route('students.show', $student->id) }}">
                                             <i class="la la-eye edit"></i>
                                         </a>
+
+                                        <form style="display: inline-block" method="POST"
+                                              action="{{ route('admin.students.destroy', $student->id) }}">
+                                            @csrf @method('DELETE')
+
+                                            <a href="{{ route('admin.students.destroy', $student->id) }}"
+                                               onclick="event.preventDefault();if(confirm('{{ __("cms-messages.delete") }}')){this.closest('form').submit();}">
+                                                <i class="la la-close delete"></i>
+                                            </a>
+                                        </form>
                                     </td>
                                 </tr>
                             @endforeach

@@ -67,4 +67,10 @@ class StudentController extends Controller
     {
         return redirect()->route('students.index');
     }
+
+    public function destroy(User $student)
+    {
+        $student->delete();
+        return redirect()->route('students.index');
+    }
 }
