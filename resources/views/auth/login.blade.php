@@ -1,70 +1,83 @@
-@extends('layouts.auth')
+@extends('layouts.new-app-page')
 
-@section('content')
-    <div class="container-fluid no-padding h-100">
-        <div class="row flex-row h-100 bg-white">
-            <!-- Begin Left Content -->
-            <div class="col-xl-3 col-lg-5 col-md-5 col-sm-12 col-12 no-padding">
-                <div class="elisyam-bg background-03">
-                    <div class="elisyam-overlay overlay-08"></div>
-                    <div class="authentication-col-content-2 mx-auto text-center">
-                        <div class="logo-centered">
-                            <a href="{{ route('site.index') }}">
-                                <img src="{{asset('assets/cms/img/logo-light.svg')}}" alt="logo">
-                            </a>
-                        </div>
-                        <h2>Онлайн-школа<br>иностранных языков</h2>
-                        <ul class="login-nav nav nav-tabs mt-5 justify-content-center">
-                            <li><a class="@if(Request::route()->getName() == 'login') active @endif" href="{{route('login')}}">{{ __("Sign In") }}</a></li>
-                            <li><a class="@if(Request::route()->getName() == 'register') active @endif" href="{{route('register')}}">{{ __("Sign Up") }}</a></li>
-                        </ul>
+@section('page-group-title', 'Аккаунт')
+@section('page-group-slogan', 'Управление учётной записью')
+@section('page-image', asset('assets/promo-site/images/auth.jpg'))
+
+@section('page-content')
+    <section>
+        <div class="pagenation-holder">
+            <div class="container">
+                <div class="row">
+                    <div class="col-md-6">
+                        <h3>Вход в аккаунт</h3>
                     </div>
-                </div>
-            </div>
-            <!-- Begin Right Content -->
-            <div class="col-xl-9 col-lg-7 col-md-7 col-sm-12 col-12 my-auto no-padding">
-                <!-- Begin Form -->
-                <div class="authentication-form-2 mx-auto">
-                    <div role="tabpanel" class="tab-pane show active" id="singin" aria-labelledby="singin-tab">
-                        <h3>{{ __("Sign In") }}</h3>
-                        <form method="POST" action="{{ route('login') }}">
-                            @csrf
-
-                            <div class="group material-input">
-                                <input type="text" name="email" value="{{ old('email') }}" required>
-                                <span class="highlight"></span>
-                                <span class="bar"></span>
-                                <label>{{ __("Email") }}</label>
-                                @error('email')
-                                <small>{{ $message }}</small>
-                                @enderror
-                            </div>
-                            <div class="group material-input">
-                                <input type="password" name="password" required>
-                                <span class="highlight"></span>
-                                <span class="bar"></span>
-                                <label>{{ __("Password") }}</label>
-                            </div>
-                            <div class="row">
-                                <div class="col text-left">
-                                    <div class="styled-checkbox">
-                                        <input type="checkbox" name="remember" id="remember">
-                                        <label for="remember">{{ __("Remember me") }}</label>
-                                    </div>
-                                </div>
-                                <div class="col text-right">
-                                    <a href="{{ route('password.request') }}">{{ __("Forgot Password ?") }}</a>
-                                </div>
-                            </div>
-                            <div class="sign-btn text-center">
-                                <button type="submit" class="btn btn-lg btn-gradient-01">
-                                    {{ __("Sign In") }}
-                                </button>
-                            </div>
-                        </form>
+                    <div class="col-md-6 text-right">
+                        <div class="pagenation_links">
+                            <a href="{{url('/')}}">Главная</a><i> / </i> Вход
+                        </div>
                     </div>
                 </div>
             </div>
         </div>
-    </div>
+    </section>
+    <!--end section-->
+    <div class="clearfix"></div>
+
+    <section class="sec-padding">
+        <div class="container">
+            <div class="row">
+                <div class="col-md-7 col-centered">
+                    <div class="text-box padding-4 border">
+                        <div class="smart-forms smart-container wrap-3">
+                            <h4 class="uppercase">Вход в аккаунт</h4>
+                            <form method="post" action="{{ route('login') }}" id="contact">
+                                @csrf
+                                <div>
+                                    <div class="section">
+                                        <label class="field prepend-icon">
+                                            <input type="text" name="email" id="email" class="gui-input"
+                                                   placeholder="Электронная почта">
+                                            <span class="field-icon"><i class="fa fa-user"></i></span>
+                                        </label>
+                                        @error('email')
+                                        <small>{{ $message }}</small>
+                                        @enderror
+                                    </div>
+
+                                    <div class="section">
+                                        <label class="field prepend-icon">
+                                            <input type="password" name="password" id="password" class="gui-input"
+                                                   placeholder="{{ __("Password") }}">
+                                            <span class="field-icon"><i class="fa fa-lock"></i></span>
+                                        </label>
+                                    </div><!-- end section -->
+
+                                    <div class="section flex">
+                                        <label class="switch block">
+                                            <input type="checkbox" name="remember" id="remember" checked>
+                                            <span class="switch-label" for="remember" data-on="Да"
+                                                  data-off="Нет"></span>
+                                            <span>{{ __("Remember me") }}</span>
+                                        </label>
+                                        <a href="{{ route('password.request') }}">
+                                            {{ __("Forgot Password ?") }}
+                                        </a>
+                                    </div>
+                                </div>
+                                <div class="form-footer">
+                                    <button type="submit" class="button btn-primary">Войти</button>
+                                </div>
+                            </form>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </section>
+    <div class="clearfix"></div>
+@endsection
+
+@section('styles')
+    <link rel="stylesheet" type="text/css" href="{{asset('assets/promo-site/js/smart-forms/smart-forms.css')}}">
 @endsection

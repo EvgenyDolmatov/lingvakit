@@ -2,6 +2,7 @@
 
 namespace App\Actions\Fortify;
 
+use App\Models\Captcha;
 use App\Models\Setting;
 use App\Models\User;
 use Illuminate\Support\Facades\Hash;
@@ -17,13 +18,13 @@ class CreateNewUser implements CreatesNewUsers
     /**
      * Validate and create a newly registered user.
      *
-     * @param  array  $input
+     * @param array $input
      * @return \App\Models\User
      */
     public function create(array $input)
     {
         if ($input['user_type'] === 'student') {
-            Validator::make($input, [
+            $validator = Validator::make($input, [
                 'name' => ['required', 'string', 'max:255'],
                 'surname' => ['required', 'string', 'max:255'],
                 'email' => [
@@ -34,8 +35,17 @@ class CreateNewUser implements CreatesNewUsers
                     Rule::unique(User::class),
                 ],
                 'password' => $this->passwordRules(),
-                'agreement' => ['required'],
-            ])->validate();
+                'agreement' => ['required']
+            ]);
+
+            $validator->after(function ($validator) use($input) {
+                if ($input['user_text'] != Captcha::find($input['user_text_x'])->code) {
+                    $validator->errors()->add(
+                        'user_text', 'Код с картинки введен не верно.'
+                    );
+                }
+            });
+            $validator->validate();
 
             $user = User::create([
                 'name' => $input['name'],
@@ -48,7 +58,7 @@ class CreateNewUser implements CreatesNewUsers
 
 
         } else {
-            Validator::make($input, [
+            $validator = Validator::make($input, [
                 'name' => ['required', 'string', 'max:255'],
                 'surname' => ['required', 'string', 'max:255'],
                 'email' => [
@@ -61,7 +71,16 @@ class CreateNewUser implements CreatesNewUsers
                 'password' => $this->passwordRules(),
                 'agreement' => ['required'],
                 'lease-contract' => ['required'],
-            ])->validate();
+            ]);
+
+            $validator->after(function ($validator) use($input) {
+                if ($input['user_text'] != Captcha::find($input['user_text_x'])->code) {
+                    $validator->errors()->add(
+                        'user_text', 'Код с картинки введен не верно.'
+                    );
+                }
+            });
+            $validator->validate();
 
             $user = User::create([
                 'name' => $input['name'],

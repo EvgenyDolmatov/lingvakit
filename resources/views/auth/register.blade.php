@@ -1,139 +1,149 @@
-@extends('layouts.auth')
+@extends('layouts.new-app-page')
 
-@section('content')
-    <div class="container-fluid no-padding h-100">
-        <div class="row flex-row h-100 bg-white">
-            <!-- Begin Left Content -->
-            <div class="col-xl-3 col-lg-5 col-md-5 col-sm-12 col-12 no-padding">
-                <div class="elisyam-bg background-03">
-                    <div class="elisyam-overlay overlay-08"></div>
-                    <div class="authentication-col-content-2 mx-auto text-center">
-                        <div class="logo-centered">
-                            <a href="{{route('site.index')}}">
-                                <img src="{{asset('assets/cms/img/logo-light.svg')}}" alt="logo">
-                            </a>
-                        </div>
-                        <h2>Онлайн-школа<br>иностранных языков</h2>
-                        <ul class="login-nav nav nav-tabs mt-5 justify-content-center">
-                            <li><a class="@if(Request::route()->getName() == 'login') active @endif"
-                                   href="{{route('login')}}">{{ __("Sign In") }}</a></li>
-                            <li><a class="@if(Request::route()->getName() == 'register') active @endif"
-                                   href="{{route('register')}}">{{ __("Sign Up") }}</a></li>
-                        </ul>
+@section('page-group-title', 'Аккаунт')
+@section('page-group-slogan', 'Управление учётной записью')
+@section('page-image', asset('assets/promo-site/images/auth.jpg'))
+
+@section('page-content')
+    <section>
+        <div class="pagenation-holder">
+            <div class="container">
+                <div class="row">
+                    <div class="col-md-6">
+                        <h3>Создание аккаунта</h3>
                     </div>
-                </div>
-            </div>
-            <!-- Begin Right Content -->
-            <div class="col-xl-9 col-lg-7 col-md-7 col-sm-12 col-12 my-auto no-padding">
-                <!-- Begin Form -->
-                <div class="authentication-form-2 mx-auto">
-                    <div role="tabpanel" class="tab-pane" id="signup" aria-labelledby="signup-tab">
-                        <h3>{{ __("Create An Account") }}</h3>
-                        <form method="POST" action="{{ route('register') }}">
-                            @csrf
-
-                            <div class="group material-input">
-                                <input type="text" name="name" value="{{ old('name') }}" required>
-                                <span class="highlight"></span>
-                                <span class="bar"></span>
-                                <label>{{__("Name")}}</label>
-                                @error('name')
-                                <small>{{ $message }}</small>
-                                @enderror
-                            </div>
-                            <div class="group material-input">
-                                <input type="text" name="surname" value="{{ old('surname') }}" required>
-                                <span class="highlight"></span>
-                                <span class="bar"></span>
-                                <label>{{__("Surname")}}</label>
-                                @error('surname')
-                                <small>{{ $message }}</small>
-                                @enderror
-                            </div>
-                            <div class="group material-input">
-                                <input type="text" name="email" value="{{ old('email') }}" required>
-                                <span class="highlight"></span>
-                                <span class="bar"></span>
-                                <label>{{__("Email")}}</label>
-                                @error('email')
-                                <small>{{ $message }}</small>
-                                @enderror
-                            </div>
-                            <div class="group material-input">
-                                <input type="password" name="password" required>
-                                <span class="highlight"></span>
-                                <span class="bar"></span>
-                                <label>{{__("Password")}}</label>
-                                @error('password')
-                                <small>{{ $message }}</small>
-                                @enderror
-                            </div>
-                            <div class="group material-input">
-                                <input type="password" name="password_confirmation" required>
-                                <span class="highlight"></span>
-                                <span class="bar"></span>
-                                <label>{{__("Confirm Password")}}</label>
-                            </div>
-
-                            {{-- Choosing User Role --}}
-                            <div class="group">
-                                <div class="container">
-                                    <div class="row">
-                                        <div class="text-left mb-3 mr-5">
-                                            <div class="styled-radio">
-                                                <input type="radio" name="user_type" id="user_student" value="student" checked>
-                                                <label for="user_student">{{ __("Register as Student") }}</label>
-                                            </div>
-                                        </div>
-                                        <div class="text-left mb-3">
-                                            <div class="styled-radio">
-                                                <input type="radio" name="user_type" id="user_teacher" value="teacher">
-                                                <label for="user_teacher">{{ __("Register as Teacher") }}</label>
-                                            </div>
-                                        </div>
-                                    </div>
-                                </div>
-                            </div>
-
-                            <div class="group">
-                                <div class="agreement-container student-agreement teacher-agreement">
-                                    <div class="styled-checkbox">
-                                        <input type="checkbox" name="agreement" id="agree">
-                                        <label for="agree">
-                                            {{__("I Accept")}} <a href="#" target="_blank">{{__("Terms and Conditions")}}</a>
-                                        </label>
-                                    </div>
-                                    @error('agreement')
-                                    <small>{{ $message }}</small>
-                                    @enderror
-                                </div>
-                                <div class="agreement-container teacher-agreement hide">
-                                    <div class="styled-checkbox">
-                                        <input type="checkbox" name="lease-contract" id="lease_contract">
-                                        <label for="lease_contract">
-                                            {{__("I Accept")}} <a href="#" target="_blank">{{__("Lease Contract")}}</a>
-                                        </label>
-                                    </div>
-                                    @error('lease-contract')
-                                    <small>{{ $message }}</small>
-                                    @enderror
-                                </div>
-                            </div>
-
-                            <div class="sign-btn text-center">
-                                <button type="submit" class="btn btn-lg btn-gradient-01">
-                                    {{ __("Sign Up") }}
-                                </button>
-                            </div>
-                        </form>
+                    <div class="col-md-6 text-right">
+                        <div class="pagenation_links">
+                            <a href="{{url('/')}}">Главная</a><i> / </i> Регистрация
+                        </div>
                     </div>
                 </div>
             </div>
         </div>
-    </div>
+    </section>
+    <!--end section-->
+    <div class="clearfix"></div>
+
+    <section class="sec-padding">
+        <div class="container">
+            <div class="row">
+                <div class="col-md-7 col-centered">
+                    <div class="text-box padding-3 border">
+                        <div class="smart-forms smart-container wrap-3">
+
+                            <h3>Регистрация</h3>
+
+                            <form method="post" action="{{ route('register') }}" id="account">
+                                @csrf
+                                <div class="form-body">
+                                    <label for="names" class="field-label">Имя и фамилия</label>
+                                    <div class="frm-row">
+                                        <div class="section colm colm6">
+                                            <label class="field prepend-icon">
+                                                <input type="text" name="name" id="name" class="gui-input"
+                                                       value="{{ old('name') }}" placeholder="{{__("Name")}}">
+                                                <span class="field-icon"><i class="fa fa-user"></i></span>
+                                            </label>
+                                            @error('name')
+                                            <small>{{ $message }}</small>
+                                            @enderror
+                                        </div>
+                                        <div class="section colm colm6">
+                                            <label class="field prepend-icon">
+                                                <input type="text" name="surname" id="surname" class="gui-input"
+                                                       placeholder="{{__("Surname")}}" value="{{ old('surname') }}">
+                                                <span class="field-icon"><i class="fa fa-user"></i></span>
+                                            </label>
+                                            @error('surname')
+                                            <small>{{ $message }}</small>
+                                            @enderror
+                                        </div>
+                                    </div>
+
+                                    <div class="section">
+                                        <label for="email" class="field-label">Электронная почта</label>
+                                        <label class="field prepend-icon">
+                                            <input type="email" name="email" id="email" class="gui-input"
+                                                   placeholder="username@mail.ru..." value="{{ old('email') }}">
+                                            <span class="field-icon"><i class="fa fa-envelope"></i></span>
+                                        </label>
+                                        @error('email')
+                                        <small>{{ $message }}</small>
+                                        @enderror
+                                    </div>
+
+                                    <div class="section">
+                                        <label for="password" class="field-label">{{__("Password")}}</label>
+                                        <label class="field prepend-icon">
+                                            <input type="password" name="password" id="password" class="gui-input">
+                                            <span class="field-icon"><i class="fa fa-lock"></i></span>
+                                        </label>
+                                        @error('password')
+                                        <small>{{ $message }}</small>
+                                        @enderror
+                                    </div>
+
+                                    <div class="section">
+                                        <label for="password_confirmation" class="field-label">
+                                            {{__("Confirm Password")}}
+                                        </label>
+                                        <label class="field prepend-icon">
+                                            <input type="password" name="password_confirmation"
+                                                   id="password_confirmation" class="gui-input">
+                                            <span class="field-icon"><i class="fa fa-lock"></i></span>
+                                        </label>
+                                        @error('password_confirmation')
+                                        <small>{{ $message }}</small>
+                                        @enderror
+                                    </div>
+
+                                    <div class="section">
+                                        <label for="user_type" class="field-label">Я регистрируюсь как</label>
+                                        <label class="option" for="user_student">
+                                            <input type="radio" name="user_type" id="user_student" value="student" checked>
+                                            <span class="radio"></span> Студент
+                                        </label>
+                                        <label class="option" for="user_teacher">
+                                            <input type="radio" name="user_type" id="user_teacher" value="teacher">
+                                            <span class="radio"></span> Преподаватель
+                                        </label>
+                                    </div>
+
+
+                                    <div class="section">
+                                        <label class="option" for="agree">
+                                            <input type="checkbox" name="agreement" id="agree">
+                                            <span class="checkbox"></span>
+                                            Принимаю <a href="#" class="smart-link"> правила и условия сайта </a>
+                                        </label>
+                                    </div>
+
+                                    <div class="section">
+                                        <label for="user_text" class="field-label">Введите текст с картинки</label>
+                                        <img src="{{$captchaImage->image_path}}" alt style="margin-bottom: 10px;width: 300px">
+                                        <label class="field">
+                                            <input type="hidden" name="user_text_x" value="{{$captchaImage->id}}">
+                                            <input type="text" name="user_text" id="user_text" class="gui-input">
+                                        </label>
+                                        @error('user_text')
+                                        <small>{{ $message }}</small>
+                                        @enderror
+                                    </div>
+
+                                    <div class="form-footer">
+                                        <button type="submit" class="button btn-primary">Создать аккаунт</button>
+                                    </div>
+                                </div>
+                            </form>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </section>
+    <div class="clearfix"></div>
 @endsection
 
-@section('custom-scripts')
-    <script src="{{asset('assets/cms/js/custom.js')}}"></script>
+@section('styles')
+    <link rel="stylesheet" type="text/css" href="{{asset('assets/promo-site/js/smart-forms/smart-forms.css')}}">
 @endsection
-

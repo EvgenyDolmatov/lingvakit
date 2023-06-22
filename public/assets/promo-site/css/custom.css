@@ -126,5 +126,53 @@ input[type=search]:focus {
     background-color: #6f74e8;
 }
 
+.img-responsive {
+    width: 100%;
+}
 
+.smart-forms .btn-primary {
+    background-color: #6f74e8;
+}
+
+.smart-forms .btn-primary:hover,
+.smart-forms .btn-primary:focus {
+    background-color: #7a7fff;
+}
+
+.smart-forms .switch > input:checked + .switch-label {
+    border-color: #6f74e8;
+    background: #6f74e8;
+}
+
+.smart-forms .gui-input:hover {
+    border-color: #6f74e8;
+}
+
+.smart-forms .gui-input:focus {
+    border: 1px solid #6f74e8;
+    box-shadow: 0px 0px 3px #6f74e8 inset;
+}
+
+.smart-forms .gui-input:focus ~ .field-icon i,
+.smart-forms .gui-textarea:focus ~ .field-icon i {
+    color: #6f74e8;
+}
+
+.smart-forms .section.flex {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+}
+
+.smart-forms .smart-link {
+    color: #6f74e8;
+}
+
+.smart-forms input:checked + .checkbox,
+.smart-forms input:hover + .checkbox,
+.smart-forms input:checked + .radio,
+.smart-forms input:hover + .radio,
+.smart-forms .checkbox:before {
+    border-color: #6f74e8;
+}
 

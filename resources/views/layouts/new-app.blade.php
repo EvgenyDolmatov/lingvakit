@@ -7,7 +7,7 @@
     <meta name="keywords" content="" />
     <meta name="description" content="" />
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <link rel="shortcut icon" href="{{ asset('assets/promo-site/images/favicon.ico') }}">
+    <link rel="shortcut icon" href="{{ asset('assets/site/img/logo.svg') }}">
 
     <link href='https://fonts.googleapis.com/css?family=Open+Sans:300,300italic,400,400italic,600,600italic,700,700italic,800,800italic' rel='stylesheet' type='text/css'>
     <link href='https://fonts.googleapis.com/css?family=Roboto:100,200,300,400,500,600,700,800,900' rel='stylesheet' type='text/css'>
@@ -31,6 +31,7 @@
     <link rel="stylesheet" type="text/css" href="{{ asset('assets/promo-site/js/cubeportfolio/cubeportfolio.min.css')}}">
     <link href="{{ asset('assets/promo-site/js/owl-carousel/owl.carousel.css')}}" rel="stylesheet">
     <link rel="stylesheet" href="{{ asset('assets/promo-site/js/ytplayer/ytplayer.css')}}" />
+    @yield('styles')
     <link rel="stylesheet" href="{{ asset('assets/promo-site/css/custom.css')}}" />
 </head>
 
@@ -78,8 +79,8 @@
 <script src="{{ asset('assets/promo-site/js/animations/js/appear.min.js')}}" type="text/javascript"></script>
 <script src="{{ asset('assets/promo-site/js/scrolltotop/totop.js')}}"></script>
 <script src="{{ asset('assets/promo-site/js/owl-carousel/owl.carousel.js')}}"></script>
+@yield('scripts')
 <script src="{{ asset('assets/promo-site/js/owl-carousel/custom.js')}}"></script>
-
 <script src="{{ asset('assets/promo-site/js/scripts/functions.js')}}" type="text/javascript"></script>
 
 </body>
