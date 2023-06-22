@@ -33,6 +33,8 @@ use App\Http\Controllers\UserResultController;
 use App\Http\Controllers\UserTopicController;
 use Illuminate\Support\Facades\Route;
 
+// посадочная test
+Route::get('/landing', [SiteController::class, 'index2'])->name('site.landing');
 
 Route::get('/', [SiteController::class, 'index'])->name('site.index');
 Route::get('about-us', [SiteController::class, 'aboutUs'])->name('site.about-us');

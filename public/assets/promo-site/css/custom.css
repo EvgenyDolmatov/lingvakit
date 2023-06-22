@@ -1,0 +1,130 @@
+.primary-bg,
+.ms-layer.text59 {
+    background-color: #6f74e8; /* FFB606 */
+}
+
+.toplist li,
+.toplist li a {
+    color: #d3d3ff;
+}
+
+.toplist li a:hover {
+    color: #fff;
+}
+
+.text-primary,
+ul.nav > li > a.active,
+ul.nav > li > a:hover.active,
+.navbar-default .navbar-nav > li > a:focus,
+.navbar-default .navbar-nav > li > a:hover {
+    color: #6f74e8;
+}
+
+.ms-layer.sbut2:hover {
+    background-color: #6f74e8;
+    color: #fff;
+}
+
+.navbar-brand {
+    padding: 8px 0 0;
+}
+
+.ms-layer.text78 {
+    letter-spacing: 5px;
+}
+
+.lspace-1 {
+    letter-spacing: 2px;
+}
+
+.iconlist.orange li i {
+    color: #6f74e8;
+    padding: 0 15px 0 0;
+}
+
+.btn.btn-primary.dark {
+    background-color: #6f74e8;
+}
+
+.btn.btn-primary.dark:hover {
+    color: #fff;
+    background-color: #242424;
+}
+
+.section-primary {
+    background-color: #6f74e8;
+}
+
+.email_input::placeholder {
+    color: #fff;
+}
+
+.input_holder {
+    float: unset;
+    display: flex;
+}
+
+.post-date-box {
+    background-color: #6f74e8;
+}
+
+.parallax-section69 {
+    background-image: url(../images/reviews.jpg);
+}
+
+blockquote.style1 {
+    color: #c0c0c0;
+}
+
+input[type=search] {
+    outline: none;
+}
+
+input[type=search]:focus {
+    border-color: #fff;
+}
+
+.feature-box19.number .iconbox-small {
+    line-height: 78px;
+    font-size: 42px;
+    font-weight: 100;
+    color: #6f74e8;
+}
+
+.feature-box19.number .iconbox-small {
+    line-height: 78px;
+    font-size: 28px;
+    font-weight: 100;
+    color: #6f74e8;
+}
+
+.feature-box19.number:hover .iconbox-small,
+.feature-box19.number.active .iconbox-small {
+    color: #fff;
+    background-color: #6f74e8;
+    border: 1px solid #6f74e8;
+    transform: scale(1.1);
+}
+
+.feature-box19.number:hover h4,
+.feature-box19.number.active h4 {
+    color: #6f74e8;
+}
+
+.footer-tags li a:hover,
+.footer-tags li a.active {
+    border: 1px solid #6f74e8;
+    color: #6f74e8;
+}
+
+.social-icons-3 li a {
+    color: #6f74e8;
+}
+
+.social-icons-3 li a:hover,
+.social-icons-3 li a.active {
+    background-color: #6f74e8;
+}
+
+
+

@@ -14,6 +14,23 @@ use Illuminate\Support\Facades\Mail;
 
 class SiteController extends Controller
 {
+    public function index2(Request $request)
+    {
+        $courses = Course::where([
+            ['is_published', 1],
+            ['is_allowed', 1],
+        ]);
+
+        if ($request->has('language')) {
+            $courses->where('language_id', $request->language);
+        }
+
+        return view('home-page', [
+            'courses' => $courses->orderBy('publish_date')->get(),
+            'languages' => Language::all(),
+        ]);
+    }
+
     public function index(Request $request)
     {
         $courses = Course::where([
