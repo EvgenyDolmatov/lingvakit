@@ -249,7 +249,8 @@
                                         @if($topic->lesson)
                                             <div class="about-text">
                                                 @if($course->isBelongsToStudent($user))
-                                                    <a href="{{route('site.show-topic', [$course->id, $topic->id])}}">
+                                                    <a href="{{route('site.show-topic', [$course->id, $topic->id])}}"
+                                                       class="{{$topic->getCssClass($user)}}">
                                                         {{ __("cms-pages.lesson") }}. {{ $topic->lesson->title }}
                                                         ({{ __("cms-pages.".$topic->name) }})
                                                     </a>

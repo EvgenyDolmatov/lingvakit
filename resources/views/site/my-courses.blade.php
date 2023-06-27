@@ -11,7 +11,7 @@
 
     <div class="row flex-row">
         @foreach($courses as $course)
-            <div class="col-xl-3 col-md-6 col-sm-6">
+            <div class="col-xl-3 col-md-6 col-12">
                 <div class="widget widget-12 has-shadow">
                     <div class="widget-body">
                         <div class="tile-image-container">

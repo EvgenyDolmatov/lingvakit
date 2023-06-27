@@ -1,11 +1,11 @@
 .primary-bg,
 .ms-layer.text59 {
-    background-color: #6f74e8; /* FFB606 */
+    background-color: #ce4a37; /* FFB606 */
 }
 
 .toplist li,
 .toplist li a {
-    color: #d3d3ff;
+    color: #ffece9;
 }
 
 .toplist li a:hover {
@@ -17,11 +17,11 @@ ul.nav > li > a.active,
 ul.nav > li > a:hover.active,
 .navbar-default .navbar-nav > li > a:focus,
 .navbar-default .navbar-nav > li > a:hover {
-    color: #6f74e8;
+    color: #ce4a37;
 }
 
 .ms-layer.sbut2:hover {
-    background-color: #6f74e8;
+    background-color: #ce4a37;
     color: #fff;
 }
 
@@ -29,21 +29,28 @@ ul.nav > li > a:hover.active,
     padding: 8px 0 0;
 }
 
+.lspace-sm,
+.lspace-1 {
+    letter-spacing: unset;
+}
+
 .ms-layer.text78 {
     letter-spacing: 5px;
 }
 
-.lspace-1 {
-    letter-spacing: 2px;
-}
-
 .iconlist.orange li i {
-    color: #6f74e8;
+    color: #ce4a37;
     padding: 0 15px 0 0;
 }
-
+.buttons {
+    display: flex;
+    justify-content: center;
+}
+.btn.btn-primary {
+    border-color: #ce4a37;
+}
 .btn.btn-primary.dark {
-    background-color: #6f74e8;
+    background-color: #ce4a37;
 }
 
 .btn.btn-primary.dark:hover {
@@ -51,8 +58,13 @@ ul.nav > li > a:hover.active,
     background-color: #242424;
 }
 
+.btn.btn-large {
+    font-size: 18px;
+    border-radius: 30px;
+}
+
 .section-primary {
-    background-color: #6f74e8;
+    background-color: #ce4a37;
 }
 
 .email_input::placeholder {
@@ -65,7 +77,7 @@ ul.nav > li > a:hover.active,
 }
 
 .post-date-box {
-    background-color: #6f74e8;
+    background-color: #ce4a37;
 }
 
 .parallax-section69 {
@@ -88,42 +100,42 @@ input[type=search]:focus {
     line-height: 78px;
     font-size: 42px;
     font-weight: 100;
-    color: #6f74e8;
+    color: #ce4a37;
 }
 
 .feature-box19.number .iconbox-small {
     line-height: 78px;
     font-size: 28px;
     font-weight: 100;
-    color: #6f74e8;
+    color: #ce4a37;
 }
 
 .feature-box19.number:hover .iconbox-small,
 .feature-box19.number.active .iconbox-small {
     color: #fff;
-    background-color: #6f74e8;
-    border: 1px solid #6f74e8;
+    background-color: #ce4a37;
+    border: 1px solid #ce4a37;
     transform: scale(1.1);
 }
 
 .feature-box19.number:hover h4,
 .feature-box19.number.active h4 {
-    color: #6f74e8;
+    color: #ce4a37;
 }
 
 .footer-tags li a:hover,
 .footer-tags li a.active {
-    border: 1px solid #6f74e8;
-    color: #6f74e8;
+    border: 1px solid #ce4a37;
+    color: #ce4a37;
 }
 
 .social-icons-3 li a {
-    color: #6f74e8;
+    color: #ce4a37;
 }
 
 .social-icons-3 li a:hover,
 .social-icons-3 li a.active {
-    background-color: #6f74e8;
+    background-color: #ce4a37;
 }
 
 .img-responsive {
@@ -131,31 +143,31 @@ input[type=search]:focus {
 }
 
 .smart-forms .btn-primary {
-    background-color: #6f74e8;
+    background-color: #ce4a37;
 }
 
 .smart-forms .btn-primary:hover,
 .smart-forms .btn-primary:focus {
-    background-color: #7a7fff;
+    background-color: #ab3c2c;
 }
 
 .smart-forms .switch > input:checked + .switch-label {
-    border-color: #6f74e8;
-    background: #6f74e8;
+    border-color: #ce4a37;
+    background: #ce4a37;
 }
 
 .smart-forms .gui-input:hover {
-    border-color: #6f74e8;
+    border-color: #ce4a37;
 }
 
 .smart-forms .gui-input:focus {
-    border: 1px solid #6f74e8;
-    box-shadow: 0px 0px 3px #6f74e8 inset;
+    border: 1px solid #ce4a37;
+    box-shadow: 0px 0px 3px #ce4a37 inset;
 }
 
 .smart-forms .gui-input:focus ~ .field-icon i,
 .smart-forms .gui-textarea:focus ~ .field-icon i {
-    color: #6f74e8;
+    color: #ce4a37;
 }
 
 .smart-forms .section.flex {
@@ -165,7 +177,7 @@ input[type=search]:focus {
 }
 
 .smart-forms .smart-link {
-    color: #6f74e8;
+    color: #ce4a37;
 }
 
 .smart-forms input:checked + .checkbox,
@@ -173,6 +185,253 @@ input[type=search]:focus {
 .smart-forms input:checked + .radio,
 .smart-forms input:hover + .radio,
 .smart-forms .checkbox:before {
-    border-color: #6f74e8;
+    border-color: #ce4a37;
 }
+
+.ms-layer.text58 {
+    padding: 10px;
+    font-size: 50px;
+}
+
+.ms-layer.text59 {
+    padding: 5px;
+    font-size: 30px;
+}
+
+.ms-layer.sbut1,
+.ms-layer.sbut2 {
+    padding: 20px 40px;
+    border-radius: 50px;
+    font-size: 16px;
+}
+
+.ms-layer.sbut2 {
+    padding: 22px 40px;
+}
+
+/* It's easy block */
+.content-container {
+    margin: 0 auto 100px;
+    max-width: 950px;
+    position: relative;
+}
+
+.mid-picture {
+    position: absolute;
+    left: 50%;
+    top: 50%;
+    margin-left: -180px;
+    margin-top: -180px;
+}
+
+.mid-circle {
+    position: relative;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    width: 360px;
+    height: 360px;
+    border: 20px solid #eea0a0;
+    border-radius: 50%;
+    background-color: #ce4a37;
+}
+
+.mid-circle p {
+    line-height: 42px;
+    font-weight: 800;
+    text-align: center;
+    color: #fff;
+    font-size: 44px;
+    text-transform: uppercase;
+}
+
+.mid-circle p span {
+    color: #000;
+}
+
+.bubbles-container {
+    display: flex;
+    justify-content: space-between;
+    margin-bottom: 20px;
+    min-height: 470px;
+}
+
+.bubbles-container:first-child {
+    align-items: end;
+    margin-bottom: 120px;
+}
+
+.bubbles-container:first-child .bubble:nth-child(2) {
+    align-self: flex-start;
+}
+
+.bubbles-container:last-child .bubble:nth-child(2) {
+    align-self: flex-end;
+}
+
+.bubble {
+    padding: 24px;
+    padding-top: 50px;
+    width: 260px;
+    height: 260px;
+    border-radius: 50%;
+    background-color: #fff;
+    box-shadow: 0 0 50px rgba(0, 0, 0, .25);
+    text-align: center;
+}
+
+.bubble .iconbox-xtiny {
+    margin-bottom: 10px;
+}
+
+.bubble .iconbox-xtiny span {
+    font-size: 50px;
+    color: #ce4a37;
+}
+
+.bubble p {
+    font-size: 18px;
+}
+
+.arrows .arrow {
+    position: absolute;
+    width: 24px;
+    height: 504px;
+    background-image: url("../images/easy-start/circle-arrow.svg");
+    background-repeat: no-repeat;
+    top: 50%;
+    left: 50%;
+    margin-left: -12px;
+    margin-top: -252px;
+    z-index: -1;
+}
+
+.arrows .arrow:nth-child(2) {
+    transform: rotate(60deg);
+}
+
+.arrows .arrow:nth-child(3) {
+    transform: rotate(-60deg);
+}
+
+.section-side-image .text-inner.inner-left {
+    padding: 80px 0 80px 80px;
+}
+.testimonials {
+    background-color: #f9f9f9;
+}
+.testimonials .item {
+    margin-bottom: 70px;
+}
+.testimonials .text-box {
+    width: 100%;
+    padding: 30px;
+    margin: 0 0 25px 0;
+    float: left;
+    border: 1px solid #e4e4e4;
+    height: 320px;
+    background-color: #fff;
+}
+
+.testimonials .text-box p {
+    overflow-y: hidden;
+    height: 200px;
+    margin-bottom: 20px;
+}
+
+.testimonials .image {
+    width: 100px;
+    height: 100px;
+    float: left;
+    margin: 0;
+    padding: 0;
+    overflow: hidden;
+    border-radius: 100%;
+}
+
+.testimonials .item img {
+    display: block;
+    width: 100%;
+    height: auto;
+    margin-bottom: 10px;
+}
+
+.testimonials .info {
+    display: block;
+    margin: 0;
+    padding: 0 0 0 120px;
+    text-align: left;
+}
+
+.btn.btn-primary {
+    background-color: #ce4a37;
+}
+.btn.btn-primary:hover {
+    background-color: #ad3323;
+}
+
+.feature-box-84 {
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    margin-bottom: 30px;
+    height: 195px;
+}
+.feature-box-84 .text-white {
+    margin-bottom: 0;
+    line-height: 1.25;
+}
+
+@media screen and (max-width: 992px) {
+    .mid-picture {
+        display: flex;
+        justify-content: center;
+        position: unset;
+        margin-left: unset;
+        margin-top: unset;
+        margin-bottom: 50px;
+    }
+
+    .mid-circle {
+        width: 260px;
+        height: 260px;
+    }
+
+    .mid-circle p {
+        line-height: 32px;
+        font-size: 32px;
+    }
+
+    .arrows .arrow:not(:first-child) {
+        display: none;
+    }
+
+    .arrows .arrow:first-child {
+        top: unset;
+        bottom: -75px;
+        height: 75px;
+        background-position: bottom center;
+    }
+
+    .bubbles-container:first-child {
+        margin-bottom: unset;
+    }
+
+    .bubbles-container:first-child .bubble:nth-child(2),
+    .bubbles-container:last-child .bubble:nth-child(2) {
+        align-self: unset;
+    }
+
+    .bubbles-container {
+        min-height: unset;
+        flex-wrap: wrap;
+        margin-left: -20px;
+        margin-right: -20px;
+        justify-content: center;
+    }
+    .bubbles-container .bubble {
+        margin: 20px;
+    }
+}
+
 

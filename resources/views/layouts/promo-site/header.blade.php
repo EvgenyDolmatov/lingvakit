@@ -11,7 +11,7 @@
             <ul class="toplist toppadding">
                 @auth()
                     <li class="lineright">
-                        <a href="{{route('profile.show')}}">Мой аккаунт</a>
+                        <a href="{{route('profile.show')}}">Личный кабинет</a>
                     </li>
                 @else
                     <li class="lineright">
@@ -46,7 +46,7 @@
             <div id="navbar-collapse-grid" class="navbar-collapse collapse pull-right">
                 <ul class="nav navbar-nav">
                     <li>
-                        <a href="#" class="">О нас</a>
+                        <a href="#" class="">Онас</a>
                     </li>
                     <li class="dropdown"><a href="#" class="dropdown-toggle">Курсы</a>
                         <ul class="dropdown-menu" role="menu">

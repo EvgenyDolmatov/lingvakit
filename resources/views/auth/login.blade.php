@@ -38,7 +38,7 @@
                                         <label class="field prepend-icon">
                                             <input type="text" name="email" id="email" class="gui-input"
                                                    placeholder="Электронная почта">
-                                            <span class="field-icon"><i class="fa fa-user"></i></span>
+                                            <span class="field-icon"><i class="fa fa-envelope"></i></span>
                                         </label>
                                         @error('email')
                                         <small>{{ $message }}</small>

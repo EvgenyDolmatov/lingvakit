@@ -146,9 +146,9 @@
                                     @foreach($course->stages as $key => $stage)
                                         @foreach($stage->topics as $topicKey => $topic)
                                             <option value="{{$topic->id}}">
-                                                @if($topic->name === 'quiz')
+                                                @if($topic->name === 'quiz' && $topic->quiz)
                                                     {{($key+1).'.'.($topicKey+1).'. '.$topic->quiz->title}}
-                                                @elseif($topic->name === 'lesson')
+                                                @elseif($topic->name === 'lesson' && $topic->lesson)
                                                     {{($key+1).'.'.($topicKey+1).'. '.$topic->lesson->title}}
                                                 @endif
                                             </option>

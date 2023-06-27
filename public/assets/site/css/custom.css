@@ -262,6 +262,10 @@ input.short_word {
     height: 400px;
 }
 
+.content-inner.active .container-fluid  {
+    min-height: calc(100vh - 120px);
+}
+
 @media (max-width: 565px) {
     .rutube-frame {
         width: 100%;
