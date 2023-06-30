@@ -37,7 +37,7 @@
                                     <div class="section">
                                         <label class="field prepend-icon">
                                             <input type="text" name="email" id="email" class="gui-input"
-                                                   placeholder="Электронная почта">
+                                                   placeholder="Электронная почта" value="{{old('email')}}">
                                             <span class="field-icon"><i class="fa fa-envelope"></i></span>
                                         </label>
                                         @error('email')
