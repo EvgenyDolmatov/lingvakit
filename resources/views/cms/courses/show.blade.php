@@ -235,13 +235,18 @@
                                             <div class="col-xl-3">
                                                 {{ $topic->lesson->title }}
                                                 @if($topic->lesson->presentation)
-                                                    / <a href="{{ route('presentations.show', [$course, $stage, $topic->lesson, $topic->lesson->presentation]) }}">Презентация</a>
+                                                    /
+                                                    <a href="{{ route('presentations.show', [$course, $stage, $topic->lesson, $topic->lesson->presentation]) }}">Презентация</a>
                                                 @endif
                                             </div>
                                             <div class="col-xl-2">
                                                 {{ $topic->lesson->getDuration() }}
                                             </div>
-                                            <div class="col-xl-1"></div>
+                                            <div class="col-xl-1">
+                                                @if($topic->lesson->homeWork)
+                                                    {!! $topic->lesson->homeWork->getFile() !!}
+                                                @endif
+                                            </div>
                                             <div class="col-xl-2 td-actions d-flex justify-content-end">
                                                 <div class="actions dark d-inline-block">
                                                     <div class="dropdown">
@@ -255,6 +260,17 @@
                                                                class="dropdown-item">
                                                                 <i class="la la-plus"></i>{{ __("cms-pages.add-presentation") }}
                                                             </a>
+                                                            @if($topic->lesson->homeWork)
+                                                                <a href="{{ route('lesson.home-works.edit', [$course, $stage, $topic->lesson, $topic->lesson->homeWork]) }}"
+                                                                   class="dropdown-item">
+                                                                    <i class="la la-plus"></i>{{ __("cms-pages.edit-hw") }}
+                                                                </a>
+                                                            @else
+                                                                <a href="{{ route('lesson.home-works.create', [$course, $stage, $topic->lesson]) }}"
+                                                                   class="dropdown-item">
+                                                                    <i class="la la-plus"></i>{{ __("cms-pages.add-hw") }}
+                                                                </a>
+                                                            @endif
                                                         </div>
                                                     </div>
                                                 </div>

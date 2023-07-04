@@ -13,11 +13,13 @@ return new class extends Migration
      */
     public function up()
     {
-        Schema::create('captcha_images', function (Blueprint $table) {
+        Schema::create('lms_lesson_home_works', function (Blueprint $table) {
             $table->id();
-            $table->string('code')->unique();
-            $table->string('image_path');
+            $table->foreignId('lesson_id')->references('id')->on('lms_lessons')->cascadeOnDelete();
+            $table->string('file_path');
+            $table->text('comment')->nullable();
             $table->timestamps();
+            $table->softDeletes();
         });
     }
 
@@ -28,6 +30,6 @@ return new class extends Migration
      */
     public function down()
     {
-        Schema::dropIfExists('captcha_images');
+        Schema::dropIfExists('lms_lesson_home_works');
     }
 };

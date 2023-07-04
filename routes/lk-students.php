@@ -1,5 +1,6 @@
 <?php
 
+use App\Http\Controllers\Admin\HomeWorkController;
 use App\Http\Controllers\OrderController;
 use App\Http\Controllers\SettingController;
 use App\Http\Controllers\UserResultController;
@@ -30,6 +31,7 @@ Route::prefix('learning')->middleware(['auth', 'locale', 'verified'])->group(fun
         Route::prefix('topic-{topic}')->group(function (){
 
             Route::get('/', [UserTopicController::class, 'showTopic'])->name('site.show-topic');
+            Route::post('homework/send', [HomeWorkController::class, 'storeHomeWork'])->name('site.homework.send');
             /* Lessons */
             Route::prefix('lesson-{lesson}')->group(function (){
 //                Route::get('/', [UserTopicController::class, 'showLesson'])->name('site.lesson-show');

@@ -4,6 +4,7 @@ namespace App\Models;
 
 use App\Models\LMS\Course;
 use App\Models\LMS\CourseReview;
+use App\Models\LMS\HomeWorkResult;
 use App\Models\LMS\Result;
 use App\Models\LMS\TopicComment;
 use App\Notifications\CustomResetPasswordNotification;
@@ -104,7 +105,8 @@ class User extends Authenticatable implements MustVerifyEmail
         return $this->hasMany(CourseReview::class);
     }
 
-    public static function add($fields) {
+    public static function add($fields)
+    {
         $user = new static;
         $user->fill($fields);
         $user->password = Hash::make('00000000');
@@ -121,14 +123,14 @@ class User extends Authenticatable implements MustVerifyEmail
 
     public function getFullName()
     {
-        return trim($this->surname .' '. $this->name .' '. $this->patronymic);
+        return trim($this->surname . ' ' . $this->name . ' ' . $this->patronymic);
     }
 
     public function getCustomer()
     {
         $fullName = $this->getFullName();
         if ($this->company) {
-            return $fullName . ' [' .  $this->company->name . ']';
+            return $fullName . ' [' . $this->company->name . ']';
         }
         return $fullName;
     }
@@ -138,6 +140,7 @@ class User extends Authenticatable implements MustVerifyEmail
         $this->is_dealer = 1;
         $this->save();
     }
+
     public function isNotDealer()
     {
         $this->is_dealer = 0;
@@ -165,7 +168,7 @@ class User extends Authenticatable implements MustVerifyEmail
         ])->get();
     }
 
-    public function getPoints($course) : int
+    public function getPoints($course): int
     {
         $points = 0;
         $results = $this->getResultsByCourse($course);
@@ -201,7 +204,7 @@ class User extends Authenticatable implements MustVerifyEmail
     /**
      * Send the password reset notification.
      *
-     * @param  string  $token
+     * @param string $token
      * @return void
      */
     public function sendPasswordResetNotification($token)
@@ -216,11 +219,11 @@ class User extends Authenticatable implements MustVerifyEmail
 
     public function formatPhoneNumber()
     {
-        $sym = ['(',')','+','-',' '];
+        $sym = ['(', ')', '+', '-', ' '];
         return str_replace($sym, '', $this->phone);
     }
 
-    public function hasCourse($course) : bool
+    public function hasCourse($course): bool
     {
         if ($this->courses->contains($course->id)) {
             return true;
@@ -247,5 +250,46 @@ class User extends Authenticatable implements MustVerifyEmail
         });
 
         return $students->only($myStudentsIds);
+    }
+
+    /*
+     * Teacher
+     */
+    public function hasGroups()
+    {
+
+    }
+
+    public function ownStudents(): array
+    {
+        $courses = $this->ownCourses;
+        $students = [];
+
+        foreach ($courses as $course) {
+            foreach ($course->students as $student) {
+                $students[] = $student;
+            }
+        }
+        return $students;
+    }
+
+    public function uncheckedHomeWorks()
+    {
+        $studentIds = [];
+        foreach ($this->ownStudents() as $ownStudent) {
+            $studentIds[] = $ownStudent->id;
+        }
+
+        return HomeWorkResult::whereIn('student_id', $studentIds)->where("check_date", null)->get();
+    }
+
+    public function allHomeWorks()
+    {
+        $studentIds = [];
+        foreach ($this->ownStudents() as $ownStudent) {
+            $studentIds[] = $ownStudent->id;
+        }
+
+        return HomeWorkResult::whereIn('student_id', $studentIds)->get();
     }
 }

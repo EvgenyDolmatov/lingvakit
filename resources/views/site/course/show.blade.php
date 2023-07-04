@@ -237,12 +237,10 @@
                     </div>
                     <ul>
                         @foreach($course->stages as $stage)
-
                             <li>
                                 <div class="mt-5"></div>
                                 <h4>{{$stage->name}}</h4>
                             </li>
-
                             @foreach($stage->topics->sortby('index_number') as $key => $topic)
                                 <li>
                                     <div class="about-infos d-flex flex-column mt-3">
@@ -253,6 +251,16 @@
                                                        class="{{$topic->getCssClass($user)}}">
                                                         {{ __("cms-pages.lesson") }}. {{ $topic->lesson->title }}
                                                         ({{ __("cms-pages.".$topic->name) }})
+
+                                                        @if($topic->lesson->homeWork)
+                                                            @if($topic->lesson->homeWork->finishedTask)
+                                                                @if($topic->lesson->homeWork->finishedTask->isChecked())
+                                                                    <span class="text-primary">
+                                                                        | ОЦЕНКА: {{$topic->lesson->homeWork->finishedTask->assessment}}
+                                                                    </span>
+                                                                @endif
+                                                            @endif
+                                                        @endif
                                                     </a>
                                                 @else
                                                     <span>

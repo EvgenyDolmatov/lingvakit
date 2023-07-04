@@ -1,3 +1,9 @@
+@if(session('upload_success'))
+    <div class="alert alert-success">
+        {{session('upload_success')}}
+    </div>
+@endif
+
 <div class="widget widget-12 has-shadow">
     <div class="widget-body sliding-tabs">
         <ul class="nav nav-tabs" id="example-one" role="tablist">
@@ -17,6 +23,10 @@
             <li class="nav-item @if(!$lesson->presentation) disabled @endif">
                 <a class="nav-link" id="base-tab-file" data-toggle="tab"
                    href="#tab-file" role="tab" aria-controls="tab-file" aria-selected="false">Файлы</a>
+            </li>
+            <li class="nav-item @if(!$lesson->homeWork) disabled @endif">
+                <a class="nav-link" id="base-tab-hw" data-toggle="tab"
+                   href="#tab-hw" role="tab" aria-controls="tab-hw" aria-selected="false">Домашнее задание</a>
             </li>
         </ul>
         <div class="tab-content pt-3">
@@ -104,6 +114,76 @@
                             @endif
                         @endforeach
                     </div>
+                @endif
+            </div>
+            <div class="tab-pane fade" id="tab-hw" role="tabpanel" aria-labelledby="base-tab-hw">
+                @if($lesson->homeWork)
+                    <div class="about-title mt-3 mb-4">
+                        <h3>{{__("site-pages.homework")}}</h3>
+                    </div>
+                    <div class="about-infos d-flex justify-content-start mb-5">
+                        <a href="{{asset('uploads/'.$lesson->homeWork->file_path)}}" class="btn btn-primary"
+                           target="_blank">
+                            Скачать ДЗ
+                        </a>
+                    </div>
+
+                    @if(! $lesson->homeWork->finishedTask)
+                        <div class="about-title mt-3 mb-4">
+                            <h3>Загрузить домашнее задание</h3>
+                        </div>
+                        <div class="about-infos d-flex justify-content-start">
+                            <form class="form-horizontal" method="POST"
+                                  action="{{route('site.homework.send', [$lesson->topic->stage->course, $lesson->topic])}}"
+                                  enctype="multipart/form-data">
+                                @csrf
+                                <div class="row flex-row">
+                                    <div class="col-12">
+                                        <div class="widget has-shadow">
+                                            <div class="widget-body">
+                                                {{-- Home Work File --}}
+                                                <div class="form-group mb-5">
+                                                    <label class="form-control-label" for="student_file_path">
+                                                        Домашняя работа
+                                                    </label>
+                                                    <input type="file" name="student_file_path" id="student_file_path"
+                                                           class="form-control">
+                                                </div>
+                                                {{-- Lesson Description--}}
+                                                <div class="form-group mb-5">
+                                                    <label class="form-control-label"
+                                                           for="student_comment">{{ __("cms-pages.comment") }}</label>
+                                                    <textarea id="student_comment" name="student_comment"
+                                                              class="form-control" rows="5"
+                                                              placeholder="{{ __("cms-pages.comment") }}">{{old('student_comment')}}</textarea>
+                                                </div>
+                                            </div>
+                                        </div>
+                                    </div>
+                                </div>
+                                <button class="btn btn-gradient-01">Загрузить</button>
+                            </form>
+                        </div>
+                    @else
+                        @if($lesson->homeWork->finishedTask->isChecked())
+                            <div class="about-title mt-3 mb-4">
+                                <h3>Домашнее задание проверено преподавателем</h3>
+                            </div>
+                            <div class="about-infos">
+                                <p>Ваша оценка: </p>
+                                <span style="font-size: 50px;" class="text-primary">
+                                    {{$lesson->homeWork->finishedTask->assessment}}
+                                </span>
+                            </div>
+                        @else
+                            <div class="about-title mt-3 mb-4">
+                                <h3>Вы загрузили домашнее задание</h3>
+                            </div>
+                            <div class="about-infos d-flex justify-content-start">
+                                <p>Домашняя работа успешно загружена, но преподаватель еще не успел проверить ее.</p>
+                            </div>
+                        @endif
+                    @endif
                 @endif
             </div>
         </div>

@@ -34,7 +34,6 @@
                            href="{{ route('site.testing', [$course->id, $topic->id, $quiz->id]) }}">{{ __("site-pages.start-quiz") }}</a>
                     @endif
                 @endif
-
                     <a class="dropdown-item"
                        href="{{ route('site.course-show', $course->id) }}">{{ __("site-pages.course-plan") }}</a>
                     @if($previousTopic)

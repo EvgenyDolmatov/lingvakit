@@ -109,9 +109,13 @@
                             </div>
                         @endif
                     @endif
+                    <li class="nav-item">
+                        <a href="#off-canvas" class="open-sidebar">
+                            <i class="la la-comments"></i>
+                        </a>
+                    </li>
                 </ul>
             </div>
-
         </div>
     </nav>
 </header>

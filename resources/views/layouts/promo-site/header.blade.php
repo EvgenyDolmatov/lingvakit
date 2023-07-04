@@ -10,7 +10,7 @@
         <div class="topbar-right-items pull-right">
             <ul class="toplist toppadding">
                 @auth()
-                    <li class="lineright">
+                    <li>
                         <a href="{{route('profile.show')}}">Личный кабинет</a>
                     </li>
                 @else
@@ -21,10 +21,6 @@
                         <a href="{{route('register')}}">Регистрация</a>
                     </li>
                 @endif
-                <li><a href="https://www.facebook.com/codelayers"><i class="fa fa-facebook"></i></a></li>
-                <li><a href="https://twitter.com/codelayers"><i class="fa fa-twitter"></i></a></li>
-                <li><a href="#"><i class="fa fa-google-plus"></i></a></li>
-                <li class="last"><a href="#"><i class="fa fa-linkedin"></i></a></li>
             </ul>
         </div>
     </div>

@@ -3,6 +3,7 @@
 use App\Http\Controllers\Admin\CategoryController;
 use App\Http\Controllers\Admin\ConformityController;
 use App\Http\Controllers\Admin\GroupController;
+use App\Http\Controllers\Admin\HomeWorkController;
 use App\Http\Controllers\Admin\LanguageController;
 use App\Http\Controllers\Admin\MediaFileController;
 use App\Http\Controllers\Admin\PermissionController;
@@ -79,6 +80,12 @@ Route::prefix('dashboard')->middleware(['auth', 'locale', 'role:superuser|admin|
 
                 /* Presentations */
                 Route::resource('presentations', PresentationController::class);
+
+                /* Home Works */
+                Route::get('home-works/create', [HomeWorkController::class, 'create'])->name('lesson.home-works.create');
+                Route::post('home-works/create', [HomeWorkController::class, 'store'])->name('lesson.home-works.store');
+                Route::get('home-works/{homeWork}/edit', [HomeWorkController::class, 'edit'])->name('lesson.home-works.edit');
+                Route::post('home-works/{homeWork}/edit', [HomeWorkController::class, 'update'])->name('lesson.home-works.update');
             });
 
             Route::resource('quizzes', QuizController::class); // Quizzes
@@ -181,4 +188,9 @@ Route::prefix('dashboard')->middleware(['auth', 'locale', 'role:superuser|admin|
     /* Actions with Users */
     Route::put('users/user-{user}/block', [UserController::class, 'banSwitcher'])->name('users.ban-switcher');
     Route::post('users/user-{user}/give-teacher-role', [UserController::class, 'giveTeacherRole'])->name('users.give-teacher-role');
+
+    /* Home Works */
+    Route::get('homeworks', [HomeWorkController::class, 'homeWorksList'])->name('dashboard.homeworks');
+    Route::get('homeworks/{homeWorkResult}/change-assessment', [HomeWorkController::class, 'changeAssessment'])
+        ->name('dashboard.homeworks.change-assessment');
 });

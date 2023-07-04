@@ -8,7 +8,7 @@
                  data-src="{{ asset('assets/promo-site/images/sliders/masterslider/slide1.jpg') }}" alt=""/>
 
             <h3 class="ms-layer text58"
-                style="left: 230px;top: 200px;"
+                style="left: 230px;top: 200px;font-family: Dosis, sans-serif;"
                 data-type="text"
                 data-delay="500"
                 data-ease="easeOutExpo"
@@ -16,7 +16,7 @@
                 data-effect="scale(1.5,1.6)">Лингва&middot;Кит</h3>
 
             <h3 class="ms-layer text59"
-                style="left: 230px;top: 275px;"
+                style="left: 230px;top: 275px;font-family: Dosis, sans-serif;"
                 data-type="text"
                 data-delay="1000"
                 data-ease="easeOutExpo"
@@ -93,7 +93,7 @@
                         </div>
                         <div class="bubble">
                             <div class="iconbox-xtiny"><span class="icon-pencil"></span></div>
-                            <p>Весело изучать китайский язык с нуля и до HSHB</p>
+                            <p>Весело изучать китайский язык с нуля и до HSK/HSKK</p>
                         </div>
                         <div class="bubble">
                             <div class="iconbox-xtiny"><span class="icon-calendar"></span></div>

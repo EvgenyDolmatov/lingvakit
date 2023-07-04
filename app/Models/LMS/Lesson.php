@@ -45,6 +45,11 @@ class Lesson extends Model
         return $this->hasOne(LessonPresentation::class);
     }
 
+    public function homeWork()
+    {
+        return $this->hasOne(LessonHomeWork::class);
+    }
+
     public static function add($fields, $topic)
     {
         $lesson = new static();
