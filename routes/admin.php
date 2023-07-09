@@ -5,6 +5,7 @@ use App\Http\Controllers\Admin\ConformityController;
 use App\Http\Controllers\Admin\GroupController;
 use App\Http\Controllers\Admin\HomeWorkController;
 use App\Http\Controllers\Admin\LanguageController;
+use App\Http\Controllers\Admin\LessonVideoController;
 use App\Http\Controllers\Admin\MediaFileController;
 use App\Http\Controllers\Admin\PermissionController;
 use App\Http\Controllers\Admin\PresentationController;
@@ -78,8 +79,14 @@ Route::prefix('dashboard')->middleware(['auth', 'locale', 'role:superuser|admin|
                 Route::put('video-remove', [LessonController::class, 'removeVideo'])->name('lessons.video.remove');
                 Route::put('file-remove/{file}', [LessonController::class, 'removeFile'])->name('lessons.file.remove');
 
+                Route::get('detach-video/{video}', [LessonVideoController::class, 'detachVideo'])->name('lessons.video.detach');
+
                 /* Presentations */
                 Route::resource('presentations', PresentationController::class);
+
+                /* Additional video */
+                Route::get('video/attach', [LessonVideoController::class, 'attachVideoView'])->name('lessons.video.form');
+                Route::post('video/attach', [LessonVideoController::class, 'attachVideo'])->name('lessons.video.attach');
 
                 /* Home Works */
                 Route::get('home-works/create', [HomeWorkController::class, 'create'])->name('lesson.home-works.create');

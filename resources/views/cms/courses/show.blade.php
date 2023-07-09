@@ -256,6 +256,10 @@
                                                             <i class="la la-plus edit"></i></button>
 
                                                         <div class="dropdown-menu">
+                                                            <a href="{{ route('lessons.video.form', [$course, $stage, $topic->lesson]) }}"
+                                                               class="dropdown-item">
+                                                                <i class="la la-plus"></i>{{ __("cms-pages.add-video") }}
+                                                            </a>
                                                             <a href="{{ route('presentations.create', [$course, $stage, $topic->lesson]) }}"
                                                                class="dropdown-item">
                                                                 <i class="la la-plus"></i>{{ __("cms-pages.add-presentation") }}

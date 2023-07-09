@@ -101,6 +101,20 @@
                     </ul>
                 </li>
 
+                {{-- App settings --}}
+                @if($currentUser->hasPermissionTo('user manage'))
+                    <li><a href="#dropdown-settings" aria-expanded="false" data-toggle="collapse"><i
+                                    class="la la-gear"></i><span>{{ __("cms-pages.settings") }}</span></a>
+                        <ul id="dropdown-settings" class="collapse list-unstyled pt-0">
+                            <li>
+                                <a href="{{ route('roles.index') }}">
+                                    {{ __("cms-pages.settings") }}
+                                </a>
+                            </li>
+                        </ul>
+                    </li>
+                @endif
+
                 {{-- Orders --}}
                 {{--            @can('order_management')
                                 <li><a href="#dropdown-orders" aria-expanded="false" data-toggle="collapse"><i

@@ -40,6 +40,11 @@ class Lesson extends Model
         return $this->hasOne(MediaFile::class, 'id', 'video');
     }
 
+    public function additionalVideos()
+    {
+        return $this->hasMany(LessonVideo::class, 'lesson_id');
+    }
+
     public function presentation()
     {
         return $this->hasOne(LessonPresentation::class);

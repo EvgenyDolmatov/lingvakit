@@ -70,6 +70,19 @@
                         </div>
                     @endif
                 @endif
+
+                @if($lesson->additionalVideos)
+                    @foreach($lesson->additionalVideos as $video)
+                        <div class="current-item mb-4">
+                            <video
+                                    src="{{asset($video->getVideoPath())}}"
+                                    width="600"
+                                    controls
+                                    poster="{{$video->getPosterPath()}}"
+                            ></video>
+                        </div>
+                    @endforeach
+                @endif
             </div>
             <div class="tab-pane fade" id="tab-pres" role="tabpanel" aria-labelledby="base-tab-pres">
                 @if($lesson->presentation)

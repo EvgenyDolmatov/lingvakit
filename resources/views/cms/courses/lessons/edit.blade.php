@@ -25,7 +25,7 @@
                         {{-- Lesson Title --}}
                         <div class="form-group row d-flex align-items-center mb-5">
                             <label class="col-lg-3 form-control-label">{{ __("cms-pages.title") }}<span
-                                    class="text-danger ml-2">*</span></label>
+                                        class="text-danger ml-2">*</span></label>
                             <div class="col-lg-9">
                                 <input type="text" name="title" class="form-control"
                                        placeholder="{{ __("cms-pages.title") }}" value="{{$lesson->title}}">
@@ -80,7 +80,8 @@
                                                      data-delete="{{route('lessons.audio.remove', [$course->id, $stage->id, $lesson->id, $audio->id])}}">
                                                     {{ __("cms-pages.remove") }}
                                                 </div>
-                                                <input type="hidden" name="question_audios[]" value="{{ $audio->audio }}">
+                                                <input type="hidden" name="question_audios[]"
+                                                       value="{{ $audio->audio }}">
                                             </div>
                                         @endforeach
                                     @endif
@@ -141,11 +142,36 @@
                                         data-target="#modal-files">
                                     {{__("cms-pages.choose")}}
                                 </button>
-                                <input type="text" name="youtube" class="form-control"
-                                       placeholder="{{ __("cms-pages.video-link") }}"
-                                       value="@if($course->isExternalVideo()){{$course->video}}@endif">
+                                {{--                                <input type="text" name="youtube" class="form-control"--}}
+                                {{--                                       placeholder="{{ __("cms-pages.video-link") }}"--}}
+                                {{--                                       value="@if($course->isExternalVideo()){{$course->video}}@endif">--}}
                             </div>
                         </div>
+
+                        {{-- Additional videos --}}
+                        @if($lesson->additionalVideos->count())
+                            <div class="form-group row d-flex align-items-center mb-5">
+                                <div class="col-lg-9 offset-lg-3">
+                                    <div class="form-group preview">
+                                        @foreach($lesson->additionalVideos as $video)
+                                            <div class="current-item">
+                                                <video
+                                                        src="{{asset($video->getVideoPath())}}"
+                                                        width="240"
+                                                        controls
+                                                        poster="{{$video->getPosterPath()}}"
+                                                ></video>
+                                                <div class="small">
+                                                    <a href="{{route('lessons.video.detach', [$course, $stage, $lesson, $video])}}">
+                                                        Удалить
+                                                    </a>
+                                                </div>
+                                            </div>
+                                        @endforeach
+                                    </div>
+                                </div>
+                            </div>
+                        @endif
                         {{-- Files --}}
                         <div class="form-group row d-flex align-items-center mb-5">
                             <label class="col-lg-3 form-control-label">{{ __("cms-pages.file") }}</label>
@@ -166,7 +192,8 @@
                                         @endforeach
                                     @endif
                                 </div>
-                                <button type="button" class="btn btn-primary square mr-1 mb-2 btn-attach" data-type="file"
+                                <button type="button" class="btn btn-primary square mr-1 mb-2 btn-attach"
+                                        data-type="file"
                                         data-var="file" data-toggle="modal" data-target="#modal-files">
                                     {{__("cms-pages.choose")}}
                                 </button>

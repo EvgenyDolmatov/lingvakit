@@ -1,5 +1,27 @@
 @extends('layouts.new-app')
 
+@section('styles')
+    <link href="https://vjs.zencdn.net/8.3.0/video-js.css" rel="stylesheet"/>
+@endsection
+
+@section('scripts')
+    <script src="https://vjs.zencdn.net/8.3.0/video.min.js"></script>
+    <script>
+        $(".modal-video, .modal-video-play").on("click", function () {
+            $("#promo-video").get(0).play();
+            $(".modal-video-play").css('display', 'none');
+        });
+
+        $(".lk-modal-wrap").on("click", function (e) {
+            let $this = $(this);
+            let $video = $(".modal-video");
+            if (!$video.is(e.target) && $video.has(e.target).length === 0) {
+                $this.css('display', 'none');
+            }
+        });
+    </script>
+@endsection
+
 @section('content')
     <!-- masterslider -->
     <div class="master-slider ms-skin-default" id="masterslider">
@@ -580,5 +602,42 @@
     </section>
     <!--end section -->
     <div class="clearfix"></div>
+@endsection
 
+@section('modals')
+    <div class="lk-modal-wrap">
+        <div class="lk-modal">
+            <div class="container">
+                <div class="modal-close-wrap">
+                    <div class="modal-close"></div>
+                </div>
+                <div class="modal-video">
+{{--                    <div class="modal-video-play"></div>--}}
+                    <video
+                            id="promo-video"
+                            class="video-js"
+                            controls
+                            preload="auto"
+                            style="width: 1200px; max-width: 100%;"
+                            poster="{{asset('assets/promo-site/video-poster.jpg')}}"
+                            data-setup="{}"
+                    >
+                        <source src="{{asset('assets/promo-site/banner_RoK.mp4')}}" type="video/mp4" />
+                        <source src="{{asset('assets/promo-site/banner_RoK.webm')}}" type="video/webm" />
+                        <p class="vjs-no-js">
+                            To view this video please enable JavaScript, and consider upgrading to a
+                            web browser that
+                            <a href="https://videojs.com/html5-video-support/" target="_blank"
+                            >supports HTML5 video</a
+                            >
+                        </p>
+                    </video>
+
+{{--                    <video id="promo-video" height="300" poster="{{asset('assets/promo-site/video-poster.jpg')}}">--}}
+{{--                        <source src="{{asset('assets/promo-site/banner_RoK.mp4')}}">--}}
+{{--                    </video>--}}
+                </div>
+            </div>
+        </div>
+    </div>
 @endsection
