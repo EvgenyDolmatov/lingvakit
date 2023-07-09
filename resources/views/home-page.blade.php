@@ -279,26 +279,20 @@
                 <div class="col-md-4 col-sm-6">
                     <div class="team-holder7 two bmargin">
                         <div class="team-member">
-                            <img src="{{ asset('assets/promo-site/images/teachers/teacher1.jpg') }}" alt=""
-                                 class="img-responsive"/>
+                            <a href="#">
+                                <img src="{{ asset('assets/promo-site/images/teachers/teacher1.jpg') }}" alt=""
+                                     class="img-responsive"/>
+                            </a>
                         </div>
                         <div class="info-box text-center">
-                            <h4 class="uppercase oswald font-weight-3 less-mar2">Алена Пристинская</h4>
+                            <a href="#">
+                                <h4 class="uppercase oswald font-weight-3 less-mar2">Алена Пристинская</h4>
+                            </a>
                             <span class="text-primary">Китайский язык</span> <br/>
                             <br/>
-                            <p>Lorem ipsum dolor sit amet, consectetuer adipiscing elit. Suspendisse et justo et
-                                Praesent Lorem ipsum dolor sit amet</p>
-                            <br/>
-                            <ul class="social-icons">
-                                <li>
-                                    <a href="https://vk.com/alenapristinskaya" target="_blank">
-                                        <i class="fa fa-vk"></i>
-                                    </a>
-                                </li>
-                                <li><a href="https://twitter.com/codelayers"><i class="fa fa-twitter"></i></a></li>
-                                <li><a href="#"><i class="fa fa-google-plus"></i></a></li>
-                                <li><a href="#"><i class="fa fa-linkedin"></i></a></li>
-                            </ul>
+                            <p>В 2005 году закончила Педагогический Университет в г. Благовещенск, который находится
+                                на
+                                самой северной границе с Китаем.</p>
                         </div>
                     </div>
                 </div>
@@ -336,92 +330,110 @@
                     <h1 class="paddtop1 dosis font-weight-5 lspace-sm">Отзывы наших клиентов</h1>
                     <div class="title-line-4 align-center"></div>
                 </div>
-                <div class="col-md-4 col-sm-6">
+                <div class="col-md-4 col-sm-6 mb-5">
                     <div class="item">
                         <div class="text-box">
-                            <p>Lorem ipsum dolor sit amet, consectetuer adipiscing elit. Suspendisse et justo. Praesent
-                                mattis commodo augue. Aliquam ornare hendrerit augue. Cras tellus. In pulvinar lectus a
-                                est. Curabitur eget orci. </p>
+                            <p>Мой ребенок с 2019 года занимается китайским языком. Почему именно китайским, ведь я сама
+                                учитель английского и французского языков???
+                                Потому что начертание иероглифов ребенку казалось совсем неординарным делом, это ведь
+                                "не просто буквы". Начали с малого, просто для того, чтобы поддерживать интерес к
+                                изучению языков, о потом по-тихоньку, малыми шагами, мы дошли и до экзамена HSK1.<br>
+
+                                Было нелегко - пандемия, перенос экзаменов, но мы справились. Дочь на первом экзамене
+                                получила 200 баллов из 200. Вот это была радость и мотивация продолжать дальше!
+                                Затем второй экзамен, HSK 2. Потом устный экзамен HSKK1 - и тоже успех. И вот в начале
+                                2022 года сдавали HSK 3.<br>
+
+                                Каждый раз, когда забираем сертификат, это все больше и больше мотивирует ребенка
+                                двигаться дальше. Пусть невсегда легко, а иногда и трудно, она все равно идет
+                                вперед.<br>
+
+                                Волшебный китайский язык? Нет. Это педагог, который нашел подход к моему сложному уже
+                                подростку. Алена Алексеевна, спасибо Вам!</p>
+                            <a href="#" class="text-orange-2">Читать дальше</a>
                         </div>
 
-                        <div class="image"><img src="http://placehold.it/190x190" alt=""/></div>
+                        <div class="image">
+                            <img src="{{asset('assets/promo-site/images/reviews/review1.jpg')}}" alt/>
+                        </div>
                         <div class="info">
-                            <h5 class="less-mar1">Linda John</h5>
-                            <span class="text-orange-2">Smartinc - manager</span>
+                            <h5 class="less-mar1">Инна Русецкая</h5>
                         </div>
 
                     </div>
                 </div>
-                <div class="col-md-4 col-sm-6">
+                <div class="col-md-4 col-sm-6 mb-5">
                     <div class="item">
                         <div class="text-box">
-                            <p>Lorem ipsum dolor sit amet, consectetuer adipiscing elit. Suspendisse et justo. Praesent
-                                mattis commodo augue. Aliquam ornare hendrerit augue. Cras tellus. In pulvinar lectus a
-                                est. Curabitur eget orci. Lorem ipsum dolor sit amet, consectetuer adipiscing elit.
-                                Suspendisse et justo. Praesent
-                                mattis commodo augue. Aliquam ornare hendrerit augue. Cras tellus. In pulvinar lectus a
-                                est. Curabitur eget orci.</p>
-                            <button class="btn btn-primary btn-small primary-bg rounded">Читать дальше</button>
+                            <p>Хотела бы рассказать о нашем пути в изучении китайского языка. А точнее, о том, как его
+                                изучает моя дочь Маша. Изначально тема китайского языка привлекала своей необычностью и
+                                уникальностью (все-таки в основной массе дети учат английский и другие европейские
+                                языки). Но китайский язык в сочетании с культурой и традициями вызывал определенный
+                                трепет и желание изучить и познать нечто непохожее на все остальное. Ну и не будем
+                                лукавить, тенденции современных мировых течений политики и экономики кричат нам о том,
+                                что китайское доминирование - это будущее всего мирового сообщества.<br>
+
+                                И вот, вооружившись такими настроениями, около 3 лет назад моя дочь ступила на путь
+                                познания и изучения китайского языка. И благодаря нашему замечательному педагогу Алене
+                                Алексеевне Пристинской, ее занятия не ограничиваются только языком. В конву занятий
+                                тесно вплетена информация об истории, культурных традициях, ценностях, обычаях и
+                                настроениях Китая. Алена Алексеевна следит за интересными событиями Поднебесной,
+                                праздниками. Угощала лунными пряниками). Ой, как это вкусно. А как приятно!<br>
+
+                                Но вернусь к обучению. Начинали в буквальном смысле с нуля. Маше на тот момент было 12
+                                лет. Очень интересно. Но и сразу стало понятно, что будет непросто. Расслабляться
+                                нельзя. Много информации нужно было усваивать. Тяжело моментами. Но в любом деле главное
+                                - желание и труд. Труд обоюдный - и педагога и ученика!<br>
+
+                                Дочка очень старалась и через год был преодолен первый рубеж - экзамен HSK1. Сдавали в
+                                институте Конфуция при МГЛУ. Остоженка, настоящий большой серьезный университет,
+                                педагоги-китайцы, много соискателей! Все очень ответственно и волнительно! Но наш
+                                педагог был с нами в этот день. И это было важно! Остальное в руках ученика, главное
+                                быть уверенным в знаниях. А они (знания) были!! Итог порадовал - 190 баллов из 200
+                                возможных! И это твердая пятерка! Успех важен, т.к. дает импульс к дальнейшему труду и
+                                развитию. Дальше больше. Рука об руку с Аленой Алексеевной были взяты HSK2, HSKK, HSK3…
+                                и мы ни в коем случае не останавливаемся).<br>
+
+                                Небольшая передышка на лето и двигаемся дальше 😁! Хотим выразить огромную благодарность
+                                Алене Алексеевне за знания, которыми она делится со своими учениками, за терпение, за
+                                веру и профессионализм!!!</p>
+                            <a href="#" class="text-orange-2">Читать дальше</a>
                         </div>
 
-                        <div class="image"><img src="http://placehold.it/190x190" alt=""/></div>
+                        <div class="image">
+                            <img src="{{asset('assets/promo-site/images/reviews/review2.jpg')}}" alt=""/>
+                        </div>
                         <div class="info">
-                            <h5 class="less-mar1">Linda John</h5>
-                            <span class="text-orange-2">Smartinc - manager</span>
+                            <h5 class="less-mar1">Ирина Урядченко</h5>
                         </div>
 
                     </div>
                 </div>
-                <div class="col-md-4 col-sm-6">
+                <div class="col-md-4 col-sm-6 mb-5">
                     <div class="item">
                         <div class="text-box">
-                            <p>Lorem ipsum dolor sit amet, consectetuer adipiscing elit. Suspendisse et justo. Praesent
-                                mattis commodo augue. Aliquam ornare hendrerit augue. Cras tellus. In pulvinar lectus a
-                                est. Curabitur eget orci. </p>
+                            <p>«Предложила сыну начать учить китайский язык, в шутку! А он согласился)
+                                Нам посоветовали обратиться к Алене Алексеевне.<br>
+
+                                Она предложила ознакомительный курс, который позволил понять: «Что такое китайский
+                                язык?» и «Хочу ли я стать носителем одного из древнейших языков?»
+                                Не знаю как, но после 8 занятий у сына желание не только не пропало, НО ребёнок поставил
+                                себе ЦЕЛЬ: выучить язык и поступить в китайский вуз!<br>
+
+                                Грамотно разработанная программа, дисциплина и главное «контакт» с ребёнком, умение
+                                замотивировать и заинтересовать дали свой результат уже через 8 мес! Первый экзамен 200
+                                баллов из 200!<br>
+
+                                Ждём через 3 месяца следующий экзамен и уверены в аналогичном результате! Спасибо Алене
+                                Алексеевне! Не каждый учитель является педагогом!</p>
+                            <a href="#" class="text-orange-2">Читать дальше</a>
                         </div>
 
-                        <div class="image"><img src="http://placehold.it/190x190" alt=""/></div>
+                        <div class="image">
+                            <img src="{{asset('assets/promo-site/images/reviews/review3.jpg')}}" alt=""/>
+                        </div>
                         <div class="info">
-                            <h5 class="less-mar1">Linda John</h5>
-                            <span class="text-orange-2">Smartinc - manager</span>
-                        </div>
-
-                    </div>
-                </div>
-                <div class="col-md-4 col-sm-6">
-                    <div class="item">
-                        <div class="text-box">
-                            <p>Lorem ipsum dolor sit amet, consectetuer adipiscing elit. Suspendisse et justo. Praesent
-                                mattis commodo augue. Aliquam ornare hendrerit augue. Cras tellus. In pulvinar lectus a
-                                est. Curabitur eget orci. Lorem ipsum dolor sit amet, consectetuer adipiscing elit.
-                                Suspendisse et justo. Praesent
-                                mattis commodo augue. Aliquam ornare hendrerit augue. Cras tellus. In pulvinar lectus a
-                                est. Curabitur eget orci.</p>
-                        </div>
-
-                        <div class="image"><img src="http://placehold.it/190x190" alt=""/></div>
-                        <div class="info">
-                            <h5 class="less-mar1">Linda John</h5>
-                            <span class="text-orange-2">Smartinc - manager</span>
-                        </div>
-
-                    </div>
-                </div>
-                <div class="col-md-4 col-sm-6">
-                    <div class="item">
-                        <div class="text-box">
-                            <p>Lorem ipsum dolor sit amet, consectetuer adipiscing elit. Suspendisse et justo. Praesent
-                                mattis commodo augue. Aliquam ornare hendrerit augue. Cras tellus. In pulvinar lectus a
-                                est. Curabitur eget orci. Lorem ipsum dolor sit amet, consectetuer adipiscing elit.
-                                Suspendisse et justo. Praesent
-                                mattis commodo augue. Aliquam ornare hendrerit augue. Cras tellus. In pulvinar lectus a
-                                est. Curabitur eget orci.</p>
-                        </div>
-
-                        <div class="image"><img src="http://placehold.it/190x190" alt=""/></div>
-                        <div class="info">
-                            <h5 class="less-mar1">Linda John</h5>
-                            <span class="text-orange-2">Smartinc - manager</span>
+                            <h5 class="less-mar1">Наталья Манжелли</h5>
                         </div>
 
                     </div>
@@ -538,10 +550,6 @@
                     </div>
                     <!--end item-->
 
-                    <div class="divider-line2"></div>
-                    <p>Lorem ipsum dolor sit amet, <span class="text-primary">consectetuer</span> adipiscing elit ipsum
-                        dolor sit amet. </p>
-
                 </div>
                 <!--end item-->
 
@@ -591,10 +599,6 @@
                     </div>
                     <!--end item-->
 
-                    <div class="divider-line2"></div>
-                    <p>Lorem ipsum dolor sit amet, <span class="text-primary">consectetuer</span> adipiscing elit ipsum
-                        dolor sit amet. </p>
-
                 </div>
                 <!--end item-->
             </div>
@@ -612,7 +616,7 @@
                     <div class="modal-close"></div>
                 </div>
                 <div class="modal-video">
-{{--                    <div class="modal-video-play"></div>--}}
+                    {{--                    <div class="modal-video-play"></div>--}}
                     <video
                             id="promo-video"
                             class="video-js"
@@ -622,8 +626,8 @@
                             poster="{{asset('assets/promo-site/video-poster.jpg')}}"
                             data-setup="{}"
                     >
-                        <source src="{{asset('assets/promo-site/banner_RoK.mp4')}}" type="video/mp4" />
-                        <source src="{{asset('assets/promo-site/banner_RoK.webm')}}" type="video/webm" />
+                        <source src="{{asset('assets/promo-site/banner_RoK.mp4')}}" type="video/mp4"/>
+                        <source src="{{asset('assets/promo-site/banner_RoK.webm')}}" type="video/webm"/>
                         <p class="vjs-no-js">
                             To view this video please enable JavaScript, and consider upgrading to a
                             web browser that
@@ -633,9 +637,9 @@
                         </p>
                     </video>
 
-{{--                    <video id="promo-video" height="300" poster="{{asset('assets/promo-site/video-poster.jpg')}}">--}}
-{{--                        <source src="{{asset('assets/promo-site/banner_RoK.mp4')}}">--}}
-{{--                    </video>--}}
+                    {{--                    <video id="promo-video" height="300" poster="{{asset('assets/promo-site/video-poster.jpg')}}">--}}
+                    {{--                        <source src="{{asset('assets/promo-site/banner_RoK.mp4')}}">--}}
+                    {{--                    </video>--}}
                 </div>
             </div>
         </div>

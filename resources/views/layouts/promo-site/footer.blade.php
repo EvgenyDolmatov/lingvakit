@@ -19,45 +19,6 @@
             </div>
             <!--end item-->
 
-            <div class="col-md-3 col-sm-12 colmargin clearfix">
-                <h4 class="uppercase footer-title less-mar3">Новости</h4>
-                <div class="footer-title-bottomstrip"></div>
-                <div class="image-left">
-                    <div class="fo-postimg-inner overflow-hidden"><img src="http://placehold.it/80x80" alt=""/></div>
-                </div>
-                <div class="text-box-right">
-                    <h5 class="text-white less-mar3"><a href="#">Clean And Modern</a></h5>
-                    <span>Lorem ipsum dolor sit</span>
-                    <div class="footer-post-info"> <span>By John Doe</span><span>May 19</span> </div>
-                </div>
-                <div class="divider-line solid dark margin opacity-5"></div>
-                <div class="image-left">
-                    <div class="fo-postimg-inner overflow-hidden"><img src="http://placehold.it/80x80" alt=""/></div>
-                </div>
-                <div class="text-box-right">
-                    <h5 class="text-white less-mar3"><a href="#">Clean And Modern</a></h5>
-                    <span>Lorem ipsum dolor sit</span>
-                    <div class="footer-post-info"> <span>By John Doe</span><span>May 19</span> </div>
-                </div>
-            </div>
-            <!--end item-->
-
-            <div class="col-md-3 col-sm-12 colmargin clearfix">
-                <h4 class="uppercase footer-title less-mar3">Теги</h4>
-                <div class="footer-title-bottomstrip"></div>
-                <ul class="footer-tags">
-                    <li><a href="#">Animation</a></li>
-                    <li><a href="#">Art</a></li>
-                    <li><a href="#">Photography</a></li>
-                    <li><a class="active" href="#">Design</a></li>
-                    <li><a href="#">Responsive</a></li>
-                    <li><a href="#">Develop</a></li>
-                    <li><a href="#">Branding</a></li>
-                    <li><a href="#">Clean</a></li>
-                </ul>
-            </div>
-            <!--end item-->
-
             <div class="col-md-3 col-sm-12 colmargin tex-left clearfix">
                 <h4 class="uppercase footer-title less-mar3">Полезные ссылки</h4>
                 <div class="footer-title-bottomstrip"></div>
