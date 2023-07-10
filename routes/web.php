@@ -10,9 +10,11 @@ use Illuminate\Support\Facades\Route;
 
 
 // посадочная test
-Route::get('/', [SiteController::class, 'index2'])->name('site.index');
+Route::get('/', [SiteController::class, 'index'])->name('site.index');
+Route::get('reviews', [SiteController::class, 'reviewsPage'])->name('site.reviews');
 
-//Route::get('/', [SiteController::class, 'index'])->name('site.index'); // УБРАТЬ!!!
+
+Route::get('learning', [SiteController::class, 'learning'])->name('site.learning');
 Route::get('about-us', [SiteController::class, 'aboutUs'])->name('site.about-us');
 Route::get('contacts', [SiteController::class, 'contacts'])->name('site.contacts');
 Route::get('privacy-policy', [SiteController::class, 'privacyPolicy'])->name('site.privacy-policy');

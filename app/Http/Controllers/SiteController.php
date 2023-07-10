@@ -14,7 +14,7 @@ use Illuminate\Support\Facades\Mail;
 
 class SiteController extends Controller
 {
-    public function index2(Request $request)
+    public function index(Request $request)
     {
         $courses = Course::where([
             ['is_published', 1],
@@ -31,7 +31,12 @@ class SiteController extends Controller
         ]);
     }
 
-    public function index(Request $request)
+    public function reviewsPage()
+    {
+        return view('reviews');
+    }
+
+    public function learning(Request $request)
     {
         $courses = Course::where([
             ['is_published', 1],

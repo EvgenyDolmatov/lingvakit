@@ -11,7 +11,7 @@
             <ul class="toplist toppadding">
                 @auth()
                     <li>
-                        <a href="{{route('profile.show')}}">Личный кабинет</a>
+                        <a href="{{route('site.learning')}}">Личный кабинет</a>
                     </li>
                 @else
                     <li class="lineright">

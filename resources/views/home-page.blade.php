@@ -6,20 +6,6 @@
 
 @section('scripts')
     <script src="https://vjs.zencdn.net/8.3.0/video.min.js"></script>
-    <script>
-        $(".modal-video, .modal-video-play").on("click", function () {
-            $("#promo-video").get(0).play();
-            $(".modal-video-play").css('display', 'none');
-        });
-
-        $(".lk-modal-wrap").on("click", function (e) {
-            let $this = $(this);
-            let $video = $(".modal-video");
-            if (!$video.is(e.target) && $video.has(e.target).length === 0) {
-                $this.css('display', 'none');
-            }
-        });
-    </script>
 @endsection
 
 @section('content')
@@ -332,9 +318,9 @@
                 </div>
                 <div class="col-md-4 col-sm-6 mb-5">
                     <div class="item">
-                        <div class="text-box">
-                            <p>Мой ребенок с 2019 года занимается китайским языком. Почему именно китайским, ведь я сама
-                                учитель английского и французского языков???
+                        <div class="text-box" style="height: auto">
+                            <p class="collapsed">Мой ребенок с 2019 года занимается китайским языком. Почему именно
+                                китайским, ведь я сама учитель английского и французского языков???
                                 Потому что начертание иероглифов ребенку казалось совсем неординарным делом, это ведь
                                 "не просто буквы". Начали с малого, просто для того, чтобы поддерживать интерес к
                                 изучению языков, о потом по-тихоньку, малыми шагами, мы дошли и до экзамена HSK1.<br>
@@ -350,7 +336,7 @@
 
                                 Волшебный китайский язык? Нет. Это педагог, который нашел подход к моему сложному уже
                                 подростку. Алена Алексеевна, спасибо Вам!</p>
-                            <a href="#" class="text-orange-2">Читать дальше</a>
+                            <a href="#" class="text-orange-2 read-more">Показать больше</a>
                         </div>
 
                         <div class="image">
@@ -365,7 +351,8 @@
                 <div class="col-md-4 col-sm-6 mb-5">
                     <div class="item">
                         <div class="text-box">
-                            <p>Хотела бы рассказать о нашем пути в изучении китайского языка. А точнее, о том, как его
+                            <p class="collapsed">Хотела бы рассказать о нашем пути в изучении китайского языка. А
+                                точнее, о том, как его
                                 изучает моя дочь Маша. Изначально тема китайского языка привлекала своей необычностью и
                                 уникальностью (все-таки в основной массе дети учат английский и другие европейские
                                 языки). Но китайский язык в сочетании с культурой и традициями вызывал определенный
@@ -397,7 +384,7 @@
                                 Небольшая передышка на лето и двигаемся дальше 😁! Хотим выразить огромную благодарность
                                 Алене Алексеевне за знания, которыми она делится со своими учениками, за терпение, за
                                 веру и профессионализм!!!</p>
-                            <a href="#" class="text-orange-2">Читать дальше</a>
+                            <a href="#" class="text-orange-2 read-more">Показать больше</a>
                         </div>
 
                         <div class="image">
@@ -412,7 +399,7 @@
                 <div class="col-md-4 col-sm-6 mb-5">
                     <div class="item">
                         <div class="text-box">
-                            <p>«Предложила сыну начать учить китайский язык, в шутку! А он согласился)
+                            <p class="collapsed">«Предложила сыну начать учить китайский язык, в шутку! А он согласился)
                                 Нам посоветовали обратиться к Алене Алексеевне.<br>
 
                                 Она предложила ознакомительный курс, который позволил понять: «Что такое китайский
@@ -426,7 +413,7 @@
 
                                 Ждём через 3 месяца следующий экзамен и уверены в аналогичном результате! Спасибо Алене
                                 Алексеевне! Не каждый учитель является педагогом!</p>
-                            <a href="#" class="text-orange-2">Читать дальше</a>
+                            <a href="#" class="text-orange-2 read-more">Показать больше</a>
                         </div>
 
                         <div class="image">
@@ -435,9 +422,13 @@
                         <div class="info">
                             <h5 class="less-mar1">Наталья Манжелли</h5>
                         </div>
-
                     </div>
                 </div>
+            </div>
+            <div class="d-flex justify-content-center mt-5">
+                <a href="{{route('site.reviews')}}" class="sh-btn sh-btn-orange sh-btn-medium sh-btn-round margin">
+                    Больше отзывов
+                </a>
             </div>
         </div>
     </section>
@@ -609,39 +600,34 @@
 @endsection
 
 @section('modals')
-    <div class="lk-modal-wrap">
-        <div class="lk-modal">
-            <div class="container">
-                <div class="modal-close-wrap">
-                    <div class="modal-close"></div>
-                </div>
-                <div class="modal-video">
-                    {{--                    <div class="modal-video-play"></div>--}}
-                    <video
-                            id="promo-video"
-                            class="video-js"
-                            controls
-                            preload="auto"
-                            style="width: 1200px; max-width: 100%;"
-                            poster="{{asset('assets/promo-site/video-poster.jpg')}}"
-                            data-setup="{}"
-                    >
-                        <source src="{{asset('assets/promo-site/banner_RoK.mp4')}}" type="video/mp4"/>
-                        <source src="{{asset('assets/promo-site/banner_RoK.webm')}}" type="video/webm"/>
-                        <p class="vjs-no-js">
-                            To view this video please enable JavaScript, and consider upgrading to a
-                            web browser that
-                            <a href="https://videojs.com/html5-video-support/" target="_blank"
-                            >supports HTML5 video</a
-                            >
-                        </p>
-                    </video>
-
-                    {{--                    <video id="promo-video" height="300" poster="{{asset('assets/promo-site/video-poster.jpg')}}">--}}
-                    {{--                        <source src="{{asset('assets/promo-site/banner_RoK.mp4')}}">--}}
-                    {{--                    </video>--}}
-                </div>
-            </div>
-        </div>
-    </div>
+    {{--    <div class="lk-modal-wrap">--}}
+    {{--        <div class="lk-modal">--}}
+    {{--            <div class="container">--}}
+    {{--                <div class="modal-close-wrap">--}}
+    {{--                    <div class="modal-close"></div>--}}
+    {{--                </div>--}}
+    {{--                <div class="modal-video">--}}
+    {{--                    <video--}}
+    {{--                            id="promo-video"--}}
+    {{--                            class="video-js"--}}
+    {{--                            controls--}}
+    {{--                            preload="auto"--}}
+    {{--                            style="width: 1200px; max-width: 100%;"--}}
+    {{--                            poster="{{asset('assets/promo-site/video-poster.jpg')}}"--}}
+    {{--                            data-setup="{}"--}}
+    {{--                    >--}}
+    {{--                        <source src="{{asset('assets/promo-site/banner_RoK.mp4')}}" type="video/mp4"/>--}}
+    {{--                        <source src="{{asset('assets/promo-site/banner_RoK.webm')}}" type="video/webm"/>--}}
+    {{--                        <p class="vjs-no-js">--}}
+    {{--                            To view this video please enable JavaScript, and consider upgrading to a--}}
+    {{--                            web browser that--}}
+    {{--                            <a href="https://videojs.com/html5-video-support/" target="_blank"--}}
+    {{--                            >supports HTML5 video</a--}}
+    {{--                            >--}}
+    {{--                        </p>--}}
+    {{--                    </video>--}}
+    {{--                </div>--}}
+    {{--            </div>--}}
+    {{--        </div>--}}
+    {{--    </div>--}}
 @endsection

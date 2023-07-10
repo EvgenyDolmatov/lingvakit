@@ -4,7 +4,7 @@
         <div class="navbar-holder d-flex align-items-center align-middle justify-content-between">
             <!-- Begin Logo -->
             <div class="navbar-header">
-                <a href="{{ route('site.index') }}" class="navbar-brand">
+                <a href="{{ route('site.learning') }}" class="navbar-brand">
                     <div class="brand-image brand-big" style="display:none;">
                         <img src="{{asset('assets/site/img/logo-big.svg')}}" alt="logo" class="logo-big">
                     </div>

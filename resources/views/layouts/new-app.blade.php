@@ -91,5 +91,6 @@
 @yield('scripts')
 <script src="{{ asset('assets/promo-site/js/owl-carousel/custom.js')}}"></script>
 <script src="{{ asset('assets/promo-site/js/scripts/functions.js')}}" type="text/javascript"></script>
+<script src="{{ asset('assets/promo-site/js/scripts/custom.js')}}" type="text/javascript"></script>
 </body>
 </html>
