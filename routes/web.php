@@ -23,6 +23,11 @@ Route::get('contacts', [SiteController::class, 'contacts'])->name('site.contacts
 Route::get('courses/course-{course}/show', [SiteController::class, 'showCourse'])->name('site.course-show');
 Route::post('feedback', [SiteController::class, 'feedback'])->name('feedback');
 
+// О преподавателях: пока статика
+Route::get('teachers/1', function (){
+   return view('about-teacher');
+})->name('app.teacher-info');
+
 Route::get('/email/verify', [AuthController::class, 'verifyEmail'])
     ->middleware('auth')->name('verification.notice');
 Route::get('/email/verify/{id}/{hash}', [AuthController::class, 'emailVerification'])

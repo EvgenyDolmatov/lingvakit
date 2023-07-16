@@ -1,10 +1,49 @@
 @extends('layouts.new-app')
 
 @section('styles')
+    <link rel="stylesheet" href="{{ asset('assets/promo-site/js/masterslider/style/masterslider.css')}}"/>
+    <link href="{{ asset('assets/promo-site/js/animations/css/animations.min.css')}}" rel="stylesheet" type="text/css"
+          media="all"/>
+    <link rel="stylesheet" type="text/css"
+          href="{{ asset('assets/promo-site/js/cubeportfolio/cubeportfolio.min.css')}}">
+    <link href="{{ asset('assets/promo-site/js/owl-carousel/owl.carousel.css')}}" rel="stylesheet">
+    <link rel="stylesheet" href="{{ asset('assets/promo-site/js/ytplayer/ytplayer.css')}}"/>
     <link href="https://vjs.zencdn.net/8.3.0/video-js.css" rel="stylesheet"/>
 @endsection
 
 @section('scripts')
+    <script src="{{ asset('assets/promo-site/js/masterslider/masterslider.min.js')}}"></script>
+    <script type="text/javascript">
+        (function ($) {
+            "use strict";
+            var slider = new MasterSlider();
+            // adds Arrows navigation control to the slider.
+            slider.control('arrows');
+            slider.control('bullets');
+
+            slider.setup('masterslider', {
+                width: 1600,    // slider standard width
+                height: 650,   // slider standard height
+                space: 0,
+                speed: 45,
+                layout: 'fullwidth',
+                loop: true,
+                preload: 0,
+                autoplay: true,
+                view: "parallaxMask"
+            });
+        })(jQuery);
+    </script>
+    <script src="{{ asset('assets/promo-site/js/owl-carousel/owl.carousel.js')}}"></script>
+    <script src="{{ asset('assets/promo-site/js/owl-carousel/custom.js')}}"></script>
+    <script type="text/javascript" src="{{ asset('assets/promo-site/js/ytplayer/jquery.mb.YTPlayer.js')}}"></script>
+    <script type="text/javascript" src="{{ asset('assets/promo-site/js/ytplayer/elementvideo-custom.js')}}"></script>
+    <script type="text/javascript" src="{{ asset('assets/promo-site/js/ytplayer/play-pause-btn.js')}}"></script>
+    <script type="text/javascript"
+            src="{{ asset('assets/promo-site/js/progress-circle/jquery.circlechart.js')}}"></script>
+    <script src="{{ asset('assets/promo-site/js/animations/js/animations.min.js')}}" type="text/javascript"></script>
+    <script src="{{ asset('assets/promo-site/js/animations/js/appear.min.js')}}" type="text/javascript"></script>
+
     <script src="https://vjs.zencdn.net/8.3.0/video.min.js"></script>
 @endsection
 
@@ -138,8 +177,9 @@
     <section class="section-light section-side-image clearfix">
         <div class="img-holder col-md-6 col-sm-3 pull-left">
             <div class="background-imgholder"
-                 style="background:url({{ asset('assets/promo-site/images/features.jpg') }});">
-                <img class="nodisplay-image" src="{{ asset('assets/promo-site/images/features.jpg') }}" alt=""/>
+                 style="background:url({{ asset('assets/promo-site/images/features/features-1.jpg') }});">
+                <img class="nodisplay-image" src="{{ asset('assets/promo-site/images/features/features-1.jpg') }}"
+                     alt=""/>
             </div>
         </div>
         <div class="container-fluid">
@@ -167,8 +207,9 @@
     <section class="section-light section-side-image clearfix">
         <div class="img-holder col-md-6 col-sm-3 col-md-offset-6 pull-right">
             <div class="background-imgholder"
-                 style="background:url({{ asset('assets/promo-site/images/features.jpg') }});">
-                <img class="nodisplay-image" src="{{ asset('assets/promo-site/images/features.jpg') }}" alt=""/>
+                 style="background:url({{ asset('assets/promo-site/images/features/features-2.jpg') }});">
+                <img class="nodisplay-image" src="{{ asset('assets/promo-site/images/features/features-2.jpg') }}"
+                     alt=""/>
             </div>
         </div>
         <div class="container-fluid">
@@ -196,8 +237,9 @@
     <section class="section-light section-side-image clearfix">
         <div class="img-holder col-md-6 col-sm-3 pull-left">
             <div class="background-imgholder"
-                 style="background:url({{ asset('assets/promo-site/images/features.jpg') }});">
-                <img class="nodisplay-image" src="{{ asset('assets/promo-site/images/features.jpg') }}" alt=""/>
+                 style="background:url({{ asset('assets/promo-site/images/features/features-3.jpg') }});">
+                <img class="nodisplay-image" src="{{ asset('assets/promo-site/images/features/features-3.jpg') }}"
+                     alt=""/>
             </div>
         </div>
         <div class="container-fluid">
@@ -225,8 +267,9 @@
     <section class="section-light section-side-image clearfix">
         <div class="img-holder col-md-6 col-sm-3 col-md-offset-6 pull-left">
             <div class="background-imgholder"
-                 style="background:url({{ asset('assets/promo-site/images/features.jpg') }});">
-                <img class="nodisplay-image" src="{{ asset('assets/promo-site/images/features.jpg') }}" alt=""/>
+                 style="background:url({{ asset('assets/promo-site/images/features/features-4.jpg') }});">
+                <img class="nodisplay-image" src="{{ asset('assets/promo-site/images/features/features-4.jpg') }}"
+                     alt=""/>
             </div>
         </div>
         <div class="container-fluid">
@@ -265,34 +308,33 @@
                 <div class="col-md-4 col-sm-6">
                     <div class="team-holder7 two bmargin">
                         <div class="team-member">
-                            <a href="#">
+                            <a href="{{route('app.teacher-info')}}">
                                 <img src="{{ asset('assets/promo-site/images/teachers/teacher1.jpg') }}" alt=""
                                      class="img-responsive"/>
                             </a>
                         </div>
                         <div class="info-box text-center">
-                            <a href="#">
+                            <a href="{{route('app.teacher-info')}}">
                                 <h4 class="uppercase oswald font-weight-3 less-mar2">Алена Пристинская</h4>
                             </a>
                             <span class="text-primary">Китайский язык</span> <br/>
                             <br/>
                             <p>В 2005 году закончила Педагогический Университет в г. Благовещенск, который находится
-                                на
-                                самой северной границе с Китаем.</p>
+                                на самой северной границе с Китаем.</p>
                         </div>
                     </div>
                 </div>
 
                 <div class="col-md-4 col-sm-6">
                     <div class="team-holder7 two bmargin">
-                        <div class="team-member"><img src="http://placehold.it/500x500" alt="" class="img-responsive"/>
+                        <div class="team-member">
+                            <img src="{{asset('assets/promo-site/images/no-user.png')}}" alt="" class="img-responsive"/>
                         </div>
                         <div class="info-box text-center">
-                            <h4 class="uppercase oswald font-weight-3 less-mar2">Madison</h4>
-                            <span class="text-primary">Billing Support</span> <br/>
+                            <h4 class="uppercase oswald font-weight-3 less-mar2">Преподаватели</h4>
                             <br/>
-                            <p>Lorem ipsum dolor sit amet, consectetuer adipiscing elit. Suspendisse et justo et
-                                Praesent Lorem ipsum dolor sit amet</p>
+                            <br/>
+                            <p>Приглашаем к сотрудничеству репетиторов и преподавателей</p>
                             <br/>
                             <ul class="social-icons">
                                 <li><a href="https://www.facebook.com/codelayers"><i class="fa fa-facebook"></i></a>

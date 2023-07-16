@@ -42,7 +42,7 @@
             <div id="navbar-collapse-grid" class="navbar-collapse collapse pull-right">
                 <ul class="nav navbar-nav">
                     <li>
-                        <a href="#" class="">Онас</a>
+                        <a href="#" class="">О нас</a>
                     </li>
                     <li class="dropdown"><a href="#" class="dropdown-toggle">Курсы</a>
                         <ul class="dropdown-menu" role="menu">

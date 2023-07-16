@@ -24,12 +24,8 @@
                 <div class="footer-title-bottomstrip"></div>
                 <div class="clearfix"></div>
                 <ul class="usefull-links tex-left no-border">
-                    <li><a href="#"><i class="fa fa-angle-right"></i> Placerat bibendum</a></li>
-                    <li><a href="#"><i class="fa fa-angle-right"></i> Ullamcorper odio nec turpis</a></li>
-                    <li><a href="#"><i class="fa fa-angle-right"></i> Aliquam porttitor vestibulum ipsum</a></li>
-                    <li><a href="#"><i class="fa fa-angle-right"></i> Lobortis enim nec nisi</a></li>
-                    <li><a href="#"><i class="fa fa-angle-right"></i> Placerat bibendum</a></li>
-                    <li><a href="#"><i class="fa fa-angle-right"></i> Lobortis enim nec nisi</a></li>
+                    <li><a href="#"><i class="fa fa-angle-right"></i> Политика конфиденциальности</a></li>
+                    <li><a href="#"><i class="fa fa-angle-right"></i> Правила сайта</a></li>
                 </ul>
             </div>
             <!--end item-->
