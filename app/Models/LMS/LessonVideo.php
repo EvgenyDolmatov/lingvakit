@@ -25,6 +25,9 @@ class LessonVideo extends Model
 
     public function getPosterPath()
     {
-        return MediaFile::find($this->poster)->getPath();
+        if ($this->poster) {
+            return MediaFile::find($this->poster)->getPath();
+        }
+        return asset('assets/site/img/no-image.jpg');
     }
 }

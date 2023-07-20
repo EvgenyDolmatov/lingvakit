@@ -24,22 +24,23 @@
             lastInput++;
 
             let input = '<div class="form-group row d-flex align-items-center mb-3">' +
-                            '<div class="col-xl-10">' +
-                                '<input type="text" name="question_option[]" class="form-control">' +
-                            '</div>' +
-                            '<div class="col-xl-2">' +
-                                '<div class="mt-2">' +
-                                    '<div class="styled-radio">' +
-                                        '<input class="input-is-correct" type="radio" name="is_correct_' + lastInput + '" id="is_correct_' + lastInput + '" value="1">' +
-                                        '<label for="is_correct_' + lastInput + '"></label>' +
-                                    '</div>' +
-                                '</div>' +
-                            '</div>' +
-                        '</div>';
+                '<div class="col-xl-10">' +
+                '<input type="text" name="question_option[]" class="form-control">' +
+                '</div>' +
+                '<div class="col-xl-2">' +
+                '<div class="mt-2">' +
+                '<div class="styled-radio">' +
+                '<input class="input-is-correct" type="radio" name="is_correct_' + lastInput + '" id="is_correct_' + lastInput + '" value="1">' +
+                '<label for="is_correct_' + lastInput + '"></label>' +
+                '</div>' +
+                '</div>' +
+                '</div>' +
+                '</div>';
 
             $(this).parent().before(input);
         });
     }
+
     addOption($('#add_option'));
 
     $('input.input-is-correct').click(function () {
@@ -57,27 +58,28 @@
             lastInput++;
 
             let input = '<div class="form-group row d-flex align-items-center mb-3">' +
-                            '<div class="col-xl-10">' +
-                                '<input type="text" name="question_option[]" class="form-control">' +
-                            '</div>' +
-                            '<div class="col-xl-2">' +
-                                '<div class="mt-2">' +
-                                    '<div class="styled-checkbox">' +
-                                        '<input class="checkbox-is-correct" type="checkbox" name="is_correct_' + lastInput + '" id="is_correct_' + lastInput + '" value="1">' +
-                                        '<label for="is_correct_' + lastInput + '"></label>' +
-                                    '</div>' +
-                                '</div>' +
-                            '</div>' +
-                        '</div>';
+                '<div class="col-xl-10">' +
+                '<input type="text" name="question_option[]" class="form-control">' +
+                '</div>' +
+                '<div class="col-xl-2">' +
+                '<div class="mt-2">' +
+                '<div class="styled-checkbox">' +
+                '<input class="checkbox-is-correct" type="checkbox" name="is_correct_' + lastInput + '" id="is_correct_' + lastInput + '" value="1">' +
+                '<label for="is_correct_' + lastInput + '"></label>' +
+                '</div>' +
+                '</div>' +
+                '</div>' +
+                '</div>';
 
             $(this).parent().before(input);
         });
     }
+
     addOptionWithCheckbox($('#add_option_checkbox'));
 
     /* Active menu in Sidebar */
     function sidebarMenu() {
-        $('.side-navbar li a').each(function (){
+        $('.side-navbar li a').each(function () {
             let path = location.pathname;
             let array = path.split('/');
 
@@ -95,27 +97,41 @@
             }
         });
     }
+
     sidebarMenu();
 
     /* PROMO CODES: Change sign by type of discount */
-    $('#percent').change(function (){
+    $('#percent').change(function () {
         if ($(this).is(':checked')) {
             $('#discount-sign').html('%');
         }
     });
-    $('#amount').change(function (){
+    $('#amount').change(function () {
         if ($(this).is(':checked')) {
             $('#discount-sign').html('₽');
         }
     });
 
     /* Input Mask */
-    $('#phone').inputmask("+7 (999) 999-99-99");
-    $('#itn, #company_itn').inputmask("999999999999");
-    $('#passport').inputmask("9999 999999");
+    let $phone = $('#phone');
+    let $itn = $('#itn');
+    let $companyItn = $('#company_itn');
+    let $passport = $('#passport');
+    if ($phone.length !== 0) {
+        $('#phone').inputmask("+7 (999) 999-99-99");
+    }
+    if ($itn.length !== 0) {
+        $('#itn').inputmask("999999999999");
+    }
+    if ($companyItn.length !== 0) {
+        $('#company_itn').inputmask("999999999999");
+    }
+    if ($passport.length !== 0) {
+        $('#passport').inputmask("9999 999999");
+    }
 
     // Popup for changing quantity of Products
-    $('.product-quantity').on('click', function (){
+    $('.product-quantity').on('click', function () {
         let id = $(this).attr('data-id');
         let origin = window.location.origin;
         let href = origin + '/dashboard/orders/details'
@@ -124,7 +140,7 @@
         $('#change-product-quantity .modal-body form').attr('action', action);
     });
 
-    $('#company_id').change(function (){
+    $('#company_id').change(function () {
         if ($(this).val() === 'other') {
             $('#company').removeClass('hide');
         } else {
@@ -132,7 +148,7 @@
         }
     });
 
-    $('#add_dimensions').change(function (){
+    $('#add_dimensions').change(function () {
         if ($(this).prop('checked')) {
             $('#dimensions').removeClass('hide');
         } else {
@@ -140,7 +156,7 @@
         }
     });
 
-    $('#paid').change(function (){
+    $('#paid').change(function () {
         if ($(this).prop('checked')) {
             $('#price').removeClass('hide');
             $('#sale_price').removeClass('hide');
@@ -150,7 +166,7 @@
         }
     });
 
-    $('#free').change(function (){
+    $('#free').change(function () {
         if ($(this).prop('checked')) {
             $('#price').addClass('hide');
             $('#sale_price').addClass('hide');
@@ -167,9 +183,10 @@
         }
         return $input.addClass('hide');
     }
+
     /* Switch additional container */
     function switchContainer($switcher, $input) {
-        $switcher.change(function (){
+        $switcher.change(function () {
             if ($(this).prop('checked')) {
                 return $input.removeClass('hide');
             } else {
@@ -191,25 +208,24 @@
     switchContainer(switcherDimensions, containerDimensions);
 
 
-
     function addWordNumberContainer(button) {
         button.on('click', function () {
             let input = '<div class="form-group row d-flex align-items-center mb-3">' +
-                            '<div class="col-xl-12">' +
-                                '<input type="number" name="numbers[]" class="form-control" placeholder="1">' +
-                            '</div>' +
-                        '</div>';
+                '<div class="col-xl-12">' +
+                '<input type="number" name="numbers[]" class="form-control" placeholder="1">' +
+                '</div>' +
+                '</div>';
 
             $(this).parent().before(input);
         });
     }
+
     addWordNumberContainer($('#add_word_number'));
 
 
     /* Enable Input For New Category */
-    function unblockCategoryField(select)
-    {
-        select.change(function (){
+    function unblockCategoryField(select) {
+        select.change(function () {
             let input = $(this).parent().next('#new_category').children('input');
 
             if (select.val() === '0') {
@@ -221,24 +237,54 @@
             console.log(select.val());
         });
     }
+
     unblockCategoryField($('#category_select'));
 
     /* Add audio to question */
-    $('#add_audio').on('click', function (){
+    $('#add_audio').on('click', function () {
 
         let input = '<div class="form-group">' +
-                        '<input type="file" name="question_audios[]" class="form-control">' +
-                    '</div>';
+            '<input type="file" name="question_audios[]" class="form-control">' +
+            '</div>';
         $('#audios').append(input);
     });
 
     /* Add sentence field for Make Text question */
-    $('#add_sentence').on('click', function (){
+    $('#add_sentence').on('click', function () {
 
         let input = '<div class="form-group">' +
-                        '<input type="text" name="matching_title[]" class="form-control">' +
-                    '</div>';
+            '<input type="text" name="matching_title[]" class="form-control">' +
+            '</div>';
         $('#sentences').append(input);
     });
 
+    // CHAT
+    $(".send-msg").on('click', function (e) {
+        e.preventDefault();
+
+        let $this = $(this);
+        let message = $this.closest('.input-group').find('input[name="chat_message"]');
+        let formData = new FormData(document.getElementById('send-msg-form'));
+
+        $.ajax({
+            url: $this.closest('form').attr('action'),
+            headers: {'X-CSRF-TOKEN': $('meta[name="csrf-token"]').attr('content')},
+            method: 'POST',
+            cache: false,
+            contentType: false,
+            processData: false,
+            data: formData,
+            success: function (res) {
+                if (res.length !== 0) {
+                    let str = '<div class="row m-0">';
+                    str += '<div class="message-card">';
+                    str += '<div class="card-body sender-background"><span>' + res.msg + '</span></div>';
+                    str += '<span class="sender-time"><small>' + res.date + '</small></span>';
+                    str += '</div></div>';
+                    $("#msg-container").append(str);
+                    message.val('');
+                }
+            }
+        });
+    });
 })(jQuery)

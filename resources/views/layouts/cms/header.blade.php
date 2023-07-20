@@ -109,6 +109,11 @@
                         </li>
                     </ul>
                 </li>
+                <li class="nav-item">
+                    <a href="{{route('chat')}}">
+                        <i class="la la-comments"></i>
+                    </a>
+                </li>
             </ul>
         </div>
     </nav>

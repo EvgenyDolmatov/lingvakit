@@ -132,9 +132,39 @@
         margin: 13,
     });
 
-    $('.presentation-thumbs .thumb').on('click', function (){
+    $('.presentation-thumbs .thumb').on('click', function () {
         let index = $(this).attr('data-slide-index');
         $('.presentation').trigger('to.owl.carousel', index);
+    });
+
+    // CHAT
+    $(".chat-send").on('click', function (e) {
+        e.preventDefault();
+
+        let $this = $(this);
+        let message = $this.closest('.enter-message').find('input[name="chat_message"]');
+
+        let form = new FormData();
+        form.append('chat_message', message.val());
+
+        $.ajax({
+            url: $this.attr('href'),
+            headers: {'X-CSRF-TOKEN': $('meta[name="csrf-token"]').attr('content')},
+            method: 'POST',
+            cache: false,
+            contentType: false,
+            processData: false,
+            data: form,
+            success: function (res) {
+                if (res.length !== 0) {
+                    let str = '<div class="messenger-message messenger-message-sender">';
+                    str += '<div class="messenger-message-wrapper">';
+                    str += '<div class="messenger-message-content"><p>' + res.message + '</p></div></div></div>';
+                    $("#messenger").append(str);
+                    message.val('');
+                }
+            }
+        });
     });
 
 })(jQuery)

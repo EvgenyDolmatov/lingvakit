@@ -30,11 +30,32 @@ class AppServiceProvider extends ServiceProvider
             'layouts.cms.sidebar',
             'layouts.site.header',
             'cms.students.show',
-        ], function ($view){
+        ], function ($view) {
             $currentUser = Auth::user();
             if ($currentUser) {
                 $view->with(['currentUser' => $currentUser]);
             }
+        });
+
+        // Chat's Sidebar
+        view()->composer('layouts.chat.sidebar', function ($view) {
+            $currentUser = auth()->user();
+            if ($currentUser->hasRole(['teacher', 'admin'])) {
+                $contacts = $currentUser->getMyStudents();
+            } else {
+                $contacts = $currentUser->getMyTeachers();
+            }
+
+            $params = [
+                'currentUser' => $currentUser,
+                'contacts' => $contacts
+            ];
+
+            if ($currentUser->hasRole(["admin", "teacher"])) {
+                $params['contacts'] = $currentUser->getMyStudents();
+            }
+
+            $view->with($params);
         });
     }
 }

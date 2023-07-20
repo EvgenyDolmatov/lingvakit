@@ -105,6 +105,11 @@ class User extends Authenticatable implements MustVerifyEmail
         return $this->hasMany(CourseReview::class);
     }
 
+    public function chats()
+    {
+        return $this->belongsToMany(Chat::class);
+    }
+
     public static function add($fields)
     {
         $user = new static;
@@ -249,7 +254,21 @@ class User extends Authenticatable implements MustVerifyEmail
             return $user;
         });
 
-        return $students->only($myStudentsIds);
+        return $students->only($myStudentsIds)->sortBy("surname");
+    }
+
+    public function getMyTeachers()
+    {
+        $myCourses = $this->courses;
+        $teacherIds = array();
+
+        foreach ($this->courses as $course) {
+            if (! in_array($course->author->id, $teacherIds)) {
+                $teacherIds[] = $course->author->id;
+            }
+        }
+
+        return User::whereIn('id', $teacherIds)->get();
     }
 
     /*

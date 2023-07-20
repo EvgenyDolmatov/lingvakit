@@ -3,6 +3,7 @@
 use App\Http\Controllers\Admin\MediaFileController;
 use App\Http\Controllers\Admin\PromocodeController;
 use App\Http\Controllers\AuthController;
+use App\Http\Controllers\ChatController;
 use App\Http\Controllers\CKEditorController;
 use App\Http\Controllers\SiteController;
 use App\Http\Controllers\System\RepairController;
@@ -13,6 +14,15 @@ use Illuminate\Support\Facades\Route;
 Route::get('/', [SiteController::class, 'index'])->name('site.index');
 Route::get('reviews', [SiteController::class, 'reviewsPage'])->name('site.reviews');
 
+
+// Chats
+Route::prefix('chat')->middleware(['auth'])->group(function (){
+    Route::get('/', [ChatController::class, 'chatPage'])->name('chat');
+    Route::get('room/user-{user}/create', [ChatController::class, 'chatRoomCreate'])->name('chat.create');
+    Route::get('room/{chat}', [ChatController::class, 'chatRoom'])->name('chat.room');
+    Route::post('room/user-{user}/send-message', [ChatController::class, 'sendFirstMessage'])->name('chat.store');
+    Route::post('room/{chat}/send-message', [ChatController::class, 'sendMessage'])->name('chat.send-message');
+});
 
 Route::get('learning', [SiteController::class, 'learning'])->name('site.learning');
 Route::get('about-us', [SiteController::class, 'aboutUs'])->name('site.about-us');
@@ -45,8 +55,6 @@ Route::post('ckeditor/upload', [CKEditorController::class, 'upload'])->name('cke
 /* AJAX */
 Route::get('ajax/files/{fileType}', [MediaFileController::class, 'getFilesByAjax'])->name('ajax.get-files');
 Route::get('ajax/promo/{code}', [PromocodeController::class, 'getPromoCodeData'])->name('ajax.get-promo-code');
-
-
 
 
 Route::middleware(['guest'])->group(function (){

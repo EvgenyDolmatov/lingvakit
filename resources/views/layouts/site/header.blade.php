@@ -93,6 +93,11 @@
                                     </li>
                                 </ul>
                             </li>
+                            <li class="nav-item">
+                                <a href="{{route('chat')}}">
+                                    <i class="la la-comments"></i>
+                                </a>
+                            </li>
                         @else
                             <div class="page-header-tools">
                                 <div class="btn-group" role="group" aria-label="Button Group">
@@ -109,11 +114,9 @@
                             </div>
                         @endif
                     @endif
-                    <li class="nav-item">
-                        <a href="#off-canvas" class="open-sidebar">
-                            <i class="la la-comments"></i>
-                        </a>
-                    </li>
+
+                    {{-- header right links --}}
+                    @yield('header-links')
                 </ul>
             </div>
         </div>
