@@ -118,4 +118,10 @@ class ChatController extends Controller
             return response()->json($e);
         }
     }
+
+    public function destroyChat(Chat $chat)
+    {
+        $chat->delete();
+        return redirect()->route('chat');
+    }
 }

@@ -71,8 +71,6 @@
                                         </div>
                                     </div>
                                 </div>
-                                <!-- End Tab -->
-                                <!-- Begin Input Group -->
                                 <form action="@if(isset($currentChat)){{route('chat.send-message', $currentChat)}}@else{{route('chat.store', $contact)}}@endif"
                                       method="POST" id="send-msg-form">
                                     @csrf
@@ -91,12 +89,8 @@
                                     </span>
                                     </div>
                                 </form>
-                                <!-- End Input Group -->
                             </div>
-                            <!-- End Card -->
                         </div>
-                        <!-- End Messages -->
-                        <!-- Begin Infos -->
                         <div class="col-xl-2 p-0 chat-infos bg-white has-shadow">
                             <div class="message-avatar">
                                 <div class="overlay"></div>
@@ -117,19 +111,24 @@
                                             <i class="la la-at la-2x d-block text-primary mb-2"></i>{{$contact->email}}
                                         </li>
                                     @endif
+                                    @if(isset($currentChat))
+                                        <li class="pb-3 text-center">
+                                            <form action="{{route('chat.destroy', $currentChat)}}" method="POST">
+                                                @csrf @method('delete')
+                                                <button class="btn btn-primary mr-1 mb-2 btn-attach"
+                                                        onclick="event.preventDefault();if(confirm('Чат будет удален у всех пользователей! Продолжить?')){this.closest('form').submit();}">
+                                                    Удалить чат
+                                                </button>
+                                            </form>
+                                        </li>
+                                    @endif
                                 </ul>
                             </div>
                         </div>
-                        <!-- End Infos -->
                     </div>
-                    <!-- End Widget -->
                 </div>
-                <!-- End Col -->
             </div>
-            <!-- End Row -->
         </div>
-        <!-- End Container -->
-        <!-- Begin Page Footer-->
         @include('layouts.cms.footer')
     </div>
 @endsection

@@ -3,8 +3,8 @@
         <ul class="friend-list list-group w-100 friends-scroll auto-scroll">
             <li class="heading">Чаты</li>
             @if($currentUser->chats->count())
-                @foreach($currentUser->chats as $chat)
-                    <li class="list-group-item">
+                @foreach($currentUser->chatsByDesc() as $chat)
+                    <li class="list-group-item @if(isset($currentChat) && $currentChat->id==$chat->id)active @endif">
                         <a class="d-block" href="{{route('chat.room', $chat)}}">
                             <div class="media">
                                 <div class="media-body align-self-center">

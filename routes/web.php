@@ -22,6 +22,7 @@ Route::prefix('chat')->middleware(['auth'])->group(function (){
     Route::get('room/{chat}', [ChatController::class, 'chatRoom'])->name('chat.room');
     Route::post('room/user-{user}/send-message', [ChatController::class, 'sendFirstMessage'])->name('chat.store');
     Route::post('room/{chat}/send-message', [ChatController::class, 'sendMessage'])->name('chat.send-message');
+    Route::delete('room/{chat}', [ChatController::class, 'destroyChat'])->name('chat.destroy');
 });
 
 Route::get('learning', [SiteController::class, 'learning'])->name('site.learning');

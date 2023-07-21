@@ -311,4 +311,21 @@ class User extends Authenticatable implements MustVerifyEmail
 
         return HomeWorkResult::whereIn('student_id', $studentIds)->get();
     }
+
+    public function chatsByDesc()
+    {
+        $chatIdsByMsg = array();
+        $chats = array();
+
+        foreach ($this->chats as $chat) {
+            $chatIdsByMsg["chat_".$chat->id] = $chat->messages->sortByDesc('date')->first()->date;
+        }
+        asort($chatIdsByMsg);
+
+        foreach ($chatIdsByMsg as $key => $chatIdByMsg) {
+            $chats[] = Chat::find(substr($key, 5));
+        }
+        krsort( $chats);
+        return $chats;
+    }
 }

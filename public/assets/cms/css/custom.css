@@ -345,3 +345,6 @@ tr.header-danger {
     width: 100%;
     max-width: 800px;
 }
+.chat .friend-list .list-group-item.active {
+    box-shadow: inset 2px 0 0 0 #e76c90;
+}
