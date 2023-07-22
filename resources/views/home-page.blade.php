@@ -195,7 +195,10 @@
                         <div class="clearfix"></div>
                         <ul class="iconlist orange">
                             <li>
-                                <i class="fa fa-check"></i> Здесь будет контент
+                                <i class="fa fa-check"></i> Сильные преподаватели, которые имеют богатый стаж и опыт работы
+                            </li>
+                            <li>
+                                <i class="fa fa-check"></i> Авторская методика прошла несколько лет апробации и одобрение Центра развития одаренных детей
                             </li>
                         </ul>
                     </div>
@@ -225,7 +228,10 @@
                         <div class="clearfix"></div>
                         <ul class="iconlist orange">
                             <li>
-                                <i class="fa fa-check"></i> Здесь будет контент
+                                <i class="fa fa-check"></i> Рейтинговая система и приятные подарки мотивируют изучать язык лучше всех
+                            </li>
+                            <li>
+                                <i class="fa fa-check"></i> После прохождения любого теста студенты могут проанализировать свои ошибки и исправить их
                             </li>
                         </ul>
                     </div>
@@ -255,7 +261,10 @@
                         <div class="clearfix"></div>
                         <ul class="iconlist orange">
                             <li>
-                                <i class="fa fa-check"></i> Здесь будет контент
+                                <i class="fa fa-check"></i> Изучать материал и выполнять задания можно и на компьютере, и на мобильных устройствах
+                            </li>
+                            <li>
+                                <i class="fa fa-check"></i> Студенты могут самостоятельно моделировать свой учебный график и получать поддержку от учителя на протяжении всего периода обучения
                             </li>
                         </ul>
                     </div>
@@ -285,7 +294,10 @@
                         <div class="clearfix"></div>
                         <ul class="iconlist orange">
                             <li>
-                                <i class="fa fa-check"></i> Здесь будет контент
+                                <i class="fa fa-check"></i> После приобретения одного из наших курсов, можно воспользоваться скидкой на последующее обучение
+                            </li>
+                            <li>
+                                <i class="fa fa-check"></i> Кроме учебных материалов, студенты получают полезную информацию для развития памяти и речи
                             </li>
                         </ul>
                     </div>
@@ -335,14 +347,6 @@
                             <br/>
                             <br/>
                             <p>Приглашаем к сотрудничеству репетиторов и преподавателей</p>
-                            <br/>
-                            <ul class="social-icons">
-                                <li><a href="https://www.facebook.com/codelayers"><i class="fa fa-facebook"></i></a>
-                                </li>
-                                <li><a href="https://twitter.com/codelayers"><i class="fa fa-twitter"></i></a></li>
-                                <li><a href="#"><i class="fa fa-google-plus"></i></a></li>
-                                <li><a href="#"><i class="fa fa-linkedin"></i></a></li>
-                            </ul>
                         </div>
                     </div>
                 </div>
