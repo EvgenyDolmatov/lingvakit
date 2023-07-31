@@ -70,7 +70,8 @@
                 data-duration="1230"
                 data-effect="scale(1.5,1.6)"> Школа успеха в изучении китайского языка </h3>
 
-            <a class="ms-layer sbut1"
+            <a href="{{route('site.learning')}}"
+               class="ms-layer sbut1"
                style="left: 230px; top: 420px;"
                data-type="text"
                data-delay="1500"
@@ -78,7 +79,8 @@
                data-duration="1200"
                data-effect="scale(1.5,1.6)"> Выбрать курс </a>
 
-            <a class="ms-layer sbut2"
+            <a href="#testimonials"
+               class="ms-layer sbut2"
                style="left: 430px; top: 420px;"
                data-type="text"
                data-delay="1500"
@@ -195,10 +197,12 @@
                         <div class="clearfix"></div>
                         <ul class="iconlist orange">
                             <li>
-                                <i class="fa fa-check"></i> Сильные преподаватели, которые имеют богатый стаж и опыт работы
+                                <i class="fa fa-check"></i> Сильные преподаватели, которые имеют богатый стаж и опыт
+                                работы
                             </li>
                             <li>
-                                <i class="fa fa-check"></i> Авторская методика прошла несколько лет апробации и одобрение Центра развития одаренных детей
+                                <i class="fa fa-check"></i> Авторская методика прошла несколько лет апробации и
+                                одобрение Центра развития одаренных детей
                             </li>
                         </ul>
                     </div>
@@ -228,10 +232,12 @@
                         <div class="clearfix"></div>
                         <ul class="iconlist orange">
                             <li>
-                                <i class="fa fa-check"></i> Рейтинговая система и приятные подарки мотивируют изучать язык лучше всех
+                                <i class="fa fa-check"></i> Рейтинговая система и приятные подарки мотивируют изучать
+                                язык лучше всех
                             </li>
                             <li>
-                                <i class="fa fa-check"></i> После прохождения любого теста студенты могут проанализировать свои ошибки и исправить их
+                                <i class="fa fa-check"></i> После прохождения любого теста студенты могут
+                                проанализировать свои ошибки и исправить их
                             </li>
                         </ul>
                     </div>
@@ -261,10 +267,12 @@
                         <div class="clearfix"></div>
                         <ul class="iconlist orange">
                             <li>
-                                <i class="fa fa-check"></i> Изучать материал и выполнять задания можно и на компьютере, и на мобильных устройствах
+                                <i class="fa fa-check"></i> Изучать материал и выполнять задания можно и на компьютере,
+                                и на мобильных устройствах
                             </li>
                             <li>
-                                <i class="fa fa-check"></i> Студенты могут самостоятельно моделировать свой учебный график и получать поддержку от учителя на протяжении всего периода обучения
+                                <i class="fa fa-check"></i> Студенты могут самостоятельно моделировать свой учебный
+                                график и получать поддержку от учителя на протяжении всего периода обучения
                             </li>
                         </ul>
                     </div>
@@ -294,10 +302,12 @@
                         <div class="clearfix"></div>
                         <ul class="iconlist orange">
                             <li>
-                                <i class="fa fa-check"></i> После приобретения одного из наших курсов, можно воспользоваться скидкой на последующее обучение
+                                <i class="fa fa-check"></i> После приобретения одного из наших курсов, можно
+                                воспользоваться скидкой на последующее обучение
                             </li>
                             <li>
-                                <i class="fa fa-check"></i> Кроме учебных материалов, студенты получают полезную информацию для развития памяти и речи
+                                <i class="fa fa-check"></i> Кроме учебных материалов, студенты получают полезную
+                                информацию для развития памяти и речи
                             </li>
                         </ul>
                     </div>
@@ -313,9 +323,8 @@
             <div class="row">
                 <div class="col-xs-12 text-center">
                     <h1 class="paddtop1 dosis font-weight-5 lspace-sm">Наши преподаватели</h1>
-                    <p class="sub-title">Прогресс, мотивация и сроки обучения <span class="text-primary">на 50%</span>
-                        зависят от преподавателя. Не теряйте время, доверьте свой английский экспертам, которые прошли
-                        наш строгий отбор.</p>
+                    <p class="sub-title">Прогресс, мотивация и сроки обучения зависят от преподавателя. Не теряйте
+                        время, доверьте свой китайский нашим экспертам.</p>
                 </div>
                 <div class="col-md-4 col-sm-6">
                     <div class="team-holder7 two bmargin">
@@ -355,7 +364,7 @@
     </section>
     <div class="clearfix"></div>
 
-    <section class="sec-padding testimonials">
+    <section class="sec-padding testimonials" id="testimonials">
         <div class="container">
             <div class="row">
                 <div class="col-xs-12 text-center">
