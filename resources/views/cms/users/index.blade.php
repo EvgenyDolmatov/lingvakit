@@ -54,17 +54,19 @@
                                             </a>
                                         @endif
 
-                                        @if(!$user->hasVerifiedEmail() && !$user->courses()->exists())
-                                            <form style="display: inline-block" method="POST"
-                                                  action="{{ route('admin.users.destroy', $user->id) }}">
-                                                @csrf @method('DELETE')
+                                        @role('admin')
+                                            @if(auth()->user()->id != $user->id)
+                                                <form style="display: inline-block" method="POST"
+                                                      action="{{ route('admin.users.destroy', $user->id) }}">
+                                                    @csrf @method('DELETE')
 
-                                                <a href="{{ route('admin.users.destroy', $user->id) }}"
-                                                   onclick="event.preventDefault();if(confirm('{{ __("cms-messages.delete") }}')){this.closest('form').submit();}">
-                                                    <i class="la la-close delete"></i>
-                                                </a>
-                                            </form>
-                                        @endif
+                                                    <a href="{{ route('admin.users.destroy', $user->id) }}"
+                                                       onclick="event.preventDefault();if(confirm('{{ __("cms-messages.delete") }}')){this.closest('form').submit();}">
+                                                        <i class="la la-close delete"></i>
+                                                    </a>
+                                                </form>
+                                            @endif
+                                        @endrole
                                     </td>
                                 </tr>
                             @endforeach

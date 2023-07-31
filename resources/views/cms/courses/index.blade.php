@@ -13,7 +13,6 @@
 @section('content')
     <div class="row">
         <div class="col-xl-12">
-            <!-- Sorting -->
             <div class="widget has-shadow">
                 <div class="widget-header bordered no-actions d-flex align-items-center justify-content-between">
                     <h4>{{ __("cms-pages.filter") }}</h4>
@@ -35,61 +34,65 @@
                     </div>
                 </div>
                 <div class="widget-body">
-                    <div class="table-responsive">
-                        <table id="sorting-table" class="table mb-0">
-                            <thead>
-                            <tr>
-                                <th>{{ __("cms-pages.image") }}</th>
-                                <th>{{ __("cms-pages.course") }}</th>
-                                <th>{{ __("cms-pages.duration") }}</th>
-                                <th>{{ __("cms-pages.publish-date") }}</th>
-                                <th>{{ __("cms-pages.actions") }}</th>
-                            </tr>
-                            </thead>
-                            <tbody>
-                            @foreach($courses as $course)
+                    @if(auth()->user()->courses->count())
+                        <div class="table-responsive">
+                            <table id="sorting-table" class="table mb-0">
+                                <thead>
                                 <tr>
-                                    <td style="width: 100px;">
-                                        <div class="table-img">
-                                            <img src="{{ $course->getImage() }}" width="100" alt>
-                                        </div>
-                                    </td>
-                                    <td>
-                                        <a href="{{ route('courses.show', $course->id) }}"
-                                           class="@if($course->is_allowed) text-primary @else text-danger @endif">
-                                            {{ $course->title }}
-                                        </a>
-                                    </td>
-                                    <td>{{ $course->getDuration() }}</td>
-                                    <td>{{ $course->publish_date }}</td>
-                                    <td class="td-actions">
-                                        <a href="{{ route('courses.show', $course->id) }}"><i
-                                                    class="la la-eye edit"></i></a>
-
-                                        @if($currentUser->hasRole(['superuser','admin']))
-                                            <form style="display: inline-block" method="POST"
-                                                  action="{{ route('courses.moderate-switcher', $course->id) }}">
-                                                @csrf @method('PUT')
-
-                                                @if($course->is_allowed)
-                                                    <a href="{{ route('courses.moderate-switcher', $course->id) }}"
-                                                       onclick="event.preventDefault();this.closest('form').submit();">
-                                                        <i class="la la-ban edit"></i>
-                                                    </a>
-                                                @else
-                                                    <a href="{{ route('courses.moderate-switcher', $course->id) }}"
-                                                       onclick="event.preventDefault();this.closest('form').submit();">
-                                                        <i class="la la-ban edit banned"></i>
-                                                    </a>
-                                                @endif
-                                            </form>
-                                        @endif
-                                    </td>
+                                    <th>{{ __("cms-pages.image") }}</th>
+                                    <th>{{ __("cms-pages.course") }}</th>
+                                    <th>{{ __("cms-pages.duration") }}</th>
+                                    <th>{{ __("cms-pages.publish-date") }}</th>
+                                    <th>{{ __("cms-pages.actions") }}</th>
                                 </tr>
-                            @endforeach
-                            </tbody>
-                        </table>
-                    </div>
+                                </thead>
+                                <tbody>
+                                @foreach($courses as $course)
+                                    <tr>
+                                        <td style="width: 100px;">
+                                            <div class="table-img">
+                                                <img src="{{ $course->getImage() }}" width="100" alt>
+                                            </div>
+                                        </td>
+                                        <td>
+                                            <a href="{{ route('courses.show', $course->id) }}"
+                                               class="@if($course->is_allowed) text-primary @else text-danger @endif">
+                                                {{ $course->title }}
+                                            </a>
+                                        </td>
+                                        <td>{{ $course->getDuration() }}</td>
+                                        <td>{{ $course->publish_date }}</td>
+                                        <td class="td-actions">
+                                            <a href="{{ route('courses.show', $course->id) }}"><i
+                                                        class="la la-eye edit"></i></a>
+
+                                            @if($currentUser->hasRole(['superuser','admin']))
+                                                <form style="display: inline-block" method="POST"
+                                                      action="{{ route('courses.moderate-switcher', $course->id) }}">
+                                                    @csrf @method('PUT')
+
+                                                    @if($course->is_allowed)
+                                                        <a href="{{ route('courses.moderate-switcher', $course->id) }}"
+                                                           onclick="event.preventDefault();this.closest('form').submit();">
+                                                            <i class="la la-ban edit"></i>
+                                                        </a>
+                                                    @else
+                                                        <a href="{{ route('courses.moderate-switcher', $course->id) }}"
+                                                           onclick="event.preventDefault();this.closest('form').submit();">
+                                                            <i class="la la-ban edit banned"></i>
+                                                        </a>
+                                                    @endif
+                                                </form>
+                                            @endif
+                                        </td>
+                                    </tr>
+                                @endforeach
+                                </tbody>
+                            </table>
+                        </div>
+                    @else
+                        <p>У вас пока что нет ни одного курса.</p>
+                    @endif
                 </div>
             </div>
         </div>

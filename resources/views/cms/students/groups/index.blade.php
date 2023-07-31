@@ -21,43 +21,48 @@
                        class="btn btn-success mr-1 mb-2">{{ __("cms-pages.add") }}</a>
                 </div>
                 <div class="widget-body">
-                    <div class="table-responsive">
-                        <table id="sorting-table" class="table mb-0">
-                            <thead>
-                            <tr>
-                                <th>{{ __("cms-pages.group-code") }}</th>
-                                <th>{{ __("cms-pages.group-name") }}</th>
-                                <th>{{ __("cms-pages.actions") }}</th>
-                            </tr>
-                            </thead>
-                            <tbody>
-                            @foreach($groups as $group)
+                    @if(auth()->user()->groups->count())
+                        <div class="table-responsive">
+                            <table id="sorting-table" class="table mb-0">
+                                <thead>
                                 <tr>
-                                    <td><a href="{{route('groups.show', $group->id)}}"
-                                           class="text-primary">{{ $group->code }}</a></td>
-                                    <td>{{ $group->name }}</td>
-                                    <td class="td-actions">
-                                        <a href="{{ route('groups.show', $group->id) }}">
-                                            <i class="la la-eye edit"></i>
-                                        </a>
-                                        <a href="{{ route('groups.edit', $group->id) }}">
-                                            <i class="la la-edit edit"></i>
-                                        </a>
-
-                                        <form style="display: inline-block" method="POST" action="{{ route('groups.destroy', $group->id) }}">
-                                            @csrf @method('DELETE')
-
-                                            <a href="{{ route('groups.destroy', $group->id) }}"
-                                               onclick="event.preventDefault();if(confirm('{{ __("cms-messages.delete") }}')){this.closest('form').submit();}">
-                                                <i class="la la-close delete"></i>
-                                            </a>
-                                        </form>
-                                    </td>
+                                    <th>{{ __("cms-pages.group-code") }}</th>
+                                    <th>{{ __("cms-pages.group-name") }}</th>
+                                    <th>{{ __("cms-pages.actions") }}</th>
                                 </tr>
-                            @endforeach
-                            </tbody>
-                        </table>
-                    </div>
+                                </thead>
+                                <tbody>
+                                @foreach($groups as $group)
+                                    <tr>
+                                        <td><a href="{{route('groups.show', $group->id)}}"
+                                               class="text-primary">{{ $group->code }}</a></td>
+                                        <td>{{ $group->name }}</td>
+                                        <td class="td-actions">
+                                            <a href="{{ route('groups.show', $group->id) }}">
+                                                <i class="la la-eye edit"></i>
+                                            </a>
+                                            <a href="{{ route('groups.edit', $group->id) }}">
+                                                <i class="la la-edit edit"></i>
+                                            </a>
+
+                                            <form style="display: inline-block" method="POST"
+                                                  action="{{ route('groups.destroy', $group->id) }}">
+                                                @csrf @method('DELETE')
+
+                                                <a href="{{ route('groups.destroy', $group->id) }}"
+                                                   onclick="event.preventDefault();if(confirm('{{ __("cms-messages.delete") }}')){this.closest('form').submit();}">
+                                                    <i class="la la-close delete"></i>
+                                                </a>
+                                            </form>
+                                        </td>
+                                    </tr>
+                                @endforeach
+                                </tbody>
+                            </table>
+                        </div>
+                    @else
+                        <p>У вас пока что нет групп.</p>
+                    @endif
                 </div>
             </div>
         </div>

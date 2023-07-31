@@ -17,44 +17,47 @@
             <div class="widget has-shadow">
                 <div class="widget-header bordered no-actions d-flex align-items-center justify-content-between">
                     <h4>{{ __("cms-pages.filter") }}</h4>
-
                 </div>
                 <div class="widget-body">
-                    <div class="table-responsive">
-                        <table id="sorting-table" class="table mb-0">
-                            <thead>
-                            <tr>
-                                <th>{{ __("cms-pages.name") }}</th>
-                                <th>{{ __("cms-pages.email") }}</th>
-                                <th>{{ __("cms-pages.actions") }}</th>
-                            </tr>
-                            </thead>
-                            <tbody>
-                            @foreach($students as $student)
+                    @if($students->count())
+                        <div class="table-responsive">
+                            <table id="sorting-table" class="table mb-0">
+                                <thead>
                                 <tr>
-                                    <td><a href="{{route('students.show', $student->id)}}"
-                                           class="text-primary">{{ $student->getFullName() }}</a></td>
-                                    <td>{{ $student->email }}</td>
-                                    <td class="td-actions">
-                                        <a href="{{ route('students.show', $student->id) }}">
-                                            <i class="la la-eye edit"></i>
-                                        </a>
-
-                                        <form style="display: inline-block" method="POST"
-                                              action="{{ route('admin.students.destroy', $student->id) }}">
-                                            @csrf @method('DELETE')
-
-                                            <a href="{{ route('admin.students.destroy', $student->id) }}"
-                                               onclick="event.preventDefault();if(confirm('{{ __("cms-messages.delete") }}')){this.closest('form').submit();}">
-                                                <i class="la la-close delete"></i>
-                                            </a>
-                                        </form>
-                                    </td>
+                                    <th>{{ __("cms-pages.name") }}</th>
+                                    <th>{{ __("cms-pages.email") }}</th>
+                                    <th>{{ __("cms-pages.actions") }}</th>
                                 </tr>
-                            @endforeach
-                            </tbody>
-                        </table>
-                    </div>
+                                </thead>
+                                <tbody>
+                                @foreach($students as $student)
+                                    <tr>
+                                        <td><a href="{{route('students.show', $student->id)}}"
+                                               class="text-primary">{{ $student->getFullName() }}</a></td>
+                                        <td>{{ $student->email }}</td>
+                                        <td class="td-actions">
+                                            <a href="{{ route('students.show', $student->id) }}">
+                                                <i class="la la-eye edit"></i>
+                                            </a>
+
+                                            <form style="display: inline-block" method="POST"
+                                                  action="{{ route('admin.students.destroy', $student->id) }}">
+                                                @csrf @method('DELETE')
+
+                                                <a href="{{ route('admin.students.destroy', $student->id) }}"
+                                                   onclick="event.preventDefault();if(confirm('{{ __("cms-messages.delete") }}')){this.closest('form').submit();}">
+                                                    <i class="la la-close delete"></i>
+                                                </a>
+                                            </form>
+                                        </td>
+                                    </tr>
+                                @endforeach
+                                </tbody>
+                            </table>
+                        </div>
+                    @else
+                        <p>У вас пока что нет ни одного студента.</p>
+                    @endif
                 </div>
             </div>
         </div>

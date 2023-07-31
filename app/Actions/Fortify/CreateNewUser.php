@@ -70,11 +70,11 @@ class CreateNewUser implements CreatesNewUsers
                 ],
                 'password' => $this->passwordRules(),
                 'agreement' => ['required'],
-                'lease-contract' => ['required'],
+//                'lease-contract' => ['required'],
             ]);
 
             $validator->after(function ($validator) use($input) {
-                if ($input['user_text'] != Captcha::find($input['user_text_x'])->code) {
+                if ($input['user_text'] != Captcha::where('code', $input['user_text'])->first()->code) {
                     $validator->errors()->add(
                         'user_text', 'Код с картинки введен не верно.'
                     );
@@ -87,7 +87,7 @@ class CreateNewUser implements CreatesNewUsers
                 'surname' => $input['surname'],
                 'email' => $input['email'],
                 'password' => Hash::make($input['password']),
-                'role_id' => Role::where('name', 'Teacher')->first()->id,
+                'role_id' => Role::where('name', 'teacher')->first()->id,
             ]);
             $user->roles()->attach(Role::where('name', 'teacher')->first()->id);
         }

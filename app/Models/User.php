@@ -219,7 +219,12 @@ class User extends Authenticatable implements MustVerifyEmail
 
     public function sendEmailVerificationNotification()
     {
-        $this->notify(new CustomVerificationEmail($this));
+        try {
+            $this->notify(new CustomVerificationEmail($this));
+        } catch (\Throwable $e) {
+            return redirect()->route('login');
+        }
+
     }
 
     public function formatPhoneNumber()
@@ -276,7 +281,7 @@ class User extends Authenticatable implements MustVerifyEmail
      */
     public function hasGroups()
     {
-
+        //
     }
 
     public function ownStudents(): array
