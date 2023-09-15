@@ -8,6 +8,7 @@
                     </a>
                 </div>
                 <ul class="address-info no-border">
+                    <li>ИП Пристинская А.А.<br>ИНН 280111660440</li>
                     <li>Адрес: Московская обл., г. Серпухов, ул. Юбилейная, д.2</li>
                     <li>
                         <i class="fa fa-phone"></i> Телефон: <a href="tel:+79856483542">+7 (985) 648-35-42</a>
@@ -24,8 +25,12 @@
                 <div class="footer-title-bottomstrip"></div>
                 <div class="clearfix"></div>
                 <ul class="usefull-links tex-left no-border">
-                    <li><a href="#"><i class="fa fa-angle-right"></i> Политика конфиденциальности</a></li>
-                    <li><a href="#"><i class="fa fa-angle-right"></i> Правила сайта</a></li>
+                    <li><a href="{{asset('documents/license_agreement_lingvakit.pdf')}}" target="_blank">
+                            <i class="fa fa-angle-right"></i> Публичная оферта</a>
+                    </li>
+                    <li><a href="{{asset('documents/offer_agreement_lingvakit.pdf')}}" target="_blank">
+                            <i class="fa fa-angle-right"></i> Договор-оферта на оказание услуг</a>
+                    </li>
                 </ul>
             </div>
             <!--end item-->
@@ -49,7 +54,8 @@
                 </ul>
                 <div class="clearfix"></div>
                 <br/>
-                <span>Copyright © {{ date('Y') }} {{config('app.name')}} | Все права защищены.</span></div>
+                <span>Copyright © {{ date('Y') }} {{config('app.name')}} | Все права защищены.</span>
+            </div>
         </div>
     </div>
 </section>
