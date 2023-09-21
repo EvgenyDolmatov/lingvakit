@@ -1,3 +1,28 @@
+a {
+    color: #ca5506;
+}
+a:focus, a:hover {
+    color: #b34b00;
+}
+.text-primary {
+    color: #ca5506 !important;
+}
+.nav-tabs .nav-item.show .nav-link, .nav-tabs .nav-link.active {
+    color: #ca5506;
+    border-bottom: 2px solid #ca5506!important;
+}
+.nav-tabs>li.active>a, .nav-tabs>li>a:hover {
+    color: #b34b00 !important;
+    border-bottom: 2px solid #ca5506!important;
+}
+.nav-tabs>li>a::after {
+    background: #ca5506!important;
+}
+.btn-primary, .btn-primary:hover {
+    background-color: #ca5506;
+    border-color: #ca5506;
+}
+
 .content-inner.remove-offset,
 .content-inner.active.remove-offset {
     margin-left: 0;
@@ -204,14 +229,14 @@ input.short_word {
 }
 
 .btn-brand {
-    background-color: #6f74e8;
-    border-color: #6f74e8;
+    background-color: #ca5506;
+    border-color: #ca5506;
     color: #fff;
     transition: all, .3s;
 }
 .btn-brand:hover {
-    background-color: #666ade;
-    border-color: #666ade;
+    background-color: #ca5506;
+    border-color: #ca5506;
     color: #fff;
     transition: all, .3s;
 }
@@ -264,6 +289,17 @@ input.short_word {
 
 .content-inner.active .container-fluid  {
     min-height: calc(100vh - 120px);
+}
+
+.default-sidebar {
+    background: #ca5506;
+}
+.default-sidebar>.side-navbar a[aria-expanded=true],
+.default-sidebar>.side-navbar ul ul {
+    background: #ca5506;
+}
+.default-sidebar>.side-navbar a[aria-expanded=true] i, .default-sidebar>.side-navbar li ul li a.active, .default-sidebar>.side-navbar ul a:hover i, .default-sidebar>.side-navbar ul li.active i {
+    color: #ebccbc;
 }
 
 @media (max-width: 565px) {
