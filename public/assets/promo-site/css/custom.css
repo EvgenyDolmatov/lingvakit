@@ -564,4 +564,17 @@ input[type=search]:focus {
     }
 }
 
+.section-fulldark {
+    background-color: #491f03;
+}
+.usefull-links li a,
+.address-info li,
+.address-info li a {
+    color: #fff;
+}
+.section-copyrights {
+    background-color: #2f1301;
+    color: #fff;
+}
+
 

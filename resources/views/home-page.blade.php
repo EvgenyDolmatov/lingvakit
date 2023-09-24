@@ -186,7 +186,7 @@
         </div>
         <div class="container-fluid">
             <div class="row">
-                <div class="col-md-7 col-md-offset-5 col-sm-8 col-sm-offset-2 text-inner clearfix align-left">
+                <div class="col-md-6 col-md-offset-6 col-sm-9 col-sm-offset-3 text-inner clearfix align-left">
                     <div class="text-box white padding-7">
                         <div class="col-xs-12 text-left">
                             <h1 class="paddtop1 dosis font-weight-5 lspace-sm">
@@ -221,7 +221,7 @@
         </div>
         <div class="container-fluid">
             <div class="row">
-                <div class="col-md-7 col-sm-8 text-inner inner-left clearfix align-left">
+                <div class="col-md-6 col-md-offset-6 col-sm-9 col-sm-offset-3 text-inner clearfix align-left">
                     <div class="text-box white padding-7">
                         <div class="col-xs-12 text-left">
                             <h1 class="paddtop1 dosis font-weight-5 lspace-sm">
@@ -246,7 +246,7 @@
         </div>
     </section>
     <div class=" clearfix"></div>
-    <section class="section-light section-side-image clearfix">
+    <section id="about" class="section-light section-side-image clearfix">
         <div class="img-holder col-md-6 col-sm-3 pull-left">
             <div class="background-imgholder"
                  style="background:url({{ asset('assets/promo-site/images/features/features-3.jpg') }});">
@@ -256,7 +256,7 @@
         </div>
         <div class="container-fluid">
             <div class="row">
-                <div class="col-md-7 col-md-offset-5 col-sm-8 col-sm-offset-2 text-inner clearfix align-left">
+                <div class="col-md-6 col-md-offset-6 col-sm-9 col-sm-offset-3 text-inner clearfix align-left">
                     <div class="text-box white padding-7">
                         <div class="col-xs-12 text-left">
                             <h1 class="paddtop1 dosis font-weight-5 lspace-sm">
@@ -291,7 +291,7 @@
         </div>
         <div class="container-fluid">
             <div class="row">
-                <div class="col-md-7 col-sm-8 text-inner inner-left clearfix align-left">
+                <div class="col-md-6 col-md-offset-6 col-sm-9 col-sm-offset-3 text-inner clearfix align-left">
                     <div class="text-box white padding-7">
                         <div class="col-xs-12 text-left">
                             <h1 class="paddtop1 dosis font-weight-5 lspace-sm">
@@ -489,7 +489,7 @@
     </section>
     <div class="clearfix"></div>
 
-    <section>
+    <section id="news">
         <div class="container">
             <div class="divider-line solid light opacity-5"></div>
             <div class="row sec-padd-default-page">

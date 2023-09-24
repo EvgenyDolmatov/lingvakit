@@ -58,6 +58,38 @@
                             </div>
                             <div class="col-12">
                                 <div class="widget-body">
+                                    <div class="media-body align-self-center">
+                                        <div class="title">Наименование</div>
+                                        <div class="number">ИП Пристинская Алена Алексеевна</div>
+                                    </div>
+                                </div>
+                                <div class="widget-body">
+                                    <div class="media-body align-self-center">
+                                        <div class="title">ИНН</div>
+                                        <div class="number">280111660440</div>
+                                    </div>
+                                </div>
+                                <div class="widget-body">
+                                    <div class="media-body align-self-center">
+                                        <div class="title">ОГРНИП</div>
+                                        <div class="number">320508100275828</div>
+                                    </div>
+                                </div>
+                                <div class="widget-body">
+                                    <div class="media-body align-self-center">
+                                        <div class="title">ОКПО</div>
+                                        <div class="number">2002519595</div>
+                                    </div>
+                                </div>
+                                <div class="widget-body">
+                                    <div class="media-body align-self-center">
+                                        <div class="title">Юридический адрес</div>
+                                        <div class="number">142204, Россия, Московская обл., г. Серпухов, ул. Юбилейная, д. 2, кв. 253</div>
+                                    </div>
+                                </div>
+                            </div>
+                            <div class="col-12">
+                                <div class="widget-body">
                                     <form action="{{route('feedback')}}" method="POST">
                                         @csrf
 

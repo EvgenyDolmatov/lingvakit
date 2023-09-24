@@ -8,6 +8,14 @@
             <li class="dashboard"><a href="{{route('dashboard')}}"><i
                             class="la la-dashboard"></i><span>{{ __("cms-pages.dashboard") }}</span></a></li>
 
+            {{-- Articles --}}
+            <li><a href="#dropdown-articles" aria-expanded="false" data-toggle="collapse"><i
+                            class="la la-file-text"></i><span>Новости</span></a>
+                <ul id="dropdown-articles" class="collapse list-unstyled pt-0">
+                    <li><a href="">Все новости</a></li>
+                </ul>
+            </li>
+
             {{-- Media Files --}}
             <li><a href="#dropdown-media" aria-expanded="false" data-toggle="collapse"><i
                             class="la la-camera"></i><span>{{ __("cms-pages.media-files") }}</span></a>

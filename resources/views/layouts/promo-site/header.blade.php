@@ -42,18 +42,13 @@
             <div id="navbar-collapse-grid" class="navbar-collapse collapse pull-right">
                 <ul class="nav navbar-nav">
                     <li>
-                        <a href="#" class="">О нас</a>
-                    </li>
-                    <li class="dropdown"><a href="#" class="dropdown-toggle">Курсы</a>
-                        <ul class="dropdown-menu" role="menu">
-                            <li><a href="#">Курс 1</a></li>
-                            <li><a href="#">Курс 2</a></li>
-                            <li><a href="#">Курс 3</a></li>
-                            <li><a href="#">Курс 4</a></li>
-                        </ul>
+                        <a href="/#about" class="">О нас</a>
                     </li>
                     <li>
-                        <a href="#" class="">Статьи</a>
+                        <a href="{{route('site.learning')}}" class="dropdown-toggle">Курсы</a>
+                    </li>
+                    <li>
+                        <a href="/#news" class="">Статьи</a>
                     </li>
                     <li>
                         <a href="#" class="">Изучающим в помощь</a>
@@ -62,7 +57,7 @@
                         <a href="#" class="">Тесты</a>
                     </li>
                     <li>
-                        <a href="#" class="">Контакты</a>
+                        <a href="{{route('site.contacts')}}" class="">Контакты</a>
                     </li>
                 </ul>
             </div>
