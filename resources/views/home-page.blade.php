@@ -55,7 +55,7 @@
                  data-src="{{ asset('assets/promo-site/images/sliders/masterslider/slide1.jpg') }}" alt=""/>
 
             <h3 class="ms-layer text58"
-                style="left: 230px;top: 200px;font-family: Dosis, sans-serif;"
+                style="left: 230px;top: 200px;font-family: 'Nunito', sans-serif;"
                 data-type="text"
                 data-delay="500"
                 data-ease="easeOutExpo"
@@ -63,7 +63,7 @@
                 data-effect="scale(1.5,1.6)">Лингва&middot;Кит</h3>
 
             <h3 class="ms-layer text59"
-                style="left: 230px;top: 275px;font-family: Dosis, sans-serif;"
+                style="left: 230px;top: 275px;font-family: 'Nunito', sans-serif;"
                 data-type="text"
                 data-delay="1000"
                 data-ease="easeOutExpo"
