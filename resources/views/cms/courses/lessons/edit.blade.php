@@ -142,9 +142,9 @@
                                         data-target="#modal-files">
                                     {{__("cms-pages.choose")}}
                                 </button>
-                                {{--                                <input type="text" name="youtube" class="form-control"--}}
-                                {{--                                       placeholder="{{ __("cms-pages.video-link") }}"--}}
-                                {{--                                       value="@if($course->isExternalVideo()){{$course->video}}@endif">--}}
+                                <input type="text" name="youtube" class="form-control"
+                                       placeholder="{{ __("cms-pages.video-link") }}"
+                                       value="@if($course->isExternalVideo()){{$course->video}}@endif">
                             </div>
                         </div>
 

@@ -89,8 +89,8 @@
                                         data-var="video" data-toggle="modal" data-target="#modal-files">
                                     {{__("cms-pages.choose")}}
                                 </button>
-{{--                                <input type="text" name="youtube" class="form-control"--}}
-{{--                                       placeholder="{{ __("cms-pages.video-link") }}" value="{{old('video')}}">--}}
+                                <input type="text" name="youtube" class="form-control"
+                                       placeholder="{{ __("cms-pages.video-link") }}" value="{{old('video')}}">
                             </div>
                         </div>
                         {{-- Files --}}
