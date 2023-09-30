@@ -49,6 +49,10 @@
                             <div class="clearfix"></div>
                             <div class="col-divider-margin-4"></div>
                         @endforeach
+                    @else
+                        <div class="col-md-12 bmargin">
+                            <h4>В этой рубрике пока нет новостей.</h4>
+                        </div>
                     @endif
                 </div>
 
@@ -56,19 +60,15 @@
                     @if($allRubrics->count())
                         <div class="col-md-12 col-sm-12 col-xs-12 nopadding bmargin">
                             <h5>Рубрики</h5>
-                            @if($allRubrics->count())
-                                <h3>В этой рубрике новостей пока нет.</h3>
-                            @else
-                                <ul class="category-links orange-2">
-                                    @foreach($allRubrics as $r)
-                                        <li>
-                                            <a href="{{route('site.rubric.articles', $r->slug)}}">
-                                                {{$r->title}}
-                                            </a>
-                                        </li>
-                                    @endforeach
-                                </ul>
-                            @endif
+                            <ul class="category-links orange-2">
+                                @foreach($allRubrics as $r)
+                                    <li>
+                                        <a href="{{route('site.rubric.articles', $r->slug)}}">
+                                            {{$r->title}}
+                                        </a>
+                                    </li>
+                                @endforeach
+                            </ul>
                         </div>
                         <div class="clearfix"></div>
                         <br/>
