@@ -68,6 +68,10 @@
                         </div>
                         <div class="clearfix"></div>
                         <br/>
+                    @else
+                        <div class="col-md-12 col-sm-12 col-xs-12 nopadding bmargin">
+                            <h3>В этой рубрике новостей пока нет.</h3>
+                        </div>
                     @endif
                 </div>
             </div>
