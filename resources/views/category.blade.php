@@ -56,22 +56,22 @@
                     @if($allRubrics->count())
                         <div class="col-md-12 col-sm-12 col-xs-12 nopadding bmargin">
                             <h5>Рубрики</h5>
-                            <ul class="category-links orange-2">
-                                @foreach($allRubrics as $r)
-                                    <li>
-                                        <a href="{{route('site.rubric.articles', $r->slug)}}">
-                                            {{$r->title}}
-                                        </a>
-                                    </li>
-                                @endforeach
-                            </ul>
+                            @if($allRubrics->count())
+                                <h3>В этой рубрике новостей пока нет.</h3>
+                            @else
+                                <ul class="category-links orange-2">
+                                    @foreach($allRubrics as $r)
+                                        <li>
+                                            <a href="{{route('site.rubric.articles', $r->slug)}}">
+                                                {{$r->title}}
+                                            </a>
+                                        </li>
+                                    @endforeach
+                                </ul>
+                            @endif
                         </div>
                         <div class="clearfix"></div>
                         <br/>
-                    @else
-                        <div class="col-md-12 col-sm-12 col-xs-12 nopadding bmargin">
-                            <h3>В этой рубрике новостей пока нет.</h3>
-                        </div>
                     @endif
                 </div>
             </div>
