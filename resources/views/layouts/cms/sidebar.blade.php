@@ -12,7 +12,8 @@
             <li><a href="#dropdown-articles" aria-expanded="false" data-toggle="collapse"><i
                             class="la la-file-text"></i><span>Новости</span></a>
                 <ul id="dropdown-articles" class="collapse list-unstyled pt-0">
-                    <li><a href="">Все новости</a></li>
+                    <li><a href="{{route('articles.index')}}">Все новости</a></li>
+                    <li><a href="{{route('articles.create')}}">Добавить</a></li>
                 </ul>
             </li>
 

@@ -3,11 +3,13 @@
 namespace App\Http\Controllers;
 
 use App\Mail\Feedback;
+use App\Models\Article;
 use App\Models\FeedbackMessage;
 use App\Models\LMS\Course;
 use App\Models\LMS\CourseReview;
 use App\Models\LMS\Language;
 use App\Models\LMS\Result;
+use App\Models\Rubric;
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Auth;
 use Illuminate\Support\Facades\Mail;
@@ -25,9 +27,11 @@ class SiteController extends Controller
             $courses->where('language_id', $request->language);
         }
 
+        $noRubric = Rubric::where("title", "Без рубрики")->first();
         return view('home-page', [
             'courses' => $courses->orderBy('publish_date')->get(),
             'languages' => Language::all(),
+            'rubrics' => Rubric::all()->except($noRubric->id)->sortBy('title')
         ]);
     }
 
@@ -142,5 +146,26 @@ class SiteController extends Controller
         }
 
         return back()->with('success', 'Ваше сообщение отправлено!');
+    }
+
+    public function articlesByRubric($rubricSlug)
+    {
+        $rubric = Rubric::where('slug', $rubricSlug)->first();
+        $noRubric = Rubric::where("title", "Без рубрики")->first();
+        return view('category', [
+            'allRubrics' => Rubric::all()->except($noRubric->id)->sortBy("title"),
+            'rubric' => $rubric,
+            'articles' => Article::where('rubric_id', $rubric->id)->get()->except($noRubric->id)->sortBy("title")
+        ]);
+    }
+
+    public function articlePage($rubricSlug, $articleSlug)
+    {
+        $noRubric = Rubric::where("title", "Без рубрики")->first();
+        return view('article', [
+            'allRubrics' => Rubric::all()->except($noRubric->id)->sortBy("title"),
+            'article' => Article::where("slug", $articleSlug)->first(),
+            'rubric' => Rubric::where("slug", $rubricSlug)->first(),
+        ]);
     }
 }

@@ -33,6 +33,8 @@ Route::get('offer-agreement', [SiteController::class, 'offerAgreement'])->name('
 Route::get('contacts', [SiteController::class, 'contacts'])->name('site.contacts');
 Route::get('courses/course-{course}/show', [SiteController::class, 'showCourse'])->name('site.course-show');
 Route::post('feedback', [SiteController::class, 'feedback'])->name('feedback');
+Route::get('rubrics/{rubricSlug}', [SiteController::class, 'articlesByRubric'])->name('site.rubric.articles');
+Route::get('rubrics/{rubricSlug}/{articleSlug}', [SiteController::class, 'articlePage'])->name('site.article');
 
 // О преподавателях: пока статика
 Route::get('teachers/1', function (){

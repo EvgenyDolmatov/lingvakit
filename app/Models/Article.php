@@ -25,4 +25,17 @@ class Article extends Model
             ]
         ];
     }
+
+    public function image()
+    {
+        return $this->hasOne(MediaFile::class, 'id', 'image');
+    }
+
+    public function getImage() : string
+    {
+        if($this->image) {
+            return $this->image()->first()->getPath();
+        }
+        return '/assets/cms/img/no-image.jpg';
+    }
 }

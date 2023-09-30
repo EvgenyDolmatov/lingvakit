@@ -23,12 +23,16 @@ use App\Http\Controllers\Admin\StudentController;
 use App\Http\Controllers\Admin\Students\StudentCourseController;
 use App\Http\Controllers\Admin\Teachers\TeacherController;
 use App\Http\Controllers\Admin\TopicController;
+use App\Http\Controllers\ArticleController;
 use App\Http\Controllers\UserController;
 use App\Http\Controllers\Admin\PromocodeController;
 use Illuminate\Support\Facades\Route;
 
 Route::prefix('dashboard')->middleware(['auth', 'locale', 'role:superuser|admin|teacher'])->group(function (){
     Route::get('/', [DashboardController::class, 'index'])->name('dashboard');
+
+    Route::resource('articles', ArticleController::class);
+    Route::put('articles/{article}/image-remove', [ArticleController::class, 'removeImage'])->name('articles.image.remove');
 
     Route::resource('media', MediaFileController::class);
     Route::get('media/download/file-{file}', [MediaFileController::class, 'downloadFile'])->name('media.download');

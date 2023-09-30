@@ -186,7 +186,7 @@
         </div>
         <div class="container-fluid">
             <div class="row">
-                <div class="col-md-6 col-md-offset-6 col-sm-9 col-sm-offset-3 text-inner clearfix align-left">
+                <div class="col-md-7 col-md-offset-5 col-sm-8 col-sm-offset-2 text-inner clearfix align-left">
                     <div class="text-box white padding-7">
                         <div class="col-xs-12 text-left">
                             <h1 class="paddtop1 dosis font-weight-5 lspace-sm">
@@ -221,7 +221,7 @@
         </div>
         <div class="container-fluid">
             <div class="row">
-                <div class="col-md-6 col-md-offset-6 col-sm-9 col-sm-offset-3 text-inner clearfix align-left">
+                <div class="col-md-7 col-sm-8 text-inner inner-left clearfix align-left">
                     <div class="text-box white padding-7">
                         <div class="col-xs-12 text-left">
                             <h1 class="paddtop1 dosis font-weight-5 lspace-sm">
@@ -256,7 +256,7 @@
         </div>
         <div class="container-fluid">
             <div class="row">
-                <div class="col-md-6 col-md-offset-6 col-sm-9 col-sm-offset-3 text-inner clearfix align-left">
+                <div class="col-md-7 col-md-offset-5 col-sm-8 col-sm-offset-2 text-inner clearfix align-left">
                     <div class="text-box white padding-7">
                         <div class="col-xs-12 text-left">
                             <h1 class="paddtop1 dosis font-weight-5 lspace-sm">
@@ -291,7 +291,7 @@
         </div>
         <div class="container-fluid">
             <div class="row">
-                <div class="col-md-6 col-md-offset-6 col-sm-9 col-sm-offset-3 text-inner clearfix align-left">
+                <div class="col-md-7 col-sm-8 text-inner inner-left clearfix align-left">
                     <div class="text-box white padding-7">
                         <div class="col-xs-12 text-left">
                             <h1 class="paddtop1 dosis font-weight-5 lspace-sm">
@@ -501,50 +501,15 @@
                 </div>
                 <div class="clearfix"></div>
 
-                <div class="col-md-4 col-sm-6">
-                    <a href="#" class="feature-box-84 text-center bmargin primary-bg">
-                        <h4 class="text-white uppercase">
-                            Акции, специальные предложения
-                        </h4>
-                    </a>
-                </div>
-                <div class="col-md-4 col-sm-6">
-                    <a href="#" class="feature-box-84 text-center bmargin primary-bg">
-                        <h4 class="text-white uppercase">
-                            Бесплатные материалы
-                        </h4>
-                    </a>
-                </div>
-                <div class="col-md-4 col-sm-6">
-                    <a href="#" class="feature-box-84 text-center bmargin primary-bg">
-                        <h4 class="text-white uppercase">
-                            О культуре и истории Китая
-                        </h4>
-                    </a>
-                </div>
-                <div class="clear"></div>
-
-                <div class="col-md-4 col-sm-6">
-                    <a href="#" class="feature-box-84 text-center bmargin primary-bg">
-                        <h4 class="text-white uppercase">
-                            Интересное о Китае
-                        </h4>
-                    </a>
-                </div>
-                <div class="col-md-4 col-sm-6">
-                    <a href="#" class="feature-box-84 text-center bmargin primary-bg">
-                        <h4 class="text-white uppercase">
-                            Как создать свой курс
-                        </h4>
-                    </a>
-                </div>
-                <div class="col-md-4 col-sm-6">
-                    <a href="#" class="feature-box-84 text-center bmargin primary-bg">
-                        <h4 class="text-white uppercase">
-                            О разном
-                        </h4>
-                    </a>
-                </div>
+                @if($rubrics->count())
+                    @foreach($rubrics as $rubric)
+                        <div class="col-md-4 col-sm-6">
+                            <a href="{{route('site.rubric.articles', $rubric->slug)}}" class="feature-box-84 text-center bmargin primary-bg">
+                                <h4 class="text-white uppercase">{{$rubric->title}}</h4>
+                            </a>
+                        </div>
+                    @endforeach
+                @endif
                 <div class="clear"></div>
             </div>
         </div>
