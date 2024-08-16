@@ -35,6 +35,11 @@ class SiteController extends Controller
         ]);
     }
 
+    public function documentList()
+    {
+        return view('documents-list');
+    }
+
     public function reviewsPage()
     {
         return view('reviews');
