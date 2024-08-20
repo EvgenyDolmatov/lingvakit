@@ -37,8 +37,8 @@
                                     <h4 class="less-mar1">{{$article->title}}</h4>
                                 </a>
                                 <div class="blog-post-info">
-                                    <span><i class="fa fa-user"></i> By Benjamin</span>
-                                    <span><i class="fa fa-comments-o"></i> 15 Comments</span>
+{{--                                    <span><i class="fa fa-user"></i> By Benjamin</span>--}}
+{{--                                    <span><i class="fa fa-comments-o"></i> 15 Comments</span>--}}
                                 </div>
                                 <br/>
                                 {!! $article->content !!}

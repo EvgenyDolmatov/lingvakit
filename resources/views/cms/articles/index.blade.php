@@ -47,7 +47,7 @@
                                     </td>
                                     <td>
                                         <a href="">
-                                            {{ $article->title }}
+                                            {{ $article->rubric->title }}
                                         </a>
                                     </td>
                                     <td class="td-actions">

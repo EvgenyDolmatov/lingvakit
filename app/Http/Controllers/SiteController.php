@@ -157,10 +157,12 @@ class SiteController extends Controller
     {
         $rubric = Rubric::where('slug', $rubricSlug)->first();
         $noRubric = Rubric::where("title", "Без рубрики")->first();
+        $articles = Article::where('rubric_id', $rubric->id)->get();
+
         return view('category', [
             'allRubrics' => Rubric::all()->except($noRubric->id)->sortBy("title"),
             'rubric' => $rubric,
-            'articles' => Article::where('rubric_id', $rubric->id)->get()->except($noRubric->id)->sortBy("title")
+            'articles' => $articles->sortBy("title")
         ]);
     }
 
