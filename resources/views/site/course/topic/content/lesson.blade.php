@@ -55,20 +55,27 @@
                     @endforeach
                 @endif
                 @if($lesson->video)
-                    @if(strpos($lesson->video, 'rutube') !== false)
-                        <iframe class="rutube-frame"
-                                src="{{ 'https://rutube.ru/play/embed/' . str_replace('https://rutube.ru/video/', '',$lesson->video) }}"
-                                frameBorder="0" allow="clipboard-write; autoplay" webkitAllowFullScreen
-                                mozallowfullscreen
-                                allowFullScreen></iframe>
-                    @else
-                        <div class="about-infos d-flex flex-column mb-3">
-                            <div class="about-text">
-                                <div id="player" data-id="{{$lesson->getVideoId()}}"
-                                     data-width="640" data-height="390"></div>
-                            </div>
-                        </div>
-                    @endif
+                        @if($lesson->isExternalVideo())
+                            <div id="player" data-id="{{$lesson->getVideoId()}}"
+                                 data-width="640" data-height="390"></div>
+                        @else
+                            <video src="{{$lesson->getVideo()}}" width="640" controls></video>
+                        @endif
+
+{{--                    @if(strpos($lesson->video, 'rutube') !== false)--}}
+{{--                        <iframe class="rutube-frame"--}}
+{{--                                src="{{ 'https://rutube.ru/play/embed/' . str_replace('https://rutube.ru/video/', '',$lesson->video) }}"--}}
+{{--                                frameBorder="0" allow="clipboard-write; autoplay" webkitAllowFullScreen--}}
+{{--                                mozallowfullscreen--}}
+{{--                                allowFullScreen></iframe>--}}
+{{--                    @else--}}
+{{--                        <div class="about-infos d-flex flex-column mb-3">--}}
+{{--                            <div class="about-text">--}}
+{{--                                <div id="player" data-id="{{$lesson->getVideoId()}}"--}}
+{{--                                     data-width="640" data-height="390"></div>--}}
+{{--                            </div>--}}
+{{--                        </div>--}}
+{{--                    @endif--}}
                 @endif
 
                 @if($lesson->additionalVideos)
