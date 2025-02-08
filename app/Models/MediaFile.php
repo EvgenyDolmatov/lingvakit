@@ -32,7 +32,7 @@ class MediaFile extends Model
             return;
         }
 
-        $extension = $file->extension();
+        $extension = strtolower($file->extension());
         if ($extension == 'jpeg') {
             $extension = 'jpg';
         }
