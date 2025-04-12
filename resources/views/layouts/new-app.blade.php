@@ -54,6 +54,16 @@
 <script src="{{ asset('assets/promo-site/js/mainmenu/customeUI.js')}}"></script>
 <script src="{{ asset('assets/promo-site/js/mainmenu/jquery.sticky.js')}}"></script>
 <script src="{{ asset('assets/promo-site/js/scrolltotop/totop.js')}}"></script>
+<script src="https://www.google.com/recaptcha/api.js?render=6LfnqBUrAAAAAEZZ4-rxhTtaZF2GJ7TotgRajq2x"></script>
+<script>
+    document.addEventListener('DOMContentLoaded', function () {
+        grecaptcha.ready(function () {
+            grecaptcha.execute('{{ config('captcha.sitekey') }}', {action: 'submit'}).then(function (token) {
+                document.getElementById('g-recaptcha-response').value = token;
+            });
+        });
+    });
+</script>
 @yield('scripts')
 <script src="{{ asset('assets/promo-site/js/scripts/functions.js')}}" type="text/javascript"></script>
 <script src="{{ asset('assets/promo-site/js/scripts/custom.js')}}" type="text/javascript"></script>

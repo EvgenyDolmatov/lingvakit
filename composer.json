@@ -10,6 +10,7 @@
     "require": {
         "php": "^8.1",
         "ext-json": "*",
+        "anhskohbo/no-captcha": "^3.7",
         "biscolab/laravel-recaptcha": "^5.4",
         "cviebrock/eloquent-sluggable": "^9.0",
         "doctrine/migrations": "^3.0",
