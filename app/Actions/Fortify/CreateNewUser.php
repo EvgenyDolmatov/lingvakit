@@ -44,6 +44,28 @@ class CreateNewUser implements CreatesNewUsers
                         'user_text', 'Код с картинки введен не верно.'
                     );
                 }
+
+                $availableDomains = [
+                    'gmail.com',
+                    'ya.ru',
+                    'yandex.ru',
+                    'mail.ru',
+                    'list.ru',
+                ];
+
+                $isCorrectDomain = false;
+                foreach ($availableDomains as $domain) {
+                    if (str_contains($input['email'], $domain)) {
+                        $isCorrectDomain = true;
+                        break;
+                    }
+                }
+
+                if (!$isCorrectDomain) {
+                    $validator->errors()->add(
+                        'email', 'Email, с которого вы пытаетесь зарегистрироваться, запрещен системой.'
+                    );
+                }
             });
             $validator->validate();
 
@@ -77,6 +99,28 @@ class CreateNewUser implements CreatesNewUsers
                 if ($input['user_text'] != Captcha::where('code', $input['user_text'])->first()->code) {
                     $validator->errors()->add(
                         'user_text', 'Код с картинки введен не верно.'
+                    );
+                }
+
+                $availableDomains = [
+                    'gmail.com',
+                    'ya.ru',
+                    'yandex.ru',
+                    'mail.ru',
+                    'list.ru',
+                ];
+
+                $isCorrectDomain = false;
+                foreach ($availableDomains as $domain) {
+                    if (str_contains($input['email'], $domain)) {
+                        $isCorrectDomain = true;
+                        break;
+                    }
+                }
+
+                if (!$isCorrectDomain) {
+                    $validator->errors()->add(
+                        'email', 'Email, с которого вы пытаетесь зарегистрироваться, запрещен системой.'
                     );
                 }
             });

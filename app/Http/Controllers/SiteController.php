@@ -147,7 +147,19 @@ class SiteController extends Controller
         $feedback = FeedbackMessage::add($request->all());
 
         if ($feedback) {
-            Mail::to('pristya@bk.ru')->send(new Feedback($feedback));
+            $availableDomains = [
+                'gmail.com',
+                'ya.ru',
+                'yandex.ru',
+                'mail.ru',
+                'list.ru',
+            ];
+
+            foreach ($availableDomains as $domain) {
+                if (str_contains($request->get('email'), $domain)) {
+                    Mail::to('pristya@bk.ru')->send(new Feedback($feedback));
+                }
+            }
         }
 
         return back()->with('success', 'Ваше сообщение отправлено!');
