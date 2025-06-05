@@ -22,7 +22,6 @@ jobs:
         run: |
           ssh -o StrictHostKeyChecking=no ${{ secrets.SSH_USER }}@${{ secrets.SSH_HOST }} "
             cd ${{ secrets.DEPLOY_PATH }} &&
-            git fetch --tags &&
-            git checkout ${{ github.ref_name }} && 
-            git pull
+            git fetch --all &&
+            git checkout tags/${{ github.ref_name }}
           "
