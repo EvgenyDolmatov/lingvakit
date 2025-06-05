@@ -3,6 +3,7 @@
 ## [Unreleased] - 2025-06-03
 ### Changed
 * Change logo
+* Set auto deploy
 
 ---
 
