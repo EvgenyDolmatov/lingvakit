@@ -1,5 +1,11 @@
 # Changelog
 
+## [1.2.0] - 2025-06-11
+### Changed
+* Deploy runner on the hosting
+
+---
+
 ## [1.1.1] - 2025-06-05
 ### Fixed
 * Deploy runner
