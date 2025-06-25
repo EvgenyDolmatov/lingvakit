@@ -11,10 +11,10 @@ jobs:
 
     steps:
       - name: Checkout code
-        uses: actions/checkout@v3
+        uses: actions/checkout@v4
 
       - name: Set up SSH
-        uses: webfactory/ssh-agent@v0.7.0
+        uses: webfactory/ssh-agent@v0.9.0
         with:
           ssh-private-key: ${{ secrets.SSH_KEY }}
 
@@ -24,4 +24,10 @@ jobs:
             cd ${{ secrets.DEPLOY_PATH }} &&
             git fetch --all &&
             git checkout tags/${{ github.ref_name }}
+            echo 'Deployed tag ${{ github.ref_name }} to production'
+          
+            docker exec php82 sh -c 'cd lingvakit && composer install --no-interaction --prefer-dist' &&
+            docker exec php82 sh -c 'cd lingvakit && php artisan migrate' &&
+            docker exec php82 sh -c 'cd lingvakit && php artisan cache:clear' &&
+            echo 'Deployment and post-steps completed for production.'
           "
