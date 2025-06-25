@@ -2,6 +2,12 @@
 
 ---
 
+## [1.3.1] - 2025-06-25
+### Fixes
+* Fix deploy script
+
+---
+
 ## [1.3.0] - 2025-06-11
 ### Added
 * Run scripts after deploy
