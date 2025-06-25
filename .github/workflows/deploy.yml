@@ -23,9 +23,9 @@ jobs:
           ssh -o StrictHostKeyChecking=no ${{ secrets.SSH_USER }}@${{ secrets.SSH_HOST }} "
             cd ${{ secrets.DEPLOY_PATH }} &&
             git fetch --all &&
-            git reset --hard HEAD
-            git checkout tags/${{ github.ref_name }}
-            echo 'Deployed tag ${{ github.ref_name }} to production'
+            git reset --hard HEAD &&
+            git checkout tags/${{ github.ref_name }} &&
+            echo 'Deployed tag ${{ github.ref_name }} to production' &&
           
             docker exec php82 sh -c 'cd lingvakit && composer install --no-interaction --prefer-dist' &&
             docker exec php82 sh -c 'cd lingvakit && php artisan migrate' &&

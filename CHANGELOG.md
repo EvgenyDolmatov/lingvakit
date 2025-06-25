@@ -2,6 +2,12 @@
 
 ---
 
+## [1.3.2] - 2025-06-25
+### Fixes
+* Fix deploy script
+
+---
+
 ## [1.3.1] - 2025-06-25
 ### Fixes
 * Fix deploy script
