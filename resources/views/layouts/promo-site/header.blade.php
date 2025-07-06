@@ -48,16 +48,10 @@
                         <a href="{{route('site.learning')}}" class="dropdown-toggle">Курсы</a>
                     </li>
                     <li>
-                        <a href="/#news" class="">Статьи</a>
-                    </li>
-                    <li>
-                        <a href="#" class="">Изучающим в помощь</a>
-                    </li>
-                    <li>
                         <a href="#" class="">Тесты</a>
                     </li>
                     <li>
-                        <a href="{{route('site.contacts')}}" class="">Контакты</a>
+                        <a href="https://taplink.cc/lingvakit" target="_blank">Контакты</a>
                     </li>
                 </ul>
             </div>

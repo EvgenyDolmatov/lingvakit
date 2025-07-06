@@ -2,6 +2,12 @@
 
 ---
 
+## [1.4.0] - 2025-07-06
+### Removed
+* Removed articles and help links from main page
+
+---
+
 ## [1.3.3] - 2025-06-25
 ### Fixes
 * Fix deploy script

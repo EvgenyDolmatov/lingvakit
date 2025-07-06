@@ -492,36 +492,6 @@
     </section>
     <div class="clearfix"></div>
 
-    <section id="news">
-        <div class="container">
-            <div class="divider-line solid light opacity-5"></div>
-            <div class="row sec-padd-default-page">
-
-                <div class="col-xs-12 text-center">
-                    <h1 class="paddtop1 dosis font-weight-5 lspace-sm">Новости
-                    </h1>
-                    <div class="title-line-4 align-center"></div>
-                </div>
-                <div class="clearfix"></div>
-
-                @if($rubrics->count())
-                    @foreach($rubrics as $rubric)
-                        <div class="col-md-4 col-sm-6">
-                            <a href="{{route('site.rubric.articles', $rubric->slug)}}"
-                               class="feature-box-84 text-center bmargin primary-bg">
-                                <h4 class="text-white uppercase">{{$rubric->title}}</h4>
-                            </a>
-                        </div>
-                    @endforeach
-                @endif
-                <div class="clear"></div>
-            </div>
-        </div>
-    </section>
-    <!-- end section -->
-    <div class="clearfix"></div>
-
-
     <section class="sec-padding">
         <div class="container">
             <div class="row">
