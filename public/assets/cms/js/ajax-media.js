@@ -73,6 +73,7 @@
             previewContainer.html(element);
 
             $('div[title="file-size"]').html(data.size);
+            $('div[title="file-link"]').html(data.link);
             $('input[name="title"]').val(data.title);
             $('input[name="alt"]').val(data.alt);
             $('a#download-link').attr('href', $pageUrl + 'download/file-' + data.id);
