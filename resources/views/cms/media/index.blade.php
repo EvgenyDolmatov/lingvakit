@@ -339,6 +339,12 @@
                                        class="form-control">
                             </div>
                         </div>
+
+                        {{-- File link --}}
+                        <div class="about-infos mb-3 mt-3">
+                            <div class="about-title"><h5>Ссылка:</h5></div>
+                            <div title="file-link" class="about-text"></div>
+                        </div>
                         <div class="alert alert-success hide"></div>
 
                         <div class="text-right">

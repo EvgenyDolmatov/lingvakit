@@ -2,6 +2,12 @@
 
 ---
 
+## [1.5.0] - 2025-07-14
+### Added
+* Added link to media files page
+
+---
+
 ## [1.4.0] - 2025-07-06
 ### Removed
 * Removed articles and help links from main page

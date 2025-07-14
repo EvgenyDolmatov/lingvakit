@@ -82,6 +82,8 @@ class MediaFileController extends Controller
     public function getAjaxData($id)
     {
         $file = MediaFile::find($id);
+        $baseUrl = env('APP_URL');
+
         return Response()->json([
             'id' => $file->id,
             'title' => $file->title,
@@ -90,6 +92,7 @@ class MediaFileController extends Controller
             'type' => $file->type,
             'size' => $file->getFileSize(),
             'duration' => $file->duration,
+            'link' => "$baseUrl/uploads/$file->path/$file->filename",
         ]);
     }
 
